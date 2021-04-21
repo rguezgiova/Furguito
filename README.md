@@ -3,7 +3,7 @@
 =======
 <b>Programa para consultar informacion sobre los equipos de la Liga Santander en la temporada 2020/2021</b>
 
-Leer Wiki completa del programa:<br>
+<H1 align="center">Leer Wiki completa del programa:<br>
 https://github.com/rguezgiova/Furguito/wiki
  
  <ul>
