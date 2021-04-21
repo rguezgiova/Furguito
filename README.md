@@ -5,6 +5,7 @@
 
 <H1 align="center">Leer Wiki completa del programa:<br>
 https://github.com/rguezgiova/Furguito/wiki
+ </H1>
  
  <ul>
  <li>
