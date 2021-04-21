@@ -3,4 +3,7 @@
  
  <ul>
  <li>
- Consultar informacion de los equipos. Año de fundacion, numero de socios, presupuesto,
+ Consultar informacion de los equipos. Año de fundacion, ciudad, numero de socios, presupuesto, estadio en el que juegan, colores.
+  <li>
+   Consultar informacion de los estadios de cada equipo. Nombre, capacidad, equipo al que pertenece, año de construccion.
+   <li>
