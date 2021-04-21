@@ -7,3 +7,6 @@
   <li>
    Consultar informacion de los estadios de cada equipo. Nombre, capacidad, equipo al que pertenece, año de construccion.
    <li>
+    consultar la plantilla de cada equipo. Equipo al que pertenecen, dorsal, posicion, goles, asistencias, tarjetas amarillas, tarjetas rojas.
+    <li>
+     Consultar el palmare de cada equipo. Equipo, ligas, copas del rey, supercopa de españa, supercopas de europa, champions, mundiales de clubes.
