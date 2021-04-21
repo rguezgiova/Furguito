@@ -1,5 +1,5 @@
 #  Furguito
-<b>Programa para consultar información sobre los equipos de la Liga Santander en la temporada 2020/2021</b>
+<b>Programa para consultar información sobre los equipos de la Liga Santander en la Temporada 2020/2021</b>
  
  <ul>
  <li>
