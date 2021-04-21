@@ -1,0 +1,32 @@
+Paquete api
+
+Estadio.java
+Palmares.java
+Jugador.java
+Equipo.java
+
+Paquete controller
+
+EstadioController.java
+PalmaresController.java
+JugadorController.java
+EquipoController.java
+
+Paquete Exception
+
+EstadioException.java
+PalmaresException.java
+JugadorException.java
+EquipoException.java
+
+Paquete Modelo
+
+Fichero.java
+EstadioModelo.java
+PalmaresModelo.java
+JugadorModelo.java
+EquipoModelo.java
+
+Paquete View
+
+FurguitoApp.java
