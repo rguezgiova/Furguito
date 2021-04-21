@@ -12,6 +12,5 @@ https://github.com/rguezgiova/Furguito/wiki
    Consultar información de los estadios de cada equipo: Nombre, capacidad, equipo al que pertenece, año de construcción.
    <li>
     Consultar la plantilla de cada equipo: Equipo al que pertenecen, dorsal, posicion, goles, asistencias, tarjetas amarillas, tarjetas rojas.
-    Consultar la plantilla de cada equipo. Equipo al que pertenecen, dorsal, posicion, goles, asistencias, tarjetas amarillas, tarjetas rojas.
     <li>
      Consultar el palmarés de cada equipo: Equipo, ligas, copas del rey, supercopa de españa, supercopas de europa, champions, mundiales de clubes.
