@@ -1,4 +1,4 @@
-package es.iespuertolacruz.furguito;
+package es.iespuertolacruz.furguito.vista;
 
 /**
  * Hello world!
