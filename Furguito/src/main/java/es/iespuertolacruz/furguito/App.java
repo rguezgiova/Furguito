@@ -1,4 +1,4 @@
-package es.iespuertodelacruz.neftagiovanni;
+package es.iespuertolacruz.furguito;
 
 /**
  * Hello world!
