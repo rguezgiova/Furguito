@@ -33,6 +33,12 @@ public class Equipo {
     }
 
     /**
+     * Constructor vacio
+     */
+    public Equipo() {
+    }
+
+    /**
      * Getters y Setters
      * 
      */

@@ -5,7 +5,6 @@ public class Plantilla {
     String equipo;
     String nombre;
     int dorsal;
-    String posicion;
     int goles;
     int asistencias;
     int amarillas;
@@ -17,22 +16,25 @@ public class Plantilla {
      * @param equipo      al que pertenece el jugador
      * @param nombre      del jugador
      * @param dorsal      del jugador
-     * @param posicion    del jugador
      * @param goles       totales del jugador
      * @param asistencias totales del jugador
      * @param amarillas   totales del jugador
      * @param rojas       totales del jugador
      */
-    public Plantilla(String equipo, String nombre, int dorsal, String posicion, int goles, int asistencias,
-            int amarillas, int rojas) {
+    public Plantilla(String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
         this.equipo = equipo;
         this.nombre = nombre;
         this.dorsal = dorsal;
-        this.posicion = posicion;
         this.goles = goles;
         this.asistencias = asistencias;
         this.amarillas = amarillas;
         this.rojas = rojas;
+    }
+
+    /**
+     * Constructor vacio
+     */
+    public Plantilla() {
     }
 
     /**
@@ -61,14 +63,6 @@ public class Plantilla {
 
     public void setDorsal(int dorsal) {
         this.dorsal = dorsal;
-    }
-
-    public String getPosicion() {
-        return this.posicion;
-    }
-
-    public void setPosicion(String posicion) {
-        this.posicion = posicion;
     }
 
     public int getGoles() {
@@ -106,8 +100,8 @@ public class Plantilla {
     @Override
     public String toString() {
         return "Equipo='" + getEquipo() + "\n" + "Nombre='" + getNombre() + "\n" + "Dorsal='" + getDorsal() + "\n"
-                + "Posicion='" + getPosicion() + "\n" + "Goles='" + getGoles() + "\n" + "Asistencias='"
-                + getAsistencias() + "\n" + "Amarillas='" + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
+                + "\n" + "Goles='" + getGoles() + "\n" + "Asistencias='" + getAsistencias() + "\n" + "Amarillas='"
+                + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
     }
 
 }

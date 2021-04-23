@@ -33,6 +33,12 @@ public class Palmares {
     }
 
     /**
+     * Constructor vacio
+     */
+    public Palmares() {
+    }
+
+    /**
      * Getters y Setters
      * 
      */

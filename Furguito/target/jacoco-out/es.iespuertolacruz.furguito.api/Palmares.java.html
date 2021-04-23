@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Palmares.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.api</a> &gt; <span class="el_source">Palmares.java</span></div><h1>Palmares.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.api;
+
+public class Palmares {
+
+    String equipo;
+    int ligas;
+    int copasdelrey;
+    int superespana;
+    int supereuropa;
+    int champions;
+    int mundialclubs;
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param equipo       nombre del equipo
+     * @param ligas        totales ganadas
+     * @param copasdelrey  totales ganadas
+     * @param superespana  totales ganadas
+     * @param supereuropa  totales ganadas
+     * @param champions    totales ganadas
+     * @param mundialclubs totales ganadas
+     */
+    public Palmares(String equipo, int ligas, int copasdelrey, int superespana, int supereuropa, int champions,
+<span class="fc" id="L25">            int mundialclubs) {</span>
+<span class="fc" id="L26">        this.equipo = equipo;</span>
+<span class="fc" id="L27">        this.ligas = ligas;</span>
+<span class="fc" id="L28">        this.copasdelrey = copasdelrey;</span>
+<span class="fc" id="L29">        this.superespana = superespana;</span>
+<span class="fc" id="L30">        this.supereuropa = supereuropa;</span>
+<span class="fc" id="L31">        this.champions = champions;</span>
+<span class="fc" id="L32">        this.mundialclubs = mundialclubs;</span>
+<span class="fc" id="L33">    }</span>
+
+    /**
+     * Constructor vacio
+     */
+<span class="fc" id="L38">    public Palmares() {</span>
+<span class="fc" id="L39">    }</span>
+
+    /**
+     * Getters y Setters
+     * 
+     */
+    public String getEquipo() {
+<span class="fc" id="L46">        return this.equipo;</span>
+    }
+
+    public void setEquipo(String equipo) {
+<span class="fc" id="L50">        this.equipo = equipo;</span>
+<span class="fc" id="L51">    }</span>
+
+    public int getLigas() {
+<span class="fc" id="L54">        return this.ligas;</span>
+    }
+
+    public void setLigas(int ligas) {
+<span class="fc" id="L58">        this.ligas = ligas;</span>
+<span class="fc" id="L59">    }</span>
+
+    public int getCopasdelrey() {
+<span class="fc" id="L62">        return this.copasdelrey;</span>
+    }
+
+    public void setCopasdelrey(int copasdelrey) {
+<span class="fc" id="L66">        this.copasdelrey = copasdelrey;</span>
+<span class="fc" id="L67">    }</span>
+
+    public int getSuperespana() {
+<span class="fc" id="L70">        return this.superespana;</span>
+    }
+
+    public void setSuperespana(int superespana) {
+<span class="fc" id="L74">        this.superespana = superespana;</span>
+<span class="fc" id="L75">    }</span>
+
+    public int getSupereuropa() {
+<span class="fc" id="L78">        return this.supereuropa;</span>
+    }
+
+    public void setSupereuropa(int supereuropa) {
+<span class="fc" id="L82">        this.supereuropa = supereuropa;</span>
+<span class="fc" id="L83">    }</span>
+
+    public int getChampions() {
+<span class="fc" id="L86">        return this.champions;</span>
+    }
+
+    public void setChampions(int champions) {
+<span class="fc" id="L90">        this.champions = champions;</span>
+<span class="fc" id="L91">    }</span>
+
+    public int getMundialclubs() {
+<span class="fc" id="L94">        return this.mundialclubs;</span>
+    }
+
+    public void setMundialclubs(int mundialclubs) {
+<span class="fc" id="L98">        this.mundialclubs = mundialclubs;</span>
+<span class="fc" id="L99">    }</span>
+
+    @Override
+    public String toString() {
+<span class="fc" id="L103">        return &quot;Equipo='&quot; + getEquipo() + &quot;\n&quot; + &quot;Ligas='&quot; + getLigas() + &quot;\n&quot; + &quot;Copas del rey='&quot; + getCopasdelrey()</span>
+<span class="fc" id="L104">                + &quot;\n&quot; + &quot;Supercopas de Espana='&quot; + getSuperespana() + &quot;\n&quot; + &quot;Supercopas de Europa='&quot;</span>
+<span class="fc" id="L105">                + getSupereuropa() + &quot;\n&quot; + &quot;Champions League='&quot; + getChampions() + &quot;\n&quot; + &quot;Mundiales de clubs='&quot;</span>
+<span class="fc" id="L106">                + getMundialclubs() + &quot;\n&quot;;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

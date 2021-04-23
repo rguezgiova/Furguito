@@ -23,6 +23,12 @@ public class Estadio {
     }
 
     /**
+     * Constructor vacio
+     */
+    public Estadio() {
+    }
+
+    /**
      * Getters y Setters
      * 
      */
