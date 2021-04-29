@@ -6,7 +6,7 @@ public class Equipo {
     String ciudad;
     String estadio;
     int fundacion;
-    int numsocios;
+    int numeroSocios;
     double presupuesto;
     String colores;
 
@@ -21,13 +21,13 @@ public class Equipo {
      * @param presupuesto total anual del club
      * @param colores     del club
      */
-    public Equipo(String nombre, String ciudad, String estadio, int fundacion, int numsocios, double presupuesto,
+    public Equipo(String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto,
             String colores) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.estadio = estadio;
         this.fundacion = fundacion;
-        this.numsocios = numsocios;
+        this.numeroSocios = numeroSocios;
         this.presupuesto = presupuesto;
         this.colores = colores;
     }
@@ -74,12 +74,12 @@ public class Equipo {
         this.fundacion = fundacion;
     }
 
-    public int getNumsocios() {
-        return this.numsocios;
+    public int getNumeroSocios() {
+        return this.numeroSocios;
     }
 
-    public void setNumsocios(int numsocios) {
-        this.numsocios = numsocios;
+    public void setNumeroSocios(int numeroSocios) {
+        this.numeroSocios = numeroSocios;
     }
 
     public double getPresupuesto() {
@@ -104,8 +104,7 @@ public class Equipo {
     @Override
     public String toString() {
         return "Nombre='" + getNombre() + "\n" + "Ciudad='" + getCiudad() + "\n" + "Estadio='" + getEstadio() + "\n"
-                + "Fecha de fundacion='" + getFundacion() + "\n" + "Numero de socios='" + getNumsocios() + "\n"
+                + "Fecha de fundacion='" + getFundacion() + "\n" + "Numero de socios='" + getNumeroSocios() + "\n"
                 + "Presupuesto anual='" + getPresupuesto() + "\n" + "Colores del club='" + getColores() + "\n";
     }
-
 }

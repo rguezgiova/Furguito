@@ -4,11 +4,11 @@ public class Palmares {
 
     String equipo;
     int ligas;
-    int copasdelrey;
-    int superespana;
-    int supereuropa;
+    int copasDelRey;
+    int SuperEspana;
+    int superEuropa;
     int champions;
-    int mundialclubs;
+    int mundialClubs;
 
     /**
      * Constructor con todos los parametros
@@ -21,15 +21,15 @@ public class Palmares {
      * @param champions    totales ganadas
      * @param mundialclubs totales ganadas
      */
-    public Palmares(String equipo, int ligas, int copasdelrey, int superespana, int supereuropa, int champions,
-            int mundialclubs) {
+    public Palmares(String equipo, int ligas, int copasDelRey, int SuperEspana, int superEuropa, int champions,
+            int mundialClubs) {
         this.equipo = equipo;
         this.ligas = ligas;
-        this.copasdelrey = copasdelrey;
-        this.superespana = superespana;
-        this.supereuropa = supereuropa;
+        this.copasDelRey = copasDelRey;
+        this.SuperEspana = SuperEspana;
+        this.superEuropa = superEuropa;
         this.champions = champions;
-        this.mundialclubs = mundialclubs;
+        this.mundialClubs = mundialClubs;
     }
 
     /**
@@ -58,28 +58,28 @@ public class Palmares {
         this.ligas = ligas;
     }
 
-    public int getCopasdelrey() {
-        return this.copasdelrey;
+    public int getCopasDelRey() {
+        return this.copasDelRey;
     }
 
-    public void setCopasdelrey(int copasdelrey) {
-        this.copasdelrey = copasdelrey;
+    public void setCopasDelRey(int copasDelRey) {
+        this.copasDelRey = copasDelRey;
     }
 
-    public int getSuperespana() {
-        return this.superespana;
+    public int getSuperEspana() {
+        return this.SuperEspana;
     }
 
-    public void setSuperespana(int superespana) {
-        this.superespana = superespana;
+    public void setSuperEspana(int SuperEspana) {
+        this.SuperEspana = SuperEspana;
     }
 
-    public int getSupereuropa() {
-        return this.supereuropa;
+    public int getSuperEuropa() {
+        return this.superEuropa;
     }
 
-    public void setSupereuropa(int supereuropa) {
-        this.supereuropa = supereuropa;
+    public void setSuperEuropa(int superEuropa) {
+        this.superEuropa = superEuropa;
     }
 
     public int getChampions() {
@@ -90,20 +90,20 @@ public class Palmares {
         this.champions = champions;
     }
 
-    public int getMundialclubs() {
-        return this.mundialclubs;
+    public int getMundialClubs() {
+        return this.mundialClubs;
     }
 
-    public void setMundialclubs(int mundialclubs) {
-        this.mundialclubs = mundialclubs;
+    public void setMundialClubs(int mundialClubs) {
+        this.mundialClubs = mundialClubs;
     }
 
     @Override
     public String toString() {
-        return "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n" + "Copas del rey='" + getCopasdelrey()
-                + "\n" + "Supercopas de Espana='" + getSuperespana() + "\n" + "Supercopas de Europa='"
-                + getSupereuropa() + "\n" + "Champions League='" + getChampions() + "\n" + "Mundiales de clubs='"
-                + getMundialclubs() + "\n";
+        return "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n" + "Copas del rey='" + getCopasDelRey()
+                + "\n" + "Supercopas de Espana='" + getSuperEspana() + "\n" + "Supercopas de Europa='"
+                + getSuperEuropa() + "\n" + "Champions League='" + getChampions() + "\n" + "Mundiales de clubs='"
+                + getMundialClubs() + "\n";
     }
 
 }
