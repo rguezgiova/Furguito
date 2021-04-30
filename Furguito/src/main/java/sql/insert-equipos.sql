@@ -1,6 +1,6 @@
 INSERT INTO Equipos(nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores)
 VALUES ('Deportivo Alaves', 'Alava', 'Mendizorroza', '1921', '17713', '64000000', 'Blanco y azul');
-VALUES ('Athletic Club', 'Bilbao', 'San Mames', '1898', '43169', '116000000', 'Rojo blanco y negro');
+VALUES ('Athletic Club de Bilbao', 'Bilbao', 'San Mames', '1898', '43169', '116000000', 'Rojo blanco y negro');
 VALUES ('Atletico de Madrid', 'Madrid', 'Wanda Metropolitano', '1903', '130000', '252700000', 'Rojo blanco y azul');
 VALUES ('Futbol Club Barcelona', 'Barcelona', 'Camp Nou', '1899', '150000', '382700000', 'Rojo y azul');
 VALUES ('Real Betis Balompie', 'Sevilla', 'Benito Villamarin', '1907', '45000', '71300000', 'Blanco y verde');
@@ -11,7 +11,7 @@ VALUES ('Elche Club de Futbol', 'Elche', 'Martinez Valero', '1922', '25000', '34
 VALUES ('Getafe Club de Futbol', 'Getafe', 'Coliseum Alfonso Perez', '1923', '13000', '52600000', 'Azul');
 VALUES ('Granada Club de Futbol', 'Granada', 'Estadio Nuevo Los Carmenes', '1931', '13800', '56500000', 'Rojo y blanco');
 VALUES ('Sociedad Deportiva Huesca', 'Huesca', 'El Alcoraz', '1960', '6000', '37100000', 'Azul y rojo');
-VALUES ('Levanta Union Deportiva', 'Valencia', 'Ciutat de Valencia', '1909', '22000', '37600000', 'Azul y rojo');
+VALUES ('Levante Union Deportiva', 'Valencia', 'Ciutat de Valencia', '1909', '22000', '37600000', 'Azul y rojo');
 VALUES ('Club Atletico Osasuna', 'Pamplona', 'El Sadar', '1920', '15498', '46600000', 'Azul y rojo');
 VALUES ('Real Sociedad de Futbol', 'San Sebastian', 'Reale Arena', '1909', '32000', '100900000', 'Azul y blanco');
 VALUES ('Real Madrid Club de Futbol', 'Madrid', 'Santiago Bernabeu', '1902', '61000', '468500000', 'Blanco');
