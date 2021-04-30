@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS 'Palmares' (
     'mundialClubs' int(2)
 )
 
-CREATE TABLE IF NOT EXISTS 'Plantillas' (
-    'idPlantilla' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CREATE TABLE IF NOT EXISTS 'Jugadores' (
+    'idJugador' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     'equipo' varchar(50) NOT NULL,
     'nombre' varchar(50) NOT NULL,
     'dorsal' int(2) NOT NULL,

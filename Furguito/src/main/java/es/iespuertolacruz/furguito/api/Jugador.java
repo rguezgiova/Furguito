@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito.api;
 
-public class Plantilla {
+public class Jugador {
 
     String equipo;
     String nombre;
@@ -21,7 +21,7 @@ public class Plantilla {
      * @param amarillas   totales del jugador
      * @param rojas       totales del jugador
      */
-    public Plantilla(String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
+    public Jugador(String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
         this.equipo = equipo;
         this.nombre = nombre;
         this.dorsal = dorsal;
@@ -34,7 +34,7 @@ public class Plantilla {
     /**
      * Constructor vacio
      */
-    public Plantilla() {
+    public Jugador() {
     }
 
     /**
