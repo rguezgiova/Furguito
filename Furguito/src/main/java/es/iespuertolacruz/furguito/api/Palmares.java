@@ -15,11 +15,11 @@ public class Palmares {
      * 
      * @param equipo       nombre del equipo
      * @param ligas        totales ganadas
-     * @param copasdelrey  totales ganadas
-     * @param superespana  totales ganadas
-     * @param supereuropa  totales ganadas
+     * @param copasDelRey  totales ganadas
+     * @param superEspana  totales ganadas
+     * @param superEuropa  totales ganadas
      * @param champions    totales ganadas
-     * @param mundialclubs totales ganadas
+     * @param mundialClubs totales ganadas
      */
     public Palmares(String equipo, int ligas, int copasDelRey, int SuperEspana, int superEuropa, int champions,
             int mundialClubs) {

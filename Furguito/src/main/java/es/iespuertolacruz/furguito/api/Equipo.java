@@ -17,7 +17,7 @@ public class Equipo {
      * @param ciudad      en la que juega el club
      * @param estadio     del club
      * @param fundacion   fecha de fundacion del club
-     * @param numsocios   totales del club
+     * @param numeroSocios   totales del club
      * @param presupuesto total anual del club
      * @param colores     del club
      */
