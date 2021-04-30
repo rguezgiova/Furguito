@@ -5,7 +5,7 @@ public class Palmares {
     String equipo;
     int ligas;
     int copasDelRey;
-    int SuperEspana;
+    int superEspana;
     int superEuropa;
     int champions;
     int mundialClubs;
@@ -21,16 +21,16 @@ public class Palmares {
      * @param champions    totales ganadas
      * @param mundialClubs totales ganadas
      */
-    public Palmares(String equipo, int ligas, int copasDelRey, int SuperEspana, int superEuropa, int champions,
-            int mundialClubs) {
+    public Palmares(String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa, int champions, int mundialClubs) {
         this.equipo = equipo;
         this.ligas = ligas;
         this.copasDelRey = copasDelRey;
-        this.SuperEspana = SuperEspana;
+        this.superEspana = superEspana;
         this.superEuropa = superEuropa;
         this.champions = champions;
         this.mundialClubs = mundialClubs;
     }
+    
 
     /**
      * Constructor vacio
@@ -67,11 +67,11 @@ public class Palmares {
     }
 
     public int getSuperEspana() {
-        return this.SuperEspana;
+        return this.superEspana;
     }
 
-    public void setSuperEspana(int SuperEspana) {
-        this.SuperEspana = SuperEspana;
+    public void setSuperEspana(int superEspana) {
+        this.superEspana = superEspana;
     }
 
     public int getSuperEuropa() {
@@ -97,7 +97,7 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
         this.mundialClubs = mundialClubs;
     }
-
+    
     @Override
     public String toString() {
         return "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n" + "Copas del rey='" + getCopasDelRey()
