@@ -26,7 +26,7 @@ public class EquipoTest {
         assertTrue(equipo.getCiudad().contains("Cadiz"));
         assertTrue(equipo.getEstadio().contains("Carranza"));
         assertEquals(1910, equipo.getFundacion());
-        assertEquals(16000, equipo.getNumsocios());
+        assertEquals(16000, equipo.getNumeroSocios());
         assertEquals(51000000.00, equipo.getPresupuesto());
         assertTrue(equipo.getColores().contains("Amarillo"));
     }
@@ -39,7 +39,7 @@ public class EquipoTest {
         assertTrue(equipo.getCiudad().contains("Castellon"));
         assertTrue(equipo.getEstadio().contains("Ceramica"));
         assertEquals(1923, equipo.getFundacion());
-        assertEquals(15000, equipo.getNumsocios());
+        assertEquals(15000, equipo.getNumeroSocios());
         assertEquals(117000000, equipo.getPresupuesto());
         assertTrue(equipo.getColores().contains("Amarillo"));
     }
@@ -72,7 +72,7 @@ public class EquipoTest {
             equipo.setCiudad("Cadiz");
             equipo.setEstadio("Ramon de Carranza");
             equipo.setFundacion(1910);
-            equipo.setNumsocios(16000);
+            equipo.setNumeroSocios(16000);
             equipo.setPresupuesto(51000000.00);
             equipo.setColores("Amarillo y azul");
         }

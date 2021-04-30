@@ -25,11 +25,11 @@ public class PalmaresTest {
     public void generarPalmaresVacioTest(){
         assertTrue(palmares.getEquipo().contains("Barcelona"));
         assertEquals(26, palmares.getLigas());
-        assertEquals(31, palmares.getCopasdelrey());
-        assertEquals(13, palmares.getSuperespana());
-        assertEquals(5, palmares.getSupereuropa());
+        assertEquals(31, palmares.getCopasDelRey());
+        assertEquals(13, palmares.getSuperEspana());
+        assertEquals(5, palmares.getSuperEuropa());
         assertEquals(5, palmares.getChampions());
-        assertEquals(3, palmares.getMundialclubs());
+        assertEquals(3, palmares.getMundialClubs());
     }
 
     @Test
@@ -37,11 +37,11 @@ public class PalmaresTest {
         palmares = generarPalmares("Valencia C.F.", 6, 8, 1, 2, 0, 0);
         assertTrue(palmares.getEquipo().contains("Valencia"));
         assertEquals(6, palmares.getLigas());
-        assertEquals(8, palmares.getCopasdelrey());
-        assertEquals(1, palmares.getSuperespana());
-        assertEquals(2, palmares.getSupereuropa());
+        assertEquals(8, palmares.getCopasDelRey());
+        assertEquals(1, palmares.getSuperEspana());
+        assertEquals(2, palmares.getSuperEuropa());
         assertEquals(0, palmares.getChampions());
-        assertEquals(0, palmares.getMundialclubs());
+        assertEquals(0, palmares.getMundialClubs());
     }
 
 
@@ -71,11 +71,11 @@ public class PalmaresTest {
             palmares = new Palmares();
             palmares.setEquipo("F.C. Barcelona");
             palmares.setLigas(26);
-            palmares.setCopasdelrey(31);
-            palmares.setSuperespana(13);
-            palmares.setSupereuropa(5);
+            palmares.setCopasDelRey(31);
+            palmares.setSuperEspana(13);
+            palmares.setSuperEuropa(5);
             palmares.setChampions(5);
-            palmares.setMundialclubs(3);
+            palmares.setMundialClubs(3);
         }
         return palmares;
     }
