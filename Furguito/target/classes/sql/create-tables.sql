@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS 'Equipos' (
-    'idEquipo' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL UNIQUE,
+    'idEquipo' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     'nombre' varchar(50) NOT NULL,
     'ciudad' varchar(50) NOT NULL,
     'estadio' varchar(50) NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS 'Equipos' (
 )
 
 CREATE TABLE IF NOT EXISTS 'Estadios' (
-    'idEstadio' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL UNIQUE,
+    'idEstadio' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     'nombre' varchar(50) NOT NULL,
     'equipo' varchar(50) NOT NULL,
     'capacidad' int(6) DEFAULT 0, 
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS 'Estadios' (
 )
 
 CREATE TABLE IF NOT EXISTS 'Palmares' (
-    'idPalmares' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL UNIQUE,
+    'idPalmares' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     'equipo' varchar(50) NOT NULL,
     'ligas' int(2),
     'copasDelRey' int(2),
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS 'Palmares' (
 )
 
 CREATE TABLE IF NOT EXISTS 'Plantillas' (
-    'idPlantilla' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL UNIQUE,
+    'idPlantilla' int(2) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     'equipo' varchar(50) NOT NULL,
     'nombre' varchar(50) NOT NULL,
     'dorsal' int(2) NOT NULL,
