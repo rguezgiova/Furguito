@@ -21,8 +21,7 @@ public class Equipo {
      * @param presupuesto total anual del club
      * @param colores     del club
      */
-    public Equipo(String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto,
-            String colores) {
+    public Equipo(String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto, String colores) {
         this.nombre = nombre;
         this.ciudad = ciudad;
         this.estadio = estadio;
@@ -31,6 +30,7 @@ public class Equipo {
         this.presupuesto = presupuesto;
         this.colores = colores;
     }
+    
 
     /**
      * Constructor vacio
@@ -97,6 +97,7 @@ public class Equipo {
     public void setColores(String colores) {
         this.colores = colores;
     }
+    
 
     /**
      * Metodo toString
