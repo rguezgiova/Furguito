@@ -337,16 +337,17 @@ public class Bbdd {
 
     /**
      * Metodo para modificar el palmares de un equipo dentro de la BBDD
+     * 
      * @param palmares a modificar
      * @throws BbddException error controlado
      */
-    public void modificarPalmares(Palmares palmares) throws BbddException{
+    public void modificarPalmares(Palmares palmares) throws BbddException {
         String sql = "";
-        sql = "UPDATE Palmares SET equipo = '"+palmares.getEquipo()+"'"+", ligas = '"
-        +palmares.getLigas()+"'"+", copasDelRey = '"+palmares.getCopasDelRey()+"'"
-        +", superEspana = '" +palmares.getSuperEspana()+", superEuropa = '" +palmares.getSuperEuropa()
-        +", champions = '" +palmares.getChampions()+", mundialClubs = '" +palmares.getMundialClubs()
-        +"' WHERE identificador = '"+palmares.getId()+"'";
+        sql = "UPDATE Palmares SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas() + "'"
+                + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
+                + palmares.getSuperEspana() + ", superEuropa = '" + palmares.getSuperEuropa() + ", champions = '"
+                + palmares.getChampions() + ", mundialClubs = '" + palmares.getMundialClubs()
+                + "' WHERE identificador = '" + palmares.getId() + "'";
         actualizar(sql);
     }
 
@@ -358,71 +359,117 @@ public class Bbdd {
      */
     public void modificarJugador(Jugador jugador) throws BbddException {
         String sql = "";
-        sql = "UPDATE Jugadores SET equipo = '"+jugador.getEquipo()+"'"+", nombre = '"
-        +jugador.getNombre()+"'"+", dorsal = '"+jugador.getDorsal()+"'"
-        +", goles = '" +jugador.getGoles()+", asistencias = '" +jugador.getAsistencias()
-        +", amarillas = '" +jugador.getAmarillas()+", rojas = '" +jugador.getRojas()
-        +"' WHERE identificador = '"+jugador.getId()+"'";
+        sql = "UPDATE Jugadores SET equipo = '" + jugador.getEquipo() + "'" + ", nombre = '" + jugador.getNombre() + "'"
+                + ", dorsal = '" + jugador.getDorsal() + "'" + ", goles = '" + jugador.getGoles() + ", asistencias = '"
+                + jugador.getAsistencias() + ", amarillas = '" + jugador.getAmarillas() + ", rojas = '"
+                + jugador.getRojas() + "' WHERE identificador = '" + jugador.getId() + "'";
         actualizar(sql);
     }
 
     /**
      * Metodo que se encarga de la insercion de un estadio en la BBDD
+     * 
      * @param estadio a insertar
      * @throws BbddException error controlado
      */
     public void insertarEstadio(Estadio estadio) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Estadios(nombre, equipo, capacidad, construccion)" 
-        + "VALUES('"+estadio.getNombre()+"', '"+estadio.getEquipo()
-        +"', '"+estadio.getCapacidad()+"', '"+estadio.getConstruccion()+"')";
+        sql = "INSERT INTO Estadios(nombre, equipo, capacidad, construccion)" + "VALUES('" + estadio.getNombre()
+                + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion()
+                + "')";
         actualizar(sql);
     }
 
     /**
      * Metodo que se encarga de la insercion de un equipo en la BBDD
+     * 
      * @param equipo a insertar
      * @throws BbddException error controlado
      */
     public void insertarEquipo(Equipo equipo) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores)" 
-        + "VALUES('"+equipo.getNombre()+"', '"+equipo.getCiudad()
-        +"', '"+equipo.getEstadio()+"', '"+equipo.getFundacion()
-        +"', "+equipo.getNumeroSocios()+"', "+equipo.getPresupuesto()
-        +"', "+equipo.getColores()+"')";
+        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores)"
+                + "VALUES('" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
+                + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', " + equipo.getPresupuesto() + "', "
+                + equipo.getColores() + "')";
         actualizar(sql);
     }
 
     /**
      * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
+     * 
      * @param palmares a insertar
      * @throws BbddException error controlado
      */
     public void insertarPalmares(Palmares palmares) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs)" 
-        + "VALUES('"+palmares.getEquipo()+"', '"+palmares.getLigas()
-        +"', '"+palmares.getCopasDelRey()+"', '"+palmares.getSuperEspana()
-        +"', "+palmares.getSuperEuropa()+"', "+palmares.getChampions()
-        +"', "+palmares.getMundialClubs()+"')";
+        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs)"
+                + "VALUES('" + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey()
+                + "', '" + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', "
+                + palmares.getChampions() + "', " + palmares.getMundialClubs() + "')";
         actualizar(sql);
     }
 
     /**
      * Metodo que se encarga de la insercion de un jugador en la BBDD
+     * 
      * @param jugador a insertar
      * @throws BbddException error controlado
      */
     public void insertarJugador(Jugador jugador) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas)" 
-        + "VALUES('"+jugador.getEquipo()+"', '"+jugador.getNombre()
-        +"', '"+jugador.getDorsal()+"', '"+jugador.getGoles()
-        +"', "+jugador.getAsistencias()+"', "+jugador.getAmarillas()
-        +"', "+jugador.getRojas()+"')";
+        sql = "INSERT INTO Palmares (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas)" + "VALUES('"
+                + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '" + jugador.getDorsal() + "', '"
+                + jugador.getGoles() + "', " + jugador.getAsistencias() + "', " + jugador.getAmarillas() + "', "
+                + jugador.getRojas() + "')";
         actualizar(sql);
     }
 
-    
+    /**
+     * Metodo para borrar un equipo de la BBDD
+     * 
+     * @param equipo a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarEquipo(Equipo equipo) throws BbddException {
+        String sql = "";
+        sql = "DELETE FROM Equipos WHERE idEquipo = " + equipo.getId();
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para borrar un estadio de la BBDD
+     * 
+     * @param estadio a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarEstadio(Estadio estadio) throws BbddException {
+        String sql = "";
+        sql = "DELETE FROM Estadios WHERE idEstadio = " + estadio.getId();
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para borrar un palmares de la BBDD
+     * 
+     * @param palmares a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarPalmares(Palmares palmares) throws BbddException {
+        String sql = "";
+        sql = "DELETE FROM Palmares WHERE idPalmares = " + palmares.getId();
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para borrar un jugador de la BBDD
+     * 
+     * @param jugador a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarJugador(Jugador jugador) throws BbddException {
+        String sql = "";
+        sql = "DELETE FROM Jugadores WHERE idJugador = " + jugador.getId();
+        actualizar(sql);
+    }
 }
