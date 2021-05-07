@@ -342,7 +342,7 @@ public class Bbdd {
      */
     public void modificarPalmares(Palmares palmares) throws BbddException{
         String sql = "";
-        sql = "UPDATE Palmares SET equipo = '"+palmares.getEquipo())+"'"+", ligas = '"
+        sql = "UPDATE Palmares SET equipo = '"+palmares.getEquipo()+"'"+", ligas = '"
         +palmares.getLigas()+"'"+", copasDelRey = '"+palmares.getCopasDelRey()+"'"
         +", superEspana = '" +palmares.getSuperEspana()+", superEuropa = '" +palmares.getSuperEuropa()
         +", champions = '" +palmares.getChampions()+", mundialClubs = '" +palmares.getMundialClubs()
