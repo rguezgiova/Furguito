@@ -3,10 +3,11 @@ package es.iespuertolacruz.furguito.modelo;
 import java.sql.*;
 import java.util.ArrayList;
 
-import es.iespuertolacruz.furguito.api.Equipo;
+import es.iespuertolacruz.furguito.api.*;
 import es.iespuertolacruz.furguito.exception.BbddException;
 
 public class Bbdd {
+    private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
     private String driver;
     private String url;
     private String usuario;
@@ -79,7 +80,7 @@ public class Bbdd {
      * @return lista de resultados
      * @throws BbddException controlado
      */
-    private ArrayList<Equipo> obtenerListado(String sql) throws BbddException {
+    private ArrayList<Equipo> obtenerEquipos(String sql) throws BbddException {
         ArrayList<Equipo> listaEquipos = new ArrayList<>();
 
         Equipo equipo = null;
@@ -103,11 +104,120 @@ public class Bbdd {
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
-            throw new BbddException("Se ha producido un error realizando la consulta", exception);
+            throw new BbddException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(resultSet, connection, statement);
         }
         return listaEquipos;
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Estadios
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    private ArrayList<Estadio> obtenerEstadios(String sql) throws BbddException {
+        ArrayList<Estadio> listaEstadios = new ArrayList<>();
+
+        Estadio estadio = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int identificador = resultSet.getInt("idEstadio");
+                String nombre = resultSet.getString("nombre");
+                String equipo = resultSet.getString("equipo");
+                int capacidad = resultSet.getInt("capacidad");
+                int construccion = resultSet.getInt("construccion");
+                estadio = new Estadio(nombre, equipo, capacidad, construccion);
+                listaEstadios.add(estadio);
+            }
+        } catch (Exception exception) {
+            throw new BbddException(ERROR_CONSULTA, exception);
+        } finally {
+            closeConnection(resultSet, connection, statement);
+        }
+        return listaEstadios;
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    public ArrayList<Palmares> obtenerPalmares(String sql) throws BbddException {
+        ArrayList<Palmares> listaPalmares = new ArrayList<>();
+        Palmares palmares = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = getConnection().createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int identificador = resultSet.getInt("idPalmares");
+                String equipo = resultSet.getString("equipo");
+                int ligas = resultSet.getInt("ligas");
+                int copasDelRey = resultSet.getInt("copasDelRey");
+                int superEspana = resultSet.getInt("SuperEspana");
+                int superEuropa = resultSet.getInt("SuperEuropa");
+                int champions = resultSet.getInt("champions");
+                int mundialClubs = resultSet.getInt("mundialClubs");
+                palmares = new Palmares(equipo, ligas, copasDelRey, superEspana, superEuropa, champions, mundialClubs);
+                listaPalmares.add(palmares);
+            }
+        } catch (Exception exception) {
+            throw new BbddException(ERROR_CONSULTA, exception);
+        } finally {
+            closeConnection(resultSet, connection, statement);
+        }
+        return listaPalmares;
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Jugadores
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    public ArrayList<Jugador> obtenerJugadores(String sql) throws BbddException {
+        ArrayList<Jugador> listaJugadores = new ArrayList<>();
+        Jugador jugador = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = getConnection().createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                int identificador = resultSet.getInt("idJugador");
+                String equipo = resultSet.getString("equipo");
+                String nombre = resultSet.getString("nombre");
+                int dorsal = resultSet.getInt("dorsal");
+                int goles = resultSet.getInt("goles");
+                int asistencias = resultSet.getInt("asistencias");
+                int amarillas = resultSet.getInt("amarillas");
+                int rojas = resultSet.getInt("rojas");
+                jugador = new Jugador(equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
+                listaJugadores.add(jugador);
+            }
+        } catch (Exception exception) {
+            throw new BbddException(ERROR_CONSULTA, exception);
+        } finally {
+            closeConnection(resultSet, connection, statement);
+        }
+        return listaJugadores;
     }
 
     /**
@@ -120,9 +230,9 @@ public class Bbdd {
     public Equipo obtenerEquipo(String identificador) throws BbddException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT * FROM Fruta where identificador = ";
+        String sql = "SELECT * FROM Equipos where identificador = ";
         sql = sql + "'" + identificador + "'";
-        listaEquipos = obtenerListado(sql);
+        listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
         }
@@ -141,9 +251,9 @@ public class Bbdd {
     public Equipo obtenerPresupuesto(String identificador) throws BbddException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT nombre,presupuesto FROM Fruta where identificador = ";
+        String sql = "SELECT nombre,presupuesto FROM Equipos where identificador = ";
         sql = sql + "'" + identificador + "'";
-        listaEquipos = obtenerListado(sql);
+        listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
         }
@@ -162,9 +272,9 @@ public class Bbdd {
     public Equipo obtenerCiudad(String identificador) throws BbddException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT nombre,ciudad FROM Fruta where identificador = ";
+        String sql = "SELECT nombre,ciudad FROM Equipos where identificador = ";
         sql = sql + "'" + identificador + "'";
-        listaEquipos = obtenerListado(sql);
+        listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
         }
