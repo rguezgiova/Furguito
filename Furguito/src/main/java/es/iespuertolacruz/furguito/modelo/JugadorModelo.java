@@ -1,5 +1,5 @@
 package es.iespuertolacruz.furguito.modelo;
 
-public class PlantillaModelo {
+public class JugadorModelo {
     
 }

@@ -1,20 +1,20 @@
 package es.iespuertolacruz.furguito.controller;
 
 import es.iespuertolacruz.furguito.exception.JugadorException;
-import es.iespuertolacruz.furguito.modelo.EquipoModelo;
+import es.iespuertolacruz.furguito.modelo.JugadorModelo;
 
-public class EquipoController {
+public class JugadorController {
 
-    EquipoModelo equipoModelo;
+    JugadorModelo plantillaModelo;
 
-    public EquipoController() {
-        if (equipoModelo == null) {
-            equipoModelo = new EquipoModelo();
+    public JugadorController() {
+        if (plantillaModelo == null) {
+            plantillaModelo = new JugadorModelo();
         }
     }
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del equipo
+     * Metodo encargado de realizar la validacion del nombre del jugador
      * 
      * @param nombre a validar
      * @throws JugadorException error controlado
@@ -22,11 +22,11 @@ public class EquipoController {
     public void validar(String nombre) throws JugadorException {
         String mensaje = "";
         if (nombre == null) {
-            mensaje = "El nombre del estadio no puede ser nulo";
+            mensaje = "El nombre del jugador no puede ser nulo";
             throw new JugadorException(mensaje);
         }
         if (nombre.length() < 1) {
-            mensaje = "El nombre del estadio no puede estar vacio";
+            mensaje = "El nombre del jugador no puede estar vacio";
             throw new JugadorException(mensaje);
         }
         if (!mensaje.isEmpty()) {
