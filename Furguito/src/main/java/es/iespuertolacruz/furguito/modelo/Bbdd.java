@@ -57,7 +57,7 @@ public class Bbdd {
      * @param statement
      * @throws BbddException
      */
-    private void closeConnection(ResultSet resultSet, Connection connection, Statement statement) throws BbddException {
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -70,6 +70,29 @@ public class Bbdd {
             }
         } catch (Exception exception) {
             throw new BbddException("Se ha producido un error cerrando la conexion", exception);
+        }
+    }
+
+    /**
+     * Funcion que realiza actualizaciones sobre la BBDD
+     * 
+     * @param sql de la consulta
+     * 
+     * @throws BbddException error controlado
+     */
+    private void actualizar(String sql) throws BbddException {
+
+        Statement statement = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
+
+        } catch (Exception exception) {
+            throw new BbddException(ERROR_CONSULTA, exception);
+        } finally {
+            closeConnection(connection, statement, null);
         }
     }
 
@@ -106,7 +129,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException(ERROR_CONSULTA, exception);
         } finally {
-            closeConnection(resultSet, connection, statement);
+            closeConnection(connection, statement, resultSet);
         }
         return listaEquipos;
     }
@@ -141,7 +164,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException(ERROR_CONSULTA, exception);
         } finally {
-            closeConnection(resultSet, connection, statement);
+            closeConnection(connection, statement, resultSet);
         }
         return listaEstadios;
     }
@@ -178,7 +201,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException(ERROR_CONSULTA, exception);
         } finally {
-            closeConnection(resultSet, connection, statement);
+            closeConnection(connection, statement, resultSet);
         }
         return listaPalmares;
     }
@@ -215,7 +238,7 @@ public class Bbdd {
         } catch (Exception exception) {
             throw new BbddException(ERROR_CONSULTA, exception);
         } finally {
-            closeConnection(resultSet, connection, statement);
+            closeConnection(connection, statement, resultSet);
         }
         return listaJugadores;
     }
@@ -281,6 +304,66 @@ public class Bbdd {
 
         return equipo;
 
+    }
+
+    /**
+     * Metodo para modificar un estadio dentro de la BBDD
+     * 
+     * @param estadio a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarEstadio(Estadio estadio) throws BbddException {
+        String sql = "";
+        sql = "UPDATE Estadios SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
+                + ", capacidad = '" + estadio.getCapacidad() + "'" + ", construccion = '" + estadio.getConstruccion()
+                + "' WHERE identificador = '" + estadio.getId() + "'";
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para modificar un equipo dentro de la BBDD
+     * 
+     * @param equipo a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarEquipo(Equipo equipo) throws BbddException {
+        String sql = "";
+        sql = "UPDATE Equipo SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad() + "'"
+                + ", estadio = '" + equipo.getEstadio() + "'" + ", fundacion = '" + equipo.getFundacion()
+                + ", numero_socios = '" + equipo.getNumeroSocios() + ", presupuesto = '" + equipo.getPresupuesto()
+                + ", colores = '" + equipo.getColores() + "' WHERE identificador = '" + equipo.getId() + "'";
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para modificar el palmares de un equipo dentro de la BBDD
+     * @param palmares a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarPalmares(Palmares palmares) throws BbddException{
+        String sql = "";
+        sql = "UPDATE Palmares SET equipo = '"+palmares.getEquipo())+"'"+", ligas = '"
+        +palmares.getLigas()+"'"+", copasDelRey = '"+palmares.getCopasDelRey()+"'"
+        +", superEspana = '" +palmares.getSuperEspana()+", superEuropa = '" +palmares.getSuperEuropa()
+        +", champions = '" +palmares.getChampions()+", mundialClubs = '" +palmares.getMundialClubs()
+        +"' WHERE identificador = '"+palmares.getId()+"'";
+        actualizar(sql);
+    }
+
+    /**
+     * Metodo para modificar un jugador dentro de la BBDD
+     * 
+     * @param jugador a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarJugador(Jugador jugador) throws BbddException {
+        String sql = "";
+        sql = "UPDATE Jugadores SET equipo = '"+jugador.getEquipo()+"'"+", nombre = '"
+        +jugador.getNombre()+"'"+", dorsal = '"+jugador.getDorsal()+"'"
+        +", goles = '" +jugador.getGoles()+", asistencias = '" +jugador.getAsistencias()
+        +", amarillas = '" +jugador.getAmarillas()+", rojas = '" +jugador.getRojas()
+        +"' WHERE identificador = '"+jugador.getId()+"'";
+        actualizar(sql);
     }
 
 }
