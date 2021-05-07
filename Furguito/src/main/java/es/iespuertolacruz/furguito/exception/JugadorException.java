@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito.exception;
 
-public class PlantillaException extends Exception {
+public class JugadorException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
@@ -9,7 +9,7 @@ public class PlantillaException extends Exception {
      * 
      * @param mensaje personalizado
      */
-    public PlantillaException(String mensaje) {
+    public JugadorException(String mensaje) {
         super(mensaje);
     }
 
@@ -19,7 +19,7 @@ public class PlantillaException extends Exception {
      * @param mensaje   mensaje de la excepcion
      * @param exception que produce el error
      */
-    public PlantillaException(String mensaje, Exception exception) {
+    public JugadorException(String mensaje, Exception exception) {
         super(mensaje, exception);
     }
 

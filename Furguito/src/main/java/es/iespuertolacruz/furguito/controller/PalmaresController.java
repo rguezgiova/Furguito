@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito.controller;
 
-import es.iespuertolacruz.furguito.exception.PlantillaException;
+import es.iespuertolacruz.furguito.exception.JugadorException;
 import es.iespuertolacruz.furguito.modelo.PalmaresModelo;
 
 public class PalmaresController {
@@ -17,20 +17,20 @@ public class PalmaresController {
      * Metodo encargado de realizar la validacion del nombre del equipo
      * 
      * @param equipo a validar
-     * @throws PlantillaException error controlado
+     * @throws JugadorException error controlado
      */
-    public void validar(String equipo) throws PlantillaException {
+    public void validar(String equipo) throws JugadorException {
         String mensaje = "";
         if (equipo == null) {
             mensaje = "El nombre del equipo no puede ser nulo";
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
         if (equipo.length() < 1) {
             mensaje = "El nombre del equipo no puede estar vacio";
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
         if (!mensaje.isEmpty()) {
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
     }
 
