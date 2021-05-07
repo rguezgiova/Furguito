@@ -2,6 +2,7 @@ package es.iespuertolacruz.furguito.api;
 
 public class Jugador {
 
+    String id;
     String equipo;
     String nombre;
     int dorsal;
@@ -32,6 +33,29 @@ public class Jugador {
     }
 
     /**
+     * Constructor con todos los parametros
+     * 
+     * @param id          del jugador
+     * @param equipo      al que pertenece el jugador
+     * @param nombre      del jugador
+     * @param dorsal      del jugador
+     * @param goles       totales del jugador
+     * @param asistencias totales del jugador
+     * @param amarillas   totales del jugador
+     * @param rojas       totales del jugador
+     */
+    public Jugador(String id, String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
+        this.id = id;
+        this.equipo = equipo;
+        this.nombre = nombre;
+        this.dorsal = dorsal;
+        this.goles = goles;
+        this.asistencias = asistencias;
+        this.amarillas = amarillas;
+        this.rojas = rojas;
+    }
+
+    /**
      * Constructor vacio
      */
     public Jugador() {
@@ -41,6 +65,14 @@ public class Jugador {
      * Getters y Setters
      * 
      */
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getEquipo() {
         return this.equipo;
     }

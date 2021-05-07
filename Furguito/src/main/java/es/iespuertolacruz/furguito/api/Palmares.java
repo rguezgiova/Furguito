@@ -2,6 +2,7 @@ package es.iespuertolacruz.furguito.api;
 
 public class Palmares {
 
+    String id;
     String equipo;
     int ligas;
     int copasDelRey;
@@ -30,7 +31,29 @@ public class Palmares {
         this.champions = champions;
         this.mundialClubs = mundialClubs;
     }
-    
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param id           del palmares
+     * @param equipo       nombre del equipo
+     * @param ligas        totales ganadas
+     * @param copasDelRey  totales ganadas
+     * @param superEspana  totales ganadas
+     * @param superEuropa  totales ganadas
+     * @param champions    totales ganadas
+     * @param mundialClubs totales ganadas
+     */
+    public Palmares(String id, String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa, int champions, int mundialClubs) {
+        this.id = id;
+        this.equipo = equipo;
+        this.ligas = ligas;
+        this.copasDelRey = copasDelRey;
+        this.superEspana = superEspana;
+        this.superEuropa = superEuropa;
+        this.champions = champions;
+        this.mundialClubs = mundialClubs;
+    }
 
     /**
      * Constructor vacio
@@ -42,6 +65,14 @@ public class Palmares {
      * Getters y Setters
      * 
      */
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getEquipo() {
         return this.equipo;
     }

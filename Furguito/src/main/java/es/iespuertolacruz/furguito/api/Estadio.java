@@ -2,6 +2,7 @@ package es.iespuertolacruz.furguito.api;
 
 public class Estadio {
 
+    String id;
     String nombre;
     String equipo;
     int capacidad;
@@ -23,6 +24,23 @@ public class Estadio {
     }
 
     /**
+     * Constructor con todos los parametros
+     * 
+     * @param id           del estadio
+     * @param nombre       del estadio
+     * @param equipo       al que pertenece el estadio
+     * @param capacidad    total del estadio
+     * @param construccion fecha de construccion del estadio
+     */
+    public Estadio(String id, String nombre, String equipo, int capacidad, int construccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.equipo = equipo;
+        this.capacidad = capacidad;
+        this.construccion = construccion;
+    }
+
+    /**
      * Constructor vacio
      */
     public Estadio() {
@@ -32,6 +50,14 @@ public class Estadio {
      * Getters y Setters
      * 
      */
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return this.nombre;
     }

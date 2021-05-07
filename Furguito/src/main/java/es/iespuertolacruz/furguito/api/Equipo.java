@@ -2,6 +2,7 @@ package es.iespuertolacruz.furguito.api;
 
 public class Equipo {
 
+    String id;
     String nombre;
     String ciudad;
     String estadio;
@@ -31,6 +32,28 @@ public class Equipo {
         this.colores = colores;
     }
     
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param id          del club
+     * @param nombre      del club
+     * @param ciudad      en la que juega el club
+     * @param estadio     del club
+     * @param fundacion   fecha de fundacion del club
+     * @param numeroSocios   totales del club
+     * @param presupuesto total anual del club
+     * @param colores     del club
+     */
+    public Equipo(String id, String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto, String colores) {
+        this.id = id;
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this.estadio = estadio;
+        this.fundacion = fundacion;
+        this.numeroSocios = numeroSocios;
+        this.presupuesto = presupuesto;
+        this.colores = colores;
+    }
 
     /**
      * Constructor vacio
@@ -42,6 +65,14 @@ public class Equipo {
      * Getters y Setters
      * 
      */
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getNombre() {
         return this.nombre;
     }
