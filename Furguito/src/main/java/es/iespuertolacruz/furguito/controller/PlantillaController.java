@@ -1,19 +1,15 @@
 package es.iespuertolacruz.furguito.controller;
 
-import javax.swing.plaf.synth.SynthEditorPaneUI;
-
-import org.apache.maven.shared.invoker.SystemOutHandler;
-
-import es.iespuertolacruz.furguito.exception.PlantillaException;
-import es.iespuertolacruz.furguito.modelo.PlantillaModelo;
+import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.modelo.JugadorModelo;
 
 public class PlantillaController {
 
-    PlantillaModelo plantillaModelo;
+    JugadorModelo jugadorModelo;
 
     public PlantillaController() {
-        if (plantillaModelo == null) {
-            plantillaModelo = new PlantillaModelo();
+        if (jugadorModelo == null) {
+            jugadorModelo = new JugadorModelo();
         }
     }
   
@@ -21,20 +17,20 @@ public class PlantillaController {
      * Metodo encargado de realizar la validacion del nombre del jugador
      * 
      * @param nombre a validar
-     * @throws PlantillaException error controlado
+     * @throws JugadorException error controlado
      */
-    public void validar(String nombre) throws PlantillaException {
+    public void validar(String nombre) throws JugadorException {
         String mensaje = "";
         if (nombre == null) {
             mensaje = "El nombre del jugador no puede ser nulo";
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
         if (nombre.length() < 1) {
             mensaje = "El nombre del jugador no puede estar vacio";
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
         if (!mensaje.isEmpty()) {
-            throw new PlantillaException(mensaje);
+            throw new JugadorException(mensaje);
         }
     }
 

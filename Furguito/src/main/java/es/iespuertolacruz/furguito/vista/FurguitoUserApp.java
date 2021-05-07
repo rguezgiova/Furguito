@@ -15,13 +15,13 @@ public class FurguitoUserApp {
         boolean salir = false;
         while (!salir) {
 
-            System.out.println("1- Consultar información completa del equipo");
+            System.out.println("1- Consultar informacion completa del equipo");
             System.out.println("2- Consultar presupuesto total del equipo");
             System.out.println("3- Consultar la ciudad en la que juega el equipo");
-            System.out.println("4- Consultar información del estadio");
+            System.out.println("4- Consultar informacion del estadio");
             System.out.println("5- Consultar la capacidad total del estadio");
             System.out.println("6- Consultar la fecha de construccion del estadio");
-            System.out.println("7- Consultar información completa del jugador");
+            System.out.println("7- Consultar informacion completa del jugador");
             System.out.println("8- Consultar maximo goleador");
             System.out.println("9- Consultar jugador con mas tarjetas rojas");
             System.out.println("10- Consultar palmares completo del equipo");
@@ -37,7 +37,7 @@ public class FurguitoUserApp {
                 switch (opcion) {
                     case 1:
 
-                        System.out.println("Consultar información completa del equipo");
+                        System.out.println("Consultar informacion completa del equipo");
 
                         break;
 
@@ -55,7 +55,7 @@ public class FurguitoUserApp {
 
                     case 4:
 
-                        System.out.println("Consultar información del estadio");
+                        System.out.println("Consultar informacion del estadio");
 
                         break;
 
