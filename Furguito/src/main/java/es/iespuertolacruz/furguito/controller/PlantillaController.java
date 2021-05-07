@@ -1,5 +1,9 @@
 package es.iespuertolacruz.furguito.controller;
 
+import javax.swing.plaf.synth.SynthEditorPaneUI;
+
+import org.apache.maven.shared.invoker.SystemOutHandler;
+
 import es.iespuertolacruz.furguito.exception.PlantillaException;
 import es.iespuertolacruz.furguito.modelo.PlantillaModelo;
 
@@ -12,7 +16,7 @@ public class PlantillaController {
             plantillaModelo = new PlantillaModelo();
         }
     }
-
+  
     /**
      * Metodo encargado de realizar la validacion del nombre del jugador
      * 
