@@ -2,27 +2,27 @@ package es.iespuertolacruz.furguito.modelo;
 
 public class PalmaresModelo {
 
-    public void insertarJugador() {
+    public void insertarPalmares() {
 
     }
 
-    public void modificarJugador() {
+    public void modificarPalmares() {
 
     }
 
-    public void eliminarJugador() {
+    public void eliminarPalmares() {
 
     }
 
-    public void consultarInformacion() {
+    public void consultarPalmares() {
 
     }
 
-    public void consultarMaximoGoleador() {
+    public void consultarLigas() {
 
     }
 
-    public void consultarMasExpulsado() {
+    public void consultarCopas() {
 
     }
 }

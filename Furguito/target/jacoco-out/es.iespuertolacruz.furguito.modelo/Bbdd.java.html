@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bbdd.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.modelo</a> &gt; <span class="el_source">Bbdd.java</span></div><h1>Bbdd.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.modelo;
+
+import java.sql.*;
+import java.util.ArrayList;
+
+import es.iespuertolacruz.furguito.api.*;
+import es.iespuertolacruz.furguito.exception.BbddException;
+
+public class Bbdd {
+    private static final String ERROR_CONSULTA = &quot;Se ha producido un error realizando la consulta&quot;;
+    private String driver;
+    private String url;
+    private String usuario;
+    private String password;
+
+    /**
+     * Constructor con parametros
+     * 
+     * @param driver   de la BBDD
+     * @param url      de la BBDD
+     * @param usuario  para el login
+     * @param password del usuario
+     */
+<span class="nc" id="L24">    public Bbdd(String driver, String url, String usuario, String password) {</span>
+<span class="nc" id="L25">        this.driver = driver;</span>
+<span class="nc" id="L26">        this.url = url;</span>
+<span class="nc" id="L27">        this.usuario = usuario;</span>
+<span class="nc" id="L28">        this.password = password;</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Funcion encargada de realizar la operacion con la BBDD
+     * 
+     * @return la conexion
+     * @throws BbddException error controlado
+     */
+    private Connection getConnection() throws BbddException {
+<span class="nc" id="L38">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L40">            Class.forName(driver);</span>
+<span class="nc bnc" id="L41" title="All 4 branches missed.">            if (usuario == null || password == null) {</span>
+<span class="nc" id="L42">                connection = DriverManager.getConnection(url);</span>
+            } else {
+<span class="nc" id="L44">                DriverManager.getConnection(url, usuario, password);</span>
+            }
+<span class="nc" id="L46">        } catch (Exception exception) {</span>
+<span class="nc" id="L47">            throw new BbddException(&quot;No se ha podido establecer conexion con la BBDD&quot;, exception);</span>
+<span class="nc" id="L48">        }</span>
+<span class="nc" id="L49">        return connection;</span>
+    }
+
+    /**
+     * Funcion encargada de cerrar las conexiones con la BBDD
+     * 
+     * @param resultSet
+     * @param connection
+     * @param statement
+     * @throws BbddException
+     */
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
+        try {
+<span class="nc bnc" id="L62" title="All 2 branches missed.">            if (resultSet != null) {</span>
+<span class="nc" id="L63">                resultSet.close();</span>
+            }
+<span class="nc bnc" id="L65" title="All 2 branches missed.">            if (statement != null) {</span>
+<span class="nc" id="L66">                statement.close();</span>
+            }
+<span class="nc bnc" id="L68" title="All 2 branches missed.">            if (connection != null) {</span>
+<span class="nc" id="L69">                connection.close();</span>
+            }
+<span class="nc" id="L71">        } catch (Exception exception) {</span>
+<span class="nc" id="L72">            throw new BbddException(&quot;Se ha producido un error cerrando la conexion&quot;, exception);</span>
+<span class="nc" id="L73">        }</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Funcion que realiza actualizaciones sobre la BBDD
+     * 
+     * @param sql de la consulta
+     * 
+     * @throws BbddException error controlado
+     */
+    private void actualizar(String sql) throws BbddException {
+
+<span class="nc" id="L85">        Statement statement = null;</span>
+<span class="nc" id="L86">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L88">            connection = getConnection();</span>
+<span class="nc" id="L89">            statement = connection.createStatement();</span>
+<span class="nc" id="L90">            statement.executeUpdate(sql);</span>
+
+<span class="nc" id="L92">        } catch (Exception exception) {</span>
+<span class="nc" id="L93">            throw new BbddException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L95">            closeConnection(connection, statement, null);</span>
+        }
+<span class="nc" id="L97">    }</span>
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Equipos
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    private ArrayList&lt;Equipo&gt; obtenerEquipos(String sql) throws BbddException {
+<span class="nc" id="L107">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L109">        Equipo equipo = null;</span>
+<span class="nc" id="L110">        Statement statement = null;</span>
+<span class="nc" id="L111">        ResultSet resultSet = null;</span>
+<span class="nc" id="L112">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L114">            connection = getConnection();</span>
+<span class="nc" id="L115">            statement = connection.createStatement();</span>
+<span class="nc" id="L116">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L118">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
+<span class="nc" id="L119">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L120">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
+<span class="nc" id="L121">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
+<span class="nc" id="L122">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
+<span class="nc" id="L123">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
+<span class="nc" id="L124">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
+<span class="nc" id="L125">                String colores = resultSet.getString(&quot;colores&quot;);</span>
+<span class="nc" id="L126">                equipo = new Equipo(nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);</span>
+<span class="nc" id="L127">                listaEquipos.add(equipo);</span>
+<span class="nc" id="L128">            }</span>
+<span class="nc" id="L129">        } catch (Exception exception) {</span>
+<span class="nc" id="L130">            throw new BbddException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L132">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L134">        return listaEquipos;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Estadios
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    private ArrayList&lt;Estadio&gt; obtenerEstadios(String sql) throws BbddException {
+<span class="nc" id="L145">        ArrayList&lt;Estadio&gt; listaEstadios = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L147">        Estadio estadio = null;</span>
+<span class="nc" id="L148">        Statement statement = null;</span>
+<span class="nc" id="L149">        ResultSet resultSet = null;</span>
+<span class="nc" id="L150">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L152">            connection = getConnection();</span>
+<span class="nc" id="L153">            statement = connection.createStatement();</span>
+<span class="nc" id="L154">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L155" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L156">                int identificador = resultSet.getInt(&quot;idEstadio&quot;);</span>
+<span class="nc" id="L157">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L158">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L159">                int capacidad = resultSet.getInt(&quot;capacidad&quot;);</span>
+<span class="nc" id="L160">                int construccion = resultSet.getInt(&quot;construccion&quot;);</span>
+<span class="nc" id="L161">                estadio = new Estadio(nombre, equipo, capacidad, construccion);</span>
+<span class="nc" id="L162">                listaEstadios.add(estadio);</span>
+<span class="nc" id="L163">            }</span>
+<span class="nc" id="L164">        } catch (Exception exception) {</span>
+<span class="nc" id="L165">            throw new BbddException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L167">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L169">        return listaEstadios;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    public ArrayList&lt;Palmares&gt; obtenerPalmares(String sql) throws BbddException {
+<span class="nc" id="L180">        ArrayList&lt;Palmares&gt; listaPalmares = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L181">        Palmares palmares = null;</span>
+<span class="nc" id="L182">        Statement statement = null;</span>
+<span class="nc" id="L183">        ResultSet resultSet = null;</span>
+<span class="nc" id="L184">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L186">            connection = getConnection();</span>
+<span class="nc" id="L187">            statement = getConnection().createStatement();</span>
+<span class="nc" id="L188">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L190">                int identificador = resultSet.getInt(&quot;idPalmares&quot;);</span>
+<span class="nc" id="L191">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L192">                int ligas = resultSet.getInt(&quot;ligas&quot;);</span>
+<span class="nc" id="L193">                int copasDelRey = resultSet.getInt(&quot;copasDelRey&quot;);</span>
+<span class="nc" id="L194">                int superEspana = resultSet.getInt(&quot;SuperEspana&quot;);</span>
+<span class="nc" id="L195">                int superEuropa = resultSet.getInt(&quot;SuperEuropa&quot;);</span>
+<span class="nc" id="L196">                int champions = resultSet.getInt(&quot;champions&quot;);</span>
+<span class="nc" id="L197">                int mundialClubs = resultSet.getInt(&quot;mundialClubs&quot;);</span>
+<span class="nc" id="L198">                palmares = new Palmares(equipo, ligas, copasDelRey, superEspana, superEuropa, champions, mundialClubs);</span>
+<span class="nc" id="L199">                listaPalmares.add(palmares);</span>
+<span class="nc" id="L200">            }</span>
+<span class="nc" id="L201">        } catch (Exception exception) {</span>
+<span class="nc" id="L202">            throw new BbddException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L204">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L206">        return listaPalmares;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Jugadores
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws BbddException controlado
+     */
+    public ArrayList&lt;Jugador&gt; obtenerJugadores(String sql) throws BbddException {
+<span class="nc" id="L217">        ArrayList&lt;Jugador&gt; listaJugadores = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L218">        Jugador jugador = null;</span>
+<span class="nc" id="L219">        Statement statement = null;</span>
+<span class="nc" id="L220">        ResultSet resultSet = null;</span>
+<span class="nc" id="L221">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L223">            connection = getConnection();</span>
+<span class="nc" id="L224">            statement = getConnection().createStatement();</span>
+<span class="nc" id="L225">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L226" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L227">                int identificador = resultSet.getInt(&quot;idJugador&quot;);</span>
+<span class="nc" id="L228">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L229">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L230">                int dorsal = resultSet.getInt(&quot;dorsal&quot;);</span>
+<span class="nc" id="L231">                int goles = resultSet.getInt(&quot;goles&quot;);</span>
+<span class="nc" id="L232">                int asistencias = resultSet.getInt(&quot;asistencias&quot;);</span>
+<span class="nc" id="L233">                int amarillas = resultSet.getInt(&quot;amarillas&quot;);</span>
+<span class="nc" id="L234">                int rojas = resultSet.getInt(&quot;rojas&quot;);</span>
+<span class="nc" id="L235">                jugador = new Jugador(equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);</span>
+<span class="nc" id="L236">                listaJugadores.add(jugador);</span>
+<span class="nc" id="L237">            }</span>
+<span class="nc" id="L238">        } catch (Exception exception) {</span>
+<span class="nc" id="L239">            throw new BbddException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L241">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L243">        return listaJugadores;</span>
+    }
+
+    /**
+     * Funcion que obtiene un equipo buscado por ID
+     * 
+     * @param identificador del equipo a buscar
+     * @return equipo
+     * @throws BbddException error controlado
+     */
+    public Equipo obtenerEquipo(String identificador) throws BbddException {
+<span class="nc" id="L254">        Equipo equipo = null;</span>
+<span class="nc" id="L255">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L256">        String sql = &quot;SELECT * FROM Equipos where identificador = &quot;;</span>
+<span class="nc" id="L257">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
+<span class="nc" id="L258">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L259" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L260">            equipo = listaEquipos.get(0);</span>
+        }
+
+<span class="nc" id="L263">        return equipo;</span>
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y el presupuesto del equipo buscado
+     * 
+     * @param identificador del equipo a buscar
+     * @return equipo y presupuesto
+     * @throws BbddException error controlado
+     */
+    public Equipo obtenerPresupuesto(String identificador) throws BbddException {
+<span class="nc" id="L275">        Equipo equipo = null;</span>
+<span class="nc" id="L276">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L277">        String sql = &quot;SELECT nombre,presupuesto FROM Equipos where identificador = &quot;;</span>
+<span class="nc" id="L278">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
+<span class="nc" id="L279">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L280" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L281">            equipo = listaEquipos.get(0);</span>
+        }
+
+<span class="nc" id="L284">        return equipo;</span>
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y la ciudad en la que juega el equipo buscado
+     * 
+     * @param identificador del equipo
+     * @return nombre del equipo y ciudad
+     * @throws BbddException error controlado
+     */
+    public Equipo obtenerCiudad(String identificador) throws BbddException {
+<span class="nc" id="L296">        Equipo equipo = null;</span>
+<span class="nc" id="L297">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L298">        String sql = &quot;SELECT nombre,ciudad FROM Equipos where identificador = &quot;;</span>
+<span class="nc" id="L299">        sql = sql + &quot;'&quot; + identificador + &quot;'&quot;;</span>
+<span class="nc" id="L300">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L301" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L302">            equipo = listaEquipos.get(0);</span>
+        }
+
+<span class="nc" id="L305">        return equipo;</span>
+
+    }
+
+    /**
+     * Metodo para modificar un estadio dentro de la BBDD
+     * 
+     * @param estadio a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarEstadio(Estadio estadio) throws BbddException {
+<span class="nc" id="L316">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L317">        sql = &quot;UPDATE Estadios SET nombre = '&quot; + estadio.getNombre() + &quot;'&quot; + &quot;, equipo = '&quot; + estadio.getEquipo() + &quot;'&quot;</span>
+<span class="nc" id="L318">                + &quot;, capacidad = '&quot; + estadio.getCapacidad() + &quot;'&quot; + &quot;, construccion = '&quot; + estadio.getConstruccion()</span>
+<span class="nc" id="L319">                + &quot;' WHERE identificador = '&quot; + estadio.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L320">        actualizar(sql);</span>
+<span class="nc" id="L321">    }</span>
+
+    /**
+     * Metodo para modificar un equipo dentro de la BBDD
+     * 
+     * @param equipo a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarEquipo(Equipo equipo) throws BbddException {
+<span class="nc" id="L330">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L331">        sql = &quot;UPDATE Equipo SET nombre = '&quot; + equipo.getNombre() + &quot;'&quot; + &quot;, ciudad = '&quot; + equipo.getCiudad() + &quot;'&quot;</span>
+<span class="nc" id="L332">                + &quot;, estadio = '&quot; + equipo.getEstadio() + &quot;'&quot; + &quot;, fundacion = '&quot; + equipo.getFundacion()</span>
+<span class="nc" id="L333">                + &quot;, numero_socios = '&quot; + equipo.getNumeroSocios() + &quot;, presupuesto = '&quot; + equipo.getPresupuesto()</span>
+<span class="nc" id="L334">                + &quot;, colores = '&quot; + equipo.getColores() + &quot;' WHERE identificador = '&quot; + equipo.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L335">        actualizar(sql);</span>
+<span class="nc" id="L336">    }</span>
+
+    /**
+     * Metodo para modificar el palmares de un equipo dentro de la BBDD
+     * 
+     * @param palmares a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarPalmares(Palmares palmares) throws BbddException {
+<span class="nc" id="L345">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L346">        sql = &quot;UPDATE Palmares SET equipo = '&quot; + palmares.getEquipo() + &quot;'&quot; + &quot;, ligas = '&quot; + palmares.getLigas() + &quot;'&quot;</span>
+<span class="nc" id="L347">                + &quot;, copasDelRey = '&quot; + palmares.getCopasDelRey() + &quot;'&quot; + &quot;, superEspana = '&quot;</span>
+<span class="nc" id="L348">                + palmares.getSuperEspana() + &quot;, superEuropa = '&quot; + palmares.getSuperEuropa() + &quot;, champions = '&quot;</span>
+<span class="nc" id="L349">                + palmares.getChampions() + &quot;, mundialClubs = '&quot; + palmares.getMundialClubs()</span>
+<span class="nc" id="L350">                + &quot;' WHERE identificador = '&quot; + palmares.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L351">        actualizar(sql);</span>
+<span class="nc" id="L352">    }</span>
+
+    /**
+     * Metodo para modificar un jugador dentro de la BBDD
+     * 
+     * @param jugador a modificar
+     * @throws BbddException error controlado
+     */
+    public void modificarJugador(Jugador jugador) throws BbddException {
+<span class="nc" id="L361">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L362">        sql = &quot;UPDATE Jugadores SET equipo = '&quot; + jugador.getEquipo() + &quot;'&quot; + &quot;, nombre = '&quot; + jugador.getNombre() + &quot;'&quot;</span>
+<span class="nc" id="L363">                + &quot;, dorsal = '&quot; + jugador.getDorsal() + &quot;'&quot; + &quot;, goles = '&quot; + jugador.getGoles() + &quot;, asistencias = '&quot;</span>
+<span class="nc" id="L364">                + jugador.getAsistencias() + &quot;, amarillas = '&quot; + jugador.getAmarillas() + &quot;, rojas = '&quot;</span>
+<span class="nc" id="L365">                + jugador.getRojas() + &quot;' WHERE identificador = '&quot; + jugador.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L366">        actualizar(sql);</span>
+<span class="nc" id="L367">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un estadio en la BBDD
+     * 
+     * @param estadio a insertar
+     * @throws BbddException error controlado
+     */
+    public void insertarEstadio(Estadio estadio) throws BbddException {
+<span class="nc" id="L376">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L377">        sql = &quot;INSERT INTO Estadios(nombre, equipo, capacidad, construccion)&quot; + &quot;VALUES('&quot; + estadio.getNombre()</span>
+<span class="nc" id="L378">                + &quot;', '&quot; + estadio.getEquipo() + &quot;', '&quot; + estadio.getCapacidad() + &quot;', '&quot; + estadio.getConstruccion()</span>
+                + &quot;')&quot;;
+<span class="nc" id="L380">        actualizar(sql);</span>
+<span class="nc" id="L381">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un equipo en la BBDD
+     * 
+     * @param equipo a insertar
+     * @throws BbddException error controlado
+     */
+    public void insertarEquipo(Equipo equipo) throws BbddException {
+<span class="nc" id="L390">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L391">        sql = &quot;INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores)&quot;</span>
+<span class="nc" id="L392">                + &quot;VALUES('&quot; + equipo.getNombre() + &quot;', '&quot; + equipo.getCiudad() + &quot;', '&quot; + equipo.getEstadio() + &quot;', '&quot;</span>
+<span class="nc" id="L393">                + equipo.getFundacion() + &quot;', &quot; + equipo.getNumeroSocios() + &quot;', &quot; + equipo.getPresupuesto() + &quot;', &quot;</span>
+<span class="nc" id="L394">                + equipo.getColores() + &quot;')&quot;;</span>
+<span class="nc" id="L395">        actualizar(sql);</span>
+<span class="nc" id="L396">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
+     * 
+     * @param palmares a insertar
+     * @throws BbddException error controlado
+     */
+    public void insertarPalmares(Palmares palmares) throws BbddException {
+<span class="nc" id="L405">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L406">        sql = &quot;INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs)&quot;</span>
+<span class="nc" id="L407">                + &quot;VALUES('&quot; + palmares.getEquipo() + &quot;', '&quot; + palmares.getLigas() + &quot;', '&quot; + palmares.getCopasDelRey()</span>
+<span class="nc" id="L408">                + &quot;', '&quot; + palmares.getSuperEspana() + &quot;', &quot; + palmares.getSuperEuropa() + &quot;', &quot;</span>
+<span class="nc" id="L409">                + palmares.getChampions() + &quot;', &quot; + palmares.getMundialClubs() + &quot;')&quot;;</span>
+<span class="nc" id="L410">        actualizar(sql);</span>
+<span class="nc" id="L411">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un jugador en la BBDD
+     * 
+     * @param jugador a insertar
+     * @throws BbddException error controlado
+     */
+    public void insertarJugador(Jugador jugador) throws BbddException {
+<span class="nc" id="L420">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L421">        sql = &quot;INSERT INTO Palmares (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas)&quot; + &quot;VALUES('&quot;</span>
+<span class="nc" id="L422">                + jugador.getEquipo() + &quot;', '&quot; + jugador.getNombre() + &quot;', '&quot; + jugador.getDorsal() + &quot;', '&quot;</span>
+<span class="nc" id="L423">                + jugador.getGoles() + &quot;', &quot; + jugador.getAsistencias() + &quot;', &quot; + jugador.getAmarillas() + &quot;', &quot;</span>
+<span class="nc" id="L424">                + jugador.getRojas() + &quot;')&quot;;</span>
+<span class="nc" id="L425">        actualizar(sql);</span>
+<span class="nc" id="L426">    }</span>
+
+    /**
+     * Metodo para borrar un equipo de la BBDD
+     * 
+     * @param equipo a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarEquipo(Equipo equipo) throws BbddException {
+<span class="nc" id="L435">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L436">        sql = &quot;DELETE FROM Equipos WHERE idEquipo = &quot; + equipo.getId();</span>
+<span class="nc" id="L437">        actualizar(sql);</span>
+<span class="nc" id="L438">    }</span>
+
+    /**
+     * Metodo para borrar un estadio de la BBDD
+     * 
+     * @param estadio a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarEstadio(Estadio estadio) throws BbddException {
+<span class="nc" id="L447">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L448">        sql = &quot;DELETE FROM Estadios WHERE idEstadio = &quot; + estadio.getId();</span>
+<span class="nc" id="L449">        actualizar(sql);</span>
+<span class="nc" id="L450">    }</span>
+
+    /**
+     * Metodo para borrar un palmares de la BBDD
+     * 
+     * @param palmares a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarPalmares(Palmares palmares) throws BbddException {
+<span class="nc" id="L459">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L460">        sql = &quot;DELETE FROM Palmares WHERE idPalmares = &quot; + palmares.getId();</span>
+<span class="nc" id="L461">        actualizar(sql);</span>
+<span class="nc" id="L462">    }</span>
+
+    /**
+     * Metodo para borrar un jugador de la BBDD
+     * 
+     * @param jugador a borrar
+     * @throws BbddException error controlado
+     */
+    public void borrarJugador(Jugador jugador) throws BbddException {
+<span class="nc" id="L471">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L472">        sql = &quot;DELETE FROM Jugadores WHERE idJugador = &quot; + jugador.getId();</span>
+<span class="nc" id="L473">        actualizar(sql);</span>
+<span class="nc" id="L474">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

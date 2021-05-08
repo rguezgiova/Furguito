@@ -2,6 +2,7 @@
 
 public class Estadio {
 
+    String id;
     String nombre;
     String equipo;
     int capacidad;
@@ -15,59 +16,84 @@ public class Estadio {
      * @param capacidad    total del estadio
      * @param construccion fecha de construccion del estadio
      */
-<span class="fc" id="L18">    public Estadio(String nombre, String equipo, int capacidad, int construccion) {</span>
-<span class="fc" id="L19">        this.nombre = nombre;</span>
-<span class="fc" id="L20">        this.equipo = equipo;</span>
-<span class="fc" id="L21">        this.capacidad = capacidad;</span>
-<span class="fc" id="L22">        this.construccion = construccion;</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L19">    public Estadio(String nombre, String equipo, int capacidad, int construccion) {</span>
+<span class="fc" id="L20">        this.nombre = nombre;</span>
+<span class="fc" id="L21">        this.equipo = equipo;</span>
+<span class="fc" id="L22">        this.capacidad = capacidad;</span>
+<span class="fc" id="L23">        this.construccion = construccion;</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param id           del estadio
+     * @param nombre       del estadio
+     * @param equipo       al que pertenece el estadio
+     * @param capacidad    total del estadio
+     * @param construccion fecha de construccion del estadio
+     */
+<span class="nc" id="L35">    public Estadio(String id, String nombre, String equipo, int capacidad, int construccion) {</span>
+<span class="nc" id="L36">        this.id = id;</span>
+<span class="nc" id="L37">        this.nombre = nombre;</span>
+<span class="nc" id="L38">        this.equipo = equipo;</span>
+<span class="nc" id="L39">        this.capacidad = capacidad;</span>
+<span class="nc" id="L40">        this.construccion = construccion;</span>
+<span class="nc" id="L41">    }</span>
 
     /**
      * Constructor vacio
      */
-<span class="fc" id="L28">    public Estadio() {</span>
-<span class="fc" id="L29">    }</span>
+<span class="fc" id="L46">    public Estadio() {</span>
+<span class="fc" id="L47">    }</span>
 
     /**
      * Getters y Setters
      * 
      */
+    public String getId() {
+<span class="nc" id="L54">        return this.id;</span>
+    }
+
+    public void setId(String id) {
+<span class="nc" id="L58">        this.id = id;</span>
+<span class="nc" id="L59">    }</span>
+
     public String getNombre() {
-<span class="fc" id="L36">        return this.nombre;</span>
+<span class="fc" id="L62">        return this.nombre;</span>
     }
 
     public void setNombre(String nombre) {
-<span class="fc" id="L40">        this.nombre = nombre;</span>
-<span class="fc" id="L41">    }</span>
+<span class="fc" id="L66">        this.nombre = nombre;</span>
+<span class="fc" id="L67">    }</span>
 
     public String getEquipo() {
-<span class="fc" id="L44">        return this.equipo;</span>
+<span class="fc" id="L70">        return this.equipo;</span>
     }
 
     public void setEquipo(String equipo) {
-<span class="fc" id="L48">        this.equipo = equipo;</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L74">        this.equipo = equipo;</span>
+<span class="fc" id="L75">    }</span>
 
     public int getCapacidad() {
-<span class="fc" id="L52">        return this.capacidad;</span>
+<span class="fc" id="L78">        return this.capacidad;</span>
     }
 
     public void setCapacidad(int capacidad) {
-<span class="fc" id="L56">        this.capacidad = capacidad;</span>
-<span class="fc" id="L57">    }</span>
+<span class="fc" id="L82">        this.capacidad = capacidad;</span>
+<span class="fc" id="L83">    }</span>
 
     public int getConstruccion() {
-<span class="fc" id="L60">        return this.construccion;</span>
+<span class="fc" id="L86">        return this.construccion;</span>
     }
 
     public void setConstruccion(int construccion) {
-<span class="fc" id="L64">        this.construccion = construccion;</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L90">        this.construccion = construccion;</span>
+<span class="fc" id="L91">    }</span>
 
     @Override
     public String toString() {
-<span class="fc" id="L69">        return &quot;Nombre='&quot; + getNombre() + &quot;\n&quot; + &quot;Equipo='&quot; + getEquipo() + &quot;\n&quot; + &quot;Capacidad total='&quot; + getCapacidad()</span>
-<span class="fc" id="L70">                + &quot;\n&quot; + &quot;Fecha de construccion='&quot; + getConstruccion();</span>
+<span class="fc" id="L95">        return &quot;Nombre='&quot; + getNombre() + &quot;\n&quot; + &quot;Equipo='&quot; + getEquipo() + &quot;\n&quot; + &quot;Capacidad total='&quot; + getCapacidad()</span>
+<span class="fc" id="L96">                + &quot;\n&quot; + &quot;Fecha de construccion='&quot; + getConstruccion();</span>
     }
 
 }

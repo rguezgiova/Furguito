@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FurguitoAdminApp.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.vista</a> &gt; <span class="el_source">FurguitoAdminApp.java</span></div><h1>FurguitoAdminApp.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.vista;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+<span class="nc" id="L6">public class FurguitoAdminApp {</span>
+    private static final String INTRODUCIR_NUMERO = &quot;Debe introducir un numero&quot;;
+    private static final String SEPARADOR = &quot;#########################################\n&quot;;
+    private static final String ESCRIBE_OPCIONES = &quot;Escribe una de las opciones&quot;;
+
+    public static void main(String[] args) {
+
+<span class="nc" id="L13">        Scanner sn = new Scanner(System.in);</span>
+        int opcion;
+<span class="nc" id="L15">        boolean salir = false;</span>
+<span class="nc bnc" id="L16" title="All 2 branches missed.">        while (!salir) {</span>
+
+<span class="nc" id="L18">            System.out.println(&quot;1- Insertar club&quot;);</span>
+<span class="nc" id="L19">            System.out.println(&quot;2- Modificar club&quot;);</span>
+<span class="nc" id="L20">            System.out.println(&quot;3- Borrar club&quot;);</span>
+<span class="nc" id="L21">            System.out.println(&quot;4- Insertar estadio&quot;);</span>
+<span class="nc" id="L22">            System.out.println(&quot;5- Modificar estadio&quot;);</span>
+<span class="nc" id="L23">            System.out.println(&quot;6- Borrar estadio&quot;);</span>
+<span class="nc" id="L24">            System.out.println(&quot;7- Insertar jugador&quot;);</span>
+<span class="nc" id="L25">            System.out.println(&quot;8- Modificar jugador&quot;);</span>
+<span class="nc" id="L26">            System.out.println(&quot;9- Borrar jugador&quot;);</span>
+<span class="nc" id="L27">            System.out.println(&quot;10- Insertar palmares&quot;);</span>
+<span class="nc" id="L28">            System.out.println(&quot;11- Modificar palmares&quot;);</span>
+<span class="nc" id="L29">            System.out.println(&quot;12- Borrar palmares&quot;);</span>
+<span class="nc" id="L30">            System.out.println(&quot;13- Salir&quot;);</span>
+
+            try {
+
+<span class="nc" id="L34">                System.out.println(ESCRIBE_OPCIONES);</span>
+<span class="nc" id="L35">                opcion = sn.nextInt();</span>
+
+<span class="nc bnc" id="L37" title="All 14 branches missed.">                switch (opcion) {</span>
+                    case 1:
+
+<span class="nc" id="L40">                        System.out.println(&quot;Insertar club&quot;);</span>
+
+<span class="nc" id="L42">                        break;</span>
+
+                    case 2:
+
+<span class="nc" id="L46">                        System.out.println(&quot;Modificar club&quot;);</span>
+
+<span class="nc" id="L48">                        break;</span>
+
+                    case 3:
+
+<span class="nc" id="L52">                        System.out.println(&quot;Borrar club&quot;);</span>
+
+<span class="nc" id="L54">                        break;</span>
+
+                    case 4:
+
+<span class="nc" id="L58">                        System.out.println(&quot;Insertar estadio&quot;);</span>
+
+<span class="nc" id="L60">                        break;</span>
+
+                    case 5:
+
+<span class="nc" id="L64">                        System.out.println(&quot;Modificar estadio&quot;);</span>
+
+<span class="nc" id="L66">                        break;</span>
+
+                    case 6:
+
+<span class="nc" id="L70">                        System.out.println(&quot;Borrar estadio&quot;);</span>
+
+<span class="nc" id="L72">                        break;</span>
+
+                    case 7:
+
+<span class="nc" id="L76">                        System.out.println(&quot;Insertar jugador&quot;);</span>
+
+<span class="nc" id="L78">                        break;</span>
+
+                    case 8:
+
+<span class="nc" id="L82">                        System.out.println(&quot;Modificar jugador&quot;);</span>
+
+<span class="nc" id="L84">                        break;</span>
+
+                    case 9:
+
+<span class="nc" id="L88">                        System.out.println(&quot;Borrar jugador&quot;);</span>
+
+<span class="nc" id="L90">                        break;</span>
+
+                    case 10:
+
+<span class="nc" id="L94">                        System.out.println(&quot;Insertar jugador&quot;);</span>
+
+<span class="nc" id="L96">                        break;</span>
+
+                    case 11:
+
+<span class="nc" id="L100">                        System.out.println(&quot;Modificar jugador&quot;);</span>
+
+<span class="nc" id="L102">                        break;</span>
+
+                    case 12:
+
+<span class="nc" id="L106">                        System.out.println(&quot;Borrar jugador&quot;);</span>
+
+<span class="nc" id="L108">                        break;</span>
+
+                    case 13:
+
+<span class="nc" id="L112">                        System.out.println(&quot;Gracias por usar Furguito&quot;);</span>
+<span class="nc" id="L113">                        System.out.println(SEPARADOR);</span>
+<span class="nc" id="L114">                        salir = true;</span>
+<span class="nc" id="L115">                        break;</span>
+
+                    default:
+<span class="nc" id="L118">                        System.out.println(INTRODUCIR_NUMERO);</span>
+
+                }
+
+<span class="nc" id="L122">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L123">                System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L124">                sn.next();</span>
+
+<span class="nc" id="L126">            }</span>
+        }
+<span class="nc" id="L128">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
