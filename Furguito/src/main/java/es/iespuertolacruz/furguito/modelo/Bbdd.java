@@ -374,7 +374,7 @@ public class Bbdd {
      */
     public void insertarEstadio(Estadio estadio) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Estadios(nombre, equipo, capacidad, construccion)" + "VALUES('" + estadio.getNombre()
+        sql = "INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('" + estadio.getNombre()
                 + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion()
                 + "')";
         actualizar(sql);
@@ -388,8 +388,8 @@ public class Bbdd {
      */
     public void insertarEquipo(Equipo equipo) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores)"
-                + "VALUES('" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
+        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('" 
+                + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
                 + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', " + equipo.getPresupuesto() + "', "
                 + equipo.getColores() + "')";
         actualizar(sql);
@@ -403,8 +403,8 @@ public class Bbdd {
      */
     public void insertarPalmares(Palmares palmares) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs)"
-                + "VALUES('" + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey()
+        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('" 
+                + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey()
                 + "', '" + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', "
                 + palmares.getChampions() + "', " + palmares.getMundialClubs() + "')";
         actualizar(sql);
@@ -418,7 +418,7 @@ public class Bbdd {
      */
     public void insertarJugador(Jugador jugador) throws BbddException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas)" + "VALUES('"
+        sql = "INSERT INTO Jugadores (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES('"
                 + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '" + jugador.getDorsal() + "', '"
                 + jugador.getGoles() + "', " + jugador.getAsistencias() + "', " + jugador.getAmarillas() + "', "
                 + jugador.getRojas() + "')";

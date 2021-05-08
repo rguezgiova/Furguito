@@ -34,4 +34,27 @@ public class PlantillaController {
         }
     }
 
+    public void insertarPalmares() {
+
+    }
+
+    public void modificarPalmares() {
+
+    }
+
+    public void eliminarPalmares() {
+
+    }
+
+    public void consultarInformacion() {
+
+    }
+
+    public void consultarLigas() {
+
+    }
+
+    public void consultarCopas() {
+
+    }
 }

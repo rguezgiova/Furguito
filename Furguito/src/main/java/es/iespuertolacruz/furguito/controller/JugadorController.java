@@ -34,4 +34,27 @@ public class JugadorController {
         }
     }
 
+    public void insertarJugador() {
+
+    }
+
+    public void modificarJugador() {
+
+    }
+
+    public void eliminarJugador() {
+
+    }
+
+    public void consultarInformacion() {
+
+    }
+
+    public void consultarMaximoGoleador() {
+
+    }
+
+    public void consultarMasExpulsado() {
+
+    }
 }

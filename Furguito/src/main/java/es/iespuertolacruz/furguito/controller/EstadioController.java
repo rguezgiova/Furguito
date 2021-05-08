@@ -34,4 +34,27 @@ public class EstadioController {
         }
     }
 
+    public void insertarEstadio() {
+
+    }
+
+    public void modificarEstadio() {
+
+    }
+
+    public void eliminarEstadio() {
+
+    }
+
+    public void consultarInformacion() {
+
+    }
+
+    public void consultarCapacidad() {
+
+    }
+
+    public void consultarAnioConstruccion() {
+
+    }
 }

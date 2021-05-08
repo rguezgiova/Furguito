@@ -34,4 +34,27 @@ public class EquipoController {
         }
     }
 
+    public void insertarEquipo() {
+
+    }
+
+    public void modificarEquipo() {
+
+    }
+
+    public void eliminarEquipo() {
+
+    }
+
+    public void consultarInformacion() {
+
+    }
+
+    public void consultarPresupuesto() {
+
+    }
+
+    public void consultarCiudad() {
+
+    }
 }
