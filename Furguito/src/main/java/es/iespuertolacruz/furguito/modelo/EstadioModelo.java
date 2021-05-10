@@ -4,10 +4,10 @@ import es.iespuertolacruz.furguito.api.Estadio;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class EstadioModelo {
-    MysqlBbdd persistencia;
+    SqliteBbdd persistencia;
 
     public EstadioModelo() {
-        persistencia = new MysqlBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+        persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
     
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {

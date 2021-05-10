@@ -4,10 +4,10 @@ import es.iespuertolacruz.furguito.api.Palmares;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class PalmaresModelo {
-    MysqlBbdd persistencia;
+    SqliteBbdd persistencia;
 
     public PalmaresModelo() {
-        persistencia = new MysqlBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+        persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
 
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {

@@ -4,10 +4,10 @@ import es.iespuertolacruz.furguito.api.Jugador;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class JugadorModelo {
-    MysqlBbdd persistencia;
+    SqliteBbdd persistencia;
 
     public JugadorModelo() {
-        persistencia = new MysqlBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+        persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
     
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
@@ -23,7 +23,7 @@ public class JugadorModelo {
     }
 
     public void consultarInformacion() {
-
+        persistencia.obtenerJugadores(sql);
     }
 
     public void consultarMaximoGoleador() {
