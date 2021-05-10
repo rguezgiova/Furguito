@@ -14,23 +14,23 @@ public class EquipoModelo {
         persistencia.insertarEquipo(equipo);
     }
 
-    public void modificarEquipo() {
-
+    public void modificarEquipo(Equipo equipo) throws PersistenciaException {
+        persistencia.modificarEquipo(equipo);
     }
 
-    public void eliminarEquipo() {
-
+    public void eliminarEquipo(Equipo equipo) throws PersistenciaException {
+        persistencia.borrarEquipo(equipo);
     }
 
-    public void consultarInformacion() {
-
+    public void consultarInformacion(String identificador) throws PersistenciaException {
+        persistencia.obtenerEquipo(identificador);
     }
 
-    public void consultarPresupuesto() {
-
+    public void consultarPresupuesto(String identificador) throws PersistenciaException {
+        persistencia.obtenerPresupuesto(identificador);
     }
 
-    public void consultarCiudad() {
-
+    public void consultarCiudad(String identificador) throws PersistenciaException {
+        persistencia.obtenerCiudad(identificador);
     }
 }
