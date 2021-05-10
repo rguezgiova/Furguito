@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import es.iespuertolacruz.furguito.api.*;
-import es.iespuertolacruz.furguito.exception.BbddException;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Bbdd {
     private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
@@ -32,9 +32,9 @@ public class Bbdd {
      * Funcion encargada de realizar la operacion con la BBDD
      * 
      * @return la conexion
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    private Connection getConnection() throws BbddException {
+    private Connection getConnection() throws PersistenciaException {
         Connection connection = null;
         try {
             Class.forName(driver);
@@ -44,7 +44,7 @@ public class Bbdd {
                 DriverManager.getConnection(url, usuario, password);
             }
         } catch (Exception exception) {
-            throw new BbddException("No se ha podido establecer conexion con la BBDD", exception);
+            throw new PersistenciaException("No se ha podido establecer conexion con la BBDD", exception);
         }
         return connection;
     }
@@ -55,9 +55,9 @@ public class Bbdd {
      * @param resultSet
      * @param connection
      * @param statement
-     * @throws BbddException
+     * @throws PersistenciaException
      */
-    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws BbddException {
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -69,7 +69,7 @@ public class Bbdd {
                 connection.close();
             }
         } catch (Exception exception) {
-            throw new BbddException("Se ha producido un error cerrando la conexion", exception);
+            throw new PersistenciaException("Se ha producido un error cerrando la conexion", exception);
         }
     }
 
@@ -78,9 +78,9 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * 
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    private void actualizar(String sql) throws BbddException {
+    private void actualizar(String sql) throws PersistenciaException {
 
         Statement statement = null;
         Connection connection = null;
@@ -90,7 +90,7 @@ public class Bbdd {
             statement.executeUpdate(sql);
 
         } catch (Exception exception) {
-            throw new BbddException(ERROR_CONSULTA, exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, null);
         }
@@ -101,9 +101,9 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws PersistenciaException controlado
      */
-    private ArrayList<Equipo> obtenerEquipos(String sql) throws BbddException {
+    private ArrayList<Equipo> obtenerEquipos(String sql) throws PersistenciaException {
         ArrayList<Equipo> listaEquipos = new ArrayList<>();
 
         Equipo equipo = null;
@@ -127,7 +127,7 @@ public class Bbdd {
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
-            throw new BbddException(ERROR_CONSULTA, exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -139,9 +139,9 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws PersistenciaException controlado
      */
-    private ArrayList<Estadio> obtenerEstadios(String sql) throws BbddException {
+    private ArrayList<Estadio> obtenerEstadios(String sql) throws PersistenciaException {
         ArrayList<Estadio> listaEstadios = new ArrayList<>();
 
         Estadio estadio = null;
@@ -162,7 +162,7 @@ public class Bbdd {
                 listaEstadios.add(estadio);
             }
         } catch (Exception exception) {
-            throw new BbddException(ERROR_CONSULTA, exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -174,9 +174,9 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws PersistenciaException controlado
      */
-    public ArrayList<Palmares> obtenerPalmares(String sql) throws BbddException {
+    public ArrayList<Palmares> obtenerPalmares(String sql) throws PersistenciaException {
         ArrayList<Palmares> listaPalmares = new ArrayList<>();
         Palmares palmares = null;
         Statement statement = null;
@@ -199,7 +199,7 @@ public class Bbdd {
                 listaPalmares.add(palmares);
             }
         } catch (Exception exception) {
-            throw new BbddException(ERROR_CONSULTA, exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -211,9 +211,9 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws BbddException controlado
+     * @throws PersistenciaException controlado
      */
-    public ArrayList<Jugador> obtenerJugadores(String sql) throws BbddException {
+    public ArrayList<Jugador> obtenerJugadores(String sql) throws PersistenciaException {
         ArrayList<Jugador> listaJugadores = new ArrayList<>();
         Jugador jugador = null;
         Statement statement = null;
@@ -236,7 +236,7 @@ public class Bbdd {
                 listaJugadores.add(jugador);
             }
         } catch (Exception exception) {
-            throw new BbddException(ERROR_CONSULTA, exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             closeConnection(connection, statement, resultSet);
         }
@@ -248,9 +248,9 @@ public class Bbdd {
      * 
      * @param identificador del equipo a buscar
      * @return equipo
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerEquipo(String identificador) throws BbddException {
+    public Equipo obtenerEquipo(String identificador) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
         String sql = "SELECT * FROM Equipos where identificador = ";
@@ -269,9 +269,9 @@ public class Bbdd {
      * 
      * @param identificador del equipo a buscar
      * @return equipo y presupuesto
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerPresupuesto(String identificador) throws BbddException {
+    public Equipo obtenerPresupuesto(String identificador) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
         String sql = "SELECT nombre,presupuesto FROM Equipos where identificador = ";
@@ -290,9 +290,9 @@ public class Bbdd {
      * 
      * @param identificador del equipo
      * @return nombre del equipo y ciudad
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerCiudad(String identificador) throws BbddException {
+    public Equipo obtenerCiudad(String identificador) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
         String sql = "SELECT nombre,ciudad FROM Equipos where identificador = ";
@@ -310,9 +310,9 @@ public class Bbdd {
      * Metodo para modificar un estadio dentro de la BBDD
      * 
      * @param estadio a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void modificarEstadio(Estadio estadio) throws BbddException {
+    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE Estadios SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
                 + ", capacidad = '" + estadio.getCapacidad() + "'" + ", construccion = '" + estadio.getConstruccion()
@@ -324,9 +324,9 @@ public class Bbdd {
      * Metodo para modificar un equipo dentro de la BBDD
      * 
      * @param equipo a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void modificarEquipo(Equipo equipo) throws BbddException {
+    public void modificarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE Equipo SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad() + "'"
                 + ", estadio = '" + equipo.getEstadio() + "'" + ", fundacion = '" + equipo.getFundacion()
@@ -339,9 +339,9 @@ public class Bbdd {
      * Metodo para modificar el palmares de un equipo dentro de la BBDD
      * 
      * @param palmares a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void modificarPalmares(Palmares palmares) throws BbddException {
+    public void modificarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE Palmares SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas() + "'"
                 + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
@@ -355,9 +355,9 @@ public class Bbdd {
      * Metodo para modificar un jugador dentro de la BBDD
      * 
      * @param jugador a modificar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void modificarJugador(Jugador jugador) throws BbddException {
+    public void modificarJugador(Jugador jugador) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE Jugadores SET equipo = '" + jugador.getEquipo() + "'" + ", nombre = '" + jugador.getNombre() + "'"
                 + ", dorsal = '" + jugador.getDorsal() + "'" + ", goles = '" + jugador.getGoles() + ", asistencias = '"
@@ -370,9 +370,9 @@ public class Bbdd {
      * Metodo que se encarga de la insercion de un estadio en la BBDD
      * 
      * @param estadio a insertar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void insertarEstadio(Estadio estadio) throws BbddException {
+    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
         sql = "INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('" + estadio.getNombre()
                 + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion()
@@ -384,9 +384,9 @@ public class Bbdd {
      * Metodo que se encarga de la insercion de un equipo en la BBDD
      * 
      * @param equipo a insertar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void insertarEquipo(Equipo equipo) throws BbddException {
+    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
         sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('" 
                 + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
@@ -399,9 +399,9 @@ public class Bbdd {
      * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
      * 
      * @param palmares a insertar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void insertarPalmares(Palmares palmares) throws BbddException {
+    public void insertarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
         sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('" 
                 + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey()
@@ -414,9 +414,9 @@ public class Bbdd {
      * Metodo que se encarga de la insercion de un jugador en la BBDD
      * 
      * @param jugador a insertar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void insertarJugador(Jugador jugador) throws BbddException {
+    public void insertarJugador(Jugador jugador) throws PersistenciaException {
         String sql = "";
         sql = "INSERT INTO Jugadores (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES('"
                 + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '" + jugador.getDorsal() + "', '"
@@ -429,9 +429,9 @@ public class Bbdd {
      * Metodo para borrar un equipo de la BBDD
      * 
      * @param equipo a borrar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void borrarEquipo(Equipo equipo) throws BbddException {
+    public void borrarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM Equipos WHERE idEquipo = " + equipo.getId();
         actualizar(sql);
@@ -441,9 +441,9 @@ public class Bbdd {
      * Metodo para borrar un estadio de la BBDD
      * 
      * @param estadio a borrar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void borrarEstadio(Estadio estadio) throws BbddException {
+    public void borrarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM Estadios WHERE idEstadio = " + estadio.getId();
         actualizar(sql);
@@ -453,9 +453,9 @@ public class Bbdd {
      * Metodo para borrar un palmares de la BBDD
      * 
      * @param palmares a borrar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void borrarPalmares(Palmares palmares) throws BbddException {
+    public void borrarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM Palmares WHERE idPalmares = " + palmares.getId();
         actualizar(sql);
@@ -465,9 +465,9 @@ public class Bbdd {
      * Metodo para borrar un jugador de la BBDD
      * 
      * @param jugador a borrar
-     * @throws BbddException error controlado
+     * @throws PersistenciaException error controlado
      */
-    public void borrarJugador(Jugador jugador) throws BbddException {
+    public void borrarJugador(Jugador jugador) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM Jugadores WHERE idJugador = " + jugador.getId();
         actualizar(sql);

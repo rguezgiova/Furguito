@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito.exception;
 
-public class BbddException extends Exception{
+public class PersistenciaException extends Exception{
     
     private static final long serialVersionUID = 1L;
 
@@ -9,7 +9,7 @@ public class BbddException extends Exception{
      * 
      * @param mensaje personalizado
      */
-    public BbddException(String mensaje) {
+    public PersistenciaException(String mensaje) {
         super(mensaje);
     }
 
@@ -19,7 +19,7 @@ public class BbddException extends Exception{
      * @param mensaje   mensaje de la excepcion
      * @param exception que produce el error
      */
-    public BbddException(String mensaje, Exception exception) {
+    public PersistenciaException(String mensaje, Exception exception) {
         super(mensaje, exception);
     }
 }
