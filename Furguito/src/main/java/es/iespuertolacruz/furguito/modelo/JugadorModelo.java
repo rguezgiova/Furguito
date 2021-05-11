@@ -22,8 +22,8 @@ public class JugadorModelo {
         persistencia.borrarJugador(jugador);
     }
 
-    public void consultarInformacion() {
-        persistencia.obtenerJugadores(sql);
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        persistencia.obtenerJugador(nombre);
     }
 
     public void consultarMaximoGoleador() {

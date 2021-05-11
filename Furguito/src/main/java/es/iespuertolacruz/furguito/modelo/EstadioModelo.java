@@ -22,15 +22,15 @@ public class EstadioModelo {
         persistencia.borrarEstadio(estadio);
     }
 
-    public void consultarInformacion() {
-        persistencia.obte
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        persistencia.obtenerEstadio(nombre);
     }
 
-    public void consultarCapacidad() {
-        persistencia.o
+    public void consultarCapacidad(String nombre) throws PersistenciaException {
+        persistencia.obtenerCapacidad(nombre);
     }
 
-    public void consultarAnioConstruccion() {
-        persistencia.co
+    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
+        persistencia.obtenerAnio(nombre);
     }
 }
