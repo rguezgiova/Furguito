@@ -22,4 +22,18 @@ public class EstadioModelo {
         persistencia.borrarEstadio(estadio);
     }
 
+<<<<<<< HEAD
+=======
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        persistencia.obtenerEstadio(nombre);
+    }
+
+    public void consultarCapacidad(String nombre) throws PersistenciaException {
+        persistencia.obtenerCapacidad(nombre);
+    }
+
+    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
+        persistencia.obtenerAnio(nombre);
+    }
+>>>>>>> 20c47b392c6519e33025c42914da25f6430d73ce
 }

@@ -283,6 +283,90 @@ public class Bbdd {
     }
 
     /**
+     * Funcion que obtiene un jugador buscado por nombre
+     * 
+     * @param nombre del jugador a buscar
+     * @return jugador
+     * @throws PersistenciaException error controlado
+     */
+    public Jugador obtenerJugador(String nombre) throws PersistenciaException {
+        Jugador jugador = null;
+        ArrayList<Jugador> listaJugadores = null;
+        String sql = "SELECT * FROM Jugadores where nombre = ";
+        sql = sql + "'" + nombre + "'";
+        listaJugadores = obtenerJugadores(sql);
+        if (!listaJugadores.isEmpty()) {
+            jugador = listaJugadores.get(0);
+        }
+
+        return jugador;
+
+    }
+
+    /**
+     * Funcion que obtiene un estadio buscado por nombre
+     * 
+     * @param nombre del estadio a buscar
+     * @return estadio
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT * FROM Jugadores where nombre = ";
+        sql = sql + "'" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+
+        return estadio;
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y la capacidad del estadio buscado
+     * 
+     * @param nombre del estadio a buscar
+     * @return estadio y capacidad
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT nombre, capacidad FROM Estadios where nombre = ";
+        sql = sql + "'" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+
+        return estadio;
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y el anio del estadio buscado
+     * 
+     * @param nombre del estadio a buscar
+     * @return estadio y anio
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerAnio(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT nombre, construccion FROM Estadios where nombre = ";
+        sql = sql + "'" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+
+        return estadio;
+
+    }
+
+    /**
      * Funcion que obtiene el nombre y el presupuesto del equipo buscado
      * 
      * @param identificador del equipo a buscar
