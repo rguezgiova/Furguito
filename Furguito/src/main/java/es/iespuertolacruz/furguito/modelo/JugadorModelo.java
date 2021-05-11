@@ -9,7 +9,7 @@ public class JugadorModelo {
     public JugadorModelo() {
         persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
-    
+
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
         persistencia.insertarJugador(jugador);
     }
@@ -22,15 +22,4 @@ public class JugadorModelo {
         persistencia.borrarJugador(jugador);
     }
 
-    public void consultarInformacion() {
-        persistencia.obtenerJugadores(sql);
-    }
-
-    public void consultarMaximoGoleador() {
-        
-    }
-
-    public void consultarMasExpulsado() {
-
-    }
 }

@@ -22,15 +22,9 @@ public class PalmaresModelo {
         persistencia.borrarPalmares(palmares);
     }
 
-    public void consultarPalmares() {
-        persistencia.obtenerPalmares(sql);
+    public void consultarPalmares(Palmares palmares) throws PersistenciaException {
+        persistencia.obtenerPalmares(palmares.getId());
     }
 
-    public void consultarLigas() {
-
-    }
-
-    public void consultarCopas() {
-
-    }
+    
 }

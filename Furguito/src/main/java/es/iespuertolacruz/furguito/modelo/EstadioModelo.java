@@ -9,7 +9,7 @@ public class EstadioModelo {
     public EstadioModelo() {
         persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
-    
+
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
         persistencia.insertarEstadio(estadio);
     }
@@ -22,15 +22,4 @@ public class EstadioModelo {
         persistencia.borrarEstadio(estadio);
     }
 
-    public void consultarInformacion() {
-        persistencia.obte
-    }
-
-    public void consultarCapacidad() {
-        persistencia.o
-    }
-
-    public void consultarAnioConstruccion() {
-        persistencia.co
-    }
 }

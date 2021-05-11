@@ -57,7 +57,8 @@ public class Bbdd {
      * @param statement
      * @throws PersistenciaException
      */
-    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet) throws PersistenciaException {
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
+            throws PersistenciaException {
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -259,9 +260,26 @@ public class Bbdd {
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
         }
-
         return equipo;
+    }
 
+    /**
+     * Funcion que obtiene un estadio buscado por ID
+     * 
+     * @param identificador del estadio a buscar
+     * @return equipo
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerEstadio(String identificador) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT * FROM Estadios where identificador = ";
+        sql = sql + "'" + identificador + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+        return estadio;
     }
 
     /**
@@ -280,9 +298,7 @@ public class Bbdd {
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
         }
-
         return equipo;
-
     }
 
     /**
@@ -374,9 +390,8 @@ public class Bbdd {
      */
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('" + estadio.getNombre()
-                + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion()
-                + "')";
+        sql = "INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('" + estadio.getNombre() + "', '"
+                + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion() + "')";
         actualizar(sql);
     }
 
@@ -388,7 +403,7 @@ public class Bbdd {
      */
     public void insertarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('" 
+        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('"
                 + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
                 + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', " + equipo.getPresupuesto() + "', "
                 + equipo.getColores() + "')";
@@ -403,10 +418,10 @@ public class Bbdd {
      */
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('" 
-                + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey()
-                + "', '" + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', "
-                + palmares.getChampions() + "', " + palmares.getMundialClubs() + "')";
+        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('"
+                + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey() + "', '"
+                + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', " + palmares.getChampions()
+                + "', " + palmares.getMundialClubs() + "')";
         actualizar(sql);
     }
 
