@@ -304,27 +304,6 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que obtiene un estadio buscado por nombre
-     * 
-     * @param nombre del estadio a buscar
-     * @return estadio
-     * @throws PersistenciaException error controlado
-     */
-    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
-        Estadio estadio = null;
-        ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT * FROM Jugadores where nombre = ";
-        sql = sql + "'" + nombre + "'";
-        listaEstadios = obtenerEstadios(sql);
-        if (!listaEstadios.isEmpty()) {
-            estadio = listaEstadios.get(0);
-        }
-
-        return estadio;
-
-    }
-
-    /**
      * Funcion que obtiene el nombre y la capacidad del estadio buscado
      * 
      * @param nombre del estadio a buscar

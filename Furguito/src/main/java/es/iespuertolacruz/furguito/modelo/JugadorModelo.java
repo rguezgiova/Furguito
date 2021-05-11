@@ -22,8 +22,6 @@ public class JugadorModelo {
         persistencia.borrarJugador(jugador);
     }
 
-<<<<<<< HEAD
-=======
     public void consultarInformacion(String nombre) throws PersistenciaException {
         persistencia.obtenerJugador(nombre);
     }
@@ -35,5 +33,4 @@ public class JugadorModelo {
     public void consultarMasExpulsado() {
 
     }
->>>>>>> 20c47b392c6519e33025c42914da25f6430d73ce
 }
