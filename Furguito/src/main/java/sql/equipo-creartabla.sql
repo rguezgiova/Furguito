@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS 'Equipos' (
-    'idEquipo' int(2) PRIMARY KEY NOT NULL,
+    'idEquipo' IDENTITY(1,1) PRIMARY KEY,
     'nombre' varchar(50) NOT NULL,
     'ciudad' varchar(50) NOT NULL,
     'estadio' varchar(50) NOT NULL,
