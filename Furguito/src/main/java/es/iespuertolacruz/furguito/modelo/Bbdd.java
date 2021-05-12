@@ -247,15 +247,15 @@ public class Bbdd {
     /**
      * Funcion que obtiene un equipo buscado por ID
      * 
-     * @param identificador del equipo a buscar
+     * @param nombre del equipo a buscar
      * @return equipo
      * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerEquipo(String identificador) throws PersistenciaException {
+    public Equipo obtenerEquipo(String nombre) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT * FROM Equipos where identificador = ";
-        sql = sql + "'" + identificador + "'";
+        String sql = "SELECT * FROM Equipos where nombre LIKE ";
+        sql = sql + "'%" + nombre + "%'";
         listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
@@ -266,15 +266,15 @@ public class Bbdd {
     /**
      * Funcion que obtiene un estadio buscado por ID
      * 
-     * @param identificador del estadio a buscar
+     * @param nombre del estadio a buscar
      * @return equipo
      * @throws PersistenciaException error controlado
      */
-    public Estadio obtenerEstadio(String identificador) throws PersistenciaException {
+    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT * FROM Estadios where identificador = ";
-        sql = sql + "'" + identificador + "'";
+        String sql = "SELECT * FROM Estadios where nombre = ";
+        sql = sql + "'" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);
@@ -289,18 +289,41 @@ public class Bbdd {
      * @return jugador
      * @throws PersistenciaException error controlado
      */
-    public Jugador obtenerJugador(String nombre) throws PersistenciaException {
+    public ArrayList<Jugador> obtenerJugador(String nombre) throws PersistenciaException {
         Jugador jugador = null;
         ArrayList<Jugador> listaJugadores = null;
-        String sql = "SELECT * FROM Jugadores where nombre = ";
-        sql = sql + "'" + nombre + "'";
+        String sql = "SELECT * FROM Jugadores WHERE nombre LIKE ";
+        sql = sql + "'%" + nombre + "%'";
         listaJugadores = obtenerJugadores(sql);
-        if (!listaJugadores.isEmpty()) {
-            jugador = listaJugadores.get(0);
-        }
+        return listaJugadores;
+    }
 
-        return jugador;
+    /**
+     * Funcion que devuelve los 5 maximos goleadores de la liga
+     * 
+     * @return lista de goleadores
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Jugador> obtenerGoleadores() throws PersistenciaException {
+        Jugador jugador = null;
+        ArrayList<Jugador> listaJugadores = null;
+        String sql = "SELECT * FROM Jugadores ORDER BY goles LIMIT 5";
+        listaJugadores = obtenerJugadores(sql);
+        return listaJugadores;
+    }
 
+    /**
+     * Funcion que devuelve los 10 jugadores con mas tarjetas rojas de la liga
+     * 
+     * @return lista de expulsados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Jugador> obtenerExpulsados() throws PersistenciaException {
+        Jugador jugador = null;
+        ArrayList<Jugador> listaJugadores = null;
+        String sql = "SELECT * FROM Jugadores ORDER BY rojas LIMIT 10";
+        listaJugadores = obtenerJugadores(sql);
+        return listaJugadores;
     }
 
     /**
@@ -348,15 +371,15 @@ public class Bbdd {
     /**
      * Funcion que obtiene el nombre y el presupuesto del equipo buscado
      * 
-     * @param identificador del equipo a buscar
+     * @param nombre del equipo a buscar
      * @return equipo y presupuesto
      * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerPresupuesto(String identificador) throws PersistenciaException {
+    public Equipo obtenerPresupuesto(String nombre) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT nombre,presupuesto FROM Equipos where identificador = ";
-        sql = sql + "'" + identificador + "'";
+        String sql = "SELECT nombre,presupuesto FROM Equipos where nombre LIKE ";
+        sql = sql + "'%" + nombre + "%'";
         listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);
@@ -367,15 +390,15 @@ public class Bbdd {
     /**
      * Funcion que obtiene el nombre y la ciudad en la que juega el equipo buscado
      * 
-     * @param identificador del equipo
+     * @param nombre del equipo
      * @return nombre del equipo y ciudad
      * @throws PersistenciaException error controlado
      */
-    public Equipo obtenerCiudad(String identificador) throws PersistenciaException {
+    public Equipo obtenerCiudad(String nombre) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT nombre,ciudad FROM Equipos where identificador = ";
-        sql = sql + "'" + identificador + "'";
+        String sql = "SELECT nombre,ciudad FROM Equipos where nombre LIKE ";
+        sql = sql + "'%" + nombre + "%'";
         listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);

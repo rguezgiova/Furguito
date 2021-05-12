@@ -10,27 +10,61 @@ public class JugadorModelo {
         persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
     }
 
+    /**
+     * insertar jugador en la tabla
+     * 
+     * @param jugador a insertar
+     * @throws PersistenciaException error controlado
+     */
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
         persistencia.insertarJugador(jugador);
     }
 
+    /**
+     * Modificar un jugador
+     * 
+     * @param jugador a modificar
+     * @throws PersistenciaException error controlado
+     */
     public void modificarJugador(Jugador jugador) throws PersistenciaException {
         persistencia.modificarJugador(jugador);
     }
 
+    /**
+     * Elimina a un jugador
+     * 
+     * @param jugador a eliminar
+     * @throws PersistenciaException error controlado
+     */
     public void eliminarJugador(Jugador jugador) throws PersistenciaException {
         persistencia.borrarJugador(jugador);
     }
 
+    /**
+     * Consultar informacion de un equipo
+     * 
+     * @param nombre del equipo a buscar
+     * @throws PersistenciaException error controlado
+     */
     public void consultarInformacion(String nombre) throws PersistenciaException {
         persistencia.obtenerJugador(nombre);
     }
 
-    public void consultarMaximoGoleador() {
-
+    /**
+     * Consultar los 5 maximos goleadores de la liga
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMaximosGoleadores() throws PersistenciaException {
+        persistencia.obtenerGoleadores();
     }
 
-    public void consultarMasExpulsado() {
-
+    /**
+     * Consultar los 10 jugadores mas expulsados de la liga
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMasExpulsados() throws PersistenciaException {
+        persistencia.obtenerExpulsados();
     }
 }
