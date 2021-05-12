@@ -27,7 +27,7 @@ public class JugadorModelo {
     }
 
     public void consultarMaximoGoleador() {
-        
+
     }
 
     public void consultarMasExpulsado() {
