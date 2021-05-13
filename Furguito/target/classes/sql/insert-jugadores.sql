@@ -18,7 +18,7 @@ VALUES ('Futbol Club Barcelona', 'Marc-Andre ter Stegen', '1', '0', '1', '4','0'
 ('Athletic Club de Bilbao', 'Alex Berenguer', '12', '7', '8', '6','0'),
 ('Athletic Club de Bilbao', 'Raul Garcia', '22', '12', '5', '8','2'),
 ('Atletico de Madrid', 'Jan Oblak', '13', '0', '0', '6','0'),
-('Atletico de Madrid', 'Stefan Savic', '15', '1', '2', '8','1'),
+('Atletico de Madrid', 'Stefan Savic', '15', '1', '2', '8','2'),
 ('Atletico de Madrid', 'Kieran Trippier', '23', '0', '2', '5','0'),
 ('Atletico de Madrid', 'Marcos Llorente', '14', '1', '0', '7','0'),
 ('Atletico de Madrid', 'Koke', '6', '10', '4', '7','1'),
