@@ -10,7 +10,6 @@ public class FurguitoVista {
     private static final String ADMIN = "admin";
 
     public static void main(String[] args) {
-
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
