@@ -15,7 +15,6 @@ public class FurguitoVista {
         int opcion;
         boolean salir = false;
         while (!salir) {
-
             System.out.println("##Bienvenido a Furguito##");
             System.out.println(SEPARADOR);
             System.out.println("1. Entrar como invitado");
@@ -23,21 +22,15 @@ public class FurguitoVista {
             System.out.println("3. Salir");
 
             try {
-
                 System.out.println(ESCRIBE_OPCIONES);
                 opcion = sn.nextInt();
-
                 switch (opcion) {
                     case 1:
-
                         System.out.println("Entrar como invitado");
                         System.out.println(SEPARADOR);
                         menuInvitado();
-
                         break;
-
                     case 2:
-
                         System.out.println("Entrar como administrador");
                         System.out.println(SEPARADOR);
                         String usuario = null;
@@ -56,25 +49,18 @@ public class FurguitoVista {
                             System.out.println(SEPARADOR);
                             menuAdmin();
                         }
-
                         break;
-
                     case 3:
-
                         System.out.println("Gracias por usar Furguito");
                         System.out.println(SEPARADOR);
                         salir = true;
                         break;
-
                     default:
                         System.out.println(INTRODUCIR_NUMERO);
-
                 }
-
             } catch (InputMismatchException e) {
                 System.out.println(INTRODUCIR_NUMERO);
                 sn.next();
-
             }
         }
     }
@@ -99,108 +85,78 @@ public class FurguitoVista {
             System.out.println("13- Salir");
 
             try {
-
                 System.out.println(ESCRIBE_OPCIONES);
                 opcion = sn.nextInt();
-
                 switch (opcion) {
                     case 1:
-
                         System.out.println("Insertar club");
 
                         break;
-
                     case 2:
-
                         System.out.println("Modificar club");
 
                         break;
-
                     case 3:
-
                         System.out.println("Borrar club");
 
                         break;
-
                     case 4:
-
                         System.out.println("Insertar estadio");
 
                         break;
-
                     case 5:
-
                         System.out.println("Modificar estadio");
 
                         break;
-
                     case 6:
-
                         System.out.println("Borrar estadio");
 
                         break;
-
                     case 7:
-
                         System.out.println("Insertar jugador");
 
                         break;
-
                     case 8:
-
                         System.out.println("Modificar jugador");
 
                         break;
-
                     case 9:
-
                         System.out.println("Borrar jugador");
 
                         break;
-
                     case 10:
-
                         System.out.println("Insertar jugador");
 
                         break;
-
                     case 11:
-
                         System.out.println("Modificar jugador");
 
                         break;
-
                     case 12:
-
                         System.out.println("Borrar jugador");
 
                         break;
-
                     case 13:
-
                         System.out.println(SEPARADOR);
                         salir = true;
                         break;
-
                     default:
                         System.out.println(INTRODUCIR_NUMERO);
-
                 }
-
             } catch (InputMismatchException e) {
                 System.out.println(INTRODUCIR_NUMERO);
                 sn.next();
-
             }
-
         }
-
     }
 
     public static void menuInvitado() {
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
+        String nombreEquipo;
+        String nombreEstadio;
+        String nombreJugador;
         while (!salir) {
             System.out.println("1- Informacion del club");
             System.out.println("2- Consultar presupuesto del club");
@@ -217,101 +173,83 @@ public class FurguitoVista {
             System.out.println("13- Salir");
 
             try {
-
                 System.out.println(ESCRIBE_OPCIONES);
                 opcion = sn.nextInt();
-
                 switch (opcion) {
                     case 1:
-
                         System.out.println("Informacion del club");
+                        System.out.println("Introduzca el nombre del club:");
+                        nombreEquipo = sn.next();
 
                         break;
-
                     case 2:
-
                         System.out.println("Consultar presupuesto del club");
+                        System.out.println("Introduzca el nombre del club:");
+                        nombreEquipo = sn.next();
 
                         break;
-
                     case 3:
-
                         System.out.println("Consultar ciudad del club");
+                        System.out.println("Introduzca el nombre del club:");
+                        nombreEquipo = sn.next();
 
                         break;
-
                     case 4:
-
                         System.out.println("Informacion del estadio");
+                        System.out.println("Introduzca el nombre del estadio:");
+                        nombreEstadio = sn.next();
 
                         break;
-
                     case 5:
-
                         System.out.println("Capacidad del estadio");
+                        System.out.println("Introduzca el nombre del estadio:");
+                        nombreEstadio = sn.next();
 
                         break;
-
                     case 6:
-
                         System.out.println("Fecha de construccion del estadio");
+                        System.out.println("Introduzca el nombre del estadio:");
+                        nombreEstadio = sn.next();
 
                         break;
-
                     case 7:
-
                         System.out.println("Informacion del jugador");
+                        System.out.println("Introduzca el nombre del jugador:");
+                        nombreJugador = sn.next();
 
                         break;
-
                     case 8:
-
-                        System.out.println("Maximo goleador");
+                        System.out.println("Top 5 maximos goleadores");
 
                         break;
-
                     case 9:
-
-                        System.out.println("Jugador mas expulsado");
+                        System.out.println("Top 10 jugadores mas expulsados");
 
                         break;
-
                     case 10:
-
                         System.out.println("Consultar palmares");
 
                         break;
-
                     case 11:
-
                         System.out.println("Equipos con mas ligas");
 
                         break;
-
                     case 12:
-
                         System.out.println("Equipos con mas copas");
 
                         break;
-
                     case 13:
-
                         System.out.println(SEPARADOR);
                         salir = true;
                         break;
-
                     default:
                         System.out.println(INTRODUCIR_NUMERO);
-
                 }
-
             } catch (InputMismatchException e) {
                 System.out.println(INTRODUCIR_NUMERO);
                 sn.next();
 
             }
-
         }
-
     }
 }
