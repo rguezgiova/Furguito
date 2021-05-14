@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class FurguitoVista {
     private static final String INTRODUCIR_NUMERO = "Debe introducir un numero";
     private static final String SEPARADOR = "##########################\n";
-    private static final String ESCRIBE_OPCIONES = "Escribe una de las opciones";
+    private static final String ESCRIBE_OPCIONES = "Escribe una de las opciones:";
     private static final String ADMIN = "admin";
 
     public static void main(String[] args) {
@@ -34,9 +34,9 @@ public class FurguitoVista {
                         System.out.println(SEPARADOR);
                         String usuario = null;
                         String password = null;
-                        System.out.println("Introduzca el usuario");
+                        System.out.println("Introduzca el usuario:");
                         usuario = sn.next();
-                        System.out.println("Introduzca la contraseña");
+                        System.out.println("Introduzca la contraseña:");
                         password = sn.next();
                         if (!usuario.equals(ADMIN) && !password.equals(ADMIN)) {
                             System.out.println("Validacion incorrecta");
@@ -164,8 +164,8 @@ public class FurguitoVista {
             System.out.println("5- Capacidad del estadio");
             System.out.println("6- Fecha de construccion del estadio");
             System.out.println("7- Informacion del jugador");
-            System.out.println("8- Maximo goleador");
-            System.out.println("9- Jugador mas expulsado");
+            System.out.println("8- Top 5 maximos goleadores");
+            System.out.println("9- Top 10 jugadores mas expulsados");
             System.out.println("10- Consultar palmares");
             System.out.println("11- Equipos con mas ligas");
             System.out.println("12- Equipos con mas copas");
@@ -227,6 +227,8 @@ public class FurguitoVista {
                         break;
                     case 10:
                         System.out.println("Consultar palmares");
+                        System.out.println("Introduzca el nombre del equipo:");
+                        nombreEquipo = sn.next();
 
                         break;
                     case 11:

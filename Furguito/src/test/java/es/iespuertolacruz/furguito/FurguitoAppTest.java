@@ -5,16 +5,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import es.iespuertolacruz.furguito.vista.FurguitoUserApp;
+import es.iespuertolacruz.furguito.vista.FurguitoVista;
 
 public class FurguitoAppTest {
 
-    FurguitoUserApp furguitoApp;
+    FurguitoVista furguitoApp;
 
     @BeforeEach
     public void setup() {
         if (furguitoApp == null) {
-            furguitoApp = new FurguitoUserApp();
+            furguitoApp = new FurguitoVista();
         }
     }
 
