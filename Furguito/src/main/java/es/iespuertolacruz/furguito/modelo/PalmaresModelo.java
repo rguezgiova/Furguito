@@ -6,8 +6,8 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 public class PalmaresModelo {
     SqliteBbdd persistencia;
 
-    public PalmaresModelo() {
-        persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+    public PalmaresModelo() throws PersistenciaException {
+        persistencia = new SqliteBbdd(null, null);
     }
 
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {
@@ -26,5 +26,4 @@ public class PalmaresModelo {
         persistencia.obtenerPalmares(palmares.getId());
     }
 
-    
 }

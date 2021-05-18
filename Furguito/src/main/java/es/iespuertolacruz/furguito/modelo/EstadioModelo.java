@@ -6,8 +6,8 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 public class EstadioModelo {
     SqliteBbdd persistencia;
 
-    public EstadioModelo() {
-        persistencia = new SqliteBbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+    public EstadioModelo() throws PersistenciaException {
+        persistencia = new SqliteBbdd(null, null);
     }
 
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
