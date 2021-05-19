@@ -1,13 +1,14 @@
 package es.iespuertolacruz.furguito.controller;
 
 import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.EquipoModelo;
 
 public class EquipoController {
 
     EquipoModelo equipoModelo;
 
-    public EquipoController() {
+    public EquipoController() throws PersistenciaException {
         if (equipoModelo == null) {
             equipoModelo = new EquipoModelo();
         }
