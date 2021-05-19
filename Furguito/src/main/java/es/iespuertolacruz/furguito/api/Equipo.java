@@ -1,5 +1,7 @@
 package es.iespuertolacruz.furguito.api;
 
+import com.google.inject.internal.util.Objects;
+
 public class Equipo {
 
     String id;
@@ -138,5 +140,19 @@ public class Equipo {
         return "Nombre='" + getNombre() + "\n" + "Ciudad='" + getCiudad() + "\n" + "Estadio='" + getEstadio() + "\n"
                 + "Fecha de fundacion='" + getFundacion() + "\n" + "Numero de socios='" + getNumeroSocios() + "\n"
                 + "Presupuesto anual='" + getPresupuesto() + "\n" + "Colores del club='" + getColores() + "\n";
+    }
+
+    /**
+     * Funcion equals de comparacion
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Equipo)) {
+            return false;
+        }
+        Equipo equipo = (Equipo) o;
+        return Objects.equal(id, equipo.id) && Objects.equal(nombre, equipo.nombre) && Objects.equal(ciudad, equipo.ciudad) && Objects.equal(estadio, equipo.estadio) && fundacion == equipo.fundacion && numeroSocios == equipo.numeroSocios && presupuesto == equipo.presupuesto && Objects.equal(colores, equipo.colores);
     }
 }

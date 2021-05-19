@@ -1,5 +1,7 @@
 package es.iespuertolacruz.furguito.api;
 
+import com.google.inject.internal.util.Objects;
+
 public class Jugador {
 
     String id;
@@ -136,4 +138,17 @@ public class Jugador {
                 + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
     }
 
+    /**
+     * Funcion equals de comparacion
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Jugador)) {
+            return false;
+        }
+        Jugador jugador = (Jugador) o;
+        return Objects.equal(id, jugador.id) && Objects.equal(equipo, jugador.equipo) && Objects.equal(nombre, jugador.nombre) && dorsal == jugador.dorsal && goles == jugador.goles && asistencias == jugador.asistencias && amarillas == jugador.amarillas && rojas == jugador.rojas;
+    }
 }
