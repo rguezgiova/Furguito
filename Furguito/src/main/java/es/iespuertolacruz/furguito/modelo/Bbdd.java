@@ -2,12 +2,16 @@ package es.iespuertolacruz.furguito.modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import es.iespuertolacruz.furguito.api.*;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Bbdd {
+    private static final String NOMBRE_TABLAS = "Equipos, Jugadores, Estadios, Palmares";
     private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
+    Fichero fichero;
     private String driver;
     private String url;
     private String usuario;
@@ -20,12 +24,48 @@ public class Bbdd {
      * @param url      de la BBDD
      * @param usuario  para el login
      * @param password del usuario
+     * @throws PersistenciaException
      */
-    public Bbdd(String driver, String url, String usuario, String password) {
+    public Bbdd(String driver, String url, String usuario, String password) throws PersistenciaException {
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
+        init();
+    }
+
+    /**
+     * Metodo que crea la BBDD e inserta los datos iniciales
+     * @throws PersistenciaException error controlado
+     */
+    private void init() throws PersistenciaException {
+        DatabaseMetaData databaseMetaData;
+        Connection connection = null;
+        ResultSet resultSet = null;
+        ArrayList<String> listaTablas = new ArrayList<>();
+        String[] convertir = NOMBRE_TABLAS.split(",");
+        List<String> nombreTablas = Arrays.asList(convertir);
+
+        try {
+            connection = getConnection();
+            databaseMetaData = connection.getMetaData();
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] {"TABLE"});
+            while (resultSet.next()) {
+                listaTablas.add(resultSet.getString("TABLE_NAME"));
+            }
+            for (String tabla : nombreTablas) {
+                if (!listaTablas.contains(tabla)) {
+                    String sqlCrearTabla = fichero.leer(tabla + "-creartabla.sql");
+                    actualizar(sqlCrearTabla);
+                    String sqlInsertarDatos = fichero.leer("insertar-" + tabla + ".sql");
+                    actualizar(sqlInsertarDatos);
+                }
+            }
+        } catch (Exception e) {
+            throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
+        } finally {
+            closeConnection(connection, null, resultSet);
+        }
     }
 
     /**
