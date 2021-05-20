@@ -22,8 +22,8 @@ public class EquipoModelo {
         persistencia.borrarEquipo(equipo);
     }
 
-    public void consultarInformacion(String identificador) throws PersistenciaException {
-        persistencia.obtenerEquipo(identificador);
+    public Equipo consultarInformacion(String identificador) throws PersistenciaException {
+        return persistencia.obtenerEquipo(identificador);
     }
 
     public void consultarPresupuesto(String identificador) throws PersistenciaException {
