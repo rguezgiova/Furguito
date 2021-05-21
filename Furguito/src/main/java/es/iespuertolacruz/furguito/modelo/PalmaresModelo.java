@@ -5,9 +5,11 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class PalmaresModelo {
     SqliteBbdd persistencia;
+    private static final String NOMBRE = "Palmares";
+    private static final String CLAVE = "idPalmares";
 
     public PalmaresModelo() throws PersistenciaException {
-        persistencia = new SqliteBbdd(null, null);
+        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);
     }
 
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {

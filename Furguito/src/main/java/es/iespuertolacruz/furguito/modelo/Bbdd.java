@@ -9,7 +9,7 @@ import es.iespuertolacruz.furguito.api.*;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Bbdd {
-    private static final String NOMBRE_TABLAS = "Equipos, Jugadores, Estadios, Palmares";
+    private static final String NOMBRE_TABLAS = "Equipos,Jugadores,Estadios,Palmares";
     private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
     Fichero fichero;
     private String driver;
@@ -43,6 +43,7 @@ public class Bbdd {
         Connection connection = null;
         ResultSet resultSet = null;
         ArrayList<String> listaTablas = new ArrayList<>();
+
         String[] convertir = NOMBRE_TABLAS.split(",");
         List<String> nombreTablas = Arrays.asList(convertir);
 
@@ -55,9 +56,9 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer("../sql/" + tabla + "-creartabla.sql");
+                    String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer("../sql/insertar-" + tabla + ".sql");
+                    String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Scanner;
 
 import es.iespuertolacruz.furguito.exception.FicheroException;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Fichero {
 
@@ -23,7 +24,7 @@ public class Fichero {
      * @param nombre nombre del fichero a leer
      * @throws FicheroException Error controlado en la lectura del fichero
      */
-    public String leer(String nombre) throws FicheroException {
+    public String leer(String nombre) throws PersistenciaException {
         StringBuilder informacion = null;
         File fichero = null;
         Scanner scanner = null;
@@ -31,19 +32,18 @@ public class Fichero {
         try {
             fichero = new File(nombre);
             if (!validar(fichero)) {
-                throw new FicheroException("El fichero a leer no existe");
+                throw new PersistenciaException("El fichero a leer no existe");
             }
             informacion = new StringBuilder();
             scanner = new Scanner(fichero);
-
             while (scanner.hasNextLine()) {
                 String linea = scanner.nextLine(); // Guardamos la linea en un String
                 informacion.append(linea + "\n");
             }
-        } catch (FicheroException e) {
+        } catch (PersistenciaException e) {
             throw e;
         } catch (Exception e) {
-            throw new FicheroException("Se ha producido un error en la lectura del fichero", e);
+            throw new PersistenciaException("Se ha producido un error en la lectura del fichero", e);
         } finally {
             if (scanner != null) {
                 scanner.close();

@@ -5,9 +5,11 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class EstadioModelo {
     SqliteBbdd persistencia;
+    private static final String NOMBRE = "Estadios";
+    private static final String CLAVE = "idEstadio";
 
     public EstadioModelo() throws PersistenciaException {
-        persistencia = new SqliteBbdd(null, null);
+        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);
     }
 
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
