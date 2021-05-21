@@ -55,9 +55,9 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer(tabla + "-creartabla.sql");
+                    String sqlCrearTabla = fichero.leer("/sql/" + tabla + "-creartabla.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer("insertar-" + tabla + ".sql");
+                    String sqlInsertarDatos = fichero.leer("/sql/insertar-" + tabla + ".sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
