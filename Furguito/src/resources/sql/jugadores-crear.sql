@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS 'Jugadores' (
     'asistencias' int(2) DEFAULT 0,
     'amarillas' int(2) DEFAULT 0,
     'rojas' int(2) DEFAULT 0
-)
+);

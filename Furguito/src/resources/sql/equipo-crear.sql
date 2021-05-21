@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS 'Equipos' (
     'numero_socios' int(8) DEFAULT 0,
     'presupuesto' int(10),
     'colores' varchar(50) NOT NULL
-)
+);
 

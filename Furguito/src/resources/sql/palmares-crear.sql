@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS 'Palmares' (
     'superEuropa' int(2),
     'champions' int(2),
     'mundialClubs' int(2)
-)
+);

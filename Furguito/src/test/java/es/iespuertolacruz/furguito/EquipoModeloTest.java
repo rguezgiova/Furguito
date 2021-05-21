@@ -11,13 +11,15 @@ import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.furguito.api.Equipo;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
+import es.iespuertolacruz.furguito.modelo.Bbdd;
 import es.iespuertolacruz.furguito.modelo.EquipoModelo;
 
 public class EquipoModeloTest {
     Equipo equipo;
     static EquipoModelo equipoModelo;
-
-    @BeforeAll
+    Bbdd bbdd;
+/**
+ * @BeforeAll
     public static void beforeAll() {
         if (equipoModelo == null) {
             try {
@@ -27,6 +29,8 @@ public class EquipoModeloTest {
             }
         }
     }
+ 
+    
 
     @BeforeEach
     public void crearEquipo() {
@@ -48,6 +52,7 @@ public class EquipoModeloTest {
             }
         }
     }
+    
 
     @Test
     public void buscarEquipoTest() {
@@ -57,6 +62,17 @@ public class EquipoModeloTest {
             assertEquals(equipo, equipoEncontrado, "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
             fail("Se ha producido un error en la consulta del equipo: "+e.getMessage());
+
+        }
+    }
+    */
+
+    @Test
+    public void initTest() {
+        try {
+           bbdd = new Bbdd("org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
+        } catch (PersistenciaException e) {
+            fail("putamadre: "+e.getMessage());
 
         }
     }
