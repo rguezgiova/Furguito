@@ -9,9 +9,11 @@ import es.iespuertolacruz.furguito.api.*;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Bbdd {
-    private static final String NOMBRE_TABLAS = "Equipos, Jugadores, Estadios, Palmares";
+    private static final String NOMBRE_TABLAS = "Equipos,Jugadores,Estadios,Palmares";
     private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
     Fichero fichero;
+    private String nombretabla;
+    private String clave;
     private String driver;
     private String url;
     private String usuario;
@@ -26,7 +28,10 @@ public class Bbdd {
      * @param password del usuario
      * @throws PersistenciaException
      */
-    public Bbdd(String driver, String url, String usuario, String password) throws PersistenciaException {
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
+            throws PersistenciaException {
+        this.nombretabla = nombretabla;
+        this.clave = clave;
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
@@ -36,6 +41,7 @@ public class Bbdd {
 
     /**
      * Metodo que crea la BBDD e inserta los datos iniciales
+     * 
      * @throws PersistenciaException error controlado
      */
     private void init() throws PersistenciaException {
@@ -49,15 +55,17 @@ public class Bbdd {
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] {"TABLE"});
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] { "TABLE" });
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString("TABLE_NAME"));
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = fichero.leer("../sql/" + tabla + "-creartabla.sql");
+                    String sqlCrearTabla = new Fichero()
+                            .leer("src/resources/sql/" + tabla.toLowerCase() + "-creartabla.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero.leer("../sql/insertar-" + tabla + ".sql");
+                    String sqlInsertarDatos = new Fichero()
+                            .leer("src/resources/sql/insert-" + tabla.toLowerCase() + ".sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
