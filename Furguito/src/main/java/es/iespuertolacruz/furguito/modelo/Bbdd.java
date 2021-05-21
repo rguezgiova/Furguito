@@ -65,11 +65,6 @@ public class Bbdd {
                     String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
                     actualizar(sqlCrearTabla);
                     String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
-                    String sqlCrearTabla = new Fichero()
-                            .leer("src/resources/sql/" + tabla.toLowerCase() + "-creartabla.sql");
-                    actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero()
-                            .leer("src/resources/sql/insert-" + tabla.toLowerCase() + ".sql");
                     actualizar(sqlInsertarDatos);
                 }
             }

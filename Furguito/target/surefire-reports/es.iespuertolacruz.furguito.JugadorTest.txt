@@ -1,8 +1,0 @@
--------------------------------------------------------------------------------
-Test set: es.iespuertolacruz.furguito.JugadorTest
--------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.05 s - in es.iespuertolacruz.furguito.JugadorTest
-=======
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 s - in es.iespuertolacruz.furguito.JugadorTest
->>>>>>> 9975f40848c7290e261a19b7c5f9a0a68a3030ae
