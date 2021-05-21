@@ -1,7 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.EquipoModeloTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in es.iespuertolacruz.furguito.EquipoModeloTest
-es.iespuertolacruz.furguito.EquipoModeloTest  Time elapsed: 0 s  <<< ERROR!
-org.junit.platform.commons.JUnitException: @BeforeAll method 'public void es.iespuertolacruz.furguito.EquipoModeloTest.beforeAll()' must be static unless the test class is annotated with @TestInstance(Lifecycle.PER_CLASS).
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.654 s <<< FAILURE! - in es.iespuertolacruz.furguito.EquipoModeloTest
+es.iespuertolacruz.furguito.EquipoModeloTest  Time elapsed: 0.654 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: Se ha producido un error en la inicializacion de la BBDD
+	at es.iespuertolacruz.furguito.EquipoModeloTest.beforeAll(EquipoModeloTest.java:26)
 

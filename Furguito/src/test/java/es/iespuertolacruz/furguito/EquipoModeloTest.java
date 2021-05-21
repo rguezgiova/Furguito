@@ -18,7 +18,7 @@ public class EquipoModeloTest {
     static EquipoModelo equipoModelo;
 
     @BeforeAll
-    public void beforeAll() {
+    public static void beforeAll() {
         if (equipoModelo == null) {
             try {
                 equipoModelo = new EquipoModelo();
