@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EstadioModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.modelo</a> &gt; <span class="el_source">EstadioModelo.java</span></div><h1>EstadioModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.modelo;
+
+import es.iespuertolacruz.furguito.api.Estadio;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
+
+public class EstadioModelo {
+    SqliteBbdd persistencia;
+    private static final String NOMBRE = &quot;Estadios&quot;;
+    private static final String CLAVE = &quot;idEstadio&quot;;
+
+<span class="nc" id="L11">    public EstadioModelo() throws PersistenciaException {</span>
+<span class="nc" id="L12">        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);</span>
+<span class="nc" id="L13">    }</span>
+
+    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L16">        persistencia.insertarEstadio(estadio);</span>
+<span class="nc" id="L17">    }</span>
+
+    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L20">        persistencia.modificarEstadio(estadio);</span>
+<span class="nc" id="L21">    }</span>
+
+    public void eliminarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L24">        persistencia.borrarEstadio(estadio);</span>
+<span class="nc" id="L25">    }</span>
+
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+<span class="nc" id="L28">        persistencia.obtenerEstadio(nombre);</span>
+<span class="nc" id="L29">    }</span>
+
+    public void consultarCapacidad(String nombre) throws PersistenciaException {
+<span class="nc" id="L32">        persistencia.obtenerCapacidad(nombre);</span>
+<span class="nc" id="L33">    }</span>
+
+    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
+<span class="nc" id="L36">        persistencia.obtenerAnio(nombre);</span>
+<span class="nc" id="L37">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

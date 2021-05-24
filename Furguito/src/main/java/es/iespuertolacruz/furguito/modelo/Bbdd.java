@@ -49,7 +49,6 @@ public class Bbdd {
         Connection connection = null;
         ResultSet resultSet = null;
         ArrayList<String> listaTablas = new ArrayList<>();
-
         String[] convertir = NOMBRE_TABLAS.split(",");
         List<String> nombreTablas = Arrays.asList(convertir);
 
@@ -62,14 +61,11 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-                    String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
+                    Fichero fichero = new Fichero();
+                    String sqlCrearTabla = fichero.leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
                     actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
-                    String sqlCrearTabla = new Fichero()
-                            .leer("src/resources/sql/" + tabla.toLowerCase() + "-creartabla.sql");
-                    actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero()
-                            .leer("src/resources/sql/insert-" + tabla.toLowerCase() + ".sql");
+                    String sqlInsertarDatos = fichero
+                            .leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
                     actualizar(sqlInsertarDatos);
                 }
             }
@@ -297,7 +293,7 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que obtiene un equipo buscado por ID
+     * Funcion que obtiene un equipo buscado por nombre
      * 
      * @param nombre del equipo a buscar
      * @return equipo

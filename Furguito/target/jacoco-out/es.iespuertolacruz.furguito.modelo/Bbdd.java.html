@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Bbdd.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.modelo</a> &gt; <span class="el_source">Bbdd.java</span></div><h1>Bbdd.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.modelo;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import es.iespuertolacruz.furguito.api.*;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
+
+public class Bbdd {
+    private static final String NOMBRE_TABLAS = &quot;Equipos,Jugadores,Estadios,Palmares&quot;;
+    private static final String ERROR_CONSULTA = &quot;Se ha producido un error realizando la consulta&quot;;
+    Fichero fichero;
+    private String nombretabla;
+    private String clave;
+    private String driver;
+    private String url;
+    private String usuario;
+    private String password;
+
+    /**
+     * Constructor con parametros
+     * 
+     * @param driver   de la BBDD
+     * @param url      de la BBDD
+     * @param usuario  para el login
+     * @param password del usuario
+     * @throws PersistenciaException
+     */
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
+<span class="fc" id="L32">            throws PersistenciaException {</span>
+<span class="fc" id="L33">        this.nombretabla = nombretabla;</span>
+<span class="fc" id="L34">        this.clave = clave;</span>
+<span class="fc" id="L35">        this.driver = driver;</span>
+<span class="fc" id="L36">        this.url = url;</span>
+<span class="fc" id="L37">        this.usuario = usuario;</span>
+<span class="fc" id="L38">        this.password = password;</span>
+<span class="fc" id="L39">        init();</span>
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Metodo que crea la BBDD e inserta los datos iniciales
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    private void init() throws PersistenciaException {
+        DatabaseMetaData databaseMetaData;
+<span class="fc" id="L49">        Connection connection = null;</span>
+<span class="fc" id="L50">        ResultSet resultSet = null;</span>
+<span class="fc" id="L51">        ArrayList&lt;String&gt; listaTablas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L52">        String[] convertir = NOMBRE_TABLAS.split(&quot;,&quot;);</span>
+<span class="fc" id="L53">        List&lt;String&gt; nombreTablas = Arrays.asList(convertir);</span>
+
+        try {
+<span class="fc" id="L56">            connection = getConnection();</span>
+<span class="fc" id="L57">            databaseMetaData = connection.getMetaData();</span>
+<span class="fc" id="L58">            resultSet = databaseMetaData.getTables(null, null, null, new String[] { &quot;TABLE&quot; });</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L60">                listaTablas.add(resultSet.getString(&quot;TABLE_NAME&quot;));</span>
+            }
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            for (String tabla : nombreTablas) {</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">                if (!listaTablas.contains(tabla)) {</span>
+<span class="fc" id="L64">                    Fichero fichero = new Fichero();</span>
+<span class="fc" id="L65">                    String sqlCrearTabla = fichero.leer(&quot;src/resources/sql/&quot; + tabla.toLowerCase() + &quot;-crear.sql&quot;);</span>
+<span class="fc" id="L66">                    actualizar(sqlCrearTabla);</span>
+<span class="fc" id="L67">                    String sqlInsertarDatos = fichero</span>
+<span class="fc" id="L68">                            .leer(&quot;src/resources/sql/&quot; + tabla.toLowerCase() + &quot;-insertar.sql&quot;);</span>
+<span class="fc" id="L69">                    actualizar(sqlInsertarDatos);</span>
+                }
+<span class="fc" id="L71">            }</span>
+<span class="nc" id="L72">        } catch (Exception e) {</span>
+<span class="nc" id="L73">            throw new PersistenciaException(&quot;Se ha producido un error en la inicializacion de la BBDD&quot;, e);</span>
+        } finally {
+<span class="fc" id="L75">            closeConnection(connection, null, resultSet);</span>
+        }
+<span class="fc" id="L77">    }</span>
+
+    /**
+     * Funcion encargada de realizar la operacion con la BBDD
+     * 
+     * @return la conexion
+     * @throws PersistenciaException error controlado
+     */
+    private Connection getConnection() throws PersistenciaException {
+<span class="fc" id="L86">        Connection connection = null;</span>
+        try {
+<span class="fc" id="L88">            Class.forName(driver);</span>
+<span class="pc bpc" id="L89" title="3 of 4 branches missed.">            if (usuario == null || password == null) {</span>
+<span class="fc" id="L90">                connection = DriverManager.getConnection(url);</span>
+            } else {
+<span class="nc" id="L92">                DriverManager.getConnection(url, usuario, password);</span>
+            }
+<span class="nc" id="L94">        } catch (Exception exception) {</span>
+<span class="nc" id="L95">            throw new PersistenciaException(&quot;No se ha podido establecer conexion con la BBDD&quot;, exception);</span>
+<span class="fc" id="L96">        }</span>
+<span class="fc" id="L97">        return connection;</span>
+    }
+
+    /**
+     * Funcion encargada de cerrar las conexiones con la BBDD
+     * 
+     * @param resultSet
+     * @param connection
+     * @param statement
+     * @throws PersistenciaException
+     */
+    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
+            throws PersistenciaException {
+        try {
+<span class="fc bfc" id="L111" title="All 2 branches covered.">            if (resultSet != null) {</span>
+<span class="fc" id="L112">                resultSet.close();</span>
+            }
+<span class="fc bfc" id="L114" title="All 2 branches covered.">            if (statement != null) {</span>
+<span class="fc" id="L115">                statement.close();</span>
+            }
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (connection != null) {</span>
+<span class="fc" id="L118">                connection.close();</span>
+            }
+<span class="nc" id="L120">        } catch (Exception exception) {</span>
+<span class="nc" id="L121">            throw new PersistenciaException(&quot;Se ha producido un error cerrando la conexion&quot;, exception);</span>
+<span class="fc" id="L122">        }</span>
+<span class="fc" id="L123">    }</span>
+
+    /**
+     * Funcion que realiza actualizaciones sobre la BBDD
+     * 
+     * @param sql de la consulta
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    private void actualizar(String sql) throws PersistenciaException {
+
+<span class="fc" id="L134">        Statement statement = null;</span>
+<span class="fc" id="L135">        Connection connection = null;</span>
+        try {
+<span class="fc" id="L137">            connection = getConnection();</span>
+<span class="fc" id="L138">            statement = connection.createStatement();</span>
+<span class="fc" id="L139">            statement.executeUpdate(sql);</span>
+
+<span class="nc" id="L141">        } catch (Exception exception) {</span>
+<span class="nc" id="L142">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="fc" id="L144">            closeConnection(connection, statement, null);</span>
+        }
+<span class="fc" id="L146">    }</span>
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Equipos
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    private ArrayList&lt;Equipo&gt; obtenerEquipos(String sql) throws PersistenciaException {
+<span class="fc" id="L156">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L158">        Equipo equipo = null;</span>
+<span class="fc" id="L159">        Statement statement = null;</span>
+<span class="fc" id="L160">        ResultSet resultSet = null;</span>
+<span class="fc" id="L161">        Connection connection = null;</span>
+        try {
+<span class="fc" id="L163">            connection = getConnection();</span>
+<span class="fc" id="L164">            statement = connection.createStatement();</span>
+<span class="fc" id="L165">            resultSet = statement.executeQuery(sql);</span>
+<span class="fc bfc" id="L166" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L167">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
+<span class="fc" id="L168">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L169">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
+<span class="fc" id="L170">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
+<span class="fc" id="L171">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
+<span class="fc" id="L172">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
+<span class="fc" id="L173">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
+<span class="fc" id="L174">                String colores = resultSet.getString(&quot;colores&quot;);</span>
+<span class="fc" id="L175">                equipo = new Equipo(nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);</span>
+<span class="fc" id="L176">                listaEquipos.add(equipo);</span>
+<span class="fc" id="L177">            }</span>
+<span class="nc" id="L178">        } catch (Exception exception) {</span>
+<span class="nc" id="L179">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="fc" id="L181">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="fc" id="L183">        return listaEquipos;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Estadios
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    private ArrayList&lt;Estadio&gt; obtenerEstadios(String sql) throws PersistenciaException {
+<span class="nc" id="L194">        ArrayList&lt;Estadio&gt; listaEstadios = new ArrayList&lt;&gt;();</span>
+
+<span class="nc" id="L196">        Estadio estadio = null;</span>
+<span class="nc" id="L197">        Statement statement = null;</span>
+<span class="nc" id="L198">        ResultSet resultSet = null;</span>
+<span class="nc" id="L199">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L201">            connection = getConnection();</span>
+<span class="nc" id="L202">            statement = connection.createStatement();</span>
+<span class="nc" id="L203">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L205">                int identificador = resultSet.getInt(&quot;idEstadio&quot;);</span>
+<span class="nc" id="L206">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L207">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L208">                int capacidad = resultSet.getInt(&quot;capacidad&quot;);</span>
+<span class="nc" id="L209">                int construccion = resultSet.getInt(&quot;construccion&quot;);</span>
+<span class="nc" id="L210">                estadio = new Estadio(nombre, equipo, capacidad, construccion);</span>
+<span class="nc" id="L211">                listaEstadios.add(estadio);</span>
+<span class="nc" id="L212">            }</span>
+<span class="nc" id="L213">        } catch (Exception exception) {</span>
+<span class="nc" id="L214">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L216">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L218">        return listaEstadios;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    public ArrayList&lt;Palmares&gt; obtenerPalmares(String sql) throws PersistenciaException {
+<span class="nc" id="L229">        ArrayList&lt;Palmares&gt; listaPalmares = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L230">        Palmares palmares = null;</span>
+<span class="nc" id="L231">        Statement statement = null;</span>
+<span class="nc" id="L232">        ResultSet resultSet = null;</span>
+<span class="nc" id="L233">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L235">            connection = getConnection();</span>
+<span class="nc" id="L236">            statement = getConnection().createStatement();</span>
+<span class="nc" id="L237">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L239">                int identificador = resultSet.getInt(&quot;idPalmares&quot;);</span>
+<span class="nc" id="L240">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L241">                int ligas = resultSet.getInt(&quot;ligas&quot;);</span>
+<span class="nc" id="L242">                int copasDelRey = resultSet.getInt(&quot;copasDelRey&quot;);</span>
+<span class="nc" id="L243">                int superEspana = resultSet.getInt(&quot;SuperEspana&quot;);</span>
+<span class="nc" id="L244">                int superEuropa = resultSet.getInt(&quot;SuperEuropa&quot;);</span>
+<span class="nc" id="L245">                int champions = resultSet.getInt(&quot;champions&quot;);</span>
+<span class="nc" id="L246">                int mundialClubs = resultSet.getInt(&quot;mundialClubs&quot;);</span>
+<span class="nc" id="L247">                palmares = new Palmares(equipo, ligas, copasDelRey, superEspana, superEuropa, champions, mundialClubs);</span>
+<span class="nc" id="L248">                listaPalmares.add(palmares);</span>
+<span class="nc" id="L249">            }</span>
+<span class="nc" id="L250">        } catch (Exception exception) {</span>
+<span class="nc" id="L251">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L253">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L255">        return listaPalmares;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Jugadores
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    public ArrayList&lt;Jugador&gt; obtenerJugadores(String sql) throws PersistenciaException {
+<span class="nc" id="L266">        ArrayList&lt;Jugador&gt; listaJugadores = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L267">        Jugador jugador = null;</span>
+<span class="nc" id="L268">        Statement statement = null;</span>
+<span class="nc" id="L269">        ResultSet resultSet = null;</span>
+<span class="nc" id="L270">        Connection connection = null;</span>
+        try {
+<span class="nc" id="L272">            connection = getConnection();</span>
+<span class="nc" id="L273">            statement = getConnection().createStatement();</span>
+<span class="nc" id="L274">            resultSet = statement.executeQuery(sql);</span>
+<span class="nc bnc" id="L275" title="All 2 branches missed.">            while (resultSet.next()) {</span>
+<span class="nc" id="L276">                int identificador = resultSet.getInt(&quot;idJugador&quot;);</span>
+<span class="nc" id="L277">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="nc" id="L278">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="nc" id="L279">                int dorsal = resultSet.getInt(&quot;dorsal&quot;);</span>
+<span class="nc" id="L280">                int goles = resultSet.getInt(&quot;goles&quot;);</span>
+<span class="nc" id="L281">                int asistencias = resultSet.getInt(&quot;asistencias&quot;);</span>
+<span class="nc" id="L282">                int amarillas = resultSet.getInt(&quot;amarillas&quot;);</span>
+<span class="nc" id="L283">                int rojas = resultSet.getInt(&quot;rojas&quot;);</span>
+<span class="nc" id="L284">                jugador = new Jugador(equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);</span>
+<span class="nc" id="L285">                listaJugadores.add(jugador);</span>
+<span class="nc" id="L286">            }</span>
+<span class="nc" id="L287">        } catch (Exception exception) {</span>
+<span class="nc" id="L288">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="nc" id="L290">            closeConnection(connection, statement, resultSet);</span>
+        }
+<span class="nc" id="L292">        return listaJugadores;</span>
+    }
+
+    /**
+     * Funcion que obtiene un equipo buscado por nombre
+     * 
+     * @param nombre del equipo a buscar
+     * @return equipo
+     * @throws PersistenciaException error controlado
+     */
+    public Equipo obtenerEquipo(String nombre) throws PersistenciaException {
+<span class="fc" id="L303">        Equipo equipo = null;</span>
+<span class="fc" id="L304">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="fc" id="L305">        String sql = &quot;SELECT * FROM Equipos where nombre LIKE &quot;;</span>
+<span class="fc" id="L306">        sql = sql + &quot;'%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="fc" id="L307">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="pc bpc" id="L308" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="fc" id="L309">            equipo = listaEquipos.get(0);</span>
+        }
+<span class="fc" id="L311">        return equipo;</span>
+    }
+
+    /**
+     * Funcion que obtiene un estadio buscado por ID
+     * 
+     * @param nombre del estadio a buscar
+     * @return equipo
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
+<span class="nc" id="L322">        Estadio estadio = null;</span>
+<span class="nc" id="L323">        ArrayList&lt;Estadio&gt; listaEstadios = null;</span>
+<span class="nc" id="L324">        String sql = &quot;SELECT * FROM Estadios where nombre = &quot;;</span>
+<span class="nc" id="L325">        sql = sql + &quot;'&quot; + nombre + &quot;'&quot;;</span>
+<span class="nc" id="L326">        listaEstadios = obtenerEstadios(sql);</span>
+<span class="nc bnc" id="L327" title="All 2 branches missed.">        if (!listaEstadios.isEmpty()) {</span>
+<span class="nc" id="L328">            estadio = listaEstadios.get(0);</span>
+        }
+<span class="nc" id="L330">        return estadio;</span>
+    }
+
+    /**
+     * Funcion que obtiene un jugador buscado por nombre
+     * 
+     * @param nombre del jugador a buscar
+     * @return jugador
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Jugador&gt; obtenerJugador(String nombre) throws PersistenciaException {
+<span class="nc" id="L341">        Jugador jugador = null;</span>
+<span class="nc" id="L342">        ArrayList&lt;Jugador&gt; listaJugadores = null;</span>
+<span class="nc" id="L343">        String sql = &quot;SELECT * FROM Jugadores WHERE nombre LIKE &quot;;</span>
+<span class="nc" id="L344">        sql = sql + &quot;'%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="nc" id="L345">        listaJugadores = obtenerJugadores(sql);</span>
+<span class="nc" id="L346">        return listaJugadores;</span>
+    }
+
+    /**
+     * Funcion que devuelve los 5 maximos goleadores de la liga
+     * 
+     * @return lista de goleadores
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Jugador&gt; obtenerGoleadores() throws PersistenciaException {
+<span class="nc" id="L356">        Jugador jugador = null;</span>
+<span class="nc" id="L357">        ArrayList&lt;Jugador&gt; listaJugadores = null;</span>
+<span class="nc" id="L358">        String sql = &quot;SELECT * FROM Jugadores ORDER BY goles LIMIT 5&quot;;</span>
+<span class="nc" id="L359">        listaJugadores = obtenerJugadores(sql);</span>
+<span class="nc" id="L360">        return listaJugadores;</span>
+    }
+
+    /**
+     * Funcion que devuelve los 10 jugadores con mas tarjetas rojas de la liga
+     * 
+     * @return lista de expulsados
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Jugador&gt; obtenerExpulsados() throws PersistenciaException {
+<span class="nc" id="L370">        Jugador jugador = null;</span>
+<span class="nc" id="L371">        ArrayList&lt;Jugador&gt; listaJugadores = null;</span>
+<span class="nc" id="L372">        String sql = &quot;SELECT * FROM Jugadores ORDER BY rojas LIMIT 10&quot;;</span>
+<span class="nc" id="L373">        listaJugadores = obtenerJugadores(sql);</span>
+<span class="nc" id="L374">        return listaJugadores;</span>
+    }
+
+    /**
+     * Funcion que obtiene el nombre y la capacidad del estadio buscado
+     * 
+     * @param nombre del estadio a buscar
+     * @return estadio y capacidad
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
+<span class="nc" id="L385">        Estadio estadio = null;</span>
+<span class="nc" id="L386">        ArrayList&lt;Estadio&gt; listaEstadios = null;</span>
+<span class="nc" id="L387">        String sql = &quot;SELECT nombre, capacidad FROM Estadios where nombre = &quot;;</span>
+<span class="nc" id="L388">        sql = sql + &quot;'&quot; + nombre + &quot;'&quot;;</span>
+<span class="nc" id="L389">        listaEstadios = obtenerEstadios(sql);</span>
+<span class="nc bnc" id="L390" title="All 2 branches missed.">        if (!listaEstadios.isEmpty()) {</span>
+<span class="nc" id="L391">            estadio = listaEstadios.get(0);</span>
+        }
+
+<span class="nc" id="L394">        return estadio;</span>
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y el anio del estadio buscado
+     * 
+     * @param nombre del estadio a buscar
+     * @return estadio y anio
+     * @throws PersistenciaException error controlado
+     */
+    public Estadio obtenerAnio(String nombre) throws PersistenciaException {
+<span class="nc" id="L406">        Estadio estadio = null;</span>
+<span class="nc" id="L407">        ArrayList&lt;Estadio&gt; listaEstadios = null;</span>
+<span class="nc" id="L408">        String sql = &quot;SELECT nombre, construccion FROM Estadios where nombre = &quot;;</span>
+<span class="nc" id="L409">        sql = sql + &quot;'&quot; + nombre + &quot;'&quot;;</span>
+<span class="nc" id="L410">        listaEstadios = obtenerEstadios(sql);</span>
+<span class="nc bnc" id="L411" title="All 2 branches missed.">        if (!listaEstadios.isEmpty()) {</span>
+<span class="nc" id="L412">            estadio = listaEstadios.get(0);</span>
+        }
+
+<span class="nc" id="L415">        return estadio;</span>
+
+    }
+
+    /**
+     * Funcion que obtiene el nombre y el presupuesto del equipo buscado
+     * 
+     * @param nombre del equipo a buscar
+     * @return equipo y presupuesto
+     * @throws PersistenciaException error controlado
+     */
+    public Equipo obtenerPresupuesto(String nombre) throws PersistenciaException {
+<span class="nc" id="L427">        Equipo equipo = null;</span>
+<span class="nc" id="L428">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L429">        String sql = &quot;SELECT nombre,presupuesto FROM Equipos where nombre LIKE &quot;;</span>
+<span class="nc" id="L430">        sql = sql + &quot;'%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="nc" id="L431">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L432" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L433">            equipo = listaEquipos.get(0);</span>
+        }
+<span class="nc" id="L435">        return equipo;</span>
+    }
+
+    /**
+     * Funcion que obtiene el nombre y la ciudad en la que juega el equipo buscado
+     * 
+     * @param nombre del equipo
+     * @return nombre del equipo y ciudad
+     * @throws PersistenciaException error controlado
+     */
+    public Equipo obtenerCiudad(String nombre) throws PersistenciaException {
+<span class="nc" id="L446">        Equipo equipo = null;</span>
+<span class="nc" id="L447">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L448">        String sql = &quot;SELECT nombre,ciudad FROM Equipos where nombre LIKE &quot;;</span>
+<span class="nc" id="L449">        sql = sql + &quot;'%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="nc" id="L450">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L451" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L452">            equipo = listaEquipos.get(0);</span>
+        }
+
+<span class="nc" id="L455">        return equipo;</span>
+
+    }
+
+    /**
+     * Metodo para modificar un estadio dentro de la BBDD
+     * 
+     * @param estadio a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L466">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L467">        sql = &quot;UPDATE Estadios SET nombre = '&quot; + estadio.getNombre() + &quot;'&quot; + &quot;, equipo = '&quot; + estadio.getEquipo() + &quot;'&quot;</span>
+<span class="nc" id="L468">                + &quot;, capacidad = '&quot; + estadio.getCapacidad() + &quot;'&quot; + &quot;, construccion = '&quot; + estadio.getConstruccion()</span>
+<span class="nc" id="L469">                + &quot;' WHERE identificador = '&quot; + estadio.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L470">        actualizar(sql);</span>
+<span class="nc" id="L471">    }</span>
+
+    /**
+     * Metodo para modificar un equipo dentro de la BBDD
+     * 
+     * @param equipo a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarEquipo(Equipo equipo) throws PersistenciaException {
+<span class="nc" id="L480">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L481">        sql = &quot;UPDATE Equipo SET nombre = '&quot; + equipo.getNombre() + &quot;'&quot; + &quot;, ciudad = '&quot; + equipo.getCiudad() + &quot;'&quot;</span>
+<span class="nc" id="L482">                + &quot;, estadio = '&quot; + equipo.getEstadio() + &quot;'&quot; + &quot;, fundacion = '&quot; + equipo.getFundacion()</span>
+<span class="nc" id="L483">                + &quot;, numero_socios = '&quot; + equipo.getNumeroSocios() + &quot;, presupuesto = '&quot; + equipo.getPresupuesto()</span>
+<span class="nc" id="L484">                + &quot;, colores = '&quot; + equipo.getColores() + &quot;' WHERE identificador = '&quot; + equipo.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L485">        actualizar(sql);</span>
+<span class="nc" id="L486">    }</span>
+
+    /**
+     * Metodo para modificar el palmares de un equipo dentro de la BBDD
+     * 
+     * @param palmares a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarPalmares(Palmares palmares) throws PersistenciaException {
+<span class="nc" id="L495">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L496">        sql = &quot;UPDATE Palmares SET equipo = '&quot; + palmares.getEquipo() + &quot;'&quot; + &quot;, ligas = '&quot; + palmares.getLigas() + &quot;'&quot;</span>
+<span class="nc" id="L497">                + &quot;, copasDelRey = '&quot; + palmares.getCopasDelRey() + &quot;'&quot; + &quot;, superEspana = '&quot;</span>
+<span class="nc" id="L498">                + palmares.getSuperEspana() + &quot;, superEuropa = '&quot; + palmares.getSuperEuropa() + &quot;, champions = '&quot;</span>
+<span class="nc" id="L499">                + palmares.getChampions() + &quot;, mundialClubs = '&quot; + palmares.getMundialClubs()</span>
+<span class="nc" id="L500">                + &quot;' WHERE identificador = '&quot; + palmares.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L501">        actualizar(sql);</span>
+<span class="nc" id="L502">    }</span>
+
+    /**
+     * Metodo para modificar un jugador dentro de la BBDD
+     * 
+     * @param jugador a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarJugador(Jugador jugador) throws PersistenciaException {
+<span class="nc" id="L511">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L512">        sql = &quot;UPDATE Jugadores SET equipo = '&quot; + jugador.getEquipo() + &quot;'&quot; + &quot;, nombre = '&quot; + jugador.getNombre() + &quot;'&quot;</span>
+<span class="nc" id="L513">                + &quot;, dorsal = '&quot; + jugador.getDorsal() + &quot;'&quot; + &quot;, goles = '&quot; + jugador.getGoles() + &quot;, asistencias = '&quot;</span>
+<span class="nc" id="L514">                + jugador.getAsistencias() + &quot;, amarillas = '&quot; + jugador.getAmarillas() + &quot;, rojas = '&quot;</span>
+<span class="nc" id="L515">                + jugador.getRojas() + &quot;' WHERE identificador = '&quot; + jugador.getId() + &quot;'&quot;;</span>
+<span class="nc" id="L516">        actualizar(sql);</span>
+<span class="nc" id="L517">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un estadio en la BBDD
+     * 
+     * @param estadio a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L526">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L527">        sql = &quot;INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('&quot; + estadio.getNombre() + &quot;', '&quot;</span>
+<span class="nc" id="L528">                + estadio.getEquipo() + &quot;', '&quot; + estadio.getCapacidad() + &quot;', '&quot; + estadio.getConstruccion() + &quot;')&quot;;</span>
+<span class="nc" id="L529">        actualizar(sql);</span>
+<span class="nc" id="L530">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un equipo en la BBDD
+     * 
+     * @param equipo a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
+<span class="nc" id="L539">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L540">        sql = &quot;INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('&quot;</span>
+<span class="nc" id="L541">                + equipo.getNombre() + &quot;', '&quot; + equipo.getCiudad() + &quot;', '&quot; + equipo.getEstadio() + &quot;', '&quot;</span>
+<span class="nc" id="L542">                + equipo.getFundacion() + &quot;', &quot; + equipo.getNumeroSocios() + &quot;', &quot; + equipo.getPresupuesto() + &quot;', &quot;</span>
+<span class="nc" id="L543">                + equipo.getColores() + &quot;')&quot;;</span>
+<span class="nc" id="L544">        actualizar(sql);</span>
+<span class="nc" id="L545">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
+     * 
+     * @param palmares a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarPalmares(Palmares palmares) throws PersistenciaException {
+<span class="nc" id="L554">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L555">        sql = &quot;INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('&quot;</span>
+<span class="nc" id="L556">                + palmares.getEquipo() + &quot;', '&quot; + palmares.getLigas() + &quot;', '&quot; + palmares.getCopasDelRey() + &quot;', '&quot;</span>
+<span class="nc" id="L557">                + palmares.getSuperEspana() + &quot;', &quot; + palmares.getSuperEuropa() + &quot;', &quot; + palmares.getChampions()</span>
+<span class="nc" id="L558">                + &quot;', &quot; + palmares.getMundialClubs() + &quot;')&quot;;</span>
+<span class="nc" id="L559">        actualizar(sql);</span>
+<span class="nc" id="L560">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion de un jugador en la BBDD
+     * 
+     * @param jugador a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarJugador(Jugador jugador) throws PersistenciaException {
+<span class="nc" id="L569">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L570">        sql = &quot;INSERT INTO Jugadores (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES('&quot;</span>
+<span class="nc" id="L571">                + jugador.getEquipo() + &quot;', '&quot; + jugador.getNombre() + &quot;', '&quot; + jugador.getDorsal() + &quot;', '&quot;</span>
+<span class="nc" id="L572">                + jugador.getGoles() + &quot;', &quot; + jugador.getAsistencias() + &quot;', &quot; + jugador.getAmarillas() + &quot;', &quot;</span>
+<span class="nc" id="L573">                + jugador.getRojas() + &quot;')&quot;;</span>
+<span class="nc" id="L574">        actualizar(sql);</span>
+<span class="nc" id="L575">    }</span>
+
+    /**
+     * Metodo para borrar un equipo de la BBDD
+     * 
+     * @param equipo a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void borrarEquipo(Equipo equipo) throws PersistenciaException {
+<span class="nc" id="L584">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L585">        sql = &quot;DELETE FROM Equipos WHERE idEquipo = &quot; + equipo.getId();</span>
+<span class="nc" id="L586">        actualizar(sql);</span>
+<span class="nc" id="L587">    }</span>
+
+    /**
+     * Metodo para borrar un estadio de la BBDD
+     * 
+     * @param estadio a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void borrarEstadio(Estadio estadio) throws PersistenciaException {
+<span class="nc" id="L596">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L597">        sql = &quot;DELETE FROM Estadios WHERE idEstadio = &quot; + estadio.getId();</span>
+<span class="nc" id="L598">        actualizar(sql);</span>
+<span class="nc" id="L599">    }</span>
+
+    /**
+     * Metodo para borrar un palmares de la BBDD
+     * 
+     * @param palmares a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void borrarPalmares(Palmares palmares) throws PersistenciaException {
+<span class="nc" id="L608">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L609">        sql = &quot;DELETE FROM Palmares WHERE idPalmares = &quot; + palmares.getId();</span>
+<span class="nc" id="L610">        actualizar(sql);</span>
+<span class="nc" id="L611">    }</span>
+
+    /**
+     * Metodo para borrar un jugador de la BBDD
+     * 
+     * @param jugador a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void borrarJugador(Jugador jugador) throws PersistenciaException {
+<span class="nc" id="L620">        String sql = &quot;&quot;;</span>
+<span class="nc" id="L621">        sql = &quot;DELETE FROM Jugadores WHERE idJugador = &quot; + jugador.getId();</span>
+<span class="nc" id="L622">        actualizar(sql);</span>
+<span class="nc" id="L623">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
