@@ -174,7 +174,7 @@ public class Bbdd {
                 int numeroSocios = resultSet.getInt("numero_socios");
                 int presupuesto = resultSet.getInt("presupuesto");
                 String colores = resultSet.getString("colores");
-                equipo = new Equipo(nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
+                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
@@ -209,7 +209,7 @@ public class Bbdd {
                 String equipo = resultSet.getString("equipo");
                 int capacidad = resultSet.getInt("capacidad");
                 int construccion = resultSet.getInt("construccion");
-                estadio = new Estadio(nombre, equipo, capacidad, construccion);
+                estadio = new Estadio(identificador, nombre, equipo, capacidad, construccion);
                 listaEstadios.add(estadio);
             }
         } catch (Exception exception) {
@@ -283,7 +283,7 @@ public class Bbdd {
                 int asistencias = resultSet.getInt("asistencias");
                 int amarillas = resultSet.getInt("amarillas");
                 int rojas = resultSet.getInt("rojas");
-                jugador = new Jugador(equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
+                jugador = new Jugador(identificador, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
                 listaJugadores.add(jugador);
             }
         } catch (Exception exception) {
@@ -526,7 +526,7 @@ public class Bbdd {
      */
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Estadios (nombre, equipo, capacidad, construccion) VALUES('" + estadio.getNombre() + "', '"
+        sql = "INSERT INTO Estadios (idEstadio, nombre, equipo, capacidad, construccion) VALUES(" + estadio.getId() + ", '" + estadio.getNombre() + "', '"
                 + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion() + "')";
         actualizar(sql);
     }
@@ -539,7 +539,7 @@ public class Bbdd {
      */
     public void insertarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Equipos (nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES('"
+        sql = "INSERT INTO Equipos (idEquipo, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES(" + equipo.getId() + ", '"
                 + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
                 + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', " + equipo.getPresupuesto() + "', "
                 + equipo.getColores() + "')";
@@ -554,7 +554,7 @@ public class Bbdd {
      */
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Palmares (equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES('"
+        sql = "INSERT INTO Palmares (idPalmares, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(" + palmares.getId() + "'"
                 + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey() + "', '"
                 + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', " + palmares.getChampions()
                 + "', " + palmares.getMundialClubs() + "')";
@@ -569,7 +569,7 @@ public class Bbdd {
      */
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Jugadores (equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES('"
+        sql = "INSERT INTO Jugadores (idJugador, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES(" + jugador.getId() + ", '"
                 + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '" + jugador.getDorsal() + "', '"
                 + jugador.getGoles() + "', " + jugador.getAsistencias() + "', " + jugador.getAmarillas() + "', "
                 + jugador.getRojas() + "')";
