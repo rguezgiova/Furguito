@@ -61,11 +61,13 @@ public class Bbdd {
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
+
                     Fichero fichero = new Fichero();
                     String sqlCrearTabla = fichero.leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
                     actualizar(sqlCrearTabla);
                     String sqlInsertarDatos = fichero
                             .leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
+
                     actualizar(sqlInsertarDatos);
                 }
             }

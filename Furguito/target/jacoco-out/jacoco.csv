@@ -10,9 +10,9 @@ Furguito,es.iespuertolacruz.furguito.exception,JugadorException,9,0,0,0,4,0,2,0,
 Furguito,es.iespuertolacruz.furguito.exception,PalmaresException,9,0,0,0,4,0,2,0,2,0
 Furguito,es.iespuertolacruz.furguito.exception,FicheroException,9,0,0,0,4,0,2,0,2,0
 Furguito,es.iespuertolacruz.furguito.modelo,EstadioModelo,45,0,0,0,15,0,7,0,7,0
-Furguito,es.iespuertolacruz.furguito.modelo,Bbdd,946,290,21,15,206,81,35,13,23,7
+Furguito,es.iespuertolacruz.furguito.modelo,Bbdd,1004,232,23,13,219,68,38,10,24,6
 Furguito,es.iespuertolacruz.furguito.modelo,SqliteBbdd,9,9,0,0,2,2,1,1,1,1
-Furguito,es.iespuertolacruz.furguito.modelo,Fichero,15,55,2,4,5,16,2,4,0,3
+Furguito,es.iespuertolacruz.furguito.modelo,Fichero,70,0,6,0,21,0,6,0,3,0
 Furguito,es.iespuertolacruz.furguito.modelo,EquipoModelo,27,17,0,0,10,4,5,2,5,2
 Furguito,es.iespuertolacruz.furguito.modelo,JugadorModelo,43,0,0,0,15,0,7,0,7,0
 Furguito,es.iespuertolacruz.furguito.modelo,PalmaresModelo,34,0,0,0,11,0,5,0,5,0

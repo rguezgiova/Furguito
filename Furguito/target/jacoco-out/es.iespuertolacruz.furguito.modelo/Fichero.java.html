@@ -6,7 +6,7 @@ import java.util.Scanner;
 import es.iespuertolacruz.furguito.exception.FicheroException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
-<span class="fc" id="L9">public class Fichero {</span>
+<span class="nc" id="L9">public class Fichero {</span>
 
     /**
      * Funcion que verifica si el fichero existe
@@ -15,7 +15,7 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
      * @return true o false
      */
     public boolean validar(File fichero) {
-<span class="fc" id="L18">        return fichero.exists();</span>
+<span class="nc" id="L18">        return fichero.exists();</span>
     }
 
     /**
@@ -25,31 +25,31 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
      * @throws FicheroException Error controlado en la lectura del fichero
      */
     public String leer(String nombre) throws PersistenciaException {
-<span class="fc" id="L28">        StringBuilder informacion = null;</span>
-<span class="fc" id="L29">        File fichero = null;</span>
-<span class="fc" id="L30">        Scanner scanner = null;</span>
+<span class="nc" id="L28">        StringBuilder informacion = null;</span>
+<span class="nc" id="L29">        File fichero = null;</span>
+<span class="nc" id="L30">        Scanner scanner = null;</span>
 
         try {
-<span class="fc" id="L33">            fichero = new File(nombre);</span>
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (!validar(fichero)) {</span>
+<span class="nc" id="L33">            fichero = new File(nombre);</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">            if (!validar(fichero)) {</span>
 <span class="nc" id="L35">                throw new PersistenciaException(&quot;El fichero a leer no existe&quot;);</span>
             }
-<span class="fc" id="L37">            informacion = new StringBuilder();</span>
-<span class="fc" id="L38">            scanner = new Scanner(fichero);</span>
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            while (scanner.hasNextLine()) {</span>
-<span class="fc" id="L40">                String linea = scanner.nextLine(); // Guardamos la linea en un String</span>
-<span class="fc" id="L41">                informacion.append(linea + &quot;\n&quot;);</span>
-<span class="fc" id="L42">            }</span>
+<span class="nc" id="L37">            informacion = new StringBuilder();</span>
+<span class="nc" id="L38">            scanner = new Scanner(fichero);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">            while (scanner.hasNextLine()) {</span>
+<span class="nc" id="L40">                String linea = scanner.nextLine(); // Guardamos la linea en un String</span>
+<span class="nc" id="L41">                informacion.append(linea + &quot;\n&quot;);</span>
+<span class="nc" id="L42">            }</span>
 <span class="nc" id="L43">        } catch (PersistenciaException e) {</span>
 <span class="nc" id="L44">            throw e;</span>
 <span class="nc" id="L45">        } catch (Exception e) {</span>
 <span class="nc" id="L46">            throw new PersistenciaException(&quot;Se ha producido un error en la lectura del fichero&quot;, e);</span>
         } finally {
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">            if (scanner != null) {</span>
-<span class="fc" id="L49">                scanner.close();</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">            if (scanner != null) {</span>
+<span class="nc" id="L49">                scanner.close();</span>
             }
         }
-<span class="fc" id="L52">        return informacion.toString();</span>
+<span class="nc" id="L52">        return informacion.toString();</span>
     }
 
 }
