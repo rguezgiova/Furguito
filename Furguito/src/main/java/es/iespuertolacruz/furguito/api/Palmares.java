@@ -4,7 +4,7 @@ import com.google.inject.internal.util.Objects;
 
 public class Palmares {
 
-    String id;
+    int id;
     String equipo;
     int ligas;
     int copasDelRey;
@@ -25,8 +25,8 @@ public class Palmares {
      * @param champions    totales ganadas
      * @param mundialClubs totales ganadas
      */
-    public Palmares(String id, String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa,
-            int champions, int mundialClubs) {
+    public Palmares(int id, String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa, int champions,
+            int mundialClubs) {
         this.id = id;
         this.equipo = equipo;
         this.ligas = ligas;
@@ -47,11 +47,11 @@ public class Palmares {
      * Getters y Setters
      * 
      */
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -113,10 +113,10 @@ public class Palmares {
 
     @Override
     public String toString() {
-        return "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n" + "Copas del rey='" + getCopasDelRey()
-                + "\n" + "Supercopas de Espana='" + getSuperEspana() + "\n" + "Supercopas de Europa='"
-                + getSuperEuropa() + "\n" + "Champions League='" + getChampions() + "\n" + "Mundiales de clubs='"
-                + getMundialClubs() + "\n";
+        return "Identificador'" + getId() + "\n" + "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n"
+                + "Copas del rey='" + getCopasDelRey() + "\n" + "Supercopas de Espana='" + getSuperEspana() + "\n"
+                + "Supercopas de Europa='" + getSuperEuropa() + "\n" + "Champions League='" + getChampions() + "\n"
+                + "Mundiales de clubs='" + getMundialClubs() + "\n";
     }
 
     /**

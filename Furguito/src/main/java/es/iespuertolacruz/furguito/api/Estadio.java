@@ -4,12 +4,11 @@ import com.google.inject.internal.util.Objects;
 
 public class Estadio {
 
-    String id;
+    int id;
     String nombre;
     String equipo;
     int capacidad;
     int construccion;
-
 
     /**
      * Constructor con todos los parametros
@@ -20,7 +19,7 @@ public class Estadio {
      * @param capacidad    total del estadio
      * @param construccion fecha de construccion del estadio
      */
-    public Estadio(String id, String nombre, String equipo, int capacidad, int construccion) {
+    public Estadio(int id, String nombre, String equipo, int capacidad, int construccion) {
         this.id = id;
         this.nombre = nombre;
         this.equipo = equipo;
@@ -38,11 +37,11 @@ public class Estadio {
      * Getters y Setters
      * 
      */
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -80,8 +79,8 @@ public class Estadio {
 
     @Override
     public String toString() {
-        return "Nombre='" + getNombre() + "\n" + "Equipo='" + getEquipo() + "\n" + "Capacidad total='" + getCapacidad()
-                + "\n" + "Fecha de construccion='" + getConstruccion();
+        return "Identificador'" + getId() + "\n" + "Nombre='" + getNombre() + "\n" + "Equipo='" + getEquipo() + "\n"
+                + "Capacidad total='" + getCapacidad() + "\n" + "Fecha de construccion='" + getConstruccion();
     }
 
     /**
@@ -95,6 +94,8 @@ public class Estadio {
             return false;
         }
         Estadio estadio = (Estadio) o;
-        return Objects.equal(id, estadio.id) && Objects.equal(nombre, estadio.nombre) && Objects.equal(equipo, estadio.equipo) && capacidad == estadio.capacidad && construccion == estadio.construccion;
+        return Objects.equal(id, estadio.id) && Objects.equal(nombre, estadio.nombre)
+                && Objects.equal(equipo, estadio.equipo) && capacidad == estadio.capacidad
+                && construccion == estadio.construccion;
     }
 }

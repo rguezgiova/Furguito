@@ -4,7 +4,7 @@ import com.google.inject.internal.util.Objects;
 
 public class Equipo {
 
-    String id;
+    int id;
     String nombre;
     String ciudad;
     String estadio;
@@ -25,7 +25,7 @@ public class Equipo {
      * @param presupuesto  total anual del club
      * @param colores      del club
      */
-    public Equipo(String id, String nombre, String ciudad, String estadio, int fundacion, int numeroSocios,
+    public Equipo(int id, String nombre, String ciudad, String estadio, int fundacion, int numeroSocios,
             double presupuesto, String colores) {
         this.id = id;
         this.nombre = nombre;
@@ -47,11 +47,11 @@ public class Equipo {
      * Getters y Setters
      * 
      */
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -116,9 +116,10 @@ public class Equipo {
      */
     @Override
     public String toString() {
-        return "Nombre='" + getNombre() + "\n" + "Ciudad='" + getCiudad() + "\n" + "Estadio='" + getEstadio() + "\n"
-                + "Fecha de fundacion='" + getFundacion() + "\n" + "Numero de socios='" + getNumeroSocios() + "\n"
-                + "Presupuesto anual='" + getPresupuesto() + "\n" + "Colores del club='" + getColores() + "\n";
+        return "Identificador'" + getId() + "\n" + "Nombre='" + getNombre() + "\n" + "Ciudad='" + getCiudad() + "\n"
+                + "Estadio='" + getEstadio() + "\n" + "Fecha de fundacion='" + getFundacion() + "\n"
+                + "Numero de socios='" + getNumeroSocios() + "\n" + "Presupuesto anual='" + getPresupuesto() + "\n"
+                + "Colores del club='" + getColores() + "\n";
     }
 
     /**

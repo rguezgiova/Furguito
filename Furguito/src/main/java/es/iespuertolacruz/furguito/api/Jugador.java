@@ -4,7 +4,7 @@ import com.google.inject.internal.util.Objects;
 
 public class Jugador {
 
-    String id;
+    int id;
     String equipo;
     String nombre;
     int dorsal;
@@ -12,7 +12,6 @@ public class Jugador {
     int asistencias;
     int amarillas;
     int rojas;
-
 
     /**
      * Constructor con todos los parametros
@@ -26,7 +25,8 @@ public class Jugador {
      * @param amarillas   totales del jugador
      * @param rojas       totales del jugador
      */
-    public Jugador(String id, String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
+    public Jugador(int id, String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas,
+            int rojas) {
         this.id = id;
         this.equipo = equipo;
         this.nombre = nombre;
@@ -47,11 +47,11 @@ public class Jugador {
      * Getters y Setters
      * 
      */
-    public String getId() {
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -113,9 +113,9 @@ public class Jugador {
 
     @Override
     public String toString() {
-        return "Equipo='" + getEquipo() + "\n" + "Nombre='" + getNombre() + "\n" + "Dorsal='" + getDorsal() + "\n"
-                + "\n" + "Goles='" + getGoles() + "\n" + "Asistencias='" + getAsistencias() + "\n" + "Amarillas='"
-                + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
+        return "Identificador'" + getId() + "\n" + "Equipo='" + getEquipo() + "\n" + "Nombre='" + getNombre() + "\n"
+                + "Dorsal='" + getDorsal() + "\n" + "\n" + "Goles='" + getGoles() + "\n" + "Asistencias='"
+                + getAsistencias() + "\n" + "Amarillas='" + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
     }
 
     /**
@@ -129,6 +129,8 @@ public class Jugador {
             return false;
         }
         Jugador jugador = (Jugador) o;
-        return Objects.equal(id, jugador.id) && Objects.equal(equipo, jugador.equipo) && Objects.equal(nombre, jugador.nombre) && dorsal == jugador.dorsal && goles == jugador.goles && asistencias == jugador.asistencias && amarillas == jugador.amarillas && rojas == jugador.rojas;
+        return Objects.equal(id, jugador.id) && Objects.equal(equipo, jugador.equipo)
+                && Objects.equal(nombre, jugador.nombre) && dorsal == jugador.dorsal && goles == jugador.goles
+                && asistencias == jugador.asistencias && amarillas == jugador.amarillas && rojas == jugador.rojas;
     }
 }
