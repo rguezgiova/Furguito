@@ -17,12 +17,13 @@ public class JugadorTest {
     @BeforeEach
     public void setUp() {
         if (jugador == null) {
-            jugador = generarJugador(null, null, 0, 0, 0, 0, 0);
+            jugador = generarJugador(0, null, null, 0, 0, 0, 0, 0);
         }
     }
 
     @Test
-    public void generarPlantillaVaciaTest(){
+    public void generarPlantillaVaciaTest() {
+        assertEquals(300, jugador.getId());
         assertTrue(jugador.getEquipo().contains("Madrid"));
         assertTrue(jugador.getNombre().contains("Sergio"));
         assertEquals(4, jugador.getDorsal());
@@ -33,8 +34,9 @@ public class JugadorTest {
     }
 
     @Test
-    public void generarPlantillaTest(){
-        jugador = new Jugador("Real Club Celta de Vigo", "Iago Aspas", 10, 12, 10, 6, 0);
+    public void generarPlantillaTest() {
+        jugador = new Jugador(200, "Real Club Celta de Vigo", "Iago Aspas", 10, 12, 10, 6, 0);
+        assertEquals(200, jugador.getId());
         assertTrue(jugador.getEquipo().contains("Celta"));
         assertTrue(jugador.getNombre().contains("Aspas"));
         assertEquals(10, jugador.getDorsal());
@@ -45,7 +47,7 @@ public class JugadorTest {
     }
 
     @Test
-    public void toStringTest(){
+    public void toStringTest() {
         assertNotNull(jugador.toString());
     }
 
@@ -60,12 +62,13 @@ public class JugadorTest {
      * @param rojas totales del jugador
      * @return 
      */
-    public Jugador generarJugador(String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas){
+    public Jugador generarJugador(int id, String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas){
         Jugador plantilla = null;
         if(equipo != null && nombre !=null){
-            plantilla = new Jugador(equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
+            plantilla = new Jugador(id, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
         }else {
             plantilla = new Jugador();
+            plantilla.setId(300);
             plantilla.setEquipo("Real Madrid C.F.");
             plantilla.setNombre("Sergio Ramos");
             plantilla.setDorsal(4);
