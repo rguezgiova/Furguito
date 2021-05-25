@@ -47,7 +47,28 @@ public class EquipoModeloTest {
 
 
     @Test
-    
+    public void eliminarEquipoTest(){
+        Equipo equipo;
+        equipo = new Equipo("Deportivo Alaves", "Alava", "Mendizorroza", 1921, 17713, 64000000, "Blanco y azul");
+        try {
+            equipoModelo.eliminarEquipo(equipo);
+        } catch (PersistenciaException e) {
+            fail("No se ha podido eliminar el equipo");
+        }
+
+    }
+
+    @Test
+    public void insertarEquipoTest(){
+        Equipo equipo;
+        equipo = new Equipo(null, "Deportivo Ceuta", "Ceuta", "Ninguno", 1921, 17713, 64000000, "Blanco y azul");
+        try{
+            equipoModelo.insertarEquipo(equipo);
+        }catch (PersistenciaException exception){
+            fail("No se ha podido insertar el equipo");
+        }
+    }
+
 
     
 

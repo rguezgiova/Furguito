@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.EquipoModeloTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.33 s - in es.iespuertolacruz.furguito.EquipoModeloTest
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.384 s <<< FAILURE! - in es.iespuertolacruz.furguito.EquipoModeloTest
+modificarEquipoTest  Time elapsed: 0.018 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se ha podido eliminar el equipo
+	at es.iespuertolacruz.furguito.EquipoModeloTest.modificarEquipoTest(EquipoModeloTest.java:68)
+
