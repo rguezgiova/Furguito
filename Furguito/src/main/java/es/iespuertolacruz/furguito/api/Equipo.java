@@ -16,37 +16,17 @@ public class Equipo {
     /**
      * Constructor con todos los parametros
      * 
-     * @param nombre      del club
-     * @param ciudad      en la que juega el club
-     * @param estadio     del club
-     * @param fundacion   fecha de fundacion del club
-     * @param numeroSocios   totales del club
-     * @param presupuesto total anual del club
-     * @param colores     del club
+     * @param id           del club
+     * @param nombre       del club
+     * @param ciudad       en la que juega el club
+     * @param estadio      del club
+     * @param fundacion    fecha de fundacion del club
+     * @param numeroSocios totales del club
+     * @param presupuesto  total anual del club
+     * @param colores      del club
      */
-    public Equipo(String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto, String colores) {
-        this.nombre = nombre;
-        this.ciudad = ciudad;
-        this.estadio = estadio;
-        this.fundacion = fundacion;
-        this.numeroSocios = numeroSocios;
-        this.presupuesto = presupuesto;
-        this.colores = colores;
-    }
-    
-    /**
-     * Constructor con todos los parametros
-     * 
-     * @param id          del club
-     * @param nombre      del club
-     * @param ciudad      en la que juega el club
-     * @param estadio     del club
-     * @param fundacion   fecha de fundacion del club
-     * @param numeroSocios   totales del club
-     * @param presupuesto total anual del club
-     * @param colores     del club
-     */
-    public Equipo(String id, String nombre, String ciudad, String estadio, int fundacion, int numeroSocios, double presupuesto, String colores) {
+    public Equipo(String id, String nombre, String ciudad, String estadio, int fundacion, int numeroSocios,
+            double presupuesto, String colores) {
         this.id = id;
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -130,7 +110,6 @@ public class Equipo {
     public void setColores(String colores) {
         this.colores = colores;
     }
-    
 
     /**
      * Metodo toString
@@ -153,6 +132,9 @@ public class Equipo {
             return false;
         }
         Equipo equipo = (Equipo) o;
-        return Objects.equal(id, equipo.id) && Objects.equal(nombre, equipo.nombre) && Objects.equal(ciudad, equipo.ciudad) && Objects.equal(estadio, equipo.estadio) && fundacion == equipo.fundacion && numeroSocios == equipo.numeroSocios && presupuesto == equipo.presupuesto && Objects.equal(colores, equipo.colores);
+        return Objects.equal(id, equipo.id) && Objects.equal(nombre, equipo.nombre)
+                && Objects.equal(ciudad, equipo.ciudad) && Objects.equal(estadio, equipo.estadio)
+                && fundacion == equipo.fundacion && numeroSocios == equipo.numeroSocios
+                && presupuesto == equipo.presupuesto && Objects.equal(colores, equipo.colores);
     }
 }

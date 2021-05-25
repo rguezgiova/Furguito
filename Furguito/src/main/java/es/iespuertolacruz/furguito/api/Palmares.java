@@ -16,27 +16,6 @@ public class Palmares {
     /**
      * Constructor con todos los parametros
      * 
-     * @param equipo       nombre del equipo
-     * @param ligas        totales ganadas
-     * @param copasDelRey  totales ganadas
-     * @param superEspana  totales ganadas
-     * @param superEuropa  totales ganadas
-     * @param champions    totales ganadas
-     * @param mundialClubs totales ganadas
-     */
-    public Palmares(String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa, int champions, int mundialClubs) {
-        this.equipo = equipo;
-        this.ligas = ligas;
-        this.copasDelRey = copasDelRey;
-        this.superEspana = superEspana;
-        this.superEuropa = superEuropa;
-        this.champions = champions;
-        this.mundialClubs = mundialClubs;
-    }
-
-    /**
-     * Constructor con todos los parametros
-     * 
      * @param id           del palmares
      * @param equipo       nombre del equipo
      * @param ligas        totales ganadas
@@ -46,7 +25,8 @@ public class Palmares {
      * @param champions    totales ganadas
      * @param mundialClubs totales ganadas
      */
-    public Palmares(String id, String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa, int champions, int mundialClubs) {
+    public Palmares(String id, String equipo, int ligas, int copasDelRey, int superEspana, int superEuropa,
+            int champions, int mundialClubs) {
         this.id = id;
         this.equipo = equipo;
         this.ligas = ligas;
@@ -130,7 +110,7 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
         this.mundialClubs = mundialClubs;
     }
-    
+
     @Override
     public String toString() {
         return "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n" + "Copas del rey='" + getCopasDelRey()
@@ -150,6 +130,9 @@ public class Palmares {
             return false;
         }
         Palmares palmares = (Palmares) o;
-        return Objects.equal(id, palmares.id) && Objects.equal(equipo, palmares.equipo) && ligas == palmares.ligas && copasDelRey == palmares.copasDelRey && superEspana == palmares.superEspana && superEuropa == palmares.superEuropa && champions == palmares.champions && mundialClubs == palmares.mundialClubs;
+        return Objects.equal(id, palmares.id) && Objects.equal(equipo, palmares.equipo) && ligas == palmares.ligas
+                && copasDelRey == palmares.copasDelRey && superEspana == palmares.superEspana
+                && superEuropa == palmares.superEuropa && champions == palmares.champions
+                && mundialClubs == palmares.mundialClubs;
     }
 }

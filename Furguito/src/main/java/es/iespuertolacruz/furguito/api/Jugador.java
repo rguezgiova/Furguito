@@ -13,26 +13,6 @@ public class Jugador {
     int amarillas;
     int rojas;
 
-    /**
-     * Constructor con todos los parametros
-     * 
-     * @param equipo      al que pertenece el jugador
-     * @param nombre      del jugador
-     * @param dorsal      del jugador
-     * @param goles       totales del jugador
-     * @param asistencias totales del jugador
-     * @param amarillas   totales del jugador
-     * @param rojas       totales del jugador
-     */
-    public Jugador(String equipo, String nombre, int dorsal, int goles, int asistencias, int amarillas, int rojas) {
-        this.equipo = equipo;
-        this.nombre = nombre;
-        this.dorsal = dorsal;
-        this.goles = goles;
-        this.asistencias = asistencias;
-        this.amarillas = amarillas;
-        this.rojas = rojas;
-    }
 
     /**
      * Constructor con todos los parametros

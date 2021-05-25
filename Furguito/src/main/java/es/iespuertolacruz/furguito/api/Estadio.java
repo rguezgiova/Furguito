@@ -10,20 +10,6 @@ public class Estadio {
     int capacidad;
     int construccion;
 
-    /**
-     * Constructor con todos los parametros
-     * 
-     * @param nombre       del estadio
-     * @param equipo       al que pertenece el estadio
-     * @param capacidad    total del estadio
-     * @param construccion fecha de construccion del estadio
-     */
-    public Estadio(String nombre, String equipo, int capacidad, int construccion) {
-        this.nombre = nombre;
-        this.equipo = equipo;
-        this.capacidad = capacidad;
-        this.construccion = construccion;
-    }
 
     /**
      * Constructor con todos los parametros
