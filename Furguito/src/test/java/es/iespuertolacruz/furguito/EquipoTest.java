@@ -16,12 +16,13 @@ public class EquipoTest {
     @BeforeEach
     public void setUp() {
         if (equipo == null) {
-            equipo = generarEquipo(null, null, null, 0, 0, 0, null);
+            equipo = generarEquipo(0, null, null, null, 0, 0, 0, null);
         }
     }
 
     @Test
     public void generarEquipoVacioTest() {
+        assertEquals(23, equipo.getId());
         assertTrue(equipo.getNombre().contains("Cadiz"));
         assertTrue(equipo.getCiudad().contains("Cadiz"));
         assertTrue(equipo.getEstadio().contains("Carranza"));
@@ -33,7 +34,7 @@ public class EquipoTest {
 
     @Test
     public void generarEquipoTest() {
-        equipo = generarEquipo("Villareal C.F.", "Castellon", "Estadio de la Ceramica", 1923, 15000, 117000000,
+        equipo = generarEquipo(23, "Villareal C.F.", "Castellon", "Estadio de la Ceramica", 1923, 15000, 117000000,
                 "Amarillo");
         assertTrue(equipo.getNombre().contains("Villareal"));
         assertTrue(equipo.getCiudad().contains("Castellon"));
@@ -52,6 +53,7 @@ public class EquipoTest {
     /**
      * Se genera un equipo para los test
      * 
+     * @param id          del equipo
      * @param nombre      del equipo
      * @param ciudad      en la que juega el equipo
      * @param estadio     en el que juega el equipo
@@ -61,13 +63,15 @@ public class EquipoTest {
      * @param colores     del equipo
      * @return equipo
      */
-    public Equipo generarEquipo(String nombre, String ciudad, String estadio, int fundacion, int numsocios,
+    public Equipo generarEquipo(int id, String nombre, String ciudad, String estadio, int fundacion, int numsocios,
             double presupuesto, String colores) {
         Equipo equipo = null;
-        if (nombre != null && ciudad != null && fundacion > 0 && numsocios > 0 && presupuesto > 0 && colores != null) {
-            equipo = new Equipo(nombre, ciudad, estadio, fundacion, numsocios, presupuesto, colores);
+        if (id > 0 && nombre != null && ciudad != null && fundacion > 0 && numsocios > 0 && presupuesto > 0
+                && colores != null) {
+            equipo = new Equipo(id, nombre, ciudad, estadio, fundacion, numsocios, presupuesto, colores);
         } else {
             equipo = new Equipo();
+            equipo.setId(22);
             equipo.setNombre("Cadiz C.F.");
             equipo.setCiudad("Cadiz");
             equipo.setEstadio("Ramon de Carranza");

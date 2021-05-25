@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS 'Equipos' (
-    'idEquipo' INTEGER PRIMARY KEY AUTOINCREMENT,
+    'idEquipo' INTEGER PRIMARY KEY,
     'nombre' varchar(50) NOT NULL,
     'ciudad' varchar(50) NOT NULL,
     'estadio' varchar(50) NOT NULL,
