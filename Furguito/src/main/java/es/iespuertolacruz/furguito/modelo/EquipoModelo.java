@@ -42,7 +42,6 @@ public class EquipoModelo {
         persistencia.borrarEquipo(id);
     }
 
-
     /**
      * Consultar la informacion de un equipo especifico
      * 

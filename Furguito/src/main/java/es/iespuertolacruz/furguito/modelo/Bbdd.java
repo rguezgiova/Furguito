@@ -174,7 +174,8 @@ public class Bbdd {
                 int numeroSocios = resultSet.getInt("numero_socios");
                 int presupuesto = resultSet.getInt("presupuesto");
                 String colores = resultSet.getString("colores");
-                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
+                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,
+                        colores);
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
@@ -372,7 +373,7 @@ public class Bbdd {
     public ArrayList<Jugador> obtenerExpulsados() throws PersistenciaException {
         Jugador jugador = null;
         ArrayList<Jugador> listaJugadores = null;
-        String sql = "SELECT * FROM Jugadores ORDER BY rojas LIMIT 10";
+        String sql = "SELECT * FROM Jugadores ORDER BY rojas DESC LIMIT 10";
         listaJugadores = obtenerJugadores(sql);
         return listaJugadores;
     }
@@ -460,6 +461,50 @@ public class Bbdd {
     }
 
     /**
+     * Funcion que obtiene el palmares del equipo buscado
+     * 
+     * @param equipo nombre del equipo
+     * @return palmares completo del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Palmares> PalmaresEquipo(String equipo) throws PersistenciaException {
+        Palmares palmares = null;
+        ArrayList<Palmares> listaPalmares = null;
+        String sql = "SELECT * FROM Palmares WHERE nombre LIKE ";
+        sql = sql + "'%" + equipo + "%'";
+        listaPalmares = obtenerPalmares(sql);
+        return listaPalmares;
+    }
+
+    /**
+     * Funcion que devuelve los 3 equipos con mas ligas
+     * 
+     * @return lista de equipos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Palmares> PalmaresLigas() throws PersistenciaException {
+        Palmares palmares = null;
+        ArrayList<Palmares> listaLigas = null;
+        String sql = "SELECT equipo, ligas FROM Palmares ORDER BY ligas DESC LIMIT 3";
+        listaLigas = obtenerPalmares(sql);
+        return listaLigas;
+    }
+
+    /**
+     * Funcion que devuelve los 3 equipos con mas copas del rey
+     * 
+     * @return lista de equipos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList<Palmares> PalmaresCopas() throws PersistenciaException {
+        Palmares palmares = null;
+        ArrayList<Palmares> listaCopas = null;
+        String sql = "SELECT equipo, copasDelRey FROM Palmares ORDER BY copasDelRey DESC LIMIT 3";
+        listaCopas = obtenerPalmares(sql);
+        return listaCopas;
+    }
+
+    /**
      * Metodo para modificar un estadio dentro de la BBDD
      * 
      * @param estadio a modificar
@@ -527,8 +572,9 @@ public class Bbdd {
      */
     public void insertarEstadio(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Estadios (idEstadio, nombre, equipo, capacidad, construccion) VALUES(" + estadio.getId() + ", '" + estadio.getNombre() + "', '"
-                + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '" + estadio.getConstruccion() + "')";
+        sql = "INSERT INTO Estadios (idEstadio, nombre, equipo, capacidad, construccion) VALUES(" + estadio.getId()
+                + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '"
+                + estadio.getConstruccion() + "')";
         actualizar(sql);
     }
 
@@ -540,10 +586,10 @@ public class Bbdd {
      */
     public void insertarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Equipos (idEquipo, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES(" + equipo.getId() + ", '"
-                + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', '"
-                + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', " + equipo.getPresupuesto() + "', "
-                + equipo.getColores() + "')";
+        sql = "INSERT INTO Equipos (idEquipo, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
+                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
+                + equipo.getEstadio() + "', '" + equipo.getFundacion() + "', " + equipo.getNumeroSocios() + "', "
+                + equipo.getPresupuesto() + "', " + equipo.getColores() + "')";
         actualizar(sql);
     }
 
@@ -555,10 +601,10 @@ public class Bbdd {
      */
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Palmares (idPalmares, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(" + palmares.getId() + ", '"
-                + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey() + "', '"
-                + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', " + palmares.getChampions()
-                + "', " + palmares.getMundialClubs() + "')";
+        sql = "INSERT INTO Palmares (idPalmares, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES("
+                + palmares.getId() + ", '" + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '"
+                + palmares.getCopasDelRey() + "', '" + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa()
+                + "', " + palmares.getChampions() + "', " + palmares.getMundialClubs() + "')";
         actualizar(sql);
     }
 
@@ -570,10 +616,10 @@ public class Bbdd {
      */
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Jugadores (idJugador, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES(" + jugador.getId() + ", '"
-                + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '" + jugador.getDorsal() + "', '"
-                + jugador.getGoles() + "', " + jugador.getAsistencias() + "', " + jugador.getAmarillas() + "', "
-                + jugador.getRojas() + "')";
+        sql = "INSERT INTO Jugadores (idJugador, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES("
+                + jugador.getId() + ", '" + jugador.getEquipo() + "', '" + jugador.getNombre() + "', '"
+                + jugador.getDorsal() + "', '" + jugador.getGoles() + "', " + jugador.getAsistencias() + "', "
+                + jugador.getAmarillas() + "', " + jugador.getRojas() + "')";
         actualizar(sql);
     }
 
