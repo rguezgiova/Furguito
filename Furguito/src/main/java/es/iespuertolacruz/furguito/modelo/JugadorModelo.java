@@ -38,8 +38,8 @@ public class JugadorModelo {
      * @param jugador a eliminar
      * @throws PersistenciaException error controlado
      */
-    public void eliminarJugador(Jugador jugador) throws PersistenciaException {
-        persistencia.borrarJugador(jugador);
+    public void eliminarJugador(int id) throws PersistenciaException {
+        persistencia.borrarJugador(id);
     }
 
     /**

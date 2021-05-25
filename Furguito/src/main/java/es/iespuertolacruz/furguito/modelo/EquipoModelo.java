@@ -38,8 +38,8 @@ public class EquipoModelo {
      * @param equipo a eliminar
      * @throws PersistenciaException error controlado
      */
-    public void eliminarEquipo(Equipo equipo) throws PersistenciaException {
-        persistencia.borrarEquipo(equipo);
+    public void eliminarEquipo(int id) throws PersistenciaException {
+        persistencia.borrarEquipo(id);
     }
 
 

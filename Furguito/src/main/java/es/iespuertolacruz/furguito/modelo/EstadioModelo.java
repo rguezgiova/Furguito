@@ -20,8 +20,8 @@ public class EstadioModelo {
         persistencia.modificarEstadio(estadio);
     }
 
-    public void eliminarEstadio(Estadio estadio) throws PersistenciaException {
-        persistencia.borrarEstadio(estadio);
+    public void eliminarEstadio(int id) throws PersistenciaException {
+        persistencia.borrarEstadio(id);
     }
 
     public void consultarInformacion(String nombre) throws PersistenciaException {

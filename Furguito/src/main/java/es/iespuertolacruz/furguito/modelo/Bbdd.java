@@ -174,7 +174,12 @@ public class Bbdd {
                 int numeroSocios = resultSet.getInt("numero_socios");
                 int presupuesto = resultSet.getInt("presupuesto");
                 String colores = resultSet.getString("colores");
+<<<<<<< HEAD
                 equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
+=======
+                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,
+                        colores);
+>>>>>>> 5be42b88091060066fd0173ba74a95e7055b6c25
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
@@ -246,7 +251,8 @@ public class Bbdd {
                 int superEuropa = resultSet.getInt("SuperEuropa");
                 int champions = resultSet.getInt("champions");
                 int mundialClubs = resultSet.getInt("mundialClubs");
-                palmares = new Palmares(equipo, ligas, copasDelRey, superEspana, superEuropa, champions, mundialClubs);
+                palmares = new Palmares(identificador, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,
+                        mundialClubs);
                 listaPalmares.add(palmares);
             }
         } catch (Exception exception) {
@@ -554,7 +560,7 @@ public class Bbdd {
      */
     public void insertarPalmares(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO Palmares (idPalmares, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(" + palmares.getId() + "'"
+        sql = "INSERT INTO Palmares (idPalmares, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(" + palmares.getId() + ", '"
                 + palmares.getEquipo() + "', '" + palmares.getLigas() + "', '" + palmares.getCopasDelRey() + "', '"
                 + palmares.getSuperEspana() + "', " + palmares.getSuperEuropa() + "', " + palmares.getChampions()
                 + "', " + palmares.getMundialClubs() + "')";
@@ -582,9 +588,9 @@ public class Bbdd {
      * @param equipo a borrar
      * @throws PersistenciaException error controlado
      */
-    public void borrarEquipo(Equipo equipo) throws PersistenciaException {
+    public void borrarEquipo(int id) throws PersistenciaException {
         String sql = "";
-        sql = "DELETE FROM Equipos WHERE idEquipo = " + equipo.getId();
+        sql = "DELETE FROM Equipos WHERE idEquipo = " + id;
         actualizar(sql);
     }
 
@@ -594,9 +600,9 @@ public class Bbdd {
      * @param estadio a borrar
      * @throws PersistenciaException error controlado
      */
-    public void borrarEstadio(Estadio estadio) throws PersistenciaException {
+    public void borrarEstadio(int id) throws PersistenciaException {
         String sql = "";
-        sql = "DELETE FROM Estadios WHERE idEstadio = " + estadio.getId();
+        sql = "DELETE FROM Estadios WHERE idEstadio = " + id;
         actualizar(sql);
     }
 
@@ -606,9 +612,9 @@ public class Bbdd {
      * @param palmares a borrar
      * @throws PersistenciaException error controlado
      */
-    public void borrarPalmares(Palmares palmares) throws PersistenciaException {
+    public void borrarPalmares(int id) throws PersistenciaException {
         String sql = "";
-        sql = "DELETE FROM Palmares WHERE idPalmares = " + palmares.getId();
+        sql = "DELETE FROM Palmares WHERE idPalmares = " + id;
         actualizar(sql);
     }
 
@@ -618,9 +624,9 @@ public class Bbdd {
      * @param jugador a borrar
      * @throws PersistenciaException error controlado
      */
-    public void borrarJugador(Jugador jugador) throws PersistenciaException {
+    public void borrarJugador(int id) throws PersistenciaException {
         String sql = "";
-        sql = "DELETE FROM Jugadores WHERE idJugador = " + jugador.getId();
+        sql = "DELETE FROM Jugadores WHERE idJugador = " + id;
         actualizar(sql);
     }
 }

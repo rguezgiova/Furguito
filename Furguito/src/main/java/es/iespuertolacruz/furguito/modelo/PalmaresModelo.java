@@ -20,12 +20,12 @@ public class PalmaresModelo {
         persistencia.modificarPalmares(palmares);
     }
 
-    public void eliminarPalmares(Palmares palmares) throws PersistenciaException {
-        persistencia.borrarPalmares(palmares);
+    public void eliminarPalmares(int id) throws PersistenciaException {
+        persistencia.borrarPalmares(id);
     }
 
-    public void consultarPalmares(Palmares palmares) throws PersistenciaException {
-        persistencia.obtenerPalmares(palmares.getId());
+    public void consultarPalmares() throws PersistenciaException {
+        
     }
 
 }
