@@ -174,12 +174,7 @@ public class Bbdd {
                 int numeroSocios = resultSet.getInt("numero_socios");
                 int presupuesto = resultSet.getInt("presupuesto");
                 String colores = resultSet.getString("colores");
-<<<<<<< HEAD
                 equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
-=======
-                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,
-                        colores);
->>>>>>> 5be42b88091060066fd0173ba74a95e7055b6c25
                 listaEquipos.add(equipo);
             }
         } catch (Exception exception) {
