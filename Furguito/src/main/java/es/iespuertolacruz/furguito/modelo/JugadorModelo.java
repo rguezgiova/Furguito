@@ -5,11 +5,13 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class JugadorModelo {
     SqliteBbdd persistencia;
-    private static final String NOMBRE = "Jugadores";
+    private static final String TABLA = "Jugadores";
     private static final String CLAVE = "idJugador";
+    private static final String SQLTABLE = "src/resources/sql/jugadores-crear.sql";
+    private static final String SQLINSERT = "src/resources/sql/jugadores-insert.sql";
 
     public JugadorModelo() throws PersistenciaException {
-        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);
+        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);
     }
 
     /**
