@@ -111,14 +111,6 @@ public class Palmares {
         this.mundialClubs = mundialClubs;
     }
 
-    @Override
-    public String toString() {
-        return "Identificador'" + getId() + "\n" + "Equipo='" + getEquipo() + "\n" + "Ligas='" + getLigas() + "\n"
-                + "Copas del rey='" + getCopasDelRey() + "\n" + "Supercopas de Espana='" + getSuperEspana() + "\n"
-                + "Supercopas de Europa='" + getSuperEuropa() + "\n" + "Champions League='" + getChampions() + "\n"
-                + "Mundiales de clubs='" + getMundialClubs() + "\n";
-    }
-
     /**
      * Funcion equals de comparacion
      */

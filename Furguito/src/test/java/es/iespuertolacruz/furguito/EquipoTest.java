@@ -22,7 +22,7 @@ public class EquipoTest {
 
     @Test
     public void generarEquipoVacioTest() {
-        assertEquals(23, equipo.getId());
+        assertEquals(22, equipo.getId());
         assertTrue(equipo.getNombre().contains("Cadiz"));
         assertTrue(equipo.getCiudad().contains("Cadiz"));
         assertTrue(equipo.getEstadio().contains("Carranza"));
@@ -34,7 +34,7 @@ public class EquipoTest {
 
     @Test
     public void generarEquipoTest() {
-        equipo = generarEquipo(23, "Villareal C.F.", "Castellon", "Estadio de la Ceramica", 1923, 15000, 117000000,
+        equipo = generarEquipo(22, "Villareal C.F.", "Castellon", "Estadio de la Ceramica", 1923, 15000, 117000000,
                 "Amarillo");
         assertTrue(equipo.getNombre().contains("Villareal"));
         assertTrue(equipo.getCiudad().contains("Castellon"));

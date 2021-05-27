@@ -77,12 +77,6 @@ public class Estadio {
         this.construccion = construccion;
     }
 
-    @Override
-    public String toString() {
-        return "Identificador'" + getId() + "\n" + "Nombre='" + getNombre() + "\n" + "Equipo='" + getEquipo() + "\n"
-                + "Capacidad total='" + getCapacidad() + "\n" + "Fecha de construccion='" + getConstruccion();
-    }
-
     /**
      * Funcion equals de comparacion
      */

@@ -112,17 +112,6 @@ public class Equipo {
     }
 
     /**
-     * Metodo toString
-     */
-    @Override
-    public String toString() {
-        return "Identificador'" + getId() + "\n" + "Nombre='" + getNombre() + "\n" + "Ciudad='" + getCiudad() + "\n"
-                + "Estadio='" + getEstadio() + "\n" + "Fecha de fundacion='" + getFundacion() + "\n"
-                + "Numero de socios='" + getNumeroSocios() + "\n" + "Presupuesto anual='" + getPresupuesto() + "\n"
-                + "Colores del club='" + getColores() + "\n";
-    }
-
-    /**
      * Funcion equals de comparacion
      */
     @Override

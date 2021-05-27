@@ -111,13 +111,6 @@ public class Jugador {
         this.rojas = rojas;
     }
 
-    @Override
-    public String toString() {
-        return "Identificador'" + getId() + "\n" + "Equipo='" + getEquipo() + "\n" + "Nombre='" + getNombre() + "\n"
-                + "Dorsal='" + getDorsal() + "\n" + "\n" + "Goles='" + getGoles() + "\n" + "Asistencias='"
-                + getAsistencias() + "\n" + "Amarillas='" + getAmarillas() + "\n" + "Rojas='" + getRojas() + "\n";
-    }
-
     /**
      * Funcion equals de comparacion
      */

@@ -16,7 +16,7 @@ public class EstadioTest {
     @BeforeEach
     public void setUp() {
         if (estadio == null) {
-            estadio = generareEstadio(null, null, 0, 0);
+            estadio = generareEstadio(0, null, null, 0, 0);
         }
     }
 
@@ -30,7 +30,7 @@ public class EstadioTest {
 
     @Test
     public void generareEstadioTest() {
-        estadio = generareEstadio("Benito Villamarin", "Real Betis Balompie", 60721, 1929);
+        estadio = generareEstadio(14, "Benito Villamarin", "Real Betis Balompie", 60721, 1929);
         assertTrue(estadio.getNombre().contains("Benito"));
         assertTrue(estadio.getEquipo().contains("Betis"));
         assertEquals(60721, estadio.getCapacidad());
@@ -52,12 +52,13 @@ public class EstadioTest {
      * 
      * @return estadio
      */
-    public Estadio generareEstadio(String nombre, String equipo, int capacidad, int construccion) {
+    public Estadio generareEstadio(int id, String nombre, String equipo, int capacidad, int construccion) {
         Estadio estadio = null;
-        if (nombre != null && equipo != null && capacidad > 0 && construccion > 0) {
-            estadio = new Estadio(nombre, equipo, capacidad, construccion);
+        if (id > 0 && nombre != null && equipo != null && capacidad > 0 && construccion > 0) {
+            estadio = new Estadio(id, nombre, equipo, capacidad, construccion);
         } else {
             estadio = new Estadio();
+            estadio.setId(2);
             estadio.setNombre("Wanda Metropolitano");
             estadio.setEquipo("Atletico de Madrid");
             estadio.setCapacidad(68456);

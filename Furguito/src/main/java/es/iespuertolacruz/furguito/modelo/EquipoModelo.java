@@ -54,22 +54,12 @@ public class EquipoModelo {
     }
 
     /**
-     * Devuelve el presupuesto del equipo buscado
-     * 
-     * @param nombre del equipo
-     * @throws PersistenciaException error controlado
-     */
-    public void consultarPresupuesto(String nombre) throws PersistenciaException {
-        persistencia.obtenerPresupuesto(nombre);
-    }
-
-    /**
      * Consultar en que ciudad juega el equipo buscado
      * 
      * @param nombre del equipo
      * @throws PersistenciaException error controlado
      */
-    public void consultarCiudad(String nombre) throws PersistenciaException {
-        persistencia.obtenerCiudad(nombre);
+    public Equipo consultarCiudad(String nombre) throws PersistenciaException {
+        return persistencia.consultarCiudad(nombre);
     }
 }
