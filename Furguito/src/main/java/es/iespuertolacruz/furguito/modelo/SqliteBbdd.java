@@ -7,13 +7,12 @@ public class SqliteBbdd extends Bbdd {
     private static final String DRIVER = "org.sqlite.JDBC";
     private static final String URL = "jdbc:sqlite:furguito.db";
 
-    public SqliteBbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
-            throws PersistenciaException {
-        super(nombretabla, clave, driver, url, usuario, password);
+    public SqliteBbdd(String nombreTabla, String clave, String driver, String url, String user, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
+        super(nombreTabla, clave, driver, url, user, password, sqlTable, sqlInsert);
     }
 
-    public SqliteBbdd(String nombretabla, String clave, String usuario, String password) throws PersistenciaException {
-        super(nombretabla, clave, DRIVER, URL, usuario, password);
+    public SqliteBbdd(String nombreTabla, String clave, String usuario, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
+        super(nombreTabla, clave, DRIVER, URL, usuario, password, sqlTable, sqlInsert);
     }
 
 }

@@ -11,13 +11,17 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 public class Bbdd {
     private static final String NOMBRE_TABLAS = "Equipos,Jugadores,Estadios,Palmares";
     private static final String ERROR_CONSULTA = "Se ha producido un error realizando la consulta";
+    private static final String TABLE = "TABLE";
+    private static final String TABLE_NAME = "TABLE_NAME";
     Fichero fichero;
-    private String nombretabla;
-    private String clave;
-    private String driver;
-    private String url;
-    private String usuario;
-    private String password;
+    protected String nombretabla;
+    protected String clave;
+    protected String driver;
+    protected String url;
+    protected String usuario;
+    protected String password;
+    protected String slqTable;
+    protected String sqlInsert;
 
     /**
      * Constructor con parametros
@@ -28,7 +32,7 @@ public class Bbdd {
      * @param password del usuario
      * @throws PersistenciaException
      */
-    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password, String sqlTable, String sqlInsert)
             throws PersistenciaException {
         this.nombretabla = nombretabla;
         this.clave = clave;
@@ -36,7 +40,9 @@ public class Bbdd {
         this.url = url;
         this.usuario = usuario;
         this.password = password;
-        init();
+        this.slqTable = sqlTable;
+        this.sqlInsert = sqlInsert;
+        init(nombretabla);
     }
 
     /**
@@ -44,7 +50,7 @@ public class Bbdd {
      * 
      * @throws PersistenciaException error controlado
      */
-    private void init() throws PersistenciaException {
+    private void init(String nombreTabla) throws PersistenciaException {
         DatabaseMetaData databaseMetaData;
         Connection connection = null;
         ResultSet resultSet = null;
@@ -55,20 +61,14 @@ public class Bbdd {
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] { "TABLE" });
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] {TABLE});
             while (resultSet.next()) {
-                listaTablas.add(resultSet.getString("TABLE_NAME"));
+                listaTablas.add(resultSet.getString(TABLE_NAME));
             }
             for (String tabla : nombreTablas) {
                 if (!listaTablas.contains(tabla)) {
-
-                    Fichero fichero = new Fichero();
-                    String sqlCrearTabla = fichero.leer("src/resources/sql/" + tabla.toLowerCase() + "-crear.sql");
-                    actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = fichero
-                            .leer("src/resources/sql/" + tabla.toLowerCase() + "-insertar.sql");
-
-                    actualizar(sqlInsertarDatos);
+                    actualizar(slqTable);
+                    actualizar(sqlInsert);
                 }
             }
         } catch (Exception e) {
@@ -84,8 +84,9 @@ public class Bbdd {
      * @return la conexion
      * @throws PersistenciaException error controlado
      */
-    private Connection getConnection() throws PersistenciaException {
+    public Connection getConnection() throws PersistenciaException {
         Connection connection = null;
+
         try {
             Class.forName(driver);
             if (usuario == null || password == null) {
@@ -107,7 +108,7 @@ public class Bbdd {
      * @param statement
      * @throws PersistenciaException
      */
-    private void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
+    public void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
             throws PersistenciaException {
         try {
             if (resultSet != null) {
@@ -128,21 +129,40 @@ public class Bbdd {
      * Funcion que realiza actualizaciones sobre la BBDD
      * 
      * @param sql de la consulta
-     * 
      * @throws PersistenciaException error controlado
      */
-    private void actualizar(String sql) throws PersistenciaException {
-
-        Statement statement;
+    public void actualizar(String sql) throws PersistenciaException {
+        PreparedStatement statement;
         Connection connection;
+
         try {
             connection = getConnection();
-            statement = connection.createStatement();
-            statement.executeUpdate(sql);
-
+            statement = connection.prepareStatement(sql);
+            statement.executeUpdate();
         } catch (Exception exception) {
             throw new PersistenciaException(ERROR_CONSULTA, exception);
         }
+    }
+
+    /**
+     * Metodo que busca elementos de una sentencia
+     * @param sql con la sentencia
+     * @return resultados
+     * @throws PersistenciaException error controlado
+     */
+    protected ResultSet buscarElementos(String sql) throws PersistenciaException {
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+        } catch (Exception exception) {
+            throw new PersistenciaException("Se ha producido un error en la busqueda");
+        }
+        return resultSet;
     }
 
     /**
@@ -150,15 +170,15 @@ public class Bbdd {
      * 
      * @param sql de la consulta
      * @return lista de resultados
-     * @throws PersistenciaException controlado
+     * @throws PersistenciaException error controlado
      */
     private ArrayList<Equipo> obtenerEquipos(String sql) throws PersistenciaException {
         ArrayList<Equipo> listaEquipos = new ArrayList<>();
-
         Equipo equipo = null;
         Statement statement = null;
         ResultSet resultSet = null;
         Connection connection = null;
+
         try {
             connection = getConnection();
             statement = connection.createStatement();

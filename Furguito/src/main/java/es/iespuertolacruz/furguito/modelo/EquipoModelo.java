@@ -5,12 +5,16 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class EquipoModelo {
     SqliteBbdd persistencia;
-    private static final String NOMBRE = "Equipos";
+    private static final String TABLA = "Equipos";
     private static final String CLAVE = "idEquipo";
+    private static final String SQLTABLE = "src/resources/sql/equipos-crear.sql";
+    private static final String SQLINSERT = "src/resources/sql/equipos-insert.sql";
 
     public EquipoModelo() throws PersistenciaException {
-        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);
+        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);
     }
+
+
 
     /**
      * Insertar un equipo en la tabla de Equipos
