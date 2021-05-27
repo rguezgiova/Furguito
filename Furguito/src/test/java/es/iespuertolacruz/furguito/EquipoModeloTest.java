@@ -53,12 +53,15 @@ public class EquipoModeloTest {
         }
     }
 
-    /**
-     * @Test public void modificarEquipoTest() { equipo = new Equipo(20, "nombre",
-     *       "ciudad", "estadio", 0, 0, 0, "colores"); try {
-     *       equipoModelo.modificarEquipo(equipo); } catch (PersistenciaException
-     *       exception) { fail("Fallo al modificar el equipo"); } }
-     */
+    @Test
+    public void modificarEquipoTest() {
+        equipo = new Equipo(20, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
+        try {
+            equipoModelo.modificarEquipo(equipo);
+        } catch (PersistenciaException exception) {
+            fail("Fallo al modificar el equipo");
+        }
+    }
 
     @Test
     public void insertarEquipoTest() {
@@ -106,19 +109,6 @@ public class EquipoModeloTest {
             fail("No se ha encontrado el equipo");
         }
         assertNotNull(equipoEncontrado);
-    }
-
-    /**
-     * 
-     */
-    @Test
-    public void initTest() {
-        try {
-            bbdd = new Bbdd("Equipos", "idEquipo", "org.sqlite.JDBC", "jdbc:sqlite:furguito.db", null, null);
-        } catch (PersistenciaException e) {
-            fail("Error: " + e.getMessage());
-
-        }
     }
 
 }

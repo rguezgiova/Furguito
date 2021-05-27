@@ -7,14 +7,13 @@ public class SqliteBbdd extends Bbdd {
     private static final String DRIVER = &quot;org.sqlite.JDBC&quot;;
     private static final String URL = &quot;jdbc:sqlite:furguito.db&quot;;
 
-    public SqliteBbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
-            throws PersistenciaException {
-<span class="nc" id="L12">        super(nombretabla, clave, driver, url, usuario, password);</span>
-<span class="nc" id="L13">    }</span>
+    public SqliteBbdd(String nombreTabla, String clave, String driver, String url, String user, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
+<span class="nc" id="L11">        super(nombreTabla, clave, driver, url, user, password, sqlTable, sqlInsert);</span>
+<span class="nc" id="L12">    }</span>
 
-    public SqliteBbdd(String nombretabla, String clave, String usuario, String password) throws PersistenciaException {
-<span class="fc" id="L16">        super(nombretabla, clave, DRIVER, URL, usuario, password);</span>
-<span class="fc" id="L17">    }</span>
+    public SqliteBbdd(String nombreTabla, String clave, String usuario, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
+<span class="fc" id="L15">        super(nombreTabla, clave, DRIVER, URL, usuario, password, sqlTable, sqlInsert);</span>
+<span class="fc" id="L16">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

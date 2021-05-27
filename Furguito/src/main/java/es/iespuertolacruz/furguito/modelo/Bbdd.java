@@ -32,8 +32,8 @@ public class Bbdd {
      * @param password del usuario
      * @throws PersistenciaException
      */
-    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password, String sqlTable, String sqlInsert)
-            throws PersistenciaException {
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password,
+            String sqlTable, String sqlInsert) throws PersistenciaException {
         this.nombretabla = nombretabla;
         this.clave = clave;
         this.driver = driver;
@@ -61,7 +61,7 @@ public class Bbdd {
         try {
             connection = getConnection();
             databaseMetaData = connection.getMetaData();
-            resultSet = databaseMetaData.getTables(null, null, null, new String[] {TABLE});
+            resultSet = databaseMetaData.getTables(null, null, null, new String[] { TABLE });
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
@@ -146,6 +146,7 @@ public class Bbdd {
 
     /**
      * Metodo que busca elementos de una sentencia
+     * 
      * @param sql con la sentencia
      * @return resultados
      * @throws PersistenciaException error controlado
@@ -523,7 +524,7 @@ public class Bbdd {
      */
     public void modificarEquipo(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE Equipo SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad() + "'"
+        sql = "UPDATE Equipos SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad() + "'"
                 + ", estadio = '" + equipo.getEstadio() + "'" + ", fundacion = " + equipo.getFundacion()
                 + ", numero_socios = " + equipo.getNumeroSocios() + ", presupuesto = " + equipo.getPresupuesto()
                 + ", colores = '" + equipo.getColores() + "' WHERE idEquipo = " + equipo.getId();

@@ -5,12 +5,14 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class JugadorModelo {
     SqliteBbdd persistencia;
-    private static final String NOMBRE = &quot;Jugadores&quot;;
+    private static final String TABLA = &quot;Jugadores&quot;;
     private static final String CLAVE = &quot;idJugador&quot;;
+    private static final String SQLTABLE = &quot;src/resources/sql/jugadores-crear.sql&quot;;
+    private static final String SQLINSERT = &quot;src/resources/sql/jugadores-insert.sql&quot;;
 
-<span class="nc" id="L11">    public JugadorModelo() throws PersistenciaException {</span>
-<span class="nc" id="L12">        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);</span>
-<span class="nc" id="L13">    }</span>
+<span class="nc" id="L13">    public JugadorModelo() throws PersistenciaException {</span>
+<span class="nc" id="L14">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);</span>
+<span class="nc" id="L15">    }</span>
 
     /**
      * insertar jugador en la tabla
@@ -19,8 +21,8 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void insertarJugador(Jugador jugador) throws PersistenciaException {
-<span class="nc" id="L22">        persistencia.insertarJugador(jugador);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L24">        persistencia.insertarJugador(jugador);</span>
+<span class="nc" id="L25">    }</span>
 
     /**
      * Modificar un jugador
@@ -29,8 +31,8 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void modificarJugador(Jugador jugador) throws PersistenciaException {
-<span class="nc" id="L32">        persistencia.modificarJugador(jugador);</span>
-<span class="nc" id="L33">    }</span>
+<span class="nc" id="L34">        persistencia.modificarJugador(jugador);</span>
+<span class="nc" id="L35">    }</span>
 
     /**
      * Elimina a un jugador
@@ -39,8 +41,8 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void eliminarJugador(int id) throws PersistenciaException {
-<span class="nc" id="L42">        persistencia.borrarJugador(id);</span>
-<span class="nc" id="L43">    }</span>
+<span class="nc" id="L44">        persistencia.borrarJugador(id);</span>
+<span class="nc" id="L45">    }</span>
 
     /**
      * Consultar informacion de un equipo
@@ -49,8 +51,8 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void consultarInformacion(String nombre) throws PersistenciaException {
-<span class="nc" id="L52">        persistencia.obtenerJugador(nombre);</span>
-<span class="nc" id="L53">    }</span>
+<span class="nc" id="L54">        persistencia.obtenerJugador(nombre);</span>
+<span class="nc" id="L55">    }</span>
 
     /**
      * Consultar los 5 maximos goleadores de la liga
@@ -58,8 +60,8 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void consultarMaximosGoleadores() throws PersistenciaException {
-<span class="nc" id="L61">        persistencia.obtenerGoleadores();</span>
-<span class="nc" id="L62">    }</span>
+<span class="nc" id="L63">        persistencia.obtenerGoleadores();</span>
+<span class="nc" id="L64">    }</span>
 
     /**
      * Consultar los 10 jugadores mas expulsados de la liga
@@ -67,7 +69,7 @@ public class JugadorModelo {
      * @throws PersistenciaException error controlado
      */
     public void consultarMasExpulsados() throws PersistenciaException {
-<span class="nc" id="L70">        persistencia.obtenerExpulsados();</span>
-<span class="nc" id="L71">    }</span>
+<span class="nc" id="L72">        persistencia.obtenerExpulsados();</span>
+<span class="nc" id="L73">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -5,12 +5,16 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class EquipoModelo {
     SqliteBbdd persistencia;
-    private static final String NOMBRE = &quot;Equipos&quot;;
+    private static final String TABLA = &quot;Equipos&quot;;
     private static final String CLAVE = &quot;idEquipo&quot;;
+    private static final String SQLTABLE = &quot;src/resources/sql/equipos-crear.sql&quot;;
+    private static final String SQLINSERT = &quot;src/resources/sql/equipos-insert.sql&quot;;
 
-<span class="fc" id="L11">    public EquipoModelo() throws PersistenciaException {</span>
-<span class="fc" id="L12">        persistencia = new SqliteBbdd(NOMBRE, CLAVE, null, null);</span>
-<span class="fc" id="L13">    }</span>
+<span class="fc" id="L13">    public EquipoModelo() throws PersistenciaException {</span>
+<span class="fc" id="L14">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);</span>
+<span class="fc" id="L15">    }</span>
+
+
 
     /**
      * Insertar un equipo en la tabla de Equipos
@@ -19,8 +23,8 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public void insertarEquipo(Equipo equipo) throws PersistenciaException {
-<span class="fc" id="L22">        persistencia.insertarEquipo(equipo);</span>
-<span class="fc" id="L23">    }</span>
+<span class="fc" id="L26">        persistencia.insertarEquipo(equipo);</span>
+<span class="fc" id="L27">    }</span>
 
     /**
      * Modificar un equipo en la tabla Equipos
@@ -29,8 +33,8 @@ public class EquipoModelo {
      * @throws PersistenciaExcepion error controlado
      */
     public void modificarEquipo(Equipo equipo) throws PersistenciaException {
-<span class="nc" id="L32">        persistencia.modificarEquipo(equipo);</span>
-<span class="nc" id="L33">    }</span>
+<span class="fc" id="L36">        persistencia.modificarEquipo(equipo);</span>
+<span class="fc" id="L37">    }</span>
 
     /**
      * Eliminar un equipo de la tabla Equipos
@@ -39,8 +43,8 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public void eliminarEquipo(int id) throws PersistenciaException {
-<span class="fc" id="L42">        persistencia.borrarEquipo(id);</span>
-<span class="fc" id="L43">    }</span>
+<span class="fc" id="L46">        persistencia.borrarEquipo(id);</span>
+<span class="fc" id="L47">    }</span>
 
     /**
      * Consultar la informacion de un equipo especifico
@@ -50,7 +54,7 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarInformacion(String nombre) throws PersistenciaException {
-<span class="fc" id="L53">        return persistencia.obtenerEquipo(nombre);</span>
+<span class="fc" id="L57">        return persistencia.obtenerEquipo(nombre);</span>
     }
 
     /**
@@ -60,7 +64,7 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
-<span class="fc" id="L63">        return persistencia.consultarCiudad(nombre);</span>
+<span class="fc" id="L67">        return persistencia.consultarCiudad(nombre);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
