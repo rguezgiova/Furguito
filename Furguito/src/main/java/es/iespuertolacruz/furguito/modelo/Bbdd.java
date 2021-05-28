@@ -206,41 +206,6 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que realiza la consulta sobre la BBDD y la tabla Estadios
-     * 
-     * @param sql de la consulta
-     * @return lista de resultados
-     * @throws PersistenciaException controlado
-     */
-    private ArrayList<Estadio> obtenerEstadios(String sql) throws PersistenciaException {
-        ArrayList<Estadio> listaEstadios = new ArrayList<>();
-
-        Estadio estadio = null;
-        Statement statement = null;
-        ResultSet resultSet = null;
-        Connection connection = null;
-        try {
-            connection = getConnection();
-            statement = connection.createStatement();
-            resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                int identificador = resultSet.getInt("idEstadio");
-                String nombre = resultSet.getString("nombre");
-                String equipo = resultSet.getString("equipo");
-                int capacidad = resultSet.getInt("capacidad");
-                int construccion = resultSet.getInt("construccion");
-                estadio = new Estadio(identificador, nombre, equipo, capacidad, construccion);
-                listaEstadios.add(estadio);
-            }
-        } catch (Exception exception) {
-            throw new PersistenciaException(ERROR_CONSULTA, exception);
-        } finally {
-            closeConnection(connection, statement, resultSet);
-        }
-        return listaEstadios;
-    }
-
-    /**
      * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
      * 
      * @param sql de la consulta
@@ -335,25 +300,6 @@ public class Bbdd {
     }
 
     /**
-     * Funcion que obtiene un estadio buscado por ID
-     * 
-     * @param nombre del estadio a buscar
-     * @return equipo
-     * @throws PersistenciaException error controlado
-     */
-    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
-        Estadio estadio = null;
-        ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT * FROM Estadios where nombre = ";
-        sql = sql + "'" + nombre + "'";
-        listaEstadios = obtenerEstadios(sql);
-        if (!listaEstadios.isEmpty()) {
-            estadio = listaEstadios.get(0);
-        }
-        return estadio;
-    }
-
-    /**
      * Funcion que obtiene un jugador buscado por nombre
      * 
      * @param nombre del jugador a buscar
@@ -395,48 +341,6 @@ public class Bbdd {
         String sql = "SELECT * FROM Jugadores ORDER BY rojas DESC LIMIT 10";
         listaJugadores = obtenerJugadores(sql);
         return listaJugadores;
-    }
-
-    /**
-     * Funcion que obtiene el nombre y la capacidad del estadio buscado
-     * 
-     * @param nombre del estadio a buscar
-     * @return estadio y capacidad
-     * @throws PersistenciaException error controlado
-     */
-    public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
-        Estadio estadio = null;
-        ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT nombre, capacidad FROM Estadios where nombre = ";
-        sql = sql + "'" + nombre + "'";
-        listaEstadios = obtenerEstadios(sql);
-        if (!listaEstadios.isEmpty()) {
-            estadio = listaEstadios.get(0);
-        }
-
-        return estadio;
-
-    }
-
-    /**
-     * Funcion que obtiene el nombre y el anio del estadio buscado
-     * 
-     * @param nombre del estadio a buscar
-     * @return estadio y anio
-     * @throws PersistenciaException error controlado
-     */
-    public Estadio obtenerAnio(String nombre) throws PersistenciaException {
-        Estadio estadio = null;
-        ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT nombre, construccion FROM Estadios where nombre = ";
-        sql = sql + "'" + nombre + "'";
-        listaEstadios = obtenerEstadios(sql);
-        if (!listaEstadios.isEmpty()) {
-            estadio = listaEstadios.get(0);
-        }
-
-        return estadio;
-
     }
 
     /**
@@ -503,20 +407,6 @@ public class Bbdd {
     }
 
     /**
-     * Metodo para modificar un estadio dentro de la BBDD
-     * 
-     * @param estadio a modificar
-     * @throws PersistenciaException error controlado
-     */
-    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
-        String sql = "";
-        sql = "UPDATE Estadios SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
-                + ", capacidad = " + estadio.getCapacidad() + "" + ", construccion = " + estadio.getConstruccion()
-                + " WHERE identificador = " + estadio.getId();
-        actualizar(sql);
-    }
-
-    /**
      * Metodo para modificar un equipo dentro de la BBDD
      * 
      * @param equipo a modificar
@@ -577,21 +467,6 @@ public class Bbdd {
     }
 
     /**
-     * Metodo que se encarga de la insercion de un equipo en la BBDD
-     * 
-     * @param equipo a insertar
-     * @throws PersistenciaException error controlado
-     */
-    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
-        String sql = "";
-        sql = "INSERT INTO Equipos (idEquipo, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
-                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
-                + equipo.getEstadio() + "', " + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", "
-                + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
-        actualizar(sql);
-    }
-
-    /**
      * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
      * 
      * @param palmares a insertar
@@ -630,18 +505,6 @@ public class Bbdd {
     public void borrarEquipo(int id) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM Equipos WHERE idEquipo = " + id;
-        actualizar(sql);
-    }
-
-    /**
-     * Metodo para borrar un estadio de la BBDD
-     * 
-     * @param estadio a borrar
-     * @throws PersistenciaException error controlado
-     */
-    public void borrarEstadio(int id) throws PersistenciaException {
-        String sql = "";
-        sql = "DELETE FROM Estadios WHERE idEstadio = " + id;
         actualizar(sql);
     }
 

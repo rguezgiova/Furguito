@@ -1,9 +1,14 @@
 package es.iespuertolacruz.furguito.modelo;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertolacruz.furguito.api.Equipo;
 import es.iespuertolacruz.furguito.api.Estadio;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class EstadioModelo {
+    Estadio estadio;
     SqliteBbdd persistencia;
     private static final String TABLA = "Estadios";
     private static final String CLAVE = "idEstadio";
@@ -15,62 +20,128 @@ public class EstadioModelo {
     }
 
     /**
-     * Inserta un estadio en la tabla
+     * Metodo que se encarga de la insercion de un equipo en la BBDD
      * 
-     * @param estadio objeto estadio
+     * @param equipo a insertar
      * @throws PersistenciaException error controlado
      */
-    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
-        persistencia.insertarEstadio(estadio);
+    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
+        String sql = "";
+        sql = "INSERT INTO "+ TABLA + "(" + CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
+                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
+                + equipo.getEstadio() + "', " + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", "
+                + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Modifica un estadio existente
+     * Metodo para borrar un estadio de la BBDD
      * 
-     * @param estadio objeto estadio
+     * @param estadio a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void borrarEstadio(int id) throws PersistenciaException {
+        String sql = "";
+        sql = "DELETE FROM " + TABLA + " WHERE " + CLAVE + " = " + id;
+        persistencia.actualizar(sql);
+    }
+
+    /**
+     * Metodo para modificar un estadio dentro de la BBDD
+     * 
+     * @param estadio a modificar
      * @throws PersistenciaException error controlado
      */
     public void modificarEstadio(Estadio estadio) throws PersistenciaException {
-        persistencia.modificarEstadio(estadio);
+        String sql = "";
+        sql = "UPDATE " + TABLA + " SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
+                + ", capacidad = " + estadio.getCapacidad() + "" + ", construccion = " + estadio.getConstruccion()
+                + " WHERE " + CLAVE + " = " + estadio.getId();
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Elimina un estadio de la tabla
+     * Funcion que obtiene un estadio buscado por ID
      * 
-     * @param id del estadio a borrar
+     * @param nombre del estadio a buscar
+     * @return equipo
      * @throws PersistenciaException error controlado
      */
-    public void eliminarEstadio(int id) throws PersistenciaException {
-        persistencia.borrarEstadio(id);
+    public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT * FROM Estadios where nombre = '" + nombre + "'";
+        sql = sql + "'" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+        return estadio;
     }
 
     /**
-     * Devuelve la informacion completa del estadio
+     * Funcion que obtiene el nombre y la capacidad del estadio buscado
      * 
-     * @param nombre del estadio
+     * @param nombre del estadio a buscar
+     * @return estadio y capacidad
      * @throws PersistenciaException error controlado
      */
-    public void consultarInformacion(String nombre) throws PersistenciaException {
-        persistencia.obtenerEstadio(nombre);
+    public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT nombre, capacidad FROM "+ TABLA + " where nombre = '" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+        return estadio;
     }
 
     /**
-     * Devuelve la capacidad del estadio buscado
+     * Funcion que obtiene el nombre y el anio del estadio buscado
      * 
-     * @param nombre del estadio
+     * @param nombre del estadio a buscar
+     * @return estadio y anio
      * @throws PersistenciaException error controlado
      */
-    public void consultarCapacidad(String nombre) throws PersistenciaException {
-        persistencia.obtenerCapacidad(nombre);
+    public Estadio obtenerAnio(String nombre) throws PersistenciaException {
+        Estadio estadio = null;
+        ArrayList<Estadio> listaEstadios = null;
+        String sql = "SELECT nombre, construccion FROM " + TABLA + " where nombre = '" + nombre + "'";
+        listaEstadios = obtenerEstadios(sql);
+        if (!listaEstadios.isEmpty()) {
+            estadio = listaEstadios.get(0);
+        }
+        return estadio;
     }
 
     /**
-     * Devuelve el anio de construccion de el estadio buscado
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Estadios
      * 
-     * @param nombre del estadio
-     * @throws PersistenciaException error controlado
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
      */
-    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
-        persistencia.obtenerAnio(nombre);
+    private ArrayList<Estadio> obtenerEstadios(String sql) throws PersistenciaException {
+        ArrayList<Estadio> listaEstadios = new ArrayList<>();
+        ResultSet resultSet = null;
+
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+            while (resultSet.next()) {
+                int identificador = resultSet.getInt("idEstadio");
+                String nombre = resultSet.getString("nombre");
+                String equipo = resultSet.getString("equipo");
+                int capacidad = resultSet.getInt("capacidad");
+                int construccion = resultSet.getInt("construccion");
+                estadio = new Estadio(identificador, nombre, equipo, capacidad, construccion);
+                listaEstadios.add(estadio);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException("Se ha producido un error en la transformacion ", exception);
+        } finally {
+            persistencia.closeConnection(null, null, resultSet);
+        }
+        return listaEstadios;
     }
 }
