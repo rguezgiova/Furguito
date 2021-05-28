@@ -27,9 +27,9 @@ public class EstadioModelo {
      */
     public void insertar(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", nombre, equipo, capacidad, construccion) VALUES(" + estadio.getId()
-                + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '"
-                + estadio.getConstruccion() + "')";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", nombre, equipo, capacidad, construccion) VALUES("
+                + estadio.getId() + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', '"
+                + estadio.getCapacidad() + "', '" + estadio.getConstruccion() + "')";
         persistencia.actualizar(sql);
     }
 
@@ -53,8 +53,8 @@ public class EstadioModelo {
      */
     public void modificar(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE " + TABLA + " SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
-                + ", capacidad = " + estadio.getCapacidad() + "" + ", construccion = " + estadio.getConstruccion()
+        sql = "UPDATE " + TABLA + " SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo()
+                + "'" + ", capacidad = " + estadio.getCapacidad() + "" + ", construccion = " + estadio.getConstruccion()
                 + " WHERE " + CLAVE + " = " + estadio.getId();
         persistencia.actualizar(sql);
     }
@@ -87,7 +87,7 @@ public class EstadioModelo {
     public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT capacidad FROM " + TABLA + " where nombre = '" + nombre + "'";
+        String sql = "SELECT * FROM " + TABLA + " where nombre = '" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);
@@ -105,7 +105,7 @@ public class EstadioModelo {
     public Estadio obtenerAnio(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT construccion FROM " + TABLA + " where nombre = '" + nombre + "'";
+        String sql = "SELECT * FROM " + TABLA + " where nombre = '" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);
@@ -136,7 +136,7 @@ public class EstadioModelo {
                 listaEstadios.add(estadio);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException(ERROR_CONSULTA , exception);
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
         } finally {
             persistencia.closeConnection(null, null, resultSet);
         }

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.JugadorModeloTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.686 s <<< FAILURE! - in es.iespuertolacruz.furguito.JugadorModeloTest
-modificarJugadorTest  Time elapsed: 0.032 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: No se ha podido modificar al jugador
-	at es.iespuertolacruz.furguito.JugadorModeloTest.modificarJugadorTest(JugadorModeloTest.java:57)
-
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.154 s - in es.iespuertolacruz.furguito.JugadorModeloTest

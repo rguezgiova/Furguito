@@ -75,8 +75,8 @@ public class EstadioModeloTest {
         Estadio estadioEncontrado = null;
         try {
             estadioEncontrado = estadioModelo.obtenerEstadio(nombre);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido obtener el estadio");
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido obtener el estadio", exception);
         }
         assertTrue(estadioEncontrado.getNombre().contains(nombre));
     }
@@ -87,8 +87,8 @@ public class EstadioModeloTest {
         Estadio estadioEncontrado = null;
         try {
             estadioEncontrado = estadioModelo.obtenerCapacidad(nombre);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido obtener el estadio");
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido obtener el estadio", exception);
         }
         assertNotNull(estadioEncontrado);
     }
@@ -99,8 +99,8 @@ public class EstadioModeloTest {
         Estadio estadioEncontrado = null;
         try {
             estadioEncontrado = estadioModelo.obtenerAnio(nombre);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido obtener el estadio");
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido obtener el estadio", exception);
         }
         assertNotNull(estadioEncontrado);
     }

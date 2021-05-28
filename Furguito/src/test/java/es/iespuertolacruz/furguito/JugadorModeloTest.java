@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +35,18 @@ public class JugadorModeloTest {
         Jugador jugadorInsertar = new Jugador(321, "equipo", "nombre", 1, 1, 1, 1, 1);
         try {
             jugadorModelo.insertar(jugadorInsertar);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido insertar al jugador");
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido insertar al jugador", exception);
+        }
+    }
+
+    @Test
+    public void modificarJugadorTest() {
+        Jugador jugadorModificar = new Jugador(23, "Paco", "Perez", 1, 1, 1, 1, 1);
+        try {
+            jugadorModelo.modificar(jugadorModificar);
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido modificar al jugador", exception);
         }
     }
 
@@ -43,18 +54,8 @@ public class JugadorModeloTest {
     public void eliminarJugadorTest() {
         try {
             jugadorModelo.eliminar(321);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido eliminar al jugador");
-        }
-    }
-
-    @Test
-    public void modificarJugadorTest() {
-        Jugador jugadorModificar = new Jugador(1, "equipo", "nombre", 1, 1, 1, 1, 1);
-        try {
-            jugadorModelo.modificar(jugadorModificar);
-        } catch (PersistenciaException e) {
-            fail("No se ha podido modificar al jugador");
+        } catch (PersistenciaException exception) {
+            fail("No se ha podido eliminar al jugador", exception);
         }
     }
 

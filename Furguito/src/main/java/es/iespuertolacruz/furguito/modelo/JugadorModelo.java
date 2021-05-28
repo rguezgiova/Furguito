@@ -27,10 +27,11 @@ public class JugadorModelo {
      */
     public void insertar(Jugador jugador) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO " + TABLA + " ("+ CLAVE + ", equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES("
-                + jugador.getId() + ", '" + jugador.getEquipo() + "', '" + jugador.getNombre() + "', "
-                + jugador.getDorsal() + ", " + jugador.getGoles() + ", " + jugador.getAsistencias() + ", "
-                + jugador.getAmarillas() + ", " + jugador.getRojas() + ")";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE
+                + ", equipo, nombre, dorsal, goles, asistencias, amarillas, rojas) VALUES(" + jugador.getId() + ", '"
+                + jugador.getEquipo() + "', '" + jugador.getNombre() + "', " + jugador.getDorsal() + ", "
+                + jugador.getGoles() + ", " + jugador.getAsistencias() + ", " + jugador.getAmarillas() + ", "
+                + jugador.getRojas() + ")";
         persistencia.actualizar(sql);
     }
 
@@ -42,10 +43,10 @@ public class JugadorModelo {
      */
     public void modificar(Jugador jugador) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE " + TABLA + " SET equipo = '" + jugador.getEquipo() + "'" + ", nombre = '" + jugador.getNombre() + "'"
-                + ", dorsal = " + jugador.getDorsal() + ", goles = " + jugador.getGoles() + ", asistencias = "
+        sql = "UPDATE " + TABLA + " SET equipo = '" + jugador.getEquipo() + "'" + ", nombre = '" + jugador.getNombre()
+                + "'" + ", dorsal = " + jugador.getDorsal() + ", goles = " + jugador.getGoles() + ", asistencias = "
                 + jugador.getAsistencias() + ", amarillas = " + jugador.getAmarillas() + ", rojas = "
-                + jugador.getRojas() + "' WHERE " + CLAVE + " = " + jugador.getId();
+                + jugador.getRojas() + " WHERE " + CLAVE + " = " + jugador.getId();
         persistencia.actualizar(sql);
     }
 

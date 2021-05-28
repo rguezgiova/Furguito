@@ -1,12 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.EstadioModeloTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in es.iespuertolacruz.furguito.EstadioModeloTest
-obtenerAnioTest  Time elapsed: 0 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: No se ha podido obtener el estadio
-	at es.iespuertolacruz.furguito.EstadioModeloTest.obtenerAnioTest(EstadioModeloTest.java:103)
-
-obtenerCapacidadTest  Time elapsed: 0 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: No se ha podido obtener el estadio
-	at es.iespuertolacruz.furguito.EstadioModeloTest.obtenerCapacidadTest(EstadioModeloTest.java:91)
-
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 s - in es.iespuertolacruz.furguito.EstadioModeloTest
