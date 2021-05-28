@@ -1,5 +1,6 @@
 package es.iespuertolacruz.furguito.modelo;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -27,7 +28,8 @@ public class PalmaresModelo {
      */
     public void insertar(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES("
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE
+                + ", equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES("
                 + palmares.getId() + ", '" + palmares.getEquipo() + "', " + palmares.getLigas() + ", "
                 + palmares.getCopasDelRey() + ", " + palmares.getSuperEspana() + ", " + palmares.getSuperEuropa() + ", "
                 + palmares.getChampions() + ", " + palmares.getMundialClubs() + ")";
@@ -54,11 +56,11 @@ public class PalmaresModelo {
      */
     public void modificar(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE " + TABLA + " SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas() + "'"
-                + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
+        sql = "UPDATE " + TABLA + " SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas()
+                + "'" + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
                 + palmares.getSuperEspana() + ", superEuropa = '" + palmares.getSuperEuropa() + ", champions = '"
-                + palmares.getChampions() + ", mundialClubs = '" + palmares.getMundialClubs()
-                + "' WHERE " + CLAVE + " = " + palmares.getId();
+                + palmares.getChampions() + ", mundialClubs = '" + palmares.getMundialClubs() + "' WHERE " + CLAVE
+                + " = " + palmares.getId();
         persistencia.actualizar(sql);
     }
 
@@ -66,13 +68,18 @@ public class PalmaresModelo {
      * Funcion que obtiene el palmares del equipo buscado
      * 
      * @param equipo nombre del equipo
+     * @param equipo2 TODO
      * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Palmares> PalmaresEquipo(String equipo) throws PersistenciaException {
+    public ArrayList<Palmares> palmaresEquipo(String equipo) throws PersistenciaException {
+        Palmares palmares = null;
         ArrayList<Palmares> listaPalmares = null;
         String sql = "SELECT * FROM " + TABLA + " WHERE nombre LIKE '%" + equipo + "%'";
         listaPalmares = obtenerPalmares(sql);
+        if (!listaPalmares.isEmpty()) {
+            palmares = listaPalmares.get(0);
+        }
         return listaPalmares;
     }
 
@@ -82,7 +89,7 @@ public class PalmaresModelo {
      * @return lista de equipos
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Palmares> PalmaresLigas() throws PersistenciaException {
+    public ArrayList<Palmares> palmaresLigas() throws PersistenciaException {
         ArrayList<Palmares> listaLigas = null;
         String sql = "SELECT equipo, ligas FROM " + TABLA + " ORDER BY ligas DESC LIMIT 3";
         listaLigas = obtenerPalmares(sql);
@@ -95,7 +102,7 @@ public class PalmaresModelo {
      * @return lista de equipos
      * @throws PersistenciaException error controlado
      */
-    public ArrayList<Palmares> PalmaresCopas() throws PersistenciaException {
+    public ArrayList<Palmares> palmaresCopas() throws PersistenciaException {
         ArrayList<Palmares> listaCopas = null;
         String sql = "SELECT equipo, copasDelRey FROM " + TABLA + " ORDER BY copasDelRey DESC LIMIT 3";
         listaCopas = obtenerPalmares(sql);
@@ -112,7 +119,7 @@ public class PalmaresModelo {
     public ArrayList<Palmares> obtenerPalmares(String sql) throws PersistenciaException {
         ArrayList<Palmares> listaPalmares = new ArrayList<>();
         ResultSet resultSet = null;
-        
+
         try {
             resultSet = persistencia.buscarElementos(sql);
             while (resultSet.next()) {
