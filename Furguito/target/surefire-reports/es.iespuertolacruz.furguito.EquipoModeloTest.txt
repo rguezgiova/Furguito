@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.EquipoModeloTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.473 s - in es.iespuertolacruz.furguito.EquipoModeloTest
+Tests run: 7, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.727 s <<< FAILURE! - in es.iespuertolacruz.furguito.EquipoModeloTest
+insertarEquipoTest  Time elapsed: 0.023 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se ha podido insertar al equipo
+	at es.iespuertolacruz.furguito.EquipoModeloTest.insertarEquipoTest(EquipoModeloTest.java:50)
+

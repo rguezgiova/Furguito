@@ -5,10 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import es.iespuertolacruz.furguito.api.Equipo;
@@ -35,7 +32,7 @@ public class EquipoModeloTest {
     @Test
     public void buscarEquipoTest() {
         try {
-            Equipo equipoEncontrado = equipoModelo.consultarInformacion("Barcelona");
+            Equipo equipoEncontrado = equipoModelo.obtenerEquipo("Barcelona");
             assertNotNull(equipoEncontrado, "No se debe de obtener un elemento nulo");
             assertEquals(equipoEncontrado.getNombre(), "Futbol Club Barcelona", "No se ha encontrado lo esperado");
         } catch (PersistenciaException e) {
@@ -45,9 +42,19 @@ public class EquipoModeloTest {
     }
 
     @Test
+    public void insertarEquipoTest() {
+        Equipo equipoInsertar = new Equipo(22, "Tenerife", "Tenerife", "Rguez Lopez", 1912, 5124, 111111111, "Blanco y azul");
+        try {
+            equipoModelo.insertar(equipoInsertar);
+        } catch (Exception e) {
+            fail("No se ha podido insertar al equipo");
+        }
+    }
+
+    @Test
     public void eliminarEquipoTest() {
         try {
-            equipoModelo.eliminarEquipo(22);
+            equipoModelo.eliminar(22);
         } catch (PersistenciaException e) {
             fail("No se ha podido eliminar el equipo");
         }
@@ -57,19 +64,9 @@ public class EquipoModeloTest {
     public void modificarEquipoTest() {
         equipo = new Equipo(20, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
         try {
-            equipoModelo.modificarEquipo(equipo);
+            equipoModelo.modificar(equipo);
         } catch (PersistenciaException exception) {
             fail("Fallo al modificar el equipo");
-        }
-    }
-
-    @Test
-    public void insertarEquipoTest() {
-        equipo = new Equipo(22, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
-        try {
-            equipoModelo.insertarEquipo(equipo);
-        } catch (PersistenciaException exception) {
-            fail("Fallo al insertar el equipo");
         }
     }
 
@@ -78,7 +75,7 @@ public class EquipoModeloTest {
         String equipo = "Barcelona";
         Equipo equipoEncontrado = null;
         try {
-            equipoEncontrado = equipoModelo.consultarInformacion(equipo);
+            equipoEncontrado = equipoModelo.obtenerEquipo(equipo);
         } catch (PersistenciaException e) {
             fail("No se ha encontrado el equipo");
         }
