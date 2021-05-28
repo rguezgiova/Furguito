@@ -10,6 +10,7 @@ import es.iespuertolacruz.furguito.exception.PersistenciaException;
 public class EstadioModelo {
     Estadio estadio;
     SqliteBbdd persistencia;
+    private static final String ERROR_CONSULTA = "Se ha producido un error en la transformacion ";
     private static final String TABLA = "Estadios";
     private static final String CLAVE = "idEstadio";
     private static final String SQLTABLE = "src/resources/sql/estadios-crear.sql";
@@ -25,7 +26,7 @@ public class EstadioModelo {
      * @param equipo a insertar
      * @throws PersistenciaException error controlado
      */
-    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
+    public void insertar(Equipo equipo) throws PersistenciaException {
         String sql = "";
         sql = "INSERT INTO "+ TABLA + "(" + CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
                 + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
@@ -40,7 +41,7 @@ public class EstadioModelo {
      * @param estadio a borrar
      * @throws PersistenciaException error controlado
      */
-    public void borrarEstadio(int id) throws PersistenciaException {
+    public void eliminar(int id) throws PersistenciaException {
         String sql = "";
         sql = "DELETE FROM " + TABLA + " WHERE " + CLAVE + " = " + id;
         persistencia.actualizar(sql);
@@ -52,7 +53,7 @@ public class EstadioModelo {
      * @param estadio a modificar
      * @throws PersistenciaException error controlado
      */
-    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
+    public void modificar(Estadio estadio) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE " + TABLA + " SET nombre = '" + estadio.getNombre() + "'" + ", equipo = '" + estadio.getEquipo() + "'"
                 + ", capacidad = " + estadio.getCapacidad() + "" + ", construccion = " + estadio.getConstruccion()
@@ -138,7 +139,7 @@ public class EstadioModelo {
                 listaEstadios.add(estadio);
             }
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error en la transformacion ", exception);
+            throw new PersistenciaException(ERROR_CONSULTA , exception);
         } finally {
             persistencia.closeConnection(null, null, resultSet);
         }

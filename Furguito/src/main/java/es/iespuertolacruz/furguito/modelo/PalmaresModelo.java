@@ -1,10 +1,15 @@
 package es.iespuertolacruz.furguito.modelo;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import es.iespuertolacruz.furguito.api.Palmares;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class PalmaresModelo {
     SqliteBbdd persistencia;
+    Palmares palmares;
+    private static final String ERROR_CONSULTA = "Se ha producido un error en la transformacion ";
     private static final String TABLA = "Palmares";
     private static final String CLAVE = "idPalmares";
     private static final String SQLTABLE = "src/resources/sql/palmares-crear.sql";
@@ -15,61 +20,119 @@ public class PalmaresModelo {
     }
 
     /**
-     * Inserta el palmares de un equipo en la tabla
+     * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
      * 
      * @param palmares a insertar
      * @throws PersistenciaException error controlado
      */
-    public void insertarPalmares(Palmares palmares) throws PersistenciaException {
-        persistencia.insertarPalmares(palmares);
+    public void insertar(Palmares palmares) throws PersistenciaException {
+        String sql = "";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES("
+                + palmares.getId() + ", '" + palmares.getEquipo() + "', " + palmares.getLigas() + ", "
+                + palmares.getCopasDelRey() + ", " + palmares.getSuperEspana() + ", " + palmares.getSuperEuropa() + ", "
+                + palmares.getChampions() + ", " + palmares.getMundialClubs() + ")";
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Modifica un palmares existente
+     * Metodo para borrar un palmares de la BBDD
+     * 
+     * @param palmares a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(int id) throws PersistenciaException {
+        String sql = "";
+        sql = "DELETE FROM " + TABLA + " WHERE " + CLAVE + " = " + id;
+        persistencia.actualizar(sql);
+    }
+
+    /**
+     * Metodo para modificar el palmares de un equipo dentro de la BBDD
      * 
      * @param palmares a modificar
      * @throws PersistenciaException error controlado
      */
-    public void modificarPalmares(Palmares palmares) throws PersistenciaException {
-        persistencia.modificarPalmares(palmares);
+    public void modificar(Palmares palmares) throws PersistenciaException {
+        String sql = "";
+        sql = "UPDATE " + TABLA + " SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas() + "'"
+                + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
+                + palmares.getSuperEspana() + ", superEuropa = '" + palmares.getSuperEuropa() + ", champions = '"
+                + palmares.getChampions() + ", mundialClubs = '" + palmares.getMundialClubs()
+                + "' WHERE " + CLAVE + " = " + palmares.getId();
+        persistencia.actualizar(sql);
     }
 
     /**
-     * Elimina el palmares del equipo
-     * 
-     * @param id del palmares a eliminar
-     * @throws PersistenciaException error controlado
-     */
-    public void eliminarPalmares(int id) throws PersistenciaException {
-        persistencia.borrarPalmares(id);
-    }
-
-    /**
-     * Consulta el palmares del equipo buscado
+     * Funcion que obtiene el palmares del equipo buscado
      * 
      * @param equipo nombre del equipo
+     * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
      */
-    public void consultarPalmares(String equipo) throws PersistenciaException {
-        persistencia.PalmaresEquipo(equipo);
+    public ArrayList<Palmares> PalmaresEquipo(String equipo) throws PersistenciaException {
+        ArrayList<Palmares> listaPalmares = null;
+        String sql = "SELECT * FROM " + TABLA + " WHERE nombre LIKE '%" + equipo + "%'";
+        listaPalmares = obtenerPalmares(sql);
+        return listaPalmares;
     }
 
     /**
-     * Devuelve a los 3 equipos con mas ligas
+     * Funcion que devuelve los 3 equipos con mas ligas
      * 
+     * @return lista de equipos
      * @throws PersistenciaException error controlado
      */
-    public void consultarLigas() throws PersistenciaException {
-        persistencia.PalmaresLigas();
+    public ArrayList<Palmares> PalmaresLigas() throws PersistenciaException {
+        ArrayList<Palmares> listaLigas = null;
+        String sql = "SELECT equipo, ligas FROM " + TABLA + " ORDER BY ligas DESC LIMIT 3";
+        listaLigas = obtenerPalmares(sql);
+        return listaLigas;
     }
 
     /**
-     * Devuelve los 3 equipos con mas copas del rey
+     * Funcion que devuelve los 3 equipos con mas copas del rey
      * 
+     * @return lista de equipos
      * @throws PersistenciaException error controlado
      */
-    public void consultarCopas() throws PersistenciaException {
-        persistencia.PalmaresCopas();
+    public ArrayList<Palmares> PalmaresCopas() throws PersistenciaException {
+        ArrayList<Palmares> listaCopas = null;
+        String sql = "SELECT equipo, copasDelRey FROM " + TABLA + " ORDER BY copasDelRey DESC LIMIT 3";
+        listaCopas = obtenerPalmares(sql);
+        return listaCopas;
     }
 
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    public ArrayList<Palmares> obtenerPalmares(String sql) throws PersistenciaException {
+        ArrayList<Palmares> listaPalmares = new ArrayList<>();
+        ResultSet resultSet = null;
+        
+        try {
+            resultSet = persistencia.buscarElementos(sql);
+            while (resultSet.next()) {
+                int identificador = resultSet.getInt("idPalmares");
+                String equipo = resultSet.getString("equipo");
+                int ligas = resultSet.getInt("ligas");
+                int copasDelRey = resultSet.getInt("copasDelRey");
+                int superEspana = resultSet.getInt("SuperEspana");
+                int superEuropa = resultSet.getInt("SuperEuropa");
+                int champions = resultSet.getInt("champions");
+                int mundialClubs = resultSet.getInt("mundialClubs");
+                palmares = new Palmares(identificador, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,
+                        mundialClubs);
+                listaPalmares.add(palmares);
+            }
+        } catch (Exception exception) {
+            throw new PersistenciaException(ERROR_CONSULTA, exception);
+        } finally {
+            persistencia.closeConnection(null, null, resultSet);
+        }
+        return listaPalmares;
+    }
 }
