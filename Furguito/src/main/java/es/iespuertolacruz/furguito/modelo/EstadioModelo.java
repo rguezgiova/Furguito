@@ -23,15 +23,14 @@ public class EstadioModelo {
     /**
      * Metodo que se encarga de la insercion de un equipo en la BBDD
      * 
-     * @param equipo a insertar
+     * @param estadio a insertar
      * @throws PersistenciaException error controlado
      */
-    public void insertar(Equipo equipo) throws PersistenciaException {
+    public void insertar(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO "+ TABLA + "(" + CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
-                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
-                + equipo.getEstadio() + "', " + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", "
-                + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
+        sql = "INSERT INTO "+ TABLA + "(" + CLAVE + ", nombre, equipo, capacidad, construccion) VALUES("
+                + estadio.getId() + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', "
+                + estadio.getCapacidad() + ", " + estadio.getConstruccion() + ")";
         persistencia.actualizar(sql);
     }
 

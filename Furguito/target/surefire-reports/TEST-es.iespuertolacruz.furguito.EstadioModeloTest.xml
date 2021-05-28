@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.022" tests="7" errors="0" skipped="0" failures="1">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.furguito.EstadioModeloTest" time="0.85" tests="2" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,15 +53,10 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="buscarEquipoTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.005"/>
-  <testcase name="eliminarEquipoTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.003"/>
-  <testcase name="modificarEquipoTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0"/>
-  <testcase name="consultarCiudadTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.001"/>
-  <testcase name="consultarInformacionTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.002"/>
-  <testcase name="insertarEquipoTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0.011">
-    <failure message="No se ha podido insertar al equipo" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: No se ha podido insertar al equipo
-	at es.iespuertolacruz.furguito.EquipoModeloTest.insertarEquipoTest(EquipoModeloTest.java:50)
-</failure>
+  <testcase name="buscarEquipoTest" classname="es.iespuertolacruz.furguito.EstadioModeloTest" time="0.028">
+    <failure message="No se debe de obtener un elemento nulo ==&gt; expected: not &lt;null&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: No se debe de obtener un elemento nulo ==> expected: not <null>
+	at es.iespuertolacruz.furguito.EstadioModeloTest.buscarEquipoTest(EstadioModeloTest.java:35)
+]]></failure>
   </testcase>
-  <testcase name="consultarPresupuestoTest" classname="es.iespuertolacruz.furguito.EquipoModeloTest" time="0"/>
+  <testcase name="insertarEstadioTest" classname="es.iespuertolacruz.furguito.EstadioModeloTest" time="0.003"/>
 </testsuite>
