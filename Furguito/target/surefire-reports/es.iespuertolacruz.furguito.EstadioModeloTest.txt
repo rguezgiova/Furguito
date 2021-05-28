@@ -1,8 +1,12 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.EstadioModeloTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.85 s <<< FAILURE! - in es.iespuertolacruz.furguito.EstadioModeloTest
-buscarEquipoTest  Time elapsed: 0.028 s  <<< FAILURE!
-org.opentest4j.AssertionFailedError: No se debe de obtener un elemento nulo ==> expected: not <null>
-	at es.iespuertolacruz.furguito.EstadioModeloTest.buscarEquipoTest(EstadioModeloTest.java:35)
+Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in es.iespuertolacruz.furguito.EstadioModeloTest
+obtenerAnioTest  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se ha podido obtener el estadio
+	at es.iespuertolacruz.furguito.EstadioModeloTest.obtenerAnioTest(EstadioModeloTest.java:103)
+
+obtenerCapacidadTest  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: No se ha podido obtener el estadio
+	at es.iespuertolacruz.furguito.EstadioModeloTest.obtenerCapacidadTest(EstadioModeloTest.java:91)
 

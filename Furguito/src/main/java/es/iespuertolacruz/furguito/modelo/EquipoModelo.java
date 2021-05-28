@@ -13,7 +13,7 @@ public class EquipoModelo {
     private static final String TABLA = "Equipos";
     private static final String CLAVE = "idEquipo";
     private static final String SQLTABLE = "src/resources/sql/equipos-crear.sql";
-    private static final String SQLINSERT = "src/resources/sql/equipos-insert.sql";
+    private static final String SQLINSERT = "src/resources/sql/equipos-insertar.sql";
 
     public EquipoModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);
@@ -27,16 +27,17 @@ public class EquipoModelo {
      */
     public void insertar(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO " + TABLA + " ("+ CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
-                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getEstadio() + "', " + equipo.getFundacion() + ", "
-                + equipo.getNumeroSocios() + ", " + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
+                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
+                + equipo.getEstadio() + "', " + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", "
+                + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
         persistencia.actualizar(sql);
     }
 
     /**
      * Metodo para borrar un equipo de la BBDD
      * 
-     * @param equipo a borrar
+     * @param equipoModificar a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {

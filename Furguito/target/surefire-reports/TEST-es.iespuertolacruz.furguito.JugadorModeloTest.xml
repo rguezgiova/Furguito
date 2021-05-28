@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.furguito.JugadorTest" time="0" tests="3" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.686" tests="6" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="15"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -53,7 +53,14 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="59.0"/>
   </properties>
-  <testcase name="generarPlantillaTest" classname="es.iespuertolacruz.furguito.JugadorTest" time="0"/>
-  <testcase name="toStringTest" classname="es.iespuertolacruz.furguito.JugadorTest" time="0"/>
-  <testcase name="generarPlantillaVaciaTest" classname="es.iespuertolacruz.furguito.JugadorTest" time="0"/>
+  <testcase name="modificarJugadorTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.032">
+    <failure message="No se ha podido modificar al jugador" type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: No se ha podido modificar al jugador
+	at es.iespuertolacruz.furguito.JugadorModeloTest.modificarJugadorTest(JugadorModeloTest.java:57)
+</failure>
+  </testcase>
+  <testcase name="eliminarJugadorTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.005"/>
+  <testcase name="obtenerExpulsadosTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.002"/>
+  <testcase name="insertarJugadorTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.002"/>
+  <testcase name="obtenerGoleadoresTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0.005"/>
+  <testcase name="obtenerJugadorTest" classname="es.iespuertolacruz.furguito.JugadorModeloTest" time="0"/>
 </testsuite>

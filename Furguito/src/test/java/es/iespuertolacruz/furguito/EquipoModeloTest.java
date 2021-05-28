@@ -14,7 +14,7 @@ import es.iespuertolacruz.furguito.modelo.Bbdd;
 import es.iespuertolacruz.furguito.modelo.EquipoModelo;
 
 public class EquipoModeloTest {
-    static Equipo equipo;
+    static Equipo equipoModificar;
     static EquipoModelo equipoModelo;
     Bbdd bbdd;
 
@@ -62,9 +62,9 @@ public class EquipoModeloTest {
 
     @Test
     public void modificarEquipoTest() {
-        equipo = new Equipo(20, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
+        equipoModificar = new Equipo(20, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
         try {
-            equipoModelo.modificar(equipo);
+            equipoModelo.modificar(equipoModificar);
         } catch (PersistenciaException exception) {
             fail("Fallo al modificar el equipo");
         }

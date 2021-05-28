@@ -3,7 +3,6 @@ package es.iespuertolacruz.furguito.modelo;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import es.iespuertolacruz.furguito.api.Equipo;
 import es.iespuertolacruz.furguito.api.Estadio;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
@@ -14,7 +13,7 @@ public class EstadioModelo {
     private static final String TABLA = "Estadios";
     private static final String CLAVE = "idEstadio";
     private static final String SQLTABLE = "src/resources/sql/estadios-crear.sql";
-    private static final String SQLINSERT = "src/resources/sql/estadios-insert.sql";
+    private static final String SQLINSERT = "src/resources/sql/estadios-insertar.sql";
 
     public EstadioModelo() throws PersistenciaException {
         persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);
@@ -28,9 +27,9 @@ public class EstadioModelo {
      */
     public void insertar(Estadio estadio) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO "+ TABLA + "(" + CLAVE + ", nombre, equipo, capacidad, construccion) VALUES("
-                + estadio.getId() + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', "
-                + estadio.getCapacidad() + ", " + estadio.getConstruccion() + ")";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", nombre, equipo, capacidad, construccion) VALUES(" + estadio.getId()
+                + ", '" + estadio.getNombre() + "', '" + estadio.getEquipo() + "', '" + estadio.getCapacidad() + "', '"
+                + estadio.getConstruccion() + "')";
         persistencia.actualizar(sql);
     }
 
@@ -70,8 +69,7 @@ public class EstadioModelo {
     public Estadio obtenerEstadio(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT * FROM Estadios where nombre = '" + nombre + "'";
-        sql = sql + "'" + nombre + "'";
+        String sql = "SELECT * FROM " + TABLA + " where nombre = '" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);
@@ -89,7 +87,7 @@ public class EstadioModelo {
     public Estadio obtenerCapacidad(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT nombre, capacidad FROM "+ TABLA + " where nombre = '" + nombre + "'";
+        String sql = "SELECT capacidad FROM " + TABLA + " where nombre = '" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);
@@ -107,7 +105,7 @@ public class EstadioModelo {
     public Estadio obtenerAnio(String nombre) throws PersistenciaException {
         Estadio estadio = null;
         ArrayList<Estadio> listaEstadios = null;
-        String sql = "SELECT nombre, construccion FROM " + TABLA + " where nombre = '" + nombre + "'";
+        String sql = "SELECT construccion FROM " + TABLA + " where nombre = '" + nombre + "'";
         listaEstadios = obtenerEstadios(sql);
         if (!listaEstadios.isEmpty()) {
             estadio = listaEstadios.get(0);

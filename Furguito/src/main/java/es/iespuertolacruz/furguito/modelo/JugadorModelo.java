@@ -43,8 +43,8 @@ public class JugadorModelo {
     public void modificar(Jugador jugador) throws PersistenciaException {
         String sql = "";
         sql = "UPDATE " + TABLA + " SET equipo = '" + jugador.getEquipo() + "'" + ", nombre = '" + jugador.getNombre() + "'"
-                + ", dorsal = '" + jugador.getDorsal() + "'" + ", goles = '" + jugador.getGoles() + ", asistencias = '"
-                + jugador.getAsistencias() + ", amarillas = '" + jugador.getAmarillas() + ", rojas = '"
+                + ", dorsal = " + jugador.getDorsal() + ", goles = " + jugador.getGoles() + ", asistencias = "
+                + jugador.getAsistencias() + ", amarillas = " + jugador.getAmarillas() + ", rojas = "
                 + jugador.getRojas() + "' WHERE " + CLAVE + " = " + jugador.getId();
         persistencia.actualizar(sql);
     }
