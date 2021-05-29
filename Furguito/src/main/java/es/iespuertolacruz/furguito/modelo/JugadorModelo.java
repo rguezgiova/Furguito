@@ -12,11 +12,13 @@ public class JugadorModelo {
     private static final String ERROR_CONSULTA = "Se ha producido un error en la transformacion ";
     private static final String TABLA = "Jugadores";
     private static final String CLAVE = "idJugador";
-    private static final String SQLTABLE = "src/resources/sql/jugadores-crear.sql";
-    private static final String SQLINSERT = "src/resources/sql/jugadores-insert.sql";
 
+    /**
+     * Constructor de la clase
+     * @throws PersistenciaException error controlado
+     */
     public JugadorModelo() throws PersistenciaException {
-        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);
+        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);
     }
 
     /**

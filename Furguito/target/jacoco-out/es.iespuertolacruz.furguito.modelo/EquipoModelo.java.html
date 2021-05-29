@@ -12,12 +12,14 @@ public class EquipoModelo {
     private static final String ERROR_CONSULTA = &quot;Se ha producido un error en la transformacion &quot;;
     private static final String TABLA = &quot;Equipos&quot;;
     private static final String CLAVE = &quot;idEquipo&quot;;
-    private static final String SQLTABLE = &quot;src/resources/sql/equipos-crear.sql&quot;;
-    private static final String SQLINSERT = &quot;src/resources/sql/equipos-insertar.sql&quot;;
 
-<span class="fc" id="L18">    public EquipoModelo() throws PersistenciaException {</span>
-<span class="fc" id="L19">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);</span>
-<span class="fc" id="L20">    }</span>
+    /**
+     * Constructor de la clase
+     * @throws PersistenciaException error controlado
+     */
+<span class="fc" id="L20">    public EquipoModelo() throws PersistenciaException {</span>
+<span class="fc" id="L21">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="fc" id="L22">    }</span>
 
     /**
      * Metodo que se encarga de la insercion de un equipo en la BBDD
@@ -26,13 +28,13 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public void insertar(Equipo equipo) throws PersistenciaException {
-<span class="fc" id="L29">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L30">        sql = &quot;INSERT INTO &quot; + TABLA + &quot; (&quot; + CLAVE + &quot;, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES(&quot;</span>
-<span class="fc" id="L31">                + equipo.getId() + &quot;, '&quot; + equipo.getNombre() + &quot;', '&quot; + equipo.getCiudad() + &quot;', '&quot;</span>
-<span class="fc" id="L32">                + equipo.getEstadio() + &quot;', &quot; + equipo.getFundacion() + &quot;, &quot; + equipo.getNumeroSocios() + &quot;, &quot;</span>
-<span class="fc" id="L33">                + equipo.getPresupuesto() + &quot;, '&quot; + equipo.getColores() + &quot;')&quot;;</span>
-<span class="fc" id="L34">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L35">    }</span>
+<span class="fc" id="L31">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L32">        sql = &quot;INSERT INTO &quot; + TABLA + &quot; (&quot; + CLAVE + &quot;, nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES(&quot;</span>
+<span class="fc" id="L33">                + equipo.getId() + &quot;, '&quot; + equipo.getNombre() + &quot;', '&quot; + equipo.getCiudad() + &quot;', '&quot;</span>
+<span class="fc" id="L34">                + equipo.getEstadio() + &quot;', &quot; + equipo.getFundacion() + &quot;, &quot; + equipo.getNumeroSocios() + &quot;, &quot;</span>
+<span class="fc" id="L35">                + equipo.getPresupuesto() + &quot;, '&quot; + equipo.getColores() + &quot;')&quot;;</span>
+<span class="fc" id="L36">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L37">    }</span>
 
     /**
      * Metodo para borrar un equipo de la BBDD
@@ -41,10 +43,10 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {
-<span class="fc" id="L44">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L45">        sql = &quot;DELETE FROM &quot; + TABLA + &quot; WHERE &quot;+ CLAVE + &quot; = &quot; + id;</span>
-<span class="fc" id="L46">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L47">    }</span>
+<span class="fc" id="L46">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L47">        sql = &quot;DELETE FROM &quot; + TABLA + &quot; WHERE &quot;+ CLAVE + &quot; = &quot; + id;</span>
+<span class="fc" id="L48">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L49">    }</span>
 
     /**
      * Metodo para modificar un equipo dentro de la BBDD
@@ -53,13 +55,13 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public void modificar(Equipo equipo) throws PersistenciaException {
-<span class="fc" id="L56">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L57">        sql = &quot;UPDATE &quot; + TABLA + &quot; SET nombre = '&quot; + equipo.getNombre() + &quot;'&quot; + &quot;, ciudad = '&quot; + equipo.getCiudad() + &quot;'&quot;</span>
-<span class="fc" id="L58">                + &quot;, estadio = '&quot; + equipo.getEstadio() + &quot;'&quot; + &quot;, fundacion = &quot; + equipo.getFundacion()</span>
-<span class="fc" id="L59">                + &quot;, numero_socios = &quot; + equipo.getNumeroSocios() + &quot;, presupuesto = &quot; + equipo.getPresupuesto()</span>
-<span class="fc" id="L60">                + &quot;, colores = '&quot; + equipo.getColores() + &quot;' WHERE &quot; + CLAVE + &quot; = &quot; + equipo.getId();</span>
-<span class="fc" id="L61">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L62">    }</span>
+<span class="fc" id="L58">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L59">        sql = &quot;UPDATE &quot; + TABLA + &quot; SET nombre = '&quot; + equipo.getNombre() + &quot;'&quot; + &quot;, ciudad = '&quot; + equipo.getCiudad() + &quot;'&quot;</span>
+<span class="fc" id="L60">                + &quot;, estadio = '&quot; + equipo.getEstadio() + &quot;'&quot; + &quot;, fundacion = &quot; + equipo.getFundacion()</span>
+<span class="fc" id="L61">                + &quot;, numero_socios = &quot; + equipo.getNumeroSocios() + &quot;, presupuesto = &quot; + equipo.getPresupuesto()</span>
+<span class="fc" id="L62">                + &quot;, colores = '&quot; + equipo.getColores() + &quot;' WHERE &quot; + CLAVE + &quot; = &quot; + equipo.getId();</span>
+<span class="fc" id="L63">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L64">    }</span>
 
     /**
      * Funcion que obtiene un equipo buscado por nombre
@@ -69,25 +71,25 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public Equipo obtenerEquipo(String nombre) throws PersistenciaException {
-<span class="fc" id="L72">        Equipo equipo = null;</span>
-<span class="fc" id="L73">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
-<span class="fc" id="L74">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
-<span class="fc" id="L75">        listaEquipos = obtenerEquipos(sql);</span>
-<span class="pc bpc" id="L76" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
-<span class="fc" id="L77">            equipo = listaEquipos.get(0);</span>
+<span class="fc" id="L74">        Equipo equipo = null;</span>
+<span class="fc" id="L75">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="fc" id="L76">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="fc" id="L77">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="pc bpc" id="L78" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="fc" id="L79">            equipo = listaEquipos.get(0);</span>
         }
-<span class="fc" id="L79">        return equipo;</span>
+<span class="fc" id="L81">        return equipo;</span>
     }
 
     public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {
-<span class="fc" id="L83">        Equipo equipo = null;</span>
-<span class="fc" id="L84">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
-<span class="fc" id="L85">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
-<span class="fc" id="L86">        listaEquipos = obtenerEquipos(sql);</span>
-<span class="pc bpc" id="L87" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
-<span class="fc" id="L88">            equipo = listaEquipos.get(0);</span>
+<span class="fc" id="L85">        Equipo equipo = null;</span>
+<span class="fc" id="L86">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="fc" id="L87">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="fc" id="L88">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="pc bpc" id="L89" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="fc" id="L90">            equipo = listaEquipos.get(0);</span>
         }
-<span class="fc" id="L90">        return equipo;</span>
+<span class="fc" id="L92">        return equipo;</span>
     }
 
     /**
@@ -98,14 +100,14 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
-<span class="fc" id="L101">        Equipo equipo = null;</span>
-<span class="fc" id="L102">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
-<span class="fc" id="L103">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
-<span class="fc" id="L104">        listaEquipos = obtenerEquipos(sql);</span>
-<span class="pc bpc" id="L105" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
-<span class="fc" id="L106">            equipo = listaEquipos.get(0);</span>
+<span class="fc" id="L103">        Equipo equipo = null;</span>
+<span class="fc" id="L104">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="fc" id="L105">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="fc" id="L106">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="fc" id="L108">            equipo = listaEquipos.get(0);</span>
         }
-<span class="fc" id="L108">        return equipo;</span>
+<span class="fc" id="L110">        return equipo;</span>
     }
 
     /**
@@ -116,30 +118,30 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     private ArrayList&lt;Equipo&gt; obtenerEquipos(String sql) throws PersistenciaException {
-<span class="fc" id="L119">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L120">        ResultSet resultSet = null;</span>
+<span class="fc" id="L121">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L122">        ResultSet resultSet = null;</span>
 
         try {
-<span class="fc" id="L123">            resultSet = persistencia.buscarElementos(sql);</span>
-<span class="fc bfc" id="L124" title="All 2 branches covered.">            while (resultSet.next()) {</span>
-<span class="fc" id="L125">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
-<span class="fc" id="L126">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
-<span class="fc" id="L127">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
-<span class="fc" id="L128">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
-<span class="fc" id="L129">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
-<span class="fc" id="L130">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
-<span class="fc" id="L131">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
-<span class="fc" id="L132">                String colores = resultSet.getString(&quot;colores&quot;);</span>
-<span class="fc" id="L133">                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,</span>
+<span class="fc" id="L125">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L127">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
+<span class="fc" id="L128">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L129">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
+<span class="fc" id="L130">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
+<span class="fc" id="L131">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
+<span class="fc" id="L132">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
+<span class="fc" id="L133">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
+<span class="fc" id="L134">                String colores = resultSet.getString(&quot;colores&quot;);</span>
+<span class="fc" id="L135">                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,</span>
                         colores);
-<span class="fc" id="L135">                listaEquipos.add(equipo);</span>
-<span class="fc" id="L136">            }</span>
-<span class="nc" id="L137">        } catch (Exception exception) {</span>
-<span class="nc" id="L138">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+<span class="fc" id="L137">                listaEquipos.add(equipo);</span>
+<span class="fc" id="L138">            }</span>
+<span class="nc" id="L139">        } catch (Exception exception) {</span>
+<span class="nc" id="L140">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
         } finally {
-<span class="fc" id="L140">            persistencia.closeConnection(null, null, resultSet);</span>
+<span class="fc" id="L142">            persistencia.closeConnection(null, null, resultSet);</span>
         }
-<span class="fc" id="L142">        return listaEquipos;</span>
+<span class="fc" id="L144">        return listaEquipos;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -2,13 +2,10 @@ package es.iespuertolacruz.furguito.modelo;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class Bbdd {
-    private static final String NOMBRE_TABLAS = "Equipos,Jugadores,Estadios,Palmares";
     private static final String TABLE = "TABLE";
     private static final String TABLE_NAME = "TABLE_NAME";
     protected String nombretabla;
@@ -17,8 +14,6 @@ public class Bbdd {
     protected String url;
     protected String usuario;
     protected String password;
-    protected String slqTable;
-    protected String sqlInsert;
 
     /**
      * Constructor con parametros
@@ -29,17 +24,14 @@ public class Bbdd {
      * @param password del usuario
      * @throws PersistenciaException
      */
-    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password,
-            String sqlTable, String sqlInsert) throws PersistenciaException {
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
         this.nombretabla = nombretabla;
         this.clave = clave;
         this.driver = driver;
         this.url = url;
         this.usuario = usuario;
         this.password = password;
-        this.slqTable = sqlTable;
-        this.sqlInsert = sqlInsert;
-        init(nombretabla);
+        init();
     }
 
     /**
@@ -47,13 +39,11 @@ public class Bbdd {
      * 
      * @throws PersistenciaException error controlado
      */
-    private void init(String nombreTabla) throws PersistenciaException {
+    private void init() throws PersistenciaException {
         DatabaseMetaData databaseMetaData;
         Connection connection = null;
         ResultSet resultSet = null;
         ArrayList<String> listaTablas = new ArrayList<>();
-        String[] convertir = NOMBRE_TABLAS.split(",");
-        List<String> nombreTablas = Arrays.asList(convertir);
 
         try {
             connection = getConnection();
@@ -62,12 +52,12 @@ public class Bbdd {
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
-            for (String tabla : nombreTablas) {
-                if (!listaTablas.contains(tabla)) {
-                    actualizar(slqTable);
-                    actualizar(sqlInsert);
+                if (!listaTablas.contains(nombretabla)) {
+                    String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-crear.sql");
+                    actualizar(sqlCrearTabla);
+                    String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-insertar.sql");
+                    actualizar(sqlInsertarDatos);
                 }
-            }
         } catch (Exception e) {
             throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
