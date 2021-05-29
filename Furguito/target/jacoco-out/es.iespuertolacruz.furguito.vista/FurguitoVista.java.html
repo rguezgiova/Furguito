@@ -3,255 +3,386 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-<span class="fc" id="L6">public class FurguitoVista {</span>
+import es.iespuertolacruz.furguito.api.Equipo;
+import es.iespuertolacruz.furguito.api.Estadio;
+import es.iespuertolacruz.furguito.api.Jugador;
+import es.iespuertolacruz.furguito.api.Palmares;
+
+<span class="fc" id="L11">public class FurguitoVista {</span>
     private static final String INTRODUCIR_NUMERO = &quot;Debe introducir un numero&quot;;
     private static final String SEPARADOR = &quot;##########################\n&quot;;
     private static final String ESCRIBE_OPCIONES = &quot;Escribe una de las opciones:&quot;;
     private static final String ADMIN = &quot;admin&quot;;
 
     public static void main(String[] args) {
-<span class="nc" id="L13">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L18">        Scanner sn = new Scanner(System.in);</span>
         int opcion;
-<span class="nc" id="L15">        boolean salir = false;</span>
-<span class="nc bnc" id="L16" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L17">            System.out.println(&quot;##Bienvenido a Furguito##&quot;);</span>
-<span class="nc" id="L18">            System.out.println(SEPARADOR);</span>
-<span class="nc" id="L19">            System.out.println(&quot;1. Entrar como invitado&quot;);</span>
-<span class="nc" id="L20">            System.out.println(&quot;2. Entrar como administrador&quot;);</span>
-<span class="nc" id="L21">            System.out.println(&quot;3. Salir&quot;);</span>
+<span class="nc" id="L20">        boolean salir = false;</span>
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L22">            System.out.println(&quot;##Bienvenido a Furguito##&quot;);</span>
+<span class="nc" id="L23">            System.out.println(SEPARADOR);</span>
+<span class="nc" id="L24">            System.out.println(&quot;1. Entrar como invitado&quot;);</span>
+<span class="nc" id="L25">            System.out.println(&quot;2. Entrar como administrador&quot;);</span>
+<span class="nc" id="L26">            System.out.println(&quot;3. Salir&quot;);</span>
 
             try {
-<span class="nc" id="L24">                System.out.println(ESCRIBE_OPCIONES);</span>
-<span class="nc" id="L25">                opcion = sn.nextInt();</span>
-<span class="nc bnc" id="L26" title="All 4 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L29">                System.out.println(ESCRIBE_OPCIONES);</span>
+<span class="nc" id="L30">                opcion = sn.nextInt();</span>
+<span class="nc bnc" id="L31" title="All 4 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L28">                        System.out.println(&quot;Entrar como invitado&quot;);</span>
-<span class="nc" id="L29">                        System.out.println(SEPARADOR);</span>
-<span class="nc" id="L30">                        menuInvitado();</span>
-<span class="nc" id="L31">                        break;</span>
-                    case 2:
-<span class="nc" id="L33">                        System.out.println(&quot;Entrar como administrador&quot;);</span>
+<span class="nc" id="L33">                        System.out.println(&quot;Entrar como invitado&quot;);</span>
 <span class="nc" id="L34">                        System.out.println(SEPARADOR);</span>
-<span class="nc" id="L35">                        String usuario = null;</span>
-<span class="nc" id="L36">                        String password = null;</span>
-<span class="nc" id="L37">                        System.out.println(&quot;Introduzca el usuario:&quot;);</span>
-<span class="nc" id="L38">                        usuario = sn.next();</span>
-<span class="nc" id="L39">                        System.out.println(&quot;Introduzca la contraseña:&quot;);</span>
-<span class="nc" id="L40">                        password = sn.next();</span>
-<span class="nc bnc" id="L41" title="All 4 branches missed.">                        if (!usuario.equals(ADMIN) &amp;&amp; !password.equals(ADMIN)) {</span>
-<span class="nc" id="L42">                            System.out.println(&quot;Validacion incorrecta&quot;);</span>
-<span class="nc" id="L43">                            System.out.println(&quot;Accediendo como invitado&quot;);</span>
-<span class="nc" id="L44">                            System.out.println(SEPARADOR);</span>
-<span class="nc" id="L45">                            menuInvitado();</span>
+<span class="nc" id="L35">                        menuInvitado();</span>
+<span class="nc" id="L36">                        break;</span>
+                    case 2:
+<span class="nc" id="L38">                        System.out.println(&quot;Entrar como administrador&quot;);</span>
+<span class="nc" id="L39">                        System.out.println(SEPARADOR);</span>
+<span class="nc" id="L40">                        String usuario = null;</span>
+<span class="nc" id="L41">                        String password = null;</span>
+<span class="nc" id="L42">                        System.out.println(&quot;Introduzca el usuario:&quot;);</span>
+<span class="nc" id="L43">                        usuario = sn.next();</span>
+<span class="nc" id="L44">                        System.out.println(&quot;Introduzca la contraseña:&quot;);</span>
+<span class="nc" id="L45">                        password = sn.next();</span>
+<span class="nc bnc" id="L46" title="All 4 branches missed.">                        if (!usuario.equals(ADMIN) &amp;&amp; !password.equals(ADMIN)) {</span>
+<span class="nc" id="L47">                            System.out.println(&quot;Validacion incorrecta&quot;);</span>
+<span class="nc" id="L48">                            System.out.println(&quot;Accediendo como invitado&quot;);</span>
+<span class="nc" id="L49">                            System.out.println(SEPARADOR);</span>
+<span class="nc" id="L50">                            menuInvitado();</span>
                         } else {
-<span class="nc" id="L47">                            System.out.println(&quot;Accediendo como administrador&quot;);</span>
-<span class="nc" id="L48">                            System.out.println(SEPARADOR);</span>
-<span class="nc" id="L49">                            menuAdmin();</span>
+<span class="nc" id="L52">                            System.out.println(&quot;Accediendo como administrador&quot;);</span>
+<span class="nc" id="L53">                            System.out.println(SEPARADOR);</span>
+<span class="nc" id="L54">                            menuAdmin();</span>
                         }
-<span class="nc" id="L51">                        break;</span>
-                    case 3:
-<span class="nc" id="L53">                        System.out.println(&quot;Gracias por usar Furguito&quot;);</span>
-<span class="nc" id="L54">                        System.out.println(SEPARADOR);</span>
-<span class="nc" id="L55">                        salir = true;</span>
 <span class="nc" id="L56">                        break;</span>
+                    case 3:
+<span class="nc" id="L58">                        System.out.println(&quot;Gracias por usar Furguito&quot;);</span>
+<span class="nc" id="L59">                        System.out.println(SEPARADOR);</span>
+<span class="nc" id="L60">                        salir = true;</span>
+<span class="nc" id="L61">                        break;</span>
                     default:
-<span class="nc" id="L58">                        System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L63">                        System.out.println(INTRODUCIR_NUMERO);</span>
                 }
-<span class="nc" id="L60">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L61">                System.out.println(INTRODUCIR_NUMERO);</span>
-<span class="nc" id="L62">                sn.next();</span>
-<span class="nc" id="L63">            }</span>
+<span class="nc" id="L65">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L66">                System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L67">                sn.next();</span>
+<span class="nc" id="L68">            }</span>
         }
-<span class="nc" id="L65">    }</span>
+<span class="nc" id="L70">    }</span>
 
     public static void menuAdmin() {
-<span class="nc" id="L68">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L73">        Scanner sn = new Scanner(System.in);</span>
         int opcion;
-<span class="nc" id="L70">        boolean salir = false;</span>
-<span class="nc bnc" id="L71" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L72">            System.out.println(&quot;1- Insertar club&quot;);</span>
-<span class="nc" id="L73">            System.out.println(&quot;2- Modificar club&quot;);</span>
-<span class="nc" id="L74">            System.out.println(&quot;3- Borrar club&quot;);</span>
-<span class="nc" id="L75">            System.out.println(&quot;4- Insertar estadio&quot;);</span>
-<span class="nc" id="L76">            System.out.println(&quot;5- Modificar estadio&quot;);</span>
-<span class="nc" id="L77">            System.out.println(&quot;6- Borrar estadio&quot;);</span>
-<span class="nc" id="L78">            System.out.println(&quot;7- Insertar jugador&quot;);</span>
-<span class="nc" id="L79">            System.out.println(&quot;8- Modificar jugador&quot;);</span>
-<span class="nc" id="L80">            System.out.println(&quot;9- Borrar jugador&quot;);</span>
-<span class="nc" id="L81">            System.out.println(&quot;10- Insertar palmares&quot;);</span>
-<span class="nc" id="L82">            System.out.println(&quot;11- Modificar palmares&quot;);</span>
-<span class="nc" id="L83">            System.out.println(&quot;12- Borrar palmares&quot;);</span>
-<span class="nc" id="L84">            System.out.println(&quot;13- Salir&quot;);</span>
+<span class="nc" id="L75">        boolean salir = false;</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L77">            System.out.println(&quot;1- Insertar club&quot;);</span>
+<span class="nc" id="L78">            System.out.println(&quot;2- Modificar club&quot;);</span>
+<span class="nc" id="L79">            System.out.println(&quot;3- Borrar club&quot;);</span>
+<span class="nc" id="L80">            System.out.println(&quot;4- Insertar estadio&quot;);</span>
+<span class="nc" id="L81">            System.out.println(&quot;5- Modificar estadio&quot;);</span>
+<span class="nc" id="L82">            System.out.println(&quot;6- Borrar estadio&quot;);</span>
+<span class="nc" id="L83">            System.out.println(&quot;7- Insertar jugador&quot;);</span>
+<span class="nc" id="L84">            System.out.println(&quot;8- Modificar jugador&quot;);</span>
+<span class="nc" id="L85">            System.out.println(&quot;9- Borrar jugador&quot;);</span>
+<span class="nc" id="L86">            System.out.println(&quot;10- Insertar palmares&quot;);</span>
+<span class="nc" id="L87">            System.out.println(&quot;11- Modificar palmares&quot;);</span>
+<span class="nc" id="L88">            System.out.println(&quot;12- Borrar palmares&quot;);</span>
+<span class="nc" id="L89">            System.out.println(&quot;13- Salir&quot;);</span>
 
             try {
-<span class="nc" id="L87">                System.out.println(ESCRIBE_OPCIONES);</span>
-<span class="nc" id="L88">                opcion = sn.nextInt();</span>
-<span class="nc bnc" id="L89" title="All 14 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L92">                System.out.println(ESCRIBE_OPCIONES);</span>
+<span class="nc" id="L93">                opcion = sn.nextInt();</span>
+<span class="nc bnc" id="L94" title="All 14 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L91">                        System.out.println(&quot;Insertar club&quot;);</span>
+<span class="nc" id="L96">                        System.out.println(&quot;Insertar club&quot;);</span>
 
-<span class="nc" id="L93">                        break;</span>
+<span class="nc" id="L98">                        break;</span>
                     case 2:
-<span class="nc" id="L95">                        System.out.println(&quot;Modificar club&quot;);</span>
+<span class="nc" id="L100">                        System.out.println(&quot;Modificar club&quot;);</span>
 
-<span class="nc" id="L97">                        break;</span>
+<span class="nc" id="L102">                        break;</span>
                     case 3:
-<span class="nc" id="L99">                        System.out.println(&quot;Borrar club&quot;);</span>
+<span class="nc" id="L104">                        System.out.println(&quot;Borrar club&quot;);</span>
 
-<span class="nc" id="L101">                        break;</span>
+<span class="nc" id="L106">                        break;</span>
                     case 4:
-<span class="nc" id="L103">                        System.out.println(&quot;Insertar estadio&quot;);</span>
+<span class="nc" id="L108">                        System.out.println(&quot;Insertar estadio&quot;);</span>
 
-<span class="nc" id="L105">                        break;</span>
+<span class="nc" id="L110">                        break;</span>
                     case 5:
-<span class="nc" id="L107">                        System.out.println(&quot;Modificar estadio&quot;);</span>
+<span class="nc" id="L112">                        System.out.println(&quot;Modificar estadio&quot;);</span>
 
-<span class="nc" id="L109">                        break;</span>
+<span class="nc" id="L114">                        break;</span>
                     case 6:
-<span class="nc" id="L111">                        System.out.println(&quot;Borrar estadio&quot;);</span>
+<span class="nc" id="L116">                        System.out.println(&quot;Borrar estadio&quot;);</span>
 
-<span class="nc" id="L113">                        break;</span>
+<span class="nc" id="L118">                        break;</span>
                     case 7:
-<span class="nc" id="L115">                        System.out.println(&quot;Insertar jugador&quot;);</span>
+<span class="nc" id="L120">                        System.out.println(&quot;Insertar jugador&quot;);</span>
 
-<span class="nc" id="L117">                        break;</span>
+<span class="nc" id="L122">                        break;</span>
                     case 8:
-<span class="nc" id="L119">                        System.out.println(&quot;Modificar jugador&quot;);</span>
+<span class="nc" id="L124">                        System.out.println(&quot;Modificar jugador&quot;);</span>
 
-<span class="nc" id="L121">                        break;</span>
+<span class="nc" id="L126">                        break;</span>
                     case 9:
-<span class="nc" id="L123">                        System.out.println(&quot;Borrar jugador&quot;);</span>
+<span class="nc" id="L128">                        System.out.println(&quot;Borrar jugador&quot;);</span>
 
-<span class="nc" id="L125">                        break;</span>
+<span class="nc" id="L130">                        break;</span>
                     case 10:
-<span class="nc" id="L127">                        System.out.println(&quot;Insertar jugador&quot;);</span>
+<span class="nc" id="L132">                        System.out.println(&quot;Insertar jugador&quot;);</span>
 
-<span class="nc" id="L129">                        break;</span>
+<span class="nc" id="L134">                        break;</span>
                     case 11:
-<span class="nc" id="L131">                        System.out.println(&quot;Modificar jugador&quot;);</span>
+<span class="nc" id="L136">                        System.out.println(&quot;Modificar jugador&quot;);</span>
 
-<span class="nc" id="L133">                        break;</span>
+<span class="nc" id="L138">                        break;</span>
                     case 12:
-<span class="nc" id="L135">                        System.out.println(&quot;Borrar jugador&quot;);</span>
+<span class="nc" id="L140">                        System.out.println(&quot;Borrar jugador&quot;);</span>
 
-<span class="nc" id="L137">                        break;</span>
+<span class="nc" id="L142">                        break;</span>
                     case 13:
-<span class="nc" id="L139">                        System.out.println(SEPARADOR);</span>
-<span class="nc" id="L140">                        salir = true;</span>
-<span class="nc" id="L141">                        break;</span>
+<span class="nc" id="L144">                        System.out.println(SEPARADOR);</span>
+<span class="nc" id="L145">                        salir = true;</span>
+<span class="nc" id="L146">                        break;</span>
                     default:
-<span class="nc" id="L143">                        System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L148">                        System.out.println(INTRODUCIR_NUMERO);</span>
                 }
-<span class="nc" id="L145">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L146">                System.out.println(INTRODUCIR_NUMERO);</span>
-<span class="nc" id="L147">                sn.next();</span>
-<span class="nc" id="L148">            }</span>
+<span class="nc" id="L150">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L151">                System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L152">                sn.next();</span>
+<span class="nc" id="L153">            }</span>
         }
-<span class="nc" id="L150">    }</span>
+<span class="nc" id="L155">    }</span>
 
     public static void menuInvitado() {
-<span class="nc" id="L153">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L158">        Scanner sn = new Scanner(System.in);</span>
         int opcion;
-<span class="nc" id="L155">        boolean salir = false;</span>
+<span class="nc" id="L160">        boolean salir = false;</span>
         String nombreEquipo;
         String nombreEstadio;
         String nombreJugador;
-<span class="nc bnc" id="L159" title="All 2 branches missed.">        while (!salir) {</span>
-<span class="nc" id="L160">            System.out.println(&quot;1- Informacion del club&quot;);</span>
-<span class="nc" id="L161">            System.out.println(&quot;2- Consultar presupuesto del club&quot;);</span>
-<span class="nc" id="L162">            System.out.println(&quot;3- Consultar ciudad del club&quot;);</span>
-<span class="nc" id="L163">            System.out.println(&quot;4- Informacion del estadio&quot;);</span>
-<span class="nc" id="L164">            System.out.println(&quot;5- Capacidad del estadio&quot;);</span>
-<span class="nc" id="L165">            System.out.println(&quot;6- Fecha de construccion del estadio&quot;);</span>
-<span class="nc" id="L166">            System.out.println(&quot;7- Informacion del jugador&quot;);</span>
-<span class="nc" id="L167">            System.out.println(&quot;8- Top 5 maximos goleadores&quot;);</span>
-<span class="nc" id="L168">            System.out.println(&quot;9- Top 10 jugadores mas expulsados&quot;);</span>
-<span class="nc" id="L169">            System.out.println(&quot;10- Consultar palmares&quot;);</span>
-<span class="nc" id="L170">            System.out.println(&quot;11- Equipos con mas ligas&quot;);</span>
-<span class="nc" id="L171">            System.out.println(&quot;12- Equipos con mas copas&quot;);</span>
-<span class="nc" id="L172">            System.out.println(&quot;13- Salir&quot;);</span>
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        while (!salir) {</span>
+<span class="nc" id="L165">            System.out.println(&quot;1- Informacion del club&quot;);</span>
+<span class="nc" id="L166">            System.out.println(&quot;2- Consultar presupuesto del club&quot;);</span>
+<span class="nc" id="L167">            System.out.println(&quot;3- Consultar ciudad del club&quot;);</span>
+<span class="nc" id="L168">            System.out.println(&quot;4- Informacion del estadio&quot;);</span>
+<span class="nc" id="L169">            System.out.println(&quot;5- Capacidad del estadio&quot;);</span>
+<span class="nc" id="L170">            System.out.println(&quot;6- Fecha de construccion del estadio&quot;);</span>
+<span class="nc" id="L171">            System.out.println(&quot;7- Informacion del jugador&quot;);</span>
+<span class="nc" id="L172">            System.out.println(&quot;8- Top 5 maximos goleadores&quot;);</span>
+<span class="nc" id="L173">            System.out.println(&quot;9- Top 10 jugadores mas expulsados&quot;);</span>
+<span class="nc" id="L174">            System.out.println(&quot;10- Consultar palmares&quot;);</span>
+<span class="nc" id="L175">            System.out.println(&quot;11- Equipos con mas ligas&quot;);</span>
+<span class="nc" id="L176">            System.out.println(&quot;12- Equipos con mas copas&quot;);</span>
+<span class="nc" id="L177">            System.out.println(&quot;13- Salir&quot;);</span>
 
             try {
-<span class="nc" id="L175">                System.out.println(ESCRIBE_OPCIONES);</span>
-<span class="nc" id="L176">                opcion = sn.nextInt();</span>
-<span class="nc bnc" id="L177" title="All 14 branches missed.">                switch (opcion) {</span>
+<span class="nc" id="L180">                System.out.println(ESCRIBE_OPCIONES);</span>
+<span class="nc" id="L181">                opcion = sn.nextInt();</span>
+<span class="nc bnc" id="L182" title="All 14 branches missed.">                switch (opcion) {</span>
                     case 1:
-<span class="nc" id="L179">                        System.out.println(&quot;Informacion del club&quot;);</span>
-<span class="nc" id="L180">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
-<span class="nc" id="L181">                        nombreEquipo = sn.next();</span>
+<span class="nc" id="L184">                        System.out.println(&quot;Informacion del club&quot;);</span>
+<span class="nc" id="L185">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
+<span class="nc" id="L186">                        nombreEquipo = sn.next();</span>
 
-<span class="nc" id="L183">                        break;</span>
+<span class="nc" id="L188">                        break;</span>
                     case 2:
-<span class="nc" id="L185">                        System.out.println(&quot;Consultar presupuesto del club&quot;);</span>
-<span class="nc" id="L186">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
-<span class="nc" id="L187">                        nombreEquipo = sn.next();</span>
+<span class="nc" id="L190">                        System.out.println(&quot;Consultar presupuesto del club&quot;);</span>
+<span class="nc" id="L191">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
+<span class="nc" id="L192">                        nombreEquipo = sn.next();</span>
 
-<span class="nc" id="L189">                        break;</span>
+<span class="nc" id="L194">                        break;</span>
                     case 3:
-<span class="nc" id="L191">                        System.out.println(&quot;Consultar ciudad del club&quot;);</span>
-<span class="nc" id="L192">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
-<span class="nc" id="L193">                        nombreEquipo = sn.next();</span>
+<span class="nc" id="L196">                        System.out.println(&quot;Consultar ciudad del club&quot;);</span>
+<span class="nc" id="L197">                        System.out.println(&quot;Introduzca el nombre del club:&quot;);</span>
+<span class="nc" id="L198">                        nombreEquipo = sn.next();</span>
 
-<span class="nc" id="L195">                        break;</span>
+<span class="nc" id="L200">                        break;</span>
                     case 4:
-<span class="nc" id="L197">                        System.out.println(&quot;Informacion del estadio&quot;);</span>
-<span class="nc" id="L198">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
-<span class="nc" id="L199">                        nombreEstadio = sn.next();</span>
+<span class="nc" id="L202">                        System.out.println(&quot;Informacion del estadio&quot;);</span>
+<span class="nc" id="L203">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
+<span class="nc" id="L204">                        nombreEstadio = sn.next();</span>
 
-<span class="nc" id="L201">                        break;</span>
+<span class="nc" id="L206">                        break;</span>
                     case 5:
-<span class="nc" id="L203">                        System.out.println(&quot;Capacidad del estadio&quot;);</span>
-<span class="nc" id="L204">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
-<span class="nc" id="L205">                        nombreEstadio = sn.next();</span>
+<span class="nc" id="L208">                        System.out.println(&quot;Capacidad del estadio&quot;);</span>
+<span class="nc" id="L209">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
+<span class="nc" id="L210">                        nombreEstadio = sn.next();</span>
 
-<span class="nc" id="L207">                        break;</span>
+<span class="nc" id="L212">                        break;</span>
                     case 6:
-<span class="nc" id="L209">                        System.out.println(&quot;Fecha de construccion del estadio&quot;);</span>
-<span class="nc" id="L210">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
-<span class="nc" id="L211">                        nombreEstadio = sn.next();</span>
+<span class="nc" id="L214">                        System.out.println(&quot;Fecha de construccion del estadio&quot;);</span>
+<span class="nc" id="L215">                        System.out.println(&quot;Introduzca el nombre del estadio:&quot;);</span>
+<span class="nc" id="L216">                        nombreEstadio = sn.next();</span>
 
-<span class="nc" id="L213">                        break;</span>
+<span class="nc" id="L218">                        break;</span>
                     case 7:
-<span class="nc" id="L215">                        System.out.println(&quot;Informacion del jugador&quot;);</span>
-<span class="nc" id="L216">                        System.out.println(&quot;Introduzca el nombre del jugador:&quot;);</span>
-<span class="nc" id="L217">                        nombreJugador = sn.next();</span>
+<span class="nc" id="L220">                        System.out.println(&quot;Informacion del jugador&quot;);</span>
+<span class="nc" id="L221">                        System.out.println(&quot;Introduzca el nombre del jugador:&quot;);</span>
+<span class="nc" id="L222">                        nombreJugador = sn.next();</span>
 
-<span class="nc" id="L219">                        break;</span>
+<span class="nc" id="L224">                        break;</span>
                     case 8:
-<span class="nc" id="L221">                        System.out.println(&quot;Top 5 maximos goleadores&quot;);</span>
+<span class="nc" id="L226">                        System.out.println(&quot;Top 5 maximos goleadores&quot;);</span>
 
-<span class="nc" id="L223">                        break;</span>
+<span class="nc" id="L228">                        break;</span>
                     case 9:
-<span class="nc" id="L225">                        System.out.println(&quot;Top 10 jugadores mas expulsados&quot;);</span>
+<span class="nc" id="L230">                        System.out.println(&quot;Top 10 jugadores mas expulsados&quot;);</span>
 
-<span class="nc" id="L227">                        break;</span>
+<span class="nc" id="L232">                        break;</span>
                     case 10:
-<span class="nc" id="L229">                        System.out.println(&quot;Consultar palmares&quot;);</span>
-<span class="nc" id="L230">                        System.out.println(&quot;Introduzca el nombre del equipo:&quot;);</span>
-<span class="nc" id="L231">                        nombreEquipo = sn.next();</span>
+<span class="nc" id="L234">                        System.out.println(&quot;Consultar palmares&quot;);</span>
+<span class="nc" id="L235">                        System.out.println(&quot;Introduzca el nombre del equipo:&quot;);</span>
+<span class="nc" id="L236">                        nombreEquipo = sn.next();</span>
 
-<span class="nc" id="L233">                        break;</span>
+<span class="nc" id="L238">                        break;</span>
                     case 11:
-<span class="nc" id="L235">                        System.out.println(&quot;Equipos con mas ligas&quot;);</span>
+<span class="nc" id="L240">                        System.out.println(&quot;Equipos con mas ligas&quot;);</span>
 
-<span class="nc" id="L237">                        break;</span>
+<span class="nc" id="L242">                        break;</span>
                     case 12:
-<span class="nc" id="L239">                        System.out.println(&quot;Equipos con mas copas&quot;);</span>
+<span class="nc" id="L244">                        System.out.println(&quot;Equipos con mas copas&quot;);</span>
 
-<span class="nc" id="L241">                        break;</span>
+<span class="nc" id="L246">                        break;</span>
                     case 13:
-<span class="nc" id="L243">                        System.out.println(SEPARADOR);</span>
-<span class="nc" id="L244">                        salir = true;</span>
-<span class="nc" id="L245">                        break;</span>
+<span class="nc" id="L248">                        System.out.println(SEPARADOR);</span>
+<span class="nc" id="L249">                        salir = true;</span>
+<span class="nc" id="L250">                        break;</span>
                     default:
-<span class="nc" id="L247">                        System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L252">                        System.out.println(INTRODUCIR_NUMERO);</span>
                 }
-<span class="nc" id="L249">            } catch (InputMismatchException e) {</span>
-<span class="nc" id="L250">                System.out.println(INTRODUCIR_NUMERO);</span>
-<span class="nc" id="L251">                sn.next();</span>
+<span class="nc" id="L254">            } catch (InputMismatchException e) {</span>
+<span class="nc" id="L255">                System.out.println(INTRODUCIR_NUMERO);</span>
+<span class="nc" id="L256">                sn.next();</span>
 
-<span class="nc" id="L253">            }</span>
+<span class="nc" id="L258">            }</span>
         }
-<span class="nc" id="L255">    }</span>
+<span class="nc" id="L260">    }</span>
+
+    private static Equipo pedirDatosEquipos() {
+        int id;
+        String nombre;
+        String ciudad;
+        String estadio;
+        int fundacion;
+        int numeroSocios;
+        double presupuesto;
+        String colores;
+
+<span class="nc" id="L272">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L273">        System.out.println(&quot;Introduzca el ID del equipo&quot;);</span>
+<span class="nc" id="L274">        id = sn.nextInt();</span>
+<span class="nc" id="L275">        System.out.println(&quot;Introduzca el nombre del equipo&quot;);</span>
+<span class="nc" id="L276">        nombre = sn.next();</span>
+<span class="nc" id="L277">        System.out.println(&quot;Introduzca la ciudad del equipo&quot;);</span>
+<span class="nc" id="L278">        ciudad = sn.next();</span>
+<span class="nc" id="L279">        System.out.println(&quot;Introduzca el estadio del equipo&quot;);</span>
+<span class="nc" id="L280">        estadio = sn.next();</span>
+<span class="nc" id="L281">        System.out.println(&quot;Introduzca el anio de fundacion del equipo&quot;);</span>
+<span class="nc" id="L282">        fundacion = sn.nextInt();</span>
+<span class="nc" id="L283">        System.out.println(&quot;Introduzca el numero de socios del equipo&quot;);</span>
+<span class="nc" id="L284">        numeroSocios = sn.nextInt();</span>
+<span class="nc" id="L285">        System.out.println(&quot;Introduzca el presupuesto anual del equipo&quot;);</span>
+<span class="nc" id="L286">        presupuesto = sn.nextDouble();</span>
+<span class="nc" id="L287">        System.out.println(&quot;Introduzca los colores del equipo&quot;);</span>
+<span class="nc" id="L288">        colores = sn.next();</span>
+<span class="nc" id="L289">        Equipo equipo = new Equipo(id, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);</span>
+<span class="nc" id="L290">        return equipo;</span>
+    }
+
+    private static Estadio pedirDatosEstadio() {
+        int id;
+        String nombre;
+        String equipo;
+        int capacidad;
+        int construccion;
+
+<span class="nc" id="L300">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L301">        System.out.println(&quot;Introduzca el ID del estadio&quot;);</span>
+<span class="nc" id="L302">        id = sn.nextInt();</span>
+<span class="nc" id="L303">        System.out.println(&quot;Introduzca el nombre del estadio&quot;);</span>
+<span class="nc" id="L304">        nombre = sn.next();</span>
+<span class="nc" id="L305">        System.out.println(&quot;Introduzca el equipo al que pertenece el estadio&quot;);</span>
+<span class="nc" id="L306">        equipo = sn.next();</span>
+<span class="nc" id="L307">        System.out.println(&quot;Introduzca la capacidad del estadio&quot;);</span>
+<span class="nc" id="L308">        capacidad = sn.nextInt();</span>
+<span class="nc" id="L309">        System.out.println(&quot;Introduzca el anio construccion del estadio&quot;);</span>
+<span class="nc" id="L310">        construccion = sn.nextInt();</span>
+<span class="nc" id="L311">        Estadio estadio = new Estadio(id, nombre, equipo, capacidad, construccion);</span>
+
+<span class="nc" id="L313">        return estadio;</span>
+
+    }
+
+    private static Jugador pedirDatosJugador() {
+        int id;
+        String equipo;
+        String nombre;
+        int dorsal;
+        int goles;
+        int asistencias;
+        int amarillas;
+        int rojas;
+
+<span class="nc" id="L327">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L328">        System.out.println(&quot;Introduzca el ID del jugador&quot;);</span>
+<span class="nc" id="L329">        id = sn.nextInt();</span>
+<span class="nc" id="L330">        System.out.println(&quot;Introduzca el equipo al que pertenece el jugador&quot;);</span>
+<span class="nc" id="L331">        equipo = sn.next();</span>
+<span class="nc" id="L332">        System.out.println(&quot;Introduzca el nombre del jugador&quot;);</span>
+<span class="nc" id="L333">        nombre = sn.next();</span>
+<span class="nc" id="L334">        System.out.println(&quot;Introduzca el dorsal del jugador&quot;);</span>
+<span class="nc" id="L335">        dorsal = sn.nextInt();</span>
+<span class="nc" id="L336">        System.out.println(&quot;Introduzca el numero de goles del jugador&quot;);</span>
+<span class="nc" id="L337">        goles = sn.nextInt();</span>
+<span class="nc" id="L338">        System.out.println(&quot;Introduzca el numero de asistencias del jugador&quot;);</span>
+<span class="nc" id="L339">        asistencias = sn.nextInt();</span>
+<span class="nc" id="L340">        System.out.println(&quot;Introduzca el numero de tarjetas amarillas del jugador&quot;);</span>
+<span class="nc" id="L341">        amarillas = sn.nextInt();</span>
+<span class="nc" id="L342">        System.out.println(&quot;Introduzca el numero de tarjetas rojas del jugador&quot;);</span>
+<span class="nc" id="L343">        rojas = sn.nextInt();</span>
+
+<span class="nc" id="L345">        Jugador jugador = new Jugador(id, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);</span>
+
+<span class="nc" id="L347">        return jugador;</span>
+
+    }
+
+    private static Palmares pedirDatosPalmares() {
+        int id;
+        String equipo;
+        int ligas;
+        int copasDelRey;
+        int superEspana;
+        int superEuropa;
+        int champions;
+        int mundialClubs;
+
+<span class="nc" id="L361">        Scanner sn = new Scanner(System.in);</span>
+<span class="nc" id="L362">        System.out.println(&quot;Introduzca el ID del palmares&quot;);</span>
+<span class="nc" id="L363">        id = sn.nextInt();</span>
+<span class="nc" id="L364">        System.out.println(&quot;Introduzca el equipo al que pertenece el palmares&quot;);</span>
+<span class="nc" id="L365">        equipo = sn.next();</span>
+<span class="nc" id="L366">        System.out.println(&quot;Introduzca el numero de Ligas&quot;);</span>
+<span class="nc" id="L367">        ligas = sn.nextInt();</span>
+<span class="nc" id="L368">        System.out.println(&quot;Introduzca el numero de Copas del Rey&quot;);</span>
+<span class="nc" id="L369">        copasDelRey = sn.nextInt();</span>
+<span class="nc" id="L370">        System.out.println(&quot;Introduzca el numero de Supercopas de Espania&quot;);</span>
+<span class="nc" id="L371">        superEspana = sn.nextInt();</span>
+<span class="nc" id="L372">        System.out.println(&quot;Introduzca el numero de Supercopas de Europa&quot;);</span>
+<span class="nc" id="L373">        superEuropa = sn.nextInt();</span>
+<span class="nc" id="L374">        System.out.println(&quot;Introduzca el numero de Champions League&quot;);</span>
+<span class="nc" id="L375">        champions = sn.nextInt();</span>
+<span class="nc" id="L376">        System.out.println(&quot;Introduzca el numero de Mundiales de clubs&quot;);</span>
+<span class="nc" id="L377">        mundialClubs = sn.nextInt();</span>
+
+<span class="nc" id="L379">        Palmares palmares = new Palmares(id, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,</span>
+                mundialClubs);
+
+<span class="nc" id="L382">        return palmares;</span>
+
+    }
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

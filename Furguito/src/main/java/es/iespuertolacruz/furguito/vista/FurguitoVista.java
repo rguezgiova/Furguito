@@ -3,6 +3,11 @@ package es.iespuertolacruz.furguito.vista;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import es.iespuertolacruz.furguito.api.Equipo;
+import es.iespuertolacruz.furguito.api.Estadio;
+import es.iespuertolacruz.furguito.api.Jugador;
+import es.iespuertolacruz.furguito.api.Palmares;
+
 public class FurguitoVista {
     private static final String INTRODUCIR_NUMERO = "Debe introducir un numero";
     private static final String SEPARADOR = "##########################\n";
@@ -253,4 +258,130 @@ public class FurguitoVista {
             }
         }
     }
+
+    private static Equipo pedirDatosEquipos() {
+        int id;
+        String nombre;
+        String ciudad;
+        String estadio;
+        int fundacion;
+        int numeroSocios;
+        double presupuesto;
+        String colores;
+
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Introduzca el ID del equipo");
+        id = sn.nextInt();
+        System.out.println("Introduzca el nombre del equipo");
+        nombre = sn.next();
+        System.out.println("Introduzca la ciudad del equipo");
+        ciudad = sn.next();
+        System.out.println("Introduzca el estadio del equipo");
+        estadio = sn.next();
+        System.out.println("Introduzca el anio de fundacion del equipo");
+        fundacion = sn.nextInt();
+        System.out.println("Introduzca el numero de socios del equipo");
+        numeroSocios = sn.nextInt();
+        System.out.println("Introduzca el presupuesto anual del equipo");
+        presupuesto = sn.nextDouble();
+        System.out.println("Introduzca los colores del equipo");
+        colores = sn.next();
+        Equipo equipo = new Equipo(id, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto, colores);
+        return equipo;
+    }
+
+    private static Estadio pedirDatosEstadio() {
+        int id;
+        String nombre;
+        String equipo;
+        int capacidad;
+        int construccion;
+
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Introduzca el ID del estadio");
+        id = sn.nextInt();
+        System.out.println("Introduzca el nombre del estadio");
+        nombre = sn.next();
+        System.out.println("Introduzca el equipo al que pertenece el estadio");
+        equipo = sn.next();
+        System.out.println("Introduzca la capacidad del estadio");
+        capacidad = sn.nextInt();
+        System.out.println("Introduzca el anio construccion del estadio");
+        construccion = sn.nextInt();
+        Estadio estadio = new Estadio(id, nombre, equipo, capacidad, construccion);
+
+        return estadio;
+
+    }
+
+    private static Jugador pedirDatosJugador() {
+        int id;
+        String equipo;
+        String nombre;
+        int dorsal;
+        int goles;
+        int asistencias;
+        int amarillas;
+        int rojas;
+
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Introduzca el ID del jugador");
+        id = sn.nextInt();
+        System.out.println("Introduzca el equipo al que pertenece el jugador");
+        equipo = sn.next();
+        System.out.println("Introduzca el nombre del jugador");
+        nombre = sn.next();
+        System.out.println("Introduzca el dorsal del jugador");
+        dorsal = sn.nextInt();
+        System.out.println("Introduzca el numero de goles del jugador");
+        goles = sn.nextInt();
+        System.out.println("Introduzca el numero de asistencias del jugador");
+        asistencias = sn.nextInt();
+        System.out.println("Introduzca el numero de tarjetas amarillas del jugador");
+        amarillas = sn.nextInt();
+        System.out.println("Introduzca el numero de tarjetas rojas del jugador");
+        rojas = sn.nextInt();
+
+        Jugador jugador = new Jugador(id, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
+
+        return jugador;
+
+    }
+
+    private static Palmares pedirDatosPalmares() {
+        int id;
+        String equipo;
+        int ligas;
+        int copasDelRey;
+        int superEspana;
+        int superEuropa;
+        int champions;
+        int mundialClubs;
+
+        Scanner sn = new Scanner(System.in);
+        System.out.println("Introduzca el ID del palmares");
+        id = sn.nextInt();
+        System.out.println("Introduzca el equipo al que pertenece el palmares");
+        equipo = sn.next();
+        System.out.println("Introduzca el numero de Ligas");
+        ligas = sn.nextInt();
+        System.out.println("Introduzca el numero de Copas del Rey");
+        copasDelRey = sn.nextInt();
+        System.out.println("Introduzca el numero de Supercopas de Espania");
+        superEspana = sn.nextInt();
+        System.out.println("Introduzca el numero de Supercopas de Europa");
+        superEuropa = sn.nextInt();
+        System.out.println("Introduzca el numero de Champions League");
+        champions = sn.nextInt();
+        System.out.println("Introduzca el numero de Mundiales de clubs");
+        mundialClubs = sn.nextInt();
+
+        Palmares palmares = new Palmares(id, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,
+                mundialClubs);
+
+        return palmares;
+
+    }
+
+
 }
