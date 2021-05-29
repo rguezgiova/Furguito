@@ -65,7 +65,7 @@ public class JugadorModeloTest {
         try {
             listaJugadores = jugadorModelo.obtenerJugador(nombre);
         } catch (PersistenciaException e) {
-            fail("No se ha podido obtener a los jsugadore");
+            fail("No se ha podido obtener a los jugadores");
         }
         assertNotNull(listaJugadores);
     }

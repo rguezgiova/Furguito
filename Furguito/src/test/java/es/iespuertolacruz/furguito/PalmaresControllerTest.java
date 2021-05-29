@@ -103,22 +103,15 @@ public class PalmaresControllerTest {
         }
     }
 
-    /**
-     * 
-     * @Test
+    @Test
     public void consultarPalmaresTest() {
-        String nombre = "Barcelona";
+        String nombre = "Real Sociedad";
         ArrayList<Palmares> listaPalmares = null;
         try {
             listaPalmares = palmaresController.consultarPalmares(nombre);
         } catch (PersistenciaException exception) {
             fail("No se ha podido obtener la lista", exception);
         }
-        System.out.println(listaPalmares.toString());
-        assertNotNull(listaPalmares.get(0));
+        assertNotNull(listaPalmares);
     }
-     */
-    
-
-
 }

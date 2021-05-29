@@ -110,21 +110,5 @@ public class Jugador {
     public void setRojas(int rojas) {
 <span class="fc" id="L111">        this.rojas = rojas;</span>
 <span class="fc" id="L112">    }</span>
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (o == this)</span>
-<span class="nc" id="L120">            return true;</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!(o instanceof Jugador)) {</span>
-<span class="nc" id="L122">            return false;</span>
-        }
-<span class="nc" id="L124">        Jugador jugador = (Jugador) o;</span>
-<span class="nc bnc" id="L125" title="All 4 branches missed.">        return Objects.equal(id, jugador.id) &amp;&amp; Objects.equal(equipo, jugador.equipo)</span>
-<span class="nc bnc" id="L126" title="All 12 branches missed.">                &amp;&amp; Objects.equal(nombre, jugador.nombre) &amp;&amp; dorsal == jugador.dorsal &amp;&amp; goles == jugador.goles</span>
-                &amp;&amp; asistencias == jugador.asistencias &amp;&amp; amarillas == jugador.amarillas &amp;&amp; rojas == jugador.rojas;
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

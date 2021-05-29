@@ -110,20 +110,4 @@ public class Jugador {
     public void setRojas(int rojas) {
         this.rojas = rojas;
     }
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Jugador)) {
-            return false;
-        }
-        Jugador jugador = (Jugador) o;
-        return Objects.equal(id, jugador.id) && Objects.equal(equipo, jugador.equipo)
-                && Objects.equal(nombre, jugador.nombre) && dorsal == jugador.dorsal && goles == jugador.goles
-                && asistencias == jugador.asistencias && amarillas == jugador.amarillas && rojas == jugador.rojas;
-    }
 }

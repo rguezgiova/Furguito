@@ -37,7 +37,7 @@ public class Fichero {
             informacion = new StringBuilder();
             scanner = new Scanner(fichero);
             while (scanner.hasNextLine()) {
-                String linea = scanner.nextLine(); // Guardamos la linea en un String
+                String linea = scanner.nextLine();
                 informacion.append(linea + "\n");
             }
         } catch (PersistenciaException e) {
@@ -51,5 +51,4 @@ public class Fichero {
         }
         return informacion.toString();
     }
-
 }

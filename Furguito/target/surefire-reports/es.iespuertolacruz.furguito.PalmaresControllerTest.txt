@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.PalmaresControllerTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.141 s - in es.iespuertolacruz.furguito.PalmaresControllerTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.016 s - in es.iespuertolacruz.furguito.PalmaresControllerTest

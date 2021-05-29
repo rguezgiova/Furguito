@@ -110,21 +110,4 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
         this.mundialClubs = mundialClubs;
     }
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Palmares)) {
-            return false;
-        }
-        Palmares palmares = (Palmares) o;
-        return Objects.equal(id, palmares.id) && Objects.equal(equipo, palmares.equipo) && ligas == palmares.ligas
-                && copasDelRey == palmares.copasDelRey && superEspana == palmares.superEspana
-                && superEuropa == palmares.superEuropa && champions == palmares.champions
-                && mundialClubs == palmares.mundialClubs;
-    }
 }

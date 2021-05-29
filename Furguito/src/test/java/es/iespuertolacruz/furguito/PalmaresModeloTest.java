@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
@@ -27,20 +27,18 @@ public class PalmaresModeloTest {
         }
     }
 
-    /**
-     * @Test
+    @Test
     public void palmaresNombreTest(){
         ArrayList<Palmares> listaPalmares = new ArrayList<>();
+        String nombre = "Sociedad";
         try {
-            listaPalmares = palmaresModelo.palmaresEquipo("Futbol Club Barcelona");
-        } catch (PersistenciaException exception) {
-            fail("No se ha podido obtener el palmares del equipo", exception);
+            listaPalmares = palmaresModelo.palmaresEquipo(nombre);
+        } catch (PersistenciaException e) {
+            fail("No se ha podido obtener el palmares");
         }
-        assertTrue(listaPalmares.get(1).getEquipo().contains("Futbol Club Barcelona"));
+        assertNotNull(listaPalmares);
     }
-     */
     
-
     @Test
     public void insertarPalmaresTest() {
         Palmares palmaresInsertar = new Palmares(22, "equipo", 1, 1, 1, 1, 1, 1);

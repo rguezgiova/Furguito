@@ -8,8 +8,8 @@ public class SqliteBbdd extends Bbdd {
     private static final String URL = &quot;jdbc:sqlite:furguito.db&quot;;
 
     public SqliteBbdd(String nombreTabla, String clave, String driver, String url, String user, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
-<span class="nc" id="L11">        super(nombreTabla, clave, driver, url, user, password, sqlTable, sqlInsert);</span>
-<span class="nc" id="L12">    }</span>
+<span class="fc" id="L11">        super(nombreTabla, clave, driver, url, user, password, sqlTable, sqlInsert);</span>
+<span class="fc" id="L12">    }</span>
 
     public SqliteBbdd(String nombreTabla, String clave, String usuario, String password, String sqlTable, String sqlInsert) throws PersistenciaException {
 <span class="fc" id="L15">        super(nombreTabla, clave, DRIVER, URL, usuario, password, sqlTable, sqlInsert);</span>

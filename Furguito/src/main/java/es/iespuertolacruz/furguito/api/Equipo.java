@@ -110,21 +110,4 @@ public class Equipo {
     public void setColores(String colores) {
         this.colores = colores;
     }
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Equipo)) {
-            return false;
-        }
-        Equipo equipo = (Equipo) o;
-        return Objects.equal(id, equipo.id) && Objects.equal(nombre, equipo.nombre)
-                && Objects.equal(ciudad, equipo.ciudad) && Objects.equal(estadio, equipo.estadio)
-                && fundacion == equipo.fundacion && numeroSocios == equipo.numeroSocios
-                && presupuesto == equipo.presupuesto && Objects.equal(colores, equipo.colores);
-    }
 }

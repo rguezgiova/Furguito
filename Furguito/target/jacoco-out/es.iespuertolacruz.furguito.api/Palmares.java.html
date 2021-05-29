@@ -110,22 +110,5 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
 <span class="fc" id="L111">        this.mundialClubs = mundialClubs;</span>
 <span class="fc" id="L112">    }</span>
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-<span class="nc bnc" id="L119" title="All 2 branches missed.">        if (o == this)</span>
-<span class="nc" id="L120">            return true;</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">        if (!(o instanceof Palmares)) {</span>
-<span class="nc" id="L122">            return false;</span>
-        }
-<span class="nc" id="L124">        Palmares palmares = (Palmares) o;</span>
-<span class="nc bnc" id="L125" title="All 16 branches missed.">        return Objects.equal(id, palmares.id) &amp;&amp; Objects.equal(equipo, palmares.equipo) &amp;&amp; ligas == palmares.ligas</span>
-                &amp;&amp; copasDelRey == palmares.copasDelRey &amp;&amp; superEspana == palmares.superEspana
-                &amp;&amp; superEuropa == palmares.superEuropa &amp;&amp; champions == palmares.champions
-                &amp;&amp; mundialClubs == palmares.mundialClubs;
-    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -76,20 +76,4 @@ public class Estadio {
     public void setConstruccion(int construccion) {
         this.construccion = construccion;
     }
-
-    /**
-     * Funcion equals de comparacion
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (o == this)
-            return true;
-        if (!(o instanceof Estadio)) {
-            return false;
-        }
-        Estadio estadio = (Estadio) o;
-        return Objects.equal(id, estadio.id) && Objects.equal(nombre, estadio.nombre)
-                && Objects.equal(equipo, estadio.equipo) && capacidad == estadio.capacidad
-                && construccion == estadio.construccion;
-    }
 }

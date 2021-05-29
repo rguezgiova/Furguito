@@ -1,6 +1,5 @@
 package es.iespuertolacruz.furguito.modelo;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -68,18 +67,13 @@ public class PalmaresModelo {
      * Funcion que obtiene el palmares del equipo buscado
      * 
      * @param equipo  nombre del equipo
-     * @param equipo2 TODO
      * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Palmares> palmaresEquipo(String equipo) throws PersistenciaException {
-        Palmares palmares = null;
         ArrayList<Palmares> listaPalmares = null;
-        String sql = "SELECT * FROM " + TABLA + " WHERE nombre LIKE '%" + equipo + "%'";
+        String sql = "SELECT * FROM " + TABLA + " WHERE equipo LIKE '%" + equipo + "%'";
         listaPalmares = obtenerPalmares(sql);
-        if (!listaPalmares.isEmpty()) {
-            palmares = listaPalmares.get(0);
-        }
         return listaPalmares;
     }
 
