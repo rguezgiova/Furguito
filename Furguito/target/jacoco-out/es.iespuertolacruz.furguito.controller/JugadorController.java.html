@@ -1,62 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JugadorController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.controller</a> &gt; <span class="el_source">JugadorController.java</span></div><h1>JugadorController.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.controller;
 
+import es.iespuertolacruz.furguito.api.Jugador;
 import es.iespuertolacruz.furguito.exception.JugadorException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.JugadorModelo;
 
 public class JugadorController {
-
-    JugadorModelo plantillaModelo;
+    JugadorModelo jugadorModelo;
 
 <span class="nc" id="L11">    public JugadorController() throws PersistenciaException {</span>
-<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (plantillaModelo == null) {</span>
-<span class="nc" id="L13">            plantillaModelo = new JugadorModelo();</span>
+<span class="nc bnc" id="L12" title="All 2 branches missed.">        if (jugadorModelo == null) {</span>
+<span class="nc" id="L13">            jugadorModelo = new JugadorModelo();</span>
         }
 <span class="nc" id="L15">    }</span>
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del jugador
+     * Metodo encargado de realizar la validacion del objeto jugador
      * 
-     * @param nombre a validar
+     * @param jugador a validar
      * @throws JugadorException error controlado
      */
-    public void validar(String nombre) throws JugadorException {
+    public void validar(Jugador jugador) throws JugadorException {
 <span class="nc" id="L24">        String mensaje = &quot;&quot;;</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (nombre == null) {</span>
-<span class="nc" id="L26">            mensaje = &quot;El nombre del jugador no puede ser nulo&quot;;</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (jugador == null) {</span>
+<span class="nc" id="L26">            mensaje = &quot;Se esta intentando validar un objeto nulo&quot;;</span>
 <span class="nc" id="L27">            throw new JugadorException(mensaje);</span>
         }
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (nombre.length() &lt; 1) {</span>
-<span class="nc" id="L30">            mensaje = &quot;El nombre del jugador no puede estar vacio&quot;;</span>
-<span class="nc" id="L31">            throw new JugadorException(mensaje);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (jugador.getId() &lt;= 0) {</span>
+<span class="nc" id="L30">            mensaje += &quot;El id del jugador no puede ser menor o igual a 0 \n&quot;;</span>
         }
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L34">            throw new JugadorException(mensaje);</span>
+<span class="nc bnc" id="L32" title="All 4 branches missed.">        if (jugador.getEquipo() == null || jugador.getEquipo().isEmpty()) {</span>
+<span class="nc" id="L33">            mensaje += &quot;El equipo del jugador no puede ser nulo o vacio \n&quot;;</span>
         }
-<span class="nc" id="L36">    }</span>
-
-    public void insertarJugador() {
-
-<span class="nc" id="L40">    }</span>
-
-    public void modificarJugador() {
-
+<span class="nc bnc" id="L35" title="All 4 branches missed.">        if (jugador.getNombre() == null || jugador.getNombre().isEmpty()) {</span>
+<span class="nc" id="L36">            mensaje += &quot;El nombre del jugador no puede ser nulo o vacio \n&quot;;</span>
+        }
+<span class="nc bnc" id="L38" title="All 2 branches missed.">        if (jugador.getDorsal() &lt;= 0) {</span>
+<span class="nc" id="L39">            mensaje += &quot;El dorsal del jugador no puede ser menor o igual a 0&quot;;</span>
+        }
+<span class="nc bnc" id="L41" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L42">            throw new JugadorException(mensaje);</span>
+        }
 <span class="nc" id="L44">    }</span>
 
-    public void eliminarJugador() {
+    /**
+     * Metodo encargado de insertar un jugador en la BBDD
+     * @param jugador a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarJugador(Jugador jugador) throws PersistenciaException {
+<span class="nc" id="L52">        jugadorModelo.insertar(jugador);</span>
+<span class="nc" id="L53">    }</span>
 
-<span class="nc" id="L48">    }</span>
+    /**
+     * Metodo encargado de eliminar un jugador de la BBDD segun su id
+     * @param id del jugador
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarJugador(int id) throws PersistenciaException {
+<span class="nc" id="L61">        jugadorModelo.eliminar(id);</span>
+<span class="nc" id="L62">    }</span>
 
-    public void consultarInformacion() {
+    /**
+     * Metodo encargado de modificar un jugador de la BBDD
+     * @param jugador a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarJugador(Jugador jugador) throws PersistenciaException {
+<span class="nc" id="L70">        jugadorModelo.modificar(jugador);</span>
+<span class="nc" id="L71">    }</span>
 
-<span class="nc" id="L52">    }</span>
+    /**
+     * Metodo encargado de mostrar la informacion de un jugador segun su nombre
+     * @param nombre del jugador
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+<span class="nc" id="L79">        jugadorModelo.obtenerJugador(nombre);</span>
+<span class="nc" id="L80">    }</span>
 
-    public void consultarMaximoGoleador() {
+    /**
+     * Metodo encargado de mostrar a los maximos goleadores
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMaximosGoleadores() throws PersistenciaException {
+<span class="nc" id="L87">        jugadorModelo.obtenerGoleadores();</span>
+<span class="nc" id="L88">    }</span>
 
-<span class="nc" id="L56">    }</span>
-
-    public void consultarMasExpulsado() {
-
-<span class="nc" id="L60">    }</span>
+    /**
+     * Metodo encargado de mostrar a los jugadores mas expulsados
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMasExpulsados() throws PersistenciaException {
+<span class="nc" id="L95">        jugadorModelo.obtenerExpulsados();</span>
+<span class="nc" id="L96">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

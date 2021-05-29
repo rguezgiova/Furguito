@@ -23,7 +23,7 @@ public class EstadioController {
     public void validar(Estadio estadio) throws EstadioException {
         String mensaje = "";
         if (estadio == null) {
-            mensaje = "No se puede validar un objeto nulo";
+            mensaje = "Se esta intentando validar un objeto nulo";
             throw new EstadioException(mensaje);
         }
         if (estadio.getId() <= 0) {
@@ -70,10 +70,11 @@ public class EstadioController {
     /**
      * Metodo encargado de mostrar la informacion de un estadio segun su nombre
      * @param nombre del estadio
+     * @return 
      * @throws PersistenciaException error controlado
      */
-    public void consultarInformacion(String nombre) throws PersistenciaException {
-        estadioModelo.obtenerEstadio(nombre);
+    public Estadio consultarInformacion(String nombre) throws PersistenciaException {
+        return estadioModelo.obtenerEstadio(nombre);
     }
 
     /**
@@ -81,8 +82,8 @@ public class EstadioController {
      * @param nombre del estadio
      * @throws PersistenciaException error controlado
      */
-    public void consultarCapacidad(String nombre) throws PersistenciaException {
-        estadioModelo.obtenerCapacidad(nombre);
+    public Estadio consultarCapacidad(String nombre) throws PersistenciaException {
+        return estadioModelo.obtenerCapacidad(nombre);
     }
 
     /**
@@ -90,7 +91,7 @@ public class EstadioController {
      * @param nombre del estadio
      * @throws PersistenciaException error controlado
      */
-    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
-        estadioModelo.obtenerAnio(nombre);
+    public Estadio consultarAnioConstruccion(String nombre) throws PersistenciaException {
+        return estadioModelo.obtenerAnio(nombre);
     }
 }

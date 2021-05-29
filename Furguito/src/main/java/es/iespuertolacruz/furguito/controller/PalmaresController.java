@@ -23,7 +23,7 @@ public class PalmaresController {
     public void validar(Palmares palmares) throws PalmaresException {
         String mensaje = "";
         if (palmares == null) {
-            mensaje = "No se puede validar un objeto nulo";
+            mensaje = "Se esta intentando validar un objeto nulo";
             throw new PalmaresException(mensaje);
         }
         if (palmares.getId() <= 0) {

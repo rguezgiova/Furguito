@@ -76,27 +76,20 @@ public class EquipoController {
     /**
      * Metodo encargado de mostrar la informacion de un equipo segun su nombre
      * @param nombre del equipo
+     * @return 
      * @throws PersistenciaException error controlado
      */
-    public void consultarInformacion(String nombre) throws PersistenciaException {
-        equipoModelo.obtenerEquipo(nombre);
-    }
-
-    /**
-     * Metodo encargado de mostrar el presupuesto de un equipo segun su nombre
-     * @param nombre del equipo
-     * @throws PersistenciaException error controlado
-     */
-    public void consultarPresupuesto(String nombre) throws PersistenciaException {
-        equipoModelo.consultarPresupuesto(nombre);
+    public Equipo consultarInformacion(String nombre) throws PersistenciaException {
+        return equipoModelo.obtenerEquipo(nombre);
     }
 
     /**
      * Metodo encargado de mostrar la ciudad de un club segun su nombre
      * @param nombre del equipo
+     * @return 
      * @throws PersistenciaException error controlado
      */
-    public void consultarCiudad(String nombre) throws PersistenciaException {
-        equipoModelo.consultarCiudad(nombre);
+    public Equipo consultarCiudad(String nombre) throws PersistenciaException {
+        return equipoModelo.consultarCiudad(nombre);
     }
 }

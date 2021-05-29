@@ -79,6 +79,17 @@ public class EquipoModelo {
 <span class="fc" id="L79">        return equipo;</span>
     }
 
+    public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {
+<span class="nc" id="L83">        Equipo equipo = null;</span>
+<span class="nc" id="L84">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="nc" id="L85">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="nc" id="L86">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="nc" id="L88">            equipo = listaEquipos.get(0);</span>
+        }
+<span class="nc" id="L90">        return equipo;</span>
+    }
+
     /**
      * Funcion que obtiene el nombre y la ciudad en la que juega el equipo buscado
      * 
@@ -87,14 +98,14 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
-<span class="fc" id="L90">        Equipo equipo = null;</span>
-<span class="fc" id="L91">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
-<span class="fc" id="L92">        String sql = &quot;SELECT * FROM Equipos where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
-<span class="fc" id="L93">        listaEquipos = obtenerEquipos(sql);</span>
-<span class="pc bpc" id="L94" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
-<span class="fc" id="L95">            equipo = listaEquipos.get(0);</span>
+<span class="fc" id="L101">        Equipo equipo = null;</span>
+<span class="fc" id="L102">        ArrayList&lt;Equipo&gt; listaEquipos = null;</span>
+<span class="fc" id="L103">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; where nombre LIKE '%&quot; + nombre + &quot;%'&quot;;</span>
+<span class="fc" id="L104">        listaEquipos = obtenerEquipos(sql);</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">        if (!listaEquipos.isEmpty()) {</span>
+<span class="fc" id="L106">            equipo = listaEquipos.get(0);</span>
         }
-<span class="fc" id="L97">        return equipo;</span>
+<span class="fc" id="L108">        return equipo;</span>
     }
 
     /**
@@ -105,30 +116,30 @@ public class EquipoModelo {
      * @throws PersistenciaException error controlado
      */
     private ArrayList&lt;Equipo&gt; obtenerEquipos(String sql) throws PersistenciaException {
-<span class="fc" id="L108">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L109">        ResultSet resultSet = null;</span>
+<span class="fc" id="L119">        ArrayList&lt;Equipo&gt; listaEquipos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L120">        ResultSet resultSet = null;</span>
 
         try {
-<span class="fc" id="L112">            resultSet = persistencia.buscarElementos(sql);</span>
-<span class="fc bfc" id="L113" title="All 2 branches covered.">            while (resultSet.next()) {</span>
-<span class="fc" id="L114">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
-<span class="fc" id="L115">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
-<span class="fc" id="L116">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
-<span class="fc" id="L117">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
-<span class="fc" id="L118">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
-<span class="fc" id="L119">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
-<span class="fc" id="L120">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
-<span class="fc" id="L121">                String colores = resultSet.getString(&quot;colores&quot;);</span>
-<span class="fc" id="L122">                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,</span>
+<span class="fc" id="L123">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc bfc" id="L124" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L125">                int identificador = resultSet.getInt(&quot;idEquipo&quot;);</span>
+<span class="fc" id="L126">                String nombre = resultSet.getString(&quot;nombre&quot;);</span>
+<span class="fc" id="L127">                String ciudad = resultSet.getString(&quot;ciudad&quot;);</span>
+<span class="fc" id="L128">                String estadio = resultSet.getString(&quot;estadio&quot;);</span>
+<span class="fc" id="L129">                int fundacion = resultSet.getInt(&quot;fundacion&quot;);</span>
+<span class="fc" id="L130">                int numeroSocios = resultSet.getInt(&quot;numero_socios&quot;);</span>
+<span class="fc" id="L131">                int presupuesto = resultSet.getInt(&quot;presupuesto&quot;);</span>
+<span class="fc" id="L132">                String colores = resultSet.getString(&quot;colores&quot;);</span>
+<span class="fc" id="L133">                equipo = new Equipo(identificador, nombre, ciudad, estadio, fundacion, numeroSocios, presupuesto,</span>
                         colores);
-<span class="fc" id="L124">                listaEquipos.add(equipo);</span>
-<span class="fc" id="L125">            }</span>
-<span class="nc" id="L126">        } catch (Exception exception) {</span>
-<span class="nc" id="L127">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+<span class="fc" id="L135">                listaEquipos.add(equipo);</span>
+<span class="fc" id="L136">            }</span>
+<span class="nc" id="L137">        } catch (Exception exception) {</span>
+<span class="nc" id="L138">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
         } finally {
-<span class="fc" id="L129">            persistencia.closeConnection(null, null, resultSet);</span>
+<span class="fc" id="L140">            persistencia.closeConnection(null, null, resultSet);</span>
         }
-<span class="fc" id="L131">        return listaEquipos;</span>
+<span class="fc" id="L142">        return listaEquipos;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

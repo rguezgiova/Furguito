@@ -8,7 +8,6 @@ es/iespuertolacruz/furguito/api/Palmares.class
 es/iespuertolacruz/furguito/modelo/Bbdd.class
 es/iespuertolacruz/furguito/controller/PalmaresController.class
 es/iespuertolacruz/furguito/exception/JugadorException.class
-es/iespuertolacruz/furguito/controller/PlantillaController.class
 es/iespuertolacruz/furguito/exception/FicheroException.class
 es/iespuertolacruz/furguito/exception/EquipoException.class
 es/iespuertolacruz/furguito/api/Estadio.class

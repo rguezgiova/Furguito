@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalmaresController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.controller</a> &gt; <span class="el_source">PalmaresController.java</span></div><h1>PalmaresController.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.controller;
 
-import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.api.Palmares;
+import es.iespuertolacruz.furguito.exception.PalmaresException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.PalmaresModelo;
 
 public class PalmaresController {
-
     PalmaresModelo palmaresModelo;
 
 <span class="nc" id="L11">    public PalmaresController() throws PersistenciaException {</span>
@@ -15,48 +15,78 @@ public class PalmaresController {
 <span class="nc" id="L15">    }</span>
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del equipo
+     * Metodo encargado de realizar la validacion del obtejo palmares
      * 
-     * @param equipo a validar
-     * @throws JugadorException error controlado
+     * @param palmares a validar
+     * @throws PalmaresException error controlado
      */
-    public void validar(String equipo) throws JugadorException {
+    public void validar(Palmares palmares) throws PalmaresException {
 <span class="nc" id="L24">        String mensaje = &quot;&quot;;</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (equipo == null) {</span>
-<span class="nc" id="L26">            mensaje = &quot;El nombre del equipo no puede ser nulo&quot;;</span>
-<span class="nc" id="L27">            throw new JugadorException(mensaje);</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">        if (palmares == null) {</span>
+<span class="nc" id="L26">            mensaje = &quot;Se esta intentando validar un objeto nulo&quot;;</span>
+<span class="nc" id="L27">            throw new PalmaresException(mensaje);</span>
         }
-<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (equipo.length() &lt; 1) {</span>
-<span class="nc" id="L30">            mensaje = &quot;El nombre del equipo no puede estar vacio&quot;;</span>
-<span class="nc" id="L31">            throw new JugadorException(mensaje);</span>
+<span class="nc bnc" id="L29" title="All 2 branches missed.">        if (palmares.getId() &lt;= 0) {</span>
+<span class="nc" id="L30">            mensaje += &quot;El id del palmares no puede ser menor o igual a 0 \n&quot;;</span>
         }
-<span class="nc bnc" id="L33" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
-<span class="nc" id="L34">            throw new JugadorException(mensaje);</span>
+<span class="nc bnc" id="L32" title="All 4 branches missed.">        if (palmares.getEquipo() == null || palmares.getEquipo().isEmpty()) {</span>
+<span class="nc" id="L33">            mensaje += &quot;El nombre del equipo referente al palmares no puede ser nulo o vacio&quot;;</span>
         }
-<span class="nc" id="L36">    }</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="nc" id="L36">            throw new PalmaresException(mensaje);</span>
+        }
+<span class="nc" id="L38">    }</span>
 
-    public void insertarJugador() {
+    /**
+     * Metodo encargado de insertar un palmares en la BBDD
+     * @param palmares a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarPalmares(Palmares palmares) throws PersistenciaException {
+<span class="nc" id="L46">        palmaresModelo.insertar(palmares);</span>
+<span class="nc" id="L47">    }</span>
 
-<span class="nc" id="L40">    }</span>
-
-    public void modificarJugador() {
-
-<span class="nc" id="L44">    }</span>
-
-    public void eliminarJugador() {
-
-<span class="nc" id="L48">    }</span>
-
-    public void consultarInformacion() {
-
-<span class="nc" id="L52">    }</span>
-
-    public void consultarMaximoGoleador() {
-
+    /**
+     * Metodo encargado de eliminar un palmares de la BBDD segun su id
+     * @param id del palmares
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarPalmares(int id) throws PersistenciaException {
+<span class="nc" id="L55">        palmaresModelo.eliminar(id);</span>
 <span class="nc" id="L56">    }</span>
 
-    public void consultarMasExpulsado() {
+    /**
+     * Metodo encargado de modificar un palmares de la BBDD
+     * @param palmares a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarPalmares(Palmares palmares) throws PersistenciaException {
+<span class="nc" id="L64">        palmaresModelo.modificar(palmares);</span>
+<span class="nc" id="L65">    }</span>
 
-<span class="nc" id="L60">    }</span>
+    /**
+     * Metodo encargado de mostrar el palmares de un equipo
+     * @param equipo para consultar su palmares
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarPalmares(String equipo) throws PersistenciaException {
+<span class="nc" id="L73">        palmaresModelo.palmaresEquipo(equipo);</span>
+<span class="nc" id="L74">    }</span>
+
+    /**
+     * Metodo encargado de mostrar los equipos con mas ligas
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarLigas() throws PersistenciaException {
+<span class="nc" id="L81">        palmaresModelo.palmaresCopas();</span>
+<span class="nc" id="L82">    }</span>
+
+    /**
+     * Metodo encargado de mostrar los equipos con mas copas
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarCopas() throws PersistenciaException {
+<span class="nc" id="L89">        palmaresModelo.palmaresLigas();</span>
+<span class="nc" id="L90">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
