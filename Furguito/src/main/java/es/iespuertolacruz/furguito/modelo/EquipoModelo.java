@@ -79,6 +79,17 @@ public class EquipoModelo {
         return equipo;
     }
 
+    public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {
+        Equipo equipo = null;
+        ArrayList<Equipo> listaEquipos = null;
+        String sql = "SELECT * FROM " + TABLA + " where nombre LIKE '%" + nombre + "%'";
+        listaEquipos = obtenerEquipos(sql);
+        if (!listaEquipos.isEmpty()) {
+            equipo = listaEquipos.get(0);
+        }
+        return equipo;
+    }
+
     /**
      * Funcion que obtiene el nombre y la ciudad en la que juega el equipo buscado
      * 
@@ -89,7 +100,7 @@ public class EquipoModelo {
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
-        String sql = "SELECT * FROM Equipos where nombre LIKE '%" + nombre + "%'";
+        String sql = "SELECT * FROM " + TABLA + " where nombre LIKE '%" + nombre + "%'";
         listaEquipos = obtenerEquipos(sql);
         if (!listaEquipos.isEmpty()) {
             equipo = listaEquipos.get(0);

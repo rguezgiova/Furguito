@@ -1,61 +1,97 @@
 package es.iespuertolacruz.furguito.controller;
 
+import es.iespuertolacruz.furguito.api.Jugador;
 import es.iespuertolacruz.furguito.exception.JugadorException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.JugadorModelo;
 
 public class JugadorController {
-
-    JugadorModelo plantillaModelo;
+    JugadorModelo jugadorModelo;
 
     public JugadorController() throws PersistenciaException {
-        if (plantillaModelo == null) {
-            plantillaModelo = new JugadorModelo();
+        if (jugadorModelo == null) {
+            jugadorModelo = new JugadorModelo();
         }
     }
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del jugador
+     * Metodo encargado de realizar la validacion del objeto jugador
      * 
-     * @param nombre a validar
+     * @param jugador a validar
      * @throws JugadorException error controlado
      */
-    public void validar(String nombre) throws JugadorException {
+    public void validar(Jugador jugador) throws JugadorException {
         String mensaje = "";
-        if (nombre == null) {
-            mensaje = "El nombre del jugador no puede ser nulo";
+        if (jugador == null) {
+            mensaje = "Se esta intentando validar un objeto nulo";
             throw new JugadorException(mensaje);
         }
-        if (nombre.length() < 1) {
-            mensaje = "El nombre del jugador no puede estar vacio";
-            throw new JugadorException(mensaje);
+        if (jugador.getId() <= 0) {
+            mensaje += "El id del jugador no puede ser menor o igual a 0 \n";
+        }
+        if (jugador.getEquipo() == null || jugador.getEquipo().isEmpty()) {
+            mensaje += "El equipo del jugador no puede ser nulo o vacio \n";
+        }
+        if (jugador.getNombre() == null || jugador.getNombre().isEmpty()) {
+            mensaje += "El nombre del jugador no puede ser nulo o vacio \n";
+        }
+        if (jugador.getDorsal() <= 0) {
+            mensaje += "El dorsal del jugador no puede ser menor o igual a 0";
         }
         if (!mensaje.isEmpty()) {
             throw new JugadorException(mensaje);
         }
     }
 
-    public void insertarJugador() {
-
+    /**
+     * Metodo encargado de insertar un jugador en la BBDD
+     * @param jugador a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarJugador(Jugador jugador) throws PersistenciaException {
+        jugadorModelo.insertar(jugador);
     }
 
-    public void modificarJugador() {
-
+    /**
+     * Metodo encargado de eliminar un jugador de la BBDD segun su id
+     * @param id del jugador
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarJugador(int id) throws PersistenciaException {
+        jugadorModelo.eliminar(id);
     }
 
-    public void eliminarJugador() {
-
+    /**
+     * Metodo encargado de modificar un jugador de la BBDD
+     * @param jugador a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarJugador(Jugador jugador) throws PersistenciaException {
+        jugadorModelo.modificar(jugador);
     }
 
-    public void consultarInformacion() {
-
+    /**
+     * Metodo encargado de mostrar la informacion de un jugador segun su nombre
+     * @param nombre del jugador
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        jugadorModelo.obtenerJugador(nombre);
     }
 
-    public void consultarMaximoGoleador() {
-
+    /**
+     * Metodo encargado de mostrar a los maximos goleadores
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMaximosGoleadores() throws PersistenciaException {
+        jugadorModelo.obtenerGoleadores();
     }
 
-    public void consultarMasExpulsado() {
-
+    /**
+     * Metodo encargado de mostrar a los jugadores mas expulsados
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarMasExpulsados() throws PersistenciaException {
+        jugadorModelo.obtenerExpulsados();
     }
 }

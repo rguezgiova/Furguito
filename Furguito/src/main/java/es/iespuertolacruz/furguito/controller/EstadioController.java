@@ -1,11 +1,11 @@
 package es.iespuertolacruz.furguito.controller;
 
-import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.api.Estadio;
+import es.iespuertolacruz.furguito.exception.EstadioException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.EstadioModelo;
 
 public class EstadioController {
-
     EstadioModelo estadioModelo;
 
     public EstadioController() throws PersistenciaException {
@@ -15,47 +15,82 @@ public class EstadioController {
     }
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del estadio
+     * Metodo encargado de realizar la validacion del objeto estadio
      * 
      * @param estadio a validar
-     * @throws JugadorException error controlado
+     * @throws EstadioException error controlado
      */
-    public void validar(String estadio) throws JugadorException {
+    public void validar(Estadio estadio) throws EstadioException {
         String mensaje = "";
         if (estadio == null) {
-            mensaje = "El nombre del estadio no puede ser nulo";
-            throw new JugadorException(mensaje);
+            mensaje = "No se puede validar un objeto nulo";
+            throw new EstadioException(mensaje);
         }
-        if (estadio.length() < 1) {
-            mensaje = "El nombre del estadio no puede estar vacio";
-            throw new JugadorException(mensaje);
+        if (estadio.getId() <= 0) {
+            mensaje += "El id del estadio no puede ser menor o igual a 0 \n";
+        }
+        if (estadio.getNombre() == null || estadio.getNombre().isEmpty()) {
+            mensaje += "El nombre del estadio no puede ser nulo o vacio \n";
+        }
+        if (estadio.getEquipo() == null || estadio.getEquipo().isEmpty()) {
+            mensaje += "El nombre del equipo no puede ser nulo o vacio";
         }
         if (!mensaje.isEmpty()) {
-            throw new JugadorException(mensaje);
+            throw new EstadioException(mensaje);
         }
     }
 
-    public void insertarEstadio() {
-
+    /**
+     * Metodo encargado de insertar un estadio en la BBDD
+     * @param estadio a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
+        estadioModelo.insertar(estadio);
     }
 
-    public void modificarEstadio() {
-
+    /**
+     * Metodo encargado de eliminar un estadio de la BBDD segun su id
+     * @param id del estadio
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarEstadio(int id) throws PersistenciaException {
+        estadioModelo.eliminar(id);
     }
 
-    public void eliminarEstadio() {
-
+    /**
+     * Metodo encargado de modificar un estadio de la BBDD
+     * @param estadio a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
+        estadioModelo.modificar(estadio);
     }
 
-    public void consultarInformacion() {
-
+    /**
+     * Metodo encargado de mostrar la informacion de un estadio segun su nombre
+     * @param nombre del estadio
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        estadioModelo.obtenerEstadio(nombre);
     }
 
-    public void consultarCapacidad() {
-
+    /**
+     * Metodo encargado de consultar la capacidad de un estadio segun su nombre
+     * @param nombre del estadio
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarCapacidad(String nombre) throws PersistenciaException {
+        estadioModelo.obtenerCapacidad(nombre);
     }
 
-    public void consultarAnioConstruccion() {
-
+    /**
+     * Metodo encargado de consultar el anio de construccion de un estadio segun su nombre
+     * @param nombre del estadio
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarAnioConstruccion(String nombre) throws PersistenciaException {
+        estadioModelo.obtenerAnio(nombre);
     }
 }

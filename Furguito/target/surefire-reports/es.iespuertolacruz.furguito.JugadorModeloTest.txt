@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.JugadorModeloTest
 -------------------------------------------------------------------------------
-Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.134 s - in es.iespuertolacruz.furguito.JugadorModeloTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.119 s - in es.iespuertolacruz.furguito.JugadorModeloTest

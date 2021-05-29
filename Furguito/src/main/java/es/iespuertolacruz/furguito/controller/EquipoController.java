@@ -1,11 +1,11 @@
 package es.iespuertolacruz.furguito.controller;
 
-import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.api.Equipo;
+import es.iespuertolacruz.furguito.exception.EquipoException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
 import es.iespuertolacruz.furguito.modelo.EquipoModelo;
 
 public class EquipoController {
-
     EquipoModelo equipoModelo;
 
     public EquipoController() throws PersistenciaException {
@@ -15,47 +15,88 @@ public class EquipoController {
     }
 
     /**
-     * Metodo encargado de realizar la validacion del nombre del equipo
+     * Metodo encargado de realizar la validacion del objeto equipo
      * 
-     * @param nombre a validar
-     * @throws JugadorException error controlado
+     * @param equipo a validar
+     * @throws EquipoException error controlado
      */
-    public void validar(String nombre) throws JugadorException {
+    public void validar(Equipo equipo) throws EquipoException {
         String mensaje = "";
-        if (nombre == null) {
-            mensaje = "El nombre del estadio no puede ser nulo";
-            throw new JugadorException(mensaje);
+        if (equipo == null) {
+            mensaje = "Se esta intentando validar un objeto nulo";
+            throw new EquipoException(mensaje);
         }
-        if (nombre.length() < 1) {
-            mensaje = "El nombre del estadio no puede estar vacio";
-            throw new JugadorException(mensaje);
+        if (equipo.getId() <= 0) {
+            mensaje += "El id del equipo no puede ser menor o igual a 0 \n";
+        }
+        if (equipo.getNombre() == null || equipo.getNombre().isEmpty()) {
+            mensaje += "El nombre del equipo no puede ser nulo o vacio \n";
+        }
+        if (equipo.getCiudad() == null || equipo.getCiudad().isEmpty()) {
+            mensaje += "La ciudad del equipo no puede ser nula o vacia \n";
+        }
+        if (equipo.getEstadio() == null || equipo.getEstadio().isEmpty()) {
+            mensaje += "El estadio del equipo no puede ser nulo o vacio \n";
+        }
+        if (equipo.getColores() == null || equipo.getColores().isEmpty()) {
+            mensaje += "Los colores del equipo no puede ser nulo o vacio";
         }
         if (!mensaje.isEmpty()) {
-            throw new JugadorException(mensaje);
+            throw new EquipoException(mensaje);
         }
     }
 
-    public void insertarEquipo() {
-
+    /**
+     * Metodo encargado de insertar un equipo en la BBDD
+     * @param equipo a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
+        equipoModelo.insertar(equipo);
     }
 
-    public void modificarEquipo() {
-
+    /**
+     * Metodo encargado de eliminar un equipo de la BBDD segun su id
+     * @param id del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarEquipo(int id) throws PersistenciaException {
+        equipoModelo.eliminar(id);
     }
 
-    public void eliminarEquipo() {
-
+    /**
+     * Metodo encargado de modificar un equipo de la BBDD
+     * @param equipo a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificarEquipo(Equipo equipo) throws PersistenciaException {
+        equipoModelo.modificar(equipo);
     }
 
-    public void consultarInformacion() {
-
+    /**
+     * Metodo encargado de mostrar la informacion de un equipo segun su nombre
+     * @param nombre del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarInformacion(String nombre) throws PersistenciaException {
+        equipoModelo.obtenerEquipo(nombre);
     }
 
-    public void consultarPresupuesto() {
-
+    /**
+     * Metodo encargado de mostrar el presupuesto de un equipo segun su nombre
+     * @param nombre del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarPresupuesto(String nombre) throws PersistenciaException {
+        equipoModelo.consultarPresupuesto(nombre);
     }
 
-    public void consultarCiudad() {
-
+    /**
+     * Metodo encargado de mostrar la ciudad de un club segun su nombre
+     * @param nombre del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public void consultarCiudad(String nombre) throws PersistenciaException {
+        equipoModelo.consultarCiudad(nombre);
     }
 }
