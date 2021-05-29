@@ -38,7 +38,7 @@ public class EstadioControllerTest {
     }
 
     @Test
-    public void validarPersonaVaciaTest() {
+    public void validarEstadioVacioTest() {
         Estadio estadioVacio = new Estadio(0, "", "", 0, 0);
         try {
             estadioController.validar(estadioVacio);
@@ -70,7 +70,11 @@ public class EstadioControllerTest {
     public void modificarEstadioTest() {
         Estadio estadioModificar = new Estadio(20, "nombre", "equipo", 1, 1);
         try {
-            estadioController.modificarEstadio(estadioModificar);
+            try {
+                estadioController.modificarEstadio(estadioModificar);
+            } catch (EstadioException exception) {
+                fail("Error en la validacion del estadio", exception);
+            }
         } catch (PersistenciaException e) {
             fail("No se ha podido modificar el estadio");
         }

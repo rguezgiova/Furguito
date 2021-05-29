@@ -44,8 +44,10 @@ public class EstadioController {
      * Metodo encargado de insertar un estadio en la BBDD
      * @param estadio a insertar
      * @throws PersistenciaException error controlado
+     * @throws EstadioException
      */
-    public void insertarEstadio(Estadio estadio) throws PersistenciaException {
+    public void insertarEstadio(Estadio estadio) throws PersistenciaException, EstadioException {
+        validar(estadio);
         estadioModelo.insertar(estadio);
     }
 
@@ -62,8 +64,10 @@ public class EstadioController {
      * Metodo encargado de modificar un estadio de la BBDD
      * @param estadio a modificar
      * @throws PersistenciaException error controlado
+     * @throws EstadioException
      */
-    public void modificarEstadio(Estadio estadio) throws PersistenciaException {
+    public void modificarEstadio(Estadio estadio) throws PersistenciaException, EstadioException {
+        validar(estadio);
         estadioModelo.modificar(estadio);
     }
 

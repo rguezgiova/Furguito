@@ -26,71 +26,91 @@ public class EquipoController {
 <span class="fc" id="L26">            mensaje = &quot;Se esta intentando validar un objeto nulo&quot;;</span>
 <span class="fc" id="L27">            throw new EquipoException(mensaje);</span>
         }
-<span class="pc bpc" id="L29" title="1 of 2 branches missed.">        if (equipo.getId() &lt;= 0) {</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (equipo.getId() &lt;= 0) {</span>
 <span class="fc" id="L30">            mensaje += &quot;El id del equipo no puede ser menor o igual a 0 \n&quot;;</span>
         }
-<span class="pc bpc" id="L32" title="2 of 4 branches missed.">        if (equipo.getNombre() == null || equipo.getNombre().isEmpty()) {</span>
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">        if (equipo.getNombre() == null || equipo.getNombre().isEmpty()) {</span>
 <span class="fc" id="L33">            mensaje += &quot;El nombre del equipo no puede ser nulo o vacio \n&quot;;</span>
         }
-<span class="pc bpc" id="L35" title="2 of 4 branches missed.">        if (equipo.getCiudad() == null || equipo.getCiudad().isEmpty()) {</span>
+<span class="pc bpc" id="L35" title="1 of 4 branches missed.">        if (equipo.getCiudad() == null || equipo.getCiudad().isEmpty()) {</span>
 <span class="fc" id="L36">            mensaje += &quot;La ciudad del equipo no puede ser nula o vacia \n&quot;;</span>
         }
-<span class="pc bpc" id="L38" title="2 of 4 branches missed.">        if (equipo.getEstadio() == null || equipo.getEstadio().isEmpty()) {</span>
+<span class="pc bpc" id="L38" title="1 of 4 branches missed.">        if (equipo.getEstadio() == null || equipo.getEstadio().isEmpty()) {</span>
 <span class="fc" id="L39">            mensaje += &quot;El estadio del equipo no puede ser nulo o vacio \n&quot;;</span>
         }
-<span class="pc bpc" id="L41" title="2 of 4 branches missed.">        if (equipo.getColores() == null || equipo.getColores().isEmpty()) {</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">        if (equipo.getColores() == null || equipo.getColores().isEmpty()) {</span>
 <span class="fc" id="L42">            mensaje += &quot;Los colores del equipo no puede ser nulo o vacio&quot;;</span>
         }
-<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
 <span class="fc" id="L45">            throw new EquipoException(mensaje);</span>
         }
-<span class="nc" id="L47">    }</span>
+<span class="fc" id="L47">    }</span>
 
     /**
      * Metodo encargado de insertar un equipo en la BBDD
+     * 
      * @param equipo a insertar
      * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
      */
-    public void insertarEquipo(Equipo equipo) throws PersistenciaException {
-<span class="fc" id="L55">        equipoModelo.insertar(equipo);</span>
-<span class="fc" id="L56">    }</span>
+    public void insertarEquipo(Equipo equipo) throws PersistenciaException, EquipoException {
+<span class="fc" id="L57">        validar(equipo);</span>
+<span class="fc" id="L58">        equipoModelo.insertar(equipo);</span>
+<span class="fc" id="L59">    }</span>
 
     /**
      * Metodo encargado de eliminar un equipo de la BBDD segun su id
+     * 
      * @param id del equipo
      * @throws PersistenciaException error controlado
      */
     public void eliminarEquipo(int id) throws PersistenciaException {
-<span class="fc" id="L64">        equipoModelo.eliminar(id);</span>
-<span class="fc" id="L65">    }</span>
+<span class="fc" id="L68">        equipoModelo.eliminar(id);</span>
+<span class="fc" id="L69">    }</span>
 
     /**
      * Metodo encargado de modificar un equipo de la BBDD
+     * 
      * @param equipo a modificar
      * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
      */
-    public void modificarEquipo(Equipo equipo) throws PersistenciaException {
-<span class="fc" id="L73">        equipoModelo.modificar(equipo);</span>
-<span class="fc" id="L74">    }</span>
+    public void modificarEquipo(Equipo equipo) throws PersistenciaException, EquipoException {
+<span class="fc" id="L79">        validar(equipo);</span>
+<span class="fc" id="L80">        equipoModelo.modificar(equipo);</span>
+<span class="fc" id="L81">    }</span>
 
     /**
      * Metodo encargado de mostrar la informacion de un equipo segun su nombre
+     * 
      * @param nombre del equipo
-     * @return 
+     * @return
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarInformacion(String nombre) throws PersistenciaException {
-<span class="fc" id="L83">        return equipoModelo.obtenerEquipo(nombre);</span>
+<span class="fc" id="L91">        return equipoModelo.obtenerEquipo(nombre);</span>
     }
 
     /**
      * Metodo encargado de mostrar la ciudad de un club segun su nombre
+     * 
      * @param nombre del equipo
-     * @return 
+     * @return
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
-<span class="fc" id="L93">        return equipoModelo.consultarCiudad(nombre);</span>
+<span class="fc" id="L102">        return equipoModelo.consultarCiudad(nombre);</span>
+    }
+
+    /**
+     * Metodo encargado de mostrar el presupuesto de un club segun su nombre
+     * 
+     * @param nombre del equipo
+     * @return
+     * @throws PersistenciaException error controlado
+     */
+    public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {
+<span class="fc" id="L113">        return equipoModelo.consultarPresupuesto(nombre);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

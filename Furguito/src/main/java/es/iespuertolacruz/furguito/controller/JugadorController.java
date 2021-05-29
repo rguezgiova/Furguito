@@ -1,5 +1,7 @@
 package es.iespuertolacruz.furguito.controller;
 
+import java.util.ArrayList;
+
 import es.iespuertolacruz.furguito.api.Jugador;
 import es.iespuertolacruz.furguito.exception.JugadorException;
 import es.iespuertolacruz.furguito.exception.PersistenciaException;
@@ -45,15 +47,19 @@ public class JugadorController {
 
     /**
      * Metodo encargado de insertar un jugador en la BBDD
+     * 
      * @param jugador a insertar
      * @throws PersistenciaException error controlado
+     * @throws JugadorException      error controlado
      */
-    public void insertarJugador(Jugador jugador) throws PersistenciaException {
+    public void insertarJugador(Jugador jugador) throws PersistenciaException, JugadorException {
+        validar(jugador);
         jugadorModelo.insertar(jugador);
     }
 
     /**
      * Metodo encargado de eliminar un jugador de la BBDD segun su id
+     * 
      * @param id del jugador
      * @throws PersistenciaException error controlado
      */
@@ -63,35 +69,42 @@ public class JugadorController {
 
     /**
      * Metodo encargado de modificar un jugador de la BBDD
+     * 
      * @param jugador a modificar
      * @throws PersistenciaException error controlado
+     * @throws JugadorException      error controlado
      */
-    public void modificarJugador(Jugador jugador) throws PersistenciaException {
+    public void modificarJugador(Jugador jugador) throws PersistenciaException, JugadorException {
+        validar(jugador);
         jugadorModelo.modificar(jugador);
     }
 
     /**
      * Metodo encargado de mostrar la informacion de un jugador segun su nombre
+     * 
      * @param nombre del jugador
      * @throws PersistenciaException error controlado
      */
-    public void consultarInformacion(String nombre) throws PersistenciaException {
-        jugadorModelo.obtenerJugador(nombre);
+    public ArrayList<Jugador> consultarInformacion(String nombre) throws PersistenciaException {
+        return jugadorModelo.obtenerJugador(nombre);
     }
 
     /**
      * Metodo encargado de mostrar a los maximos goleadores
+     * 
+     * @return
      * @throws PersistenciaException error controlado
      */
-    public void consultarMaximosGoleadores() throws PersistenciaException {
-        jugadorModelo.obtenerGoleadores();
+    public ArrayList<Jugador> consultarMaximosGoleadores() throws PersistenciaException {
+        return jugadorModelo.obtenerGoleadores();
     }
 
     /**
      * Metodo encargado de mostrar a los jugadores mas expulsados
+     * 
      * @throws PersistenciaException error controlado
      */
-    public void consultarMasExpulsados() throws PersistenciaException {
-        jugadorModelo.obtenerExpulsados();
+    public ArrayList<Jugador> consultarMasExpulsados() throws PersistenciaException {
+        return jugadorModelo.obtenerExpulsados();
     }
 }

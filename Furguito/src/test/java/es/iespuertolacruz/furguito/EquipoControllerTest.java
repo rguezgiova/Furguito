@@ -70,9 +70,13 @@ public class EquipoControllerTest {
     public void modificarEquipoTest() {
         Equipo equipoModificar = new Equipo(20, "nombre", "ciudad", "estadio", 0, 0, 0, "colores");
         try {
-            equipoController.modificarEquipo(equipoModificar);
+            try {
+                equipoController.modificarEquipo(equipoModificar);
+            } catch (EquipoException exception) {
+                fail("Error en la validacion del equipo", exception);
+            }
         } catch (PersistenciaException exception) {
-            fail("Fallo al modificar el equipo");
+            fail("Fallo al modificar el equipo", exception);
         }
     }
 
@@ -107,7 +111,7 @@ public class EquipoControllerTest {
         String equipo = "Bilbao";
         Equipo equipoEncontrado = null;
         try {
-            equipoEncontrado = equipoController.consultarCiudad(equipo);
+            equipoEncontrado = equipoController.consultarPresupuesto(equipo);
         } catch (PersistenciaException e) {
             fail("No se ha encontrado el equipo");
         }

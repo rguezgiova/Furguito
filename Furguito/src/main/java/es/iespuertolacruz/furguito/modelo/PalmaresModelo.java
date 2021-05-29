@@ -56,18 +56,18 @@ public class PalmaresModelo {
      */
     public void modificar(Palmares palmares) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE " + TABLA + " SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = '" + palmares.getLigas()
-                + "'" + ", copasDelRey = '" + palmares.getCopasDelRey() + "'" + ", superEspana = '"
-                + palmares.getSuperEspana() + ", superEuropa = '" + palmares.getSuperEuropa() + ", champions = '"
-                + palmares.getChampions() + ", mundialClubs = '" + palmares.getMundialClubs() + "' WHERE " + CLAVE
-                + " = " + palmares.getId();
+        sql = "UPDATE " + TABLA + " SET equipo = '" + palmares.getEquipo() + "'" + ", ligas = " + palmares.getLigas()
+                + "" + ", copasDelRey = " + palmares.getCopasDelRey() + "" + ", superEspana = "
+                + palmares.getSuperEspana() + ", superEuropa = " + palmares.getSuperEuropa() + ", champions = "
+                + palmares.getChampions() + ", mundialClubs = " + palmares.getMundialClubs() + " WHERE " + CLAVE + " = "
+                + palmares.getId();
         persistencia.actualizar(sql);
     }
 
     /**
      * Funcion que obtiene el palmares del equipo buscado
      * 
-     * @param equipo nombre del equipo
+     * @param equipo  nombre del equipo
      * @param equipo2 TODO
      * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
@@ -91,7 +91,7 @@ public class PalmaresModelo {
      */
     public ArrayList<Palmares> palmaresLigas() throws PersistenciaException {
         ArrayList<Palmares> listaLigas = null;
-        String sql = "SELECT equipo, ligas FROM " + TABLA + " ORDER BY ligas DESC LIMIT 3";
+        String sql = "SELECT * FROM " + TABLA + " ORDER BY ligas DESC LIMIT 3";
         listaLigas = obtenerPalmares(sql);
         return listaLigas;
     }
@@ -104,7 +104,7 @@ public class PalmaresModelo {
      */
     public ArrayList<Palmares> palmaresCopas() throws PersistenciaException {
         ArrayList<Palmares> listaCopas = null;
-        String sql = "SELECT equipo, copasDelRey FROM " + TABLA + " ORDER BY copasDelRey DESC LIMIT 3";
+        String sql = "SELECT * FROM " + TABLA + " ORDER BY copasDelRey DESC LIMIT 3";
         listaCopas = obtenerPalmares(sql);
         return listaCopas;
     }
