@@ -7,6 +7,15 @@ import es.iespuertolacruz.furguito.api.Equipo;
 import es.iespuertolacruz.furguito.api.Estadio;
 import es.iespuertolacruz.furguito.api.Jugador;
 import es.iespuertolacruz.furguito.api.Palmares;
+import es.iespuertolacruz.furguito.controller.EquipoController;
+import es.iespuertolacruz.furguito.controller.EstadioController;
+import es.iespuertolacruz.furguito.controller.JugadorController;
+import es.iespuertolacruz.furguito.controller.PalmaresController;
+import es.iespuertolacruz.furguito.exception.EquipoException;
+import es.iespuertolacruz.furguito.exception.EstadioException;
+import es.iespuertolacruz.furguito.exception.JugadorException;
+import es.iespuertolacruz.furguito.exception.PalmaresException;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
 
 public class FurguitoVista {
     private static final String INTRODUCIR_NUMERO = "Debe introducir un numero";
@@ -14,7 +23,32 @@ public class FurguitoVista {
     private static final String ESCRIBE_OPCIONES = "Escribe una de las opciones:";
     private static final String ADMIN = "admin";
 
-    public static void main(String[] args) {
+    /**
+     * Metodo principal de la clase vista
+     * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
+     * @throws EstadioException      error controlado
+     * @throws JugadorException      error controlado
+     * @throws PalmaresException     error controlado
+     */
+    public static void main(String[] args)
+            throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
+        EquipoController equipoController = null;
+        if (equipoController == null) {
+            equipoController = new EquipoController();
+        }
+        EstadioController estadioController = null;
+        if (estadioController == null) {
+            estadioController = new EstadioController();
+        }
+        JugadorController jugadorController = null;
+        if (jugadorController == null) {
+            jugadorController = new JugadorController();
+        }
+        PalmaresController palmaresController = null;
+        if (palmaresController == null) {
+            palmaresController = new PalmaresController();
+        }
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
@@ -69,8 +103,34 @@ public class FurguitoVista {
         }
     }
 
-    public static void menuAdmin() {
+    /**
+     * Metodo con las opciones de los usuarios administradores
+     * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
+     * @throws EstadioException      error controlado
+     * @throws JugadorException      error controlado
+     * @throws PalmaresException     error controlado
+     */
+    public static void menuAdmin()
+            throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
+        EquipoController equipoController = null;
+        if (equipoController == null) {
+            equipoController = new EquipoController();
+        }
+        EstadioController estadioController = null;
+        if (estadioController == null) {
+            estadioController = new EstadioController();
+        }
+        JugadorController jugadorController = null;
+        if (jugadorController == null) {
+            jugadorController = new JugadorController();
+        }
+        PalmaresController palmaresController = null;
+        if (palmaresController == null) {
+            palmaresController = new PalmaresController();
+        }
         Scanner sn = new Scanner(System.in);
+        int id;
         int opcion;
         boolean salir = false;
         while (!salir) {
@@ -94,51 +154,59 @@ public class FurguitoVista {
                 switch (opcion) {
                     case 1:
                         System.out.println("Insertar club");
-
+                        equipoController.insertarEquipo(pedirDatosEquipos());
                         break;
                     case 2:
                         System.out.println("Modificar club");
-
+                        equipoController.modificarEquipo(pedirDatosEquipos());
                         break;
                     case 3:
                         System.out.println("Borrar club");
-
+                        System.out.println("Introduzca el id del equipo:");
+                        id = sn.nextInt();
+                        equipoController.eliminarEquipo(id);
                         break;
                     case 4:
                         System.out.println("Insertar estadio");
-
+                        estadioController.insertarEstadio(pedirDatosEstadio());
                         break;
                     case 5:
                         System.out.println("Modificar estadio");
-
+                        estadioController.modificarEstadio(pedirDatosEstadio());
                         break;
                     case 6:
                         System.out.println("Borrar estadio");
-
+                        System.out.println("Introduzca el id del estadio:");
+                        id = sn.nextInt();
+                        estadioController.eliminarEstadio(id);
                         break;
                     case 7:
                         System.out.println("Insertar jugador");
-
+                        jugadorController.insertarJugador(pedirDatosJugador());
                         break;
                     case 8:
                         System.out.println("Modificar jugador");
-
+                        jugadorController.modificarJugador(pedirDatosJugador());
                         break;
                     case 9:
                         System.out.println("Borrar jugador");
-
+                        System.out.println("Introduzca el id del jugador:");
+                        id = sn.nextInt();
+                        jugadorController.eliminarJugador(id);
                         break;
                     case 10:
-                        System.out.println("Insertar jugador");
-
+                        System.out.println("Insertar palmares");
+                        palmaresController.insertarPalmares(pedirDatosPalmares());
                         break;
                     case 11:
-                        System.out.println("Modificar jugador");
-
+                        System.out.println("Modificar palmares");
+                        palmaresController.modificarPalmares(pedirDatosPalmares());
                         break;
                     case 12:
-                        System.out.println("Borrar jugador");
-
+                        System.out.println("Borrar palmares");
+                        System.out.println("Introduzca el id del palmares:");
+                        id = sn.nextInt();
+                        palmaresController.eliminarPalmares(id);
                         break;
                     case 13:
                         System.out.println(SEPARADOR);
@@ -154,13 +222,31 @@ public class FurguitoVista {
         }
     }
 
-    public static void menuInvitado() {
+    /**
+     * Metodo con las opciones de los usuarios invitados
+     * @throws PersistenciaException error controlado
+     */
+    public static void menuInvitado() throws PersistenciaException {
+        EquipoController equipoController = null;
+        if (equipoController == null) {
+            equipoController = new EquipoController();
+        }
+        EstadioController estadioController = null;
+        if (estadioController == null) {
+            estadioController = new EstadioController();
+        }
+        JugadorController jugadorController = null;
+        if (jugadorController == null) {
+            jugadorController = new JugadorController();
+        }
+        PalmaresController palmaresController = null;
+        if (palmaresController == null) {
+            palmaresController = new PalmaresController();
+        }
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
-        String nombreEquipo;
-        String nombreEstadio;
-        String nombreJugador;
+        String nombre;
         while (!salir) {
             System.out.println("1- Informacion del club");
             System.out.println("2- Consultar presupuesto del club");
@@ -183,66 +269,66 @@ public class FurguitoVista {
                     case 1:
                         System.out.println("Informacion del club");
                         System.out.println("Introduzca el nombre del club:");
-                        nombreEquipo = sn.next();
-
+                        nombre = sn.next();
+                        equipoController.consultarInformacion(nombre);
                         break;
                     case 2:
                         System.out.println("Consultar presupuesto del club");
                         System.out.println("Introduzca el nombre del club:");
-                        nombreEquipo = sn.next();
-
+                        nombre = sn.next();
+                        equipoController.consultarPresupuesto(nombre);
                         break;
                     case 3:
                         System.out.println("Consultar ciudad del club");
                         System.out.println("Introduzca el nombre del club:");
-                        nombreEquipo = sn.next();
-
+                        nombre = sn.next();
+                        equipoController.consultarCiudad(nombre);
                         break;
                     case 4:
                         System.out.println("Informacion del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
-                        nombreEstadio = sn.next();
-
+                        nombre = sn.next();
+                        estadioController.consultarInformacion(nombre);
                         break;
                     case 5:
                         System.out.println("Capacidad del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
-                        nombreEstadio = sn.next();
-
+                        nombre = sn.next();
+                        estadioController.consultarCapacidad(nombre);
                         break;
                     case 6:
                         System.out.println("Fecha de construccion del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
-                        nombreEstadio = sn.next();
-
+                        nombre = sn.next();
+                        estadioController.consultarAnioConstruccion(nombre);
                         break;
                     case 7:
                         System.out.println("Informacion del jugador");
                         System.out.println("Introduzca el nombre del jugador:");
-                        nombreJugador = sn.next();
-
+                        nombre = sn.next();
+                        jugadorController.consultarInformacion(nombre);
                         break;
                     case 8:
                         System.out.println("Top 5 maximos goleadores");
-
+                        jugadorController.consultarMaximosGoleadores();
                         break;
                     case 9:
                         System.out.println("Top 10 jugadores mas expulsados");
-
+                        jugadorController.consultarMasExpulsados();
                         break;
                     case 10:
                         System.out.println("Consultar palmares");
                         System.out.println("Introduzca el nombre del equipo:");
-                        nombreEquipo = sn.next();
-
+                        nombre = sn.next();
+                        palmaresController.consultarPalmares(nombre);
                         break;
                     case 11:
                         System.out.println("Equipos con mas ligas");
-
+                        palmaresController.consultarLigas();
                         break;
                     case 12:
                         System.out.println("Equipos con mas copas");
-
+                        palmaresController.consultarCopas();
                         break;
                     case 13:
                         System.out.println(SEPARADOR);
@@ -259,6 +345,10 @@ public class FurguitoVista {
         }
     }
 
+    /**
+     * Funcion encargada de pedir los datos del objeto equipo
+     * @return objeto equipo con sus datos
+     */
     private static Equipo pedirDatosEquipos() {
         int id;
         String nombre;
@@ -290,6 +380,10 @@ public class FurguitoVista {
         return equipo;
     }
 
+    /**
+     * Funcion encargada de pedir los datos del objeto estadio
+     * @return objeto estadio con sus datos
+     */
     private static Estadio pedirDatosEstadio() {
         int id;
         String nombre;
@@ -309,11 +403,13 @@ public class FurguitoVista {
         System.out.println("Introduzca el anio construccion del estadio");
         construccion = sn.nextInt();
         Estadio estadio = new Estadio(id, nombre, equipo, capacidad, construccion);
-
         return estadio;
-
     }
 
+    /**
+     * Funcion encargada de pedir los datos del objeto jugador
+     * @return objeto jugador con sus datos
+     */
     private static Jugador pedirDatosJugador() {
         int id;
         String equipo;
@@ -341,13 +437,14 @@ public class FurguitoVista {
         amarillas = sn.nextInt();
         System.out.println("Introduzca el numero de tarjetas rojas del jugador");
         rojas = sn.nextInt();
-
         Jugador jugador = new Jugador(id, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);
-
         return jugador;
-
     }
 
+    /**
+     * Funcion encargada de pedir los datos del objeto palmares
+     * @return objeto palmares con sus datos
+     */
     private static Palmares pedirDatosPalmares() {
         int id;
         String equipo;
@@ -378,10 +475,6 @@ public class FurguitoVista {
 
         Palmares palmares = new Palmares(id, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,
                 mundialClubs);
-
         return palmares;
-
     }
-
-
 }

@@ -1,7 +1,5 @@
 package es.iespuertolacruz.furguito.api;
 
-import com.google.inject.internal.util.Objects;
-
 public class Jugador {
 
     int id;

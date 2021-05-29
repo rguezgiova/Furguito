@@ -11,7 +11,6 @@ public class Bbdd {
     private static final String NOMBRE_TABLAS = "Equipos,Jugadores,Estadios,Palmares";
     private static final String TABLE = "TABLE";
     private static final String TABLE_NAME = "TABLE_NAME";
-    Fichero fichero;
     protected String nombretabla;
     protected String clave;
     protected String driver;

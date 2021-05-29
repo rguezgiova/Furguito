@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalmaresModelo.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.modelo</a> &gt; <span class="el_source">PalmaresModelo.java</span></div><h1>PalmaresModelo.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.modelo;
+
+import java.sql.ResultSet;
+import java.util.ArrayList;
+
+import es.iespuertolacruz.furguito.api.Palmares;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
+
+public class PalmaresModelo {
+    SqliteBbdd persistencia;
+    Palmares palmares;
+    private static final String ERROR_CONSULTA = &quot;Se ha producido un error en la transformacion &quot;;
+    private static final String TABLA = &quot;Palmares&quot;;
+    private static final String CLAVE = &quot;idPalmares&quot;;
+    private static final String SQLTABLE = &quot;src/resources/sql/palmares-crear.sql&quot;;
+    private static final String SQLINSERT = &quot;src/resources/sql/palmares-insertar.sql&quot;;
+
+<span class="fc" id="L18">    public PalmaresModelo() throws PersistenciaException {</span>
+<span class="fc" id="L19">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null, SQLTABLE, SQLINSERT);</span>
+<span class="fc" id="L20">    }</span>
+
+    /**
+     * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
+     * 
+     * @param palmares a insertar
+     * @throws PersistenciaException error controlado
+     */
+    public void insertar(Palmares palmares) throws PersistenciaException {
+<span class="fc" id="L29">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L30">        sql = &quot;INSERT INTO &quot; + TABLA + &quot; (&quot; + CLAVE</span>
+                + &quot;, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(&quot;
+<span class="fc" id="L32">                + palmares.getId() + &quot;, '&quot; + palmares.getEquipo() + &quot;', &quot; + palmares.getLigas() + &quot;, &quot;</span>
+<span class="fc" id="L33">                + palmares.getCopasDelRey() + &quot;, &quot; + palmares.getSuperEspana() + &quot;, &quot; + palmares.getSuperEuropa() + &quot;, &quot;</span>
+<span class="fc" id="L34">                + palmares.getChampions() + &quot;, &quot; + palmares.getMundialClubs() + &quot;)&quot;;</span>
+<span class="fc" id="L35">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L36">    }</span>
+
+    /**
+     * Metodo para borrar un palmares de la BBDD
+     * 
+     * @param palmares a borrar
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminar(int id) throws PersistenciaException {
+<span class="fc" id="L45">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L46">        sql = &quot;DELETE FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE + &quot; = &quot; + id;</span>
+<span class="fc" id="L47">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L48">    }</span>
+
+    /**
+     * Metodo para modificar el palmares de un equipo dentro de la BBDD
+     * 
+     * @param palmares a modificar
+     * @throws PersistenciaException error controlado
+     */
+    public void modificar(Palmares palmares) throws PersistenciaException {
+<span class="fc" id="L57">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L58">        sql = &quot;UPDATE &quot; + TABLA + &quot; SET equipo = '&quot; + palmares.getEquipo() + &quot;'&quot; + &quot;, ligas = &quot; + palmares.getLigas()</span>
+<span class="fc" id="L59">                + &quot;&quot; + &quot;, copasDelRey = &quot; + palmares.getCopasDelRey() + &quot;&quot; + &quot;, superEspana = &quot;</span>
+<span class="fc" id="L60">                + palmares.getSuperEspana() + &quot;, superEuropa = &quot; + palmares.getSuperEuropa() + &quot;, champions = &quot;</span>
+<span class="fc" id="L61">                + palmares.getChampions() + &quot;, mundialClubs = &quot; + palmares.getMundialClubs() + &quot; WHERE &quot; + CLAVE + &quot; = &quot;</span>
+<span class="fc" id="L62">                + palmares.getId();</span>
+<span class="fc" id="L63">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L64">    }</span>
+
+    /**
+     * Funcion que obtiene el palmares del equipo buscado
+     * 
+     * @param equipo  nombre del equipo
+     * @return palmares completo del equipo
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; palmaresEquipo(String equipo) throws PersistenciaException {
+<span class="fc" id="L74">        ArrayList&lt;Palmares&gt; listaPalmares = null;</span>
+<span class="fc" id="L75">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE equipo LIKE '%&quot; + equipo + &quot;%'&quot;;</span>
+<span class="fc" id="L76">        listaPalmares = obtenerPalmares(sql);</span>
+<span class="fc" id="L77">        return listaPalmares;</span>
+    }
+
+    /**
+     * Funcion que devuelve los 3 equipos con mas ligas
+     * 
+     * @return lista de equipos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; palmaresLigas() throws PersistenciaException {
+<span class="fc" id="L87">        ArrayList&lt;Palmares&gt; listaLigas = null;</span>
+<span class="fc" id="L88">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY ligas DESC LIMIT 3&quot;;</span>
+<span class="fc" id="L89">        listaLigas = obtenerPalmares(sql);</span>
+<span class="fc" id="L90">        return listaLigas;</span>
+    }
+
+    /**
+     * Funcion que devuelve los 3 equipos con mas copas del rey
+     * 
+     * @return lista de equipos
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; palmaresCopas() throws PersistenciaException {
+<span class="fc" id="L100">        ArrayList&lt;Palmares&gt; listaCopas = null;</span>
+<span class="fc" id="L101">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY copasDelRey DESC LIMIT 3&quot;;</span>
+<span class="fc" id="L102">        listaCopas = obtenerPalmares(sql);</span>
+<span class="fc" id="L103">        return listaCopas;</span>
+    }
+
+    /**
+     * Funcion que realiza la consulta sobre la BBDD y la tabla Palmares
+     * 
+     * @param sql de la consulta
+     * @return lista de resultados
+     * @throws PersistenciaException controlado
+     */
+    public ArrayList&lt;Palmares&gt; obtenerPalmares(String sql) throws PersistenciaException {
+<span class="fc" id="L114">        ArrayList&lt;Palmares&gt; listaPalmares = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L115">        ResultSet resultSet = null;</span>
+
+        try {
+<span class="fc" id="L118">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L120">                int identificador = resultSet.getInt(&quot;idPalmares&quot;);</span>
+<span class="fc" id="L121">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="fc" id="L122">                int ligas = resultSet.getInt(&quot;ligas&quot;);</span>
+<span class="fc" id="L123">                int copasDelRey = resultSet.getInt(&quot;copasDelRey&quot;);</span>
+<span class="fc" id="L124">                int superEspana = resultSet.getInt(&quot;SuperEspana&quot;);</span>
+<span class="fc" id="L125">                int superEuropa = resultSet.getInt(&quot;SuperEuropa&quot;);</span>
+<span class="fc" id="L126">                int champions = resultSet.getInt(&quot;champions&quot;);</span>
+<span class="fc" id="L127">                int mundialClubs = resultSet.getInt(&quot;mundialClubs&quot;);</span>
+<span class="fc" id="L128">                palmares = new Palmares(identificador, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,</span>
+                        mundialClubs);
+<span class="fc" id="L130">                listaPalmares.add(palmares);</span>
+<span class="fc" id="L131">            }</span>
+<span class="nc" id="L132">        } catch (Exception exception) {</span>
+<span class="nc" id="L133">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+        } finally {
+<span class="fc" id="L135">            persistencia.closeConnection(null, null, resultSet);</span>
+        }
+<span class="fc" id="L137">        return listaPalmares;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
