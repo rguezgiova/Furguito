@@ -22,33 +22,63 @@ public class FurguitoVista {
     private static final String SEPARADOR = "##########################\n";
     private static final String ESCRIBE_OPCIONES = "Escribe una de las opciones:";
     private static final String ADMIN = "admin";
+    static EquipoController equipoController;
+    static JugadorController jugadorController;
+    static PalmaresController palmaresController;
+    static EstadioController estadioController;
 
     /**
      * Metodo principal de la clase vista
+     * 
      * @throws PersistenciaException error controlado
      * @throws EquipoException       error controlado
      * @throws EstadioException      error controlado
      * @throws JugadorException      error controlado
      * @throws PalmaresException     error controlado
      */
+
+    public FurguitoVista() {
+        try {
+            equipoController = new EquipoController();
+        } catch (PersistenciaException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            palmaresController = new PalmaresController();
+        } catch (PersistenciaException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            estadioController = new EstadioController();
+        } catch (PersistenciaException exception) {
+            exception.printStackTrace();
+        }
+        try {
+            jugadorController = new JugadorController();
+        } catch (PersistenciaException exception) {
+            exception.printStackTrace();
+        }
+    }
+
     public static void main(String[] args)
             throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
-        EquipoController equipoController = null;
-        if (equipoController == null) {
-            equipoController = new EquipoController();
-        }
-        EstadioController estadioController = null;
-        if (estadioController == null) {
-            estadioController = new EstadioController();
-        }
-        JugadorController jugadorController = null;
-        if (jugadorController == null) {
-            jugadorController = new JugadorController();
-        }
-        PalmaresController palmaresController = null;
-        if (palmaresController == null) {
-            palmaresController = new PalmaresController();
-        }
+
+        new FurguitoVista();
+        menuPrincipal();
+
+    }
+
+    /**
+     * Menu principal de la vista
+     * 
+     * @throws PersistenciaException
+     * @throws EquipoException
+     * @throws EstadioException
+     * @throws JugadorException
+     * @throws PalmaresException
+     */
+    public static void menuPrincipal()
+            throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
@@ -105,6 +135,7 @@ public class FurguitoVista {
 
     /**
      * Metodo con las opciones de los usuarios administradores
+     * 
      * @throws PersistenciaException error controlado
      * @throws EquipoException       error controlado
      * @throws EstadioException      error controlado
@@ -113,22 +144,7 @@ public class FurguitoVista {
      */
     public static void menuAdmin()
             throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
-        EquipoController equipoController = null;
-        if (equipoController == null) {
-            equipoController = new EquipoController();
-        }
-        EstadioController estadioController = null;
-        if (estadioController == null) {
-            estadioController = new EstadioController();
-        }
-        JugadorController jugadorController = null;
-        if (jugadorController == null) {
-            jugadorController = new JugadorController();
-        }
-        PalmaresController palmaresController = null;
-        if (palmaresController == null) {
-            palmaresController = new PalmaresController();
-        }
+
         Scanner sn = new Scanner(System.in);
         int id;
         int opcion;
@@ -224,25 +240,11 @@ public class FurguitoVista {
 
     /**
      * Metodo con las opciones de los usuarios invitados
+     * 
      * @throws PersistenciaException error controlado
      */
     public static void menuInvitado() throws PersistenciaException {
-        EquipoController equipoController = null;
-        if (equipoController == null) {
-            equipoController = new EquipoController();
-        }
-        EstadioController estadioController = null;
-        if (estadioController == null) {
-            estadioController = new EstadioController();
-        }
-        JugadorController jugadorController = null;
-        if (jugadorController == null) {
-            jugadorController = new JugadorController();
-        }
-        PalmaresController palmaresController = null;
-        if (palmaresController == null) {
-            palmaresController = new PalmaresController();
-        }
+
         Scanner sn = new Scanner(System.in);
         int opcion;
         boolean salir = false;
@@ -347,6 +349,7 @@ public class FurguitoVista {
 
     /**
      * Funcion encargada de pedir los datos del objeto equipo
+     * 
      * @return objeto equipo con sus datos
      */
     private static Equipo pedirDatosEquipos() {
@@ -382,6 +385,7 @@ public class FurguitoVista {
 
     /**
      * Funcion encargada de pedir los datos del objeto estadio
+     * 
      * @return objeto estadio con sus datos
      */
     private static Estadio pedirDatosEstadio() {
@@ -408,6 +412,7 @@ public class FurguitoVista {
 
     /**
      * Funcion encargada de pedir los datos del objeto jugador
+     * 
      * @return objeto jugador con sus datos
      */
     private static Jugador pedirDatosJugador() {
@@ -443,6 +448,7 @@ public class FurguitoVista {
 
     /**
      * Funcion encargada de pedir los datos del objeto palmares
+     * 
      * @return objeto palmares con sus datos
      */
     private static Palmares pedirDatosPalmares() {
