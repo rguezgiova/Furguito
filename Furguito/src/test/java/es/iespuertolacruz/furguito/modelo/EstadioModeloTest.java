@@ -79,6 +79,15 @@ public class EstadioModeloTest {
     }
 
     @Test
+    public void obtenerEstadioErrorTest() {
+        try {
+            estadioModelo.obtenerEstadios("SELECT nada from nada");
+        } catch (PersistenciaException exception) {
+            assertNotNull(exception);
+        }
+    }
+
+    @Test
     public void obtenerCapacidadTest() {
         String nombre = "Balaidos";
         Estadio estadioEncontrado = null;

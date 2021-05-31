@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: es.iespuertolacruz.furguito.modelo.EstadioModeloTest
 -------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s - in es.iespuertolacruz.furguito.modelo.EstadioModeloTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.145 s - in es.iespuertolacruz.furguito.modelo.EstadioModeloTest

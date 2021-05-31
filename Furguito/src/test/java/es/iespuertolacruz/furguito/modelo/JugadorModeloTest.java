@@ -68,6 +68,15 @@ public class JugadorModeloTest {
     }
 
     @Test
+    public void obtenerJugadorErrorTest() {
+        try {
+            jugadorModelo.obtenerJugadores("SELECT nada from nada");
+        } catch (PersistenciaException exception) {
+            assertNotNull(exception);
+        }
+    }
+
+    @Test
     public void obtenerGoleadoresTest() {
         try {
             jugadorModelo.obtenerGoleadores();

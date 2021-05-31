@@ -86,7 +86,7 @@ public class JugadorModelo {
      */
     public ArrayList&lt;Jugador&gt; obtenerGoleadores() throws PersistenciaException {
 <span class="fc" id="L88">        ArrayList&lt;Jugador&gt; listaJugadores = null;</span>
-<span class="fc" id="L89">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY goles LIMIT 5&quot;;</span>
+<span class="fc" id="L89">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY goles DESC LIMIT 5&quot;;</span>
 <span class="fc" id="L90">        listaJugadores = obtenerJugadores(sql);</span>
 <span class="fc" id="L91">        return listaJugadores;</span>
     }
@@ -129,8 +129,8 @@ public class JugadorModelo {
 <span class="fc" id="L129">                jugador = new Jugador(identificador, equipo, nombre, dorsal, goles, asistencias, amarillas, rojas);</span>
 <span class="fc" id="L130">                listaJugadores.add(jugador);</span>
 <span class="fc" id="L131">            }</span>
-<span class="nc" id="L132">        } catch (Exception exception) {</span>
-<span class="nc" id="L133">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+<span class="fc" id="L132">        } catch (Exception exception) {</span>
+<span class="fc" id="L133">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
         } finally {
 <span class="fc" id="L135">            persistencia.closeConnection(null, null, resultSet);</span>
         }

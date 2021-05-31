@@ -131,8 +131,8 @@ public class PalmaresModelo {
                         mundialClubs);
 <span class="fc" id="L132">                listaPalmares.add(palmares);</span>
 <span class="fc" id="L133">            }</span>
-<span class="nc" id="L134">        } catch (Exception exception) {</span>
-<span class="nc" id="L135">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+<span class="fc" id="L134">        } catch (Exception exception) {</span>
+<span class="fc" id="L135">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
         } finally {
 <span class="fc" id="L137">            persistencia.closeConnection(null, null, resultSet);</span>
         }

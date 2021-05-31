@@ -83,6 +83,7 @@ public class JugadorController {
      * Metodo encargado de mostrar la informacion de un jugador segun su nombre
      * 
      * @param nombre del jugador
+     * @return lista de jugadores que coincidan con el nombre
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Jugador> consultarInformacion(String nombre) throws PersistenciaException {
@@ -92,7 +93,7 @@ public class JugadorController {
     /**
      * Metodo encargado de mostrar a los maximos goleadores
      * 
-     * @return
+     * @return lista de maximos goleadores
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Jugador> consultarMaximosGoleadores() throws PersistenciaException {
@@ -102,6 +103,7 @@ public class JugadorController {
     /**
      * Metodo encargado de mostrar a los jugadores mas expulsados
      * 
+     * @return lista de jugadores mas expulsados
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Jugador> consultarMasExpulsados() throws PersistenciaException {

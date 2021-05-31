@@ -77,6 +77,7 @@ public class PalmaresController {
      * Metodo encargado de mostrar el palmares de un equipo
      * 
      * @param equipo para consultar su palmares
+     * @return palmares completo del equipo buscado
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Palmares> consultarPalmares(String equipo) throws PersistenciaException {
@@ -86,20 +87,20 @@ public class PalmaresController {
     /**
      * Metodo encargado de mostrar los equipos con mas ligas
      * 
-     * @return
-     * 
+     * @return lista de equipos con mas ligas
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Palmares> consultarLigas() throws PersistenciaException {
-        return palmaresModelo.palmaresCopas();
+        return palmaresModelo.palmaresLigas();
     }
 
     /**
      * Metodo encargado de mostrar los equipos con mas copas
      * 
+     * @return lista de equipos con mas copas
      * @throws PersistenciaException error controlado
      */
     public ArrayList<Palmares> consultarCopas() throws PersistenciaException {
-        return palmaresModelo.palmaresLigas();
+        return palmaresModelo.palmaresCopas();
     }
 }

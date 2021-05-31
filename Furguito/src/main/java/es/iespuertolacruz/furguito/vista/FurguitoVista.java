@@ -54,6 +54,7 @@ public class FurguitoVista {
 
     /**
      * Metodo principal de la clase Vista
+     * 
      * @throws PersistenciaException error controlado
      * @throws EquipoException       error controlado
      * @throws EstadioException      error controlado
@@ -286,14 +287,14 @@ public class FurguitoVista {
                         System.out.println("Introduzca el nombre del club:");
                         nombre = sn.next();
                         equipo = equipoController.consultarPresupuesto(nombre);
-                        System.out.println(equipo.getNombre() + " " + equipo.getPresupuesto());
+                        System.out.println(equipo.getNombre() + ", presupuesto: " + equipo.getPresupuesto() + "\n");
                         break;
                     case 3:
                         System.out.println("Consultar ciudad del club");
                         System.out.println("Introduzca el nombre del club:");
                         nombre = sn.next();
                         equipo = equipoController.consultarCiudad(nombre);
-                        System.out.println(equipo.getNombre() + " " + equipo.getCiudad());
+                        System.out.println(equipo.getNombre() + ", ciudad: " + equipo.getCiudad() + "\n");
                         break;
                     case 4:
                         System.out.println("Informacion del estadio");
@@ -307,14 +308,15 @@ public class FurguitoVista {
                         System.out.println("Introduzca el nombre del estadio:");
                         nombre = sn.next();
                         estadio = estadioController.consultarCapacidad(nombre);
-                        System.out.println(estadio.getNombre() + " " + estadio.getCapacidad());
+                        System.out.println(estadio.getNombre() + ", capacidad: " + estadio.getCapacidad() + "\n");
                         break;
                     case 6:
                         System.out.println("Fecha de construccion del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
                         nombre = sn.next();
                         estadio = estadioController.consultarAnioConstruccion(nombre);
-                        System.out.println(estadio.getNombre() + " " + estadio.getConstruccion());
+                        System.out.println(
+                                estadio.getNombre() + ", anio de construccion: " + estadio.getConstruccion() + "\n");
                         break;
                     case 7:
                         System.out.println("Informacion del jugador");

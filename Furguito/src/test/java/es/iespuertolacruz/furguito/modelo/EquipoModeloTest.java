@@ -41,7 +41,8 @@ public class EquipoModeloTest {
 
     @Test
     public void insertarEquipoTest() {
-        Equipo equipoInsertar = new Equipo(22, "Tenerife", "Tenerife", "Rguez Lopez", 1912, 5124, 111111111, "Blanco y azul");
+        Equipo equipoInsertar = new Equipo(22, "Tenerife", "Tenerife", "Rguez Lopez", 1912, 5124, 111111111,
+                "Blanco y azul");
         try {
             equipoModelo.insertar(equipoInsertar);
         } catch (Exception e) {
@@ -78,6 +79,15 @@ public class EquipoModeloTest {
             fail("No se ha encontrado el equipo");
         }
         assertTrue(equipoEncontrado.getNombre().contains(equipo));
+    }
+
+    @Test
+    public void obtenerEquipoErrorTest() {
+        try {
+            equipoModelo.obtenerEquipos("SELECT nombre from Estadios");
+        } catch (PersistenciaException exception) {
+            assertNotNull(exception);
+        }
     }
 
     @Test

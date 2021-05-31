@@ -27,7 +27,7 @@ public class PalmaresModeloTest {
     }
 
     @Test
-    public void palmaresNombreTest(){
+    public void palmaresNombreTest() {
         ArrayList<Palmares> listaPalmares = new ArrayList<>();
         String nombre = "Sociedad";
         try {
@@ -37,7 +37,16 @@ public class PalmaresModeloTest {
         }
         assertNotNull(listaPalmares);
     }
-    
+
+    @Test
+    public void obtenerPalmaresErrorTest() {
+        try {
+            palmaresModelo.obtenerPalmares("SELECT nada from nada");
+        } catch (PersistenciaException exception) {
+            assertNotNull(exception);
+        }
+    }
+
     @Test
     public void insertarPalmaresTest() {
         Palmares palmaresInsertar = new Palmares(22, "equipo", 1, 1, 1, 1, 1, 1);

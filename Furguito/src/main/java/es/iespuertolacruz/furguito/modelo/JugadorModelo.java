@@ -15,6 +15,7 @@ public class JugadorModelo {
 
     /**
      * Constructor de la clase
+     * 
      * @throws PersistenciaException error controlado
      */
     public JugadorModelo() throws PersistenciaException {
@@ -55,7 +56,7 @@ public class JugadorModelo {
     /**
      * Metodo para borrar un jugador de la BBDD
      * 
-     * @param jugador a borrar
+     * @param id del jugador a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {

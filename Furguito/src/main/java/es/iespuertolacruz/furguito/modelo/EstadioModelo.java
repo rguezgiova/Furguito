@@ -15,6 +15,7 @@ public class EstadioModelo {
 
     /**
      * Constructor de la clase
+     * 
      * @throws PersistenciaException error controlado
      */
     public EstadioModelo() throws PersistenciaException {
@@ -38,7 +39,7 @@ public class EstadioModelo {
     /**
      * Metodo para borrar un estadio de la BBDD
      * 
-     * @param estadio a borrar
+     * @param id del estadio a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {
@@ -122,7 +123,7 @@ public class EstadioModelo {
      * @return lista de resultados
      * @throws PersistenciaException controlado
      */
-    private ArrayList<Estadio> obtenerEstadios(String sql) throws PersistenciaException {
+    ArrayList<Estadio> obtenerEstadios(String sql) throws PersistenciaException {
         ArrayList<Estadio> listaEstadios = new ArrayList<>();
         ResultSet resultSet = null;
 

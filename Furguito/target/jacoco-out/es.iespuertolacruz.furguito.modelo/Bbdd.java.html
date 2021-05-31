@@ -147,8 +147,8 @@ public class Bbdd {
 <span class="fc" id="L147">            connection = getConnection();</span>
 <span class="fc" id="L148">            statement = connection.prepareStatement(sql);</span>
 <span class="fc" id="L149">            resultSet = statement.executeQuery();</span>
-<span class="nc" id="L150">        } catch (Exception exception) {</span>
-<span class="nc" id="L151">            throw new PersistenciaException(&quot;Se ha producido un error en la busqueda&quot;, exception);</span>
+<span class="fc" id="L150">        } catch (Exception exception) {</span>
+<span class="fc" id="L151">            throw new PersistenciaException(&quot;Se ha producido un error en la busqueda&quot;, exception);</span>
 <span class="fc" id="L152">        }</span>
 <span class="fc" id="L153">        return resultSet;</span>
     }

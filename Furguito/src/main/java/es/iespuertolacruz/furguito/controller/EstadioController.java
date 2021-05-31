@@ -42,9 +42,10 @@ public class EstadioController {
 
     /**
      * Metodo encargado de insertar un estadio en la BBDD
+     * 
      * @param estadio a insertar
      * @throws PersistenciaException error controlado
-     * @throws EstadioException
+     * @throws EstadioException      error controlado
      */
     public void insertarEstadio(Estadio estadio) throws PersistenciaException, EstadioException {
         validar(estadio);
@@ -53,6 +54,7 @@ public class EstadioController {
 
     /**
      * Metodo encargado de eliminar un estadio de la BBDD segun su id
+     * 
      * @param id del estadio
      * @throws PersistenciaException error controlado
      */
@@ -62,9 +64,10 @@ public class EstadioController {
 
     /**
      * Metodo encargado de modificar un estadio de la BBDD
+     * 
      * @param estadio a modificar
      * @throws PersistenciaException error controlado
-     * @throws EstadioException
+     * @throws EstadioException      error controlado
      */
     public void modificarEstadio(Estadio estadio) throws PersistenciaException, EstadioException {
         validar(estadio);
@@ -73,8 +76,9 @@ public class EstadioController {
 
     /**
      * Metodo encargado de mostrar la informacion de un estadio segun su nombre
+     * 
      * @param nombre del estadio
-     * @return 
+     * @return informacion del estadio
      * @throws PersistenciaException error controlado
      */
     public Estadio consultarInformacion(String nombre) throws PersistenciaException {
@@ -83,7 +87,9 @@ public class EstadioController {
 
     /**
      * Metodo encargado de consultar la capacidad de un estadio segun su nombre
+     * 
      * @param nombre del estadio
+     * @return nombre y capacidad del estadio
      * @throws PersistenciaException error controlado
      */
     public Estadio consultarCapacidad(String nombre) throws PersistenciaException {
@@ -91,8 +97,11 @@ public class EstadioController {
     }
 
     /**
-     * Metodo encargado de consultar el anio de construccion de un estadio segun su nombre
+     * Metodo encargado de consultar el anio de construccion de un estadio segun su
+     * nombre
+     * 
      * @param nombre del estadio
+     * @return nombre y fecha de construccion del estadio
      * @throws PersistenciaException error controlado
      */
     public Estadio consultarAnioConstruccion(String nombre) throws PersistenciaException {

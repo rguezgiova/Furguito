@@ -15,6 +15,7 @@ public class PalmaresModelo {
 
     /**
      * Constructor de la clase
+     * 
      * @throws PersistenciaException error controlado
      */
     public PalmaresModelo() throws PersistenciaException {
@@ -40,7 +41,7 @@ public class PalmaresModelo {
     /**
      * Metodo para borrar un palmares de la BBDD
      * 
-     * @param palmares a borrar
+     * @param id del palmares a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {
@@ -68,7 +69,7 @@ public class PalmaresModelo {
     /**
      * Funcion que obtiene el palmares del equipo buscado
      * 
-     * @param equipo  nombre del equipo
+     * @param equipo nombre del equipo
      * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
      */

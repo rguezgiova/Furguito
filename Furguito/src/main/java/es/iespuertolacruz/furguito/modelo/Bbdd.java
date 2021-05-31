@@ -18,13 +18,16 @@ public class Bbdd {
     /**
      * Constructor con parametros
      * 
-     * @param driver   de la BBDD
-     * @param url      de la BBDD
-     * @param usuario  para el login
-     * @param password del usuario
-     * @throws PersistenciaException
+     * @param nombretabla de la BBDD
+     * @param clave       primaria de la tabla
+     * @param driver      de la BBDD
+     * @param url         de la BBDD
+     * @param usuario     para el login
+     * @param password    del usuario
+     * @throws PersistenciaException error controlado
      */
-    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password) throws PersistenciaException {
+    public Bbdd(String nombretabla, String clave, String driver, String url, String usuario, String password)
+            throws PersistenciaException {
         this.nombretabla = nombretabla;
         this.clave = clave;
         this.driver = driver;
@@ -53,9 +56,11 @@ public class Bbdd {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
             if (!listaTablas.contains(nombretabla)) {
-                String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-crear.sql");
+                String sqlCrearTabla = new Fichero()
+                        .leer("src/resources/sql/" + nombretabla.toLowerCase() + "-crear.sql");
                 actualizar(sqlCrearTabla);
-                String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-insertar.sql");
+                String sqlInsertarDatos = new Fichero()
+                        .leer("src/resources/sql/" + nombretabla.toLowerCase() + "-insertar.sql");
                 actualizar(sqlInsertarDatos);
             }
         } catch (Exception e) {

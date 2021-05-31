@@ -15,6 +15,7 @@ public class EquipoModelo {
 
     /**
      * Constructor de la clase
+     * 
      * @throws PersistenciaException error controlado
      */
     public EquipoModelo() throws PersistenciaException {
@@ -29,22 +30,23 @@ public class EquipoModelo {
      */
     public void insertar(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "INSERT INTO " + TABLA + " (" + CLAVE + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES("
-                + equipo.getId() + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '"
-                + equipo.getEstadio() + "', " + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", "
-                + equipo.getPresupuesto() + ", '" + equipo.getColores() + "')";
+        sql = "INSERT INTO " + TABLA + " (" + CLAVE
+                + ", nombre, ciudad, estadio, fundacion, numero_socios, presupuesto, colores) VALUES(" + equipo.getId()
+                + ", '" + equipo.getNombre() + "', '" + equipo.getCiudad() + "', '" + equipo.getEstadio() + "', "
+                + equipo.getFundacion() + ", " + equipo.getNumeroSocios() + ", " + equipo.getPresupuesto() + ", '"
+                + equipo.getColores() + "')";
         persistencia.actualizar(sql);
     }
 
     /**
      * Metodo para borrar un equipo de la BBDD
      * 
-     * @param equipoModificar a borrar
+     * @param id del equipo a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {
         String sql = "";
-        sql = "DELETE FROM " + TABLA + " WHERE "+ CLAVE + " = " + id;
+        sql = "DELETE FROM " + TABLA + " WHERE " + CLAVE + " = " + id;
         persistencia.actualizar(sql);
     }
 
@@ -56,8 +58,8 @@ public class EquipoModelo {
      */
     public void modificar(Equipo equipo) throws PersistenciaException {
         String sql = "";
-        sql = "UPDATE " + TABLA + " SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad() + "'"
-                + ", estadio = '" + equipo.getEstadio() + "'" + ", fundacion = " + equipo.getFundacion()
+        sql = "UPDATE " + TABLA + " SET nombre = '" + equipo.getNombre() + "'" + ", ciudad = '" + equipo.getCiudad()
+                + "'" + ", estadio = '" + equipo.getEstadio() + "'" + ", fundacion = " + equipo.getFundacion()
                 + ", numero_socios = " + equipo.getNumeroSocios() + ", presupuesto = " + equipo.getPresupuesto()
                 + ", colores = '" + equipo.getColores() + "' WHERE " + CLAVE + " = " + equipo.getId();
         persistencia.actualizar(sql);
@@ -81,6 +83,13 @@ public class EquipoModelo {
         return equipo;
     }
 
+    /**
+     * Funcion que obtiene el nombre y el presupuesto de un equipo
+     * 
+     * @param nombre del equipo a buscar
+     * @return nombre y presupuesto del equipo buscado
+     * @throws PersistenciaException
+     */
     public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {
         Equipo equipo = null;
         ArrayList<Equipo> listaEquipos = null;
@@ -117,7 +126,7 @@ public class EquipoModelo {
      * @return lista de resultados
      * @throws PersistenciaException error controlado
      */
-    private ArrayList<Equipo> obtenerEquipos(String sql) throws PersistenciaException {
+    ArrayList<Equipo> obtenerEquipos(String sql) throws PersistenciaException {
         ArrayList<Equipo> listaEquipos = new ArrayList<>();
         ResultSet resultSet = null;
 
