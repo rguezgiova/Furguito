@@ -86,7 +86,7 @@ public class JugadorModelo {
      */
     public ArrayList<Jugador> obtenerGoleadores() throws PersistenciaException {
         ArrayList<Jugador> listaJugadores = null;
-        String sql = "SELECT * FROM " + TABLA + " ORDER BY goles LIMIT 5";
+        String sql = "SELECT * FROM " + TABLA + " ORDER BY goles DESC LIMIT 5";
         listaJugadores = obtenerJugadores(sql);
         return listaJugadores;
     }
