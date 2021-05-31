@@ -74,4 +74,14 @@ public class Estadio {
     public void setConstruccion(int construccion) {
         this.construccion = construccion;
     }
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+        return " IDEstadio='" + getId() + "'" + ", Nombre='" + getNombre() + "'" + ", Equipo='" + getEquipo() + "'"
+                + ", Capacidad='" + getCapacidad() + "'" + ", Construccion='" + getConstruccion() + "\n";
+    }
+
 }

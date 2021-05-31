@@ -108,4 +108,16 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
         this.mundialClubs = mundialClubs;
     }
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+        return " IDPalmares='" + getId() + "'" + ", Equipo='" + getEquipo() + "'" + ", Ligas='" + getLigas() + "'"
+                + ", Copas del Rey='" + getCopasDelRey() + "'" + ", supercopas de Espana='" + getSuperEspana() + "'"
+                + ", supercopas de Europa='" + getSuperEuropa() + "'" + ", Champions League='" + getChampions() + "'"
+                + ", Mundiales de clubs='" + getMundialClubs() + "\n";
+    }
+
 }

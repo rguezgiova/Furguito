@@ -1,5 +1,7 @@
 package es.iespuertolacruz.furguito.api;
 
+import java.util.Objects;
+
 public class Jugador {
 
     int id;
@@ -108,4 +110,15 @@ public class Jugador {
     public void setRojas(int rojas) {
         this.rojas = rojas;
     }
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+        return " IDJugador='" + getId() + "'" + ", Equipo='" + getEquipo() + "'" + ", Nombre='" + getNombre() + "'"
+                + ", Dorsal='" + getDorsal() + "'" + ", Goles='" + getGoles() + "'" + ", Asistencias='"
+                + getAsistencias() + "'" + ", Amarillas='" + getAmarillas() + "'" + ", Rojas='" + getRojas() + "\n";
+    }
+
 }

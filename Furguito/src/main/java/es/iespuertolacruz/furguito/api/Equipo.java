@@ -108,4 +108,16 @@ public class Equipo {
     public void setColores(String colores) {
         this.colores = colores;
     }
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+        return " IDEquipo='" + getId() + "'" + ", Nombre='" + getNombre() + "'" + ", Ciudad='" + getCiudad() + "'"
+                + ", Estadio='" + getEstadio() + "'" + ", Fundacion='" + getFundacion() + "'" + ", Numero de socios='"
+                + getNumeroSocios() + "'" + ", Presupuesto='" + getPresupuesto() + "'" + ", Colores='" + getColores()
+                + "\n";
+    }
+
 }

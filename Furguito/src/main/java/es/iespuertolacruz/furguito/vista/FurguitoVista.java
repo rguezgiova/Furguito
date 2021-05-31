@@ -1,6 +1,6 @@
 package es.iespuertolacruz.furguito.vista;
 
-import java.io.File;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -38,26 +38,18 @@ public class FurguitoVista {
      * @throws PalmaresException     error controlado
      */
 
-    public FurguitoVista() {
-        try {
+    public FurguitoVista() throws PersistenciaException {
+        if (equipoController == null) {
             equipoController = new EquipoController();
-        } catch (PersistenciaException exception) {
-            exception.printStackTrace();
         }
-        try {
-            palmaresController = new PalmaresController();
-        } catch (PersistenciaException exception) {
-            exception.printStackTrace();
-        }
-        try {
-            estadioController = new EstadioController();
-        } catch (PersistenciaException exception) {
-            exception.printStackTrace();
-        }
-        try {
+        if (jugadorController == null) {
             jugadorController = new JugadorController();
-        } catch (PersistenciaException exception) {
-            exception.printStackTrace();
+        }
+        if (palmaresController == null) {
+            palmaresController = new PalmaresController();
+        }
+        if (estadioController == null) {
+            estadioController = new EstadioController();
         }
     }
 
@@ -66,7 +58,7 @@ public class FurguitoVista {
 
         new FurguitoVista();
         menuPrincipal();
-         
+
     }
 
     /**
@@ -268,70 +260,88 @@ public class FurguitoVista {
             try {
                 System.out.println(ESCRIBE_OPCIONES);
                 opcion = sn.nextInt();
+                Equipo equipo;
+                Estadio estadio;
+                Palmares palmares;
+                Jugador jugador;
+                ArrayList<Jugador> listaJugadores = new ArrayList<>();
+                ArrayList<Palmares> listaPalmares = new ArrayList<>();
                 switch (opcion) {
                     case 1:
                         System.out.println("Informacion del club");
                         System.out.println("Introduzca el nombre del club:");
                         nombre = sn.next();
-                        equipoController.consultarInformacion(nombre);
+                        equipo = equipoController.consultarInformacion(nombre);
+                        System.out.println(equipo);
                         break;
                     case 2:
                         System.out.println("Consultar presupuesto del club");
                         System.out.println("Introduzca el nombre del club:");
                         nombre = sn.next();
-                        equipoController.consultarPresupuesto(nombre);
+                        equipo = equipoController.consultarPresupuesto(nombre);
+                        System.out.println(equipo.getNombre() + " " + equipo.getPresupuesto());
                         break;
                     case 3:
                         System.out.println("Consultar ciudad del club");
                         System.out.println("Introduzca el nombre del club:");
                         nombre = sn.next();
-                        equipoController.consultarCiudad(nombre);
+                        equipo = equipoController.consultarCiudad(nombre);
+                        System.out.println(equipo.getNombre() + " " + equipo.getCiudad());
                         break;
                     case 4:
                         System.out.println("Informacion del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
                         nombre = sn.next();
-                        estadioController.consultarInformacion(nombre);
+                        estadio = estadioController.consultarInformacion(nombre);
+                        System.out.println(estadio);
                         break;
                     case 5:
                         System.out.println("Capacidad del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
                         nombre = sn.next();
-                        estadioController.consultarCapacidad(nombre);
+                        estadio = estadioController.consultarCapacidad(nombre);
+                        System.out.println(estadio.getNombre() + " " + estadio.getCapacidad());
                         break;
                     case 6:
                         System.out.println("Fecha de construccion del estadio");
                         System.out.println("Introduzca el nombre del estadio:");
                         nombre = sn.next();
-                        estadioController.consultarAnioConstruccion(nombre);
+                        estadio = estadioController.consultarAnioConstruccion(nombre);
+                        System.out.println(estadio.getNombre() + " " + estadio.getConstruccion());
                         break;
                     case 7:
                         System.out.println("Informacion del jugador");
                         System.out.println("Introduzca el nombre del jugador:");
                         nombre = sn.next();
-                        jugadorController.consultarInformacion(nombre);
+                        listaJugadores = jugadorController.consultarInformacion(nombre);
+                        System.out.println(listaJugadores.toString());
                         break;
                     case 8:
                         System.out.println("Top 5 maximos goleadores");
-                        jugadorController.consultarMaximosGoleadores();
+                        listaJugadores = jugadorController.consultarMaximosGoleadores();
+                        System.out.println(listaJugadores.toString());
                         break;
                     case 9:
                         System.out.println("Top 10 jugadores mas expulsados");
-                        jugadorController.consultarMasExpulsados();
+                        listaJugadores = jugadorController.consultarMasExpulsados();
+                        System.out.println(listaJugadores.toString());
                         break;
                     case 10:
                         System.out.println("Consultar palmares");
                         System.out.println("Introduzca el nombre del equipo:");
                         nombre = sn.next();
-                        palmaresController.consultarPalmares(nombre);
+                        listaPalmares = palmaresController.consultarPalmares(nombre);
+                        System.out.println(listaPalmares.toString());
                         break;
                     case 11:
                         System.out.println("Equipos con mas ligas");
-                        palmaresController.consultarLigas();
+                        listaPalmares = palmaresController.consultarLigas();
+                        System.out.println(listaPalmares.toString());
                         break;
                     case 12:
                         System.out.println("Equipos con mas copas");
-                        palmaresController.consultarCopas();
+                        listaPalmares = palmaresController.consultarCopas();
+                        System.out.println(listaPalmares.toString());
                         break;
                     case 13:
                         System.out.println(SEPARADOR);
