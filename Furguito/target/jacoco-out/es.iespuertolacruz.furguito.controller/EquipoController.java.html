@@ -84,7 +84,7 @@ public class EquipoController {
      * Metodo encargado de mostrar la informacion de un equipo segun su nombre
      * 
      * @param nombre del equipo
-     * @return
+     * @return informacion del equipo
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarInformacion(String nombre) throws PersistenciaException {
@@ -95,7 +95,7 @@ public class EquipoController {
      * Metodo encargado de mostrar la ciudad de un club segun su nombre
      * 
      * @param nombre del equipo
-     * @return
+     * @return nombre y ciudad en la que juega el equipo
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarCiudad(String nombre) throws PersistenciaException {
@@ -106,7 +106,7 @@ public class EquipoController {
      * Metodo encargado de mostrar el presupuesto de un club segun su nombre
      * 
      * @param nombre del equipo
-     * @return
+     * @return nombre y presupuesto del equipo
      * @throws PersistenciaException error controlado
      */
     public Equipo consultarPresupuesto(String nombre) throws PersistenciaException {

@@ -23,7 +23,7 @@ public class EstadioModelo {
     }
 
     /**
-     * Metodo que se encarga de la insercion de un equipo en la BBDD
+     * Metodo que se encarga de la insercion de un estadio en la BBDD
      * 
      * @param estadio a insertar
      * @throws PersistenciaException error controlado

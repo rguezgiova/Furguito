@@ -83,29 +83,31 @@ public class JugadorController {
      * Metodo encargado de mostrar la informacion de un jugador segun su nombre
      * 
      * @param nombre del jugador
+     * @return lista de jugadores que coincidan con el nombre
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Jugador&gt; consultarInformacion(String nombre) throws PersistenciaException {
-<span class="fc" id="L89">        return jugadorModelo.obtenerJugador(nombre);</span>
+<span class="fc" id="L90">        return jugadorModelo.obtenerJugador(nombre);</span>
     }
 
     /**
      * Metodo encargado de mostrar a los maximos goleadores
      * 
-     * @return
+     * @return lista de maximos goleadores
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Jugador&gt; consultarMaximosGoleadores() throws PersistenciaException {
-<span class="fc" id="L99">        return jugadorModelo.obtenerGoleadores();</span>
+<span class="fc" id="L100">        return jugadorModelo.obtenerGoleadores();</span>
     }
 
     /**
      * Metodo encargado de mostrar a los jugadores mas expulsados
      * 
+     * @return lista de jugadores mas expulsados
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Jugador&gt; consultarMasExpulsados() throws PersistenciaException {
-<span class="fc" id="L108">        return jugadorModelo.obtenerExpulsados();</span>
+<span class="fc" id="L110">        return jugadorModelo.obtenerExpulsados();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

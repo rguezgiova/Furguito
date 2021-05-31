@@ -77,30 +77,31 @@ public class PalmaresController {
      * Metodo encargado de mostrar el palmares de un equipo
      * 
      * @param equipo para consultar su palmares
+     * @return palmares completo del equipo buscado
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; consultarPalmares(String equipo) throws PersistenciaException {
-<span class="fc" id="L83">        return palmaresModelo.palmaresEquipo(equipo);</span>
+<span class="fc" id="L84">        return palmaresModelo.palmaresEquipo(equipo);</span>
     }
 
     /**
      * Metodo encargado de mostrar los equipos con mas ligas
      * 
-     * @return
-     * 
+     * @return lista de equipos con mas ligas
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; consultarLigas() throws PersistenciaException {
-<span class="fc" id="L94">        return palmaresModelo.palmaresCopas();</span>
+<span class="fc" id="L94">        return palmaresModelo.palmaresLigas();</span>
     }
 
     /**
      * Metodo encargado de mostrar los equipos con mas copas
      * 
+     * @return lista de equipos con mas copas
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; consultarCopas() throws PersistenciaException {
-<span class="fc" id="L103">        return palmaresModelo.palmaresLigas();</span>
+<span class="fc" id="L104">        return palmaresModelo.palmaresCopas();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

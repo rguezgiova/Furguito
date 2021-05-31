@@ -7,13 +7,34 @@ public class SqliteBbdd extends Bbdd {
     private static final String DRIVER = &quot;org.sqlite.JDBC&quot;;
     private static final String URL = &quot;jdbc:sqlite:furguito.db&quot;;
 
-    public SqliteBbdd(String nombreTabla, String clave, String driver, String url, String user, String password) throws PersistenciaException {
-<span class="fc" id="L11">        super(nombreTabla, clave, driver, url, user, password);</span>
-<span class="fc" id="L12">    }</span>
+    /**
+     * Constructor con todos los parametros
+     * 
+     * @param nombreTabla nombre de la tabla
+     * @param clave       clave de la tabla
+     * @param driver      driver de conexion
+     * @param url         de la BBDD
+     * @param user        usuario
+     * @param password    contrasenia
+     * @throws PersistenciaException error controlado
+     */
+    public SqliteBbdd(String nombreTabla, String clave, String driver, String url, String user, String password)
+            throws PersistenciaException {
+<span class="fc" id="L23">        super(nombreTabla, clave, driver, url, user, password);</span>
+<span class="fc" id="L24">    }</span>
 
+    /**
+     * Constructor que usa las constantes DRIVER y URL
+     * 
+     * @param nombreTabla nombre de la tabla
+     * @param clave       clave de la tabla
+     * @param usuario     usuario
+     * @param password    contrasenia
+     * @throws PersistenciaException error controlado
+     */
     public SqliteBbdd(String nombreTabla, String clave, String usuario, String password) throws PersistenciaException {
-<span class="fc" id="L15">        super(nombreTabla, clave, DRIVER, URL, usuario, password);</span>
-<span class="fc" id="L16">    }</span>
+<span class="fc" id="L36">        super(nombreTabla, clave, DRIVER, URL, usuario, password);</span>
+<span class="fc" id="L37">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

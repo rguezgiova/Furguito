@@ -95,10 +95,10 @@ public class Bbdd {
     /**
      * Funcion encargada de cerrar las conexiones con la BBDD
      * 
-     * @param resultSet
-     * @param connection
-     * @param statement
-     * @throws PersistenciaException
+     * @param resultSet de la conexion
+     * @param connection actual
+     * @param statement de la conexion
+     * @throws PersistenciaException error controlado
      */
     public void closeConnection(Connection connection, Statement statement, ResultSet resultSet)
             throws PersistenciaException {

@@ -15,11 +15,12 @@ public class PalmaresModelo {
 
     /**
      * Constructor de la clase
+     * 
      * @throws PersistenciaException error controlado
      */
-<span class="fc" id="L20">    public PalmaresModelo() throws PersistenciaException {</span>
-<span class="fc" id="L21">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
-<span class="fc" id="L22">    }</span>
+<span class="fc" id="L21">    public PalmaresModelo() throws PersistenciaException {</span>
+<span class="fc" id="L22">        persistencia = new SqliteBbdd(TABLA, CLAVE, null, null);</span>
+<span class="fc" id="L23">    }</span>
 
     /**
      * Metodo que se encarga de la insercion del palmares de un equipo en la BBDD
@@ -28,26 +29,26 @@ public class PalmaresModelo {
      * @throws PersistenciaException error controlado
      */
     public void insertar(Palmares palmares) throws PersistenciaException {
-<span class="fc" id="L31">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L32">        sql = &quot;INSERT INTO &quot; + TABLA + &quot; (&quot; + CLAVE</span>
+<span class="fc" id="L32">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L33">        sql = &quot;INSERT INTO &quot; + TABLA + &quot; (&quot; + CLAVE</span>
                 + &quot;, equipo, ligas, copasDelRey, superEspana, SuperEuropa, champions, mundialClubs) VALUES(&quot;
-<span class="fc" id="L34">                + palmares.getId() + &quot;, '&quot; + palmares.getEquipo() + &quot;', &quot; + palmares.getLigas() + &quot;, &quot;</span>
-<span class="fc" id="L35">                + palmares.getCopasDelRey() + &quot;, &quot; + palmares.getSuperEspana() + &quot;, &quot; + palmares.getSuperEuropa() + &quot;, &quot;</span>
-<span class="fc" id="L36">                + palmares.getChampions() + &quot;, &quot; + palmares.getMundialClubs() + &quot;)&quot;;</span>
-<span class="fc" id="L37">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L38">    }</span>
+<span class="fc" id="L35">                + palmares.getId() + &quot;, '&quot; + palmares.getEquipo() + &quot;', &quot; + palmares.getLigas() + &quot;, &quot;</span>
+<span class="fc" id="L36">                + palmares.getCopasDelRey() + &quot;, &quot; + palmares.getSuperEspana() + &quot;, &quot; + palmares.getSuperEuropa() + &quot;, &quot;</span>
+<span class="fc" id="L37">                + palmares.getChampions() + &quot;, &quot; + palmares.getMundialClubs() + &quot;)&quot;;</span>
+<span class="fc" id="L38">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L39">    }</span>
 
     /**
      * Metodo para borrar un palmares de la BBDD
      * 
-     * @param palmares a borrar
+     * @param id del palmares a borrar
      * @throws PersistenciaException error controlado
      */
     public void eliminar(int id) throws PersistenciaException {
-<span class="fc" id="L47">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L48">        sql = &quot;DELETE FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE + &quot; = &quot; + id;</span>
-<span class="fc" id="L49">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L50">    }</span>
+<span class="fc" id="L48">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L49">        sql = &quot;DELETE FROM &quot; + TABLA + &quot; WHERE &quot; + CLAVE + &quot; = &quot; + id;</span>
+<span class="fc" id="L50">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L51">    }</span>
 
     /**
      * Metodo para modificar el palmares de un equipo dentro de la BBDD
@@ -56,27 +57,27 @@ public class PalmaresModelo {
      * @throws PersistenciaException error controlado
      */
     public void modificar(Palmares palmares) throws PersistenciaException {
-<span class="fc" id="L59">        String sql = &quot;&quot;;</span>
-<span class="fc" id="L60">        sql = &quot;UPDATE &quot; + TABLA + &quot; SET equipo = '&quot; + palmares.getEquipo() + &quot;'&quot; + &quot;, ligas = &quot; + palmares.getLigas()</span>
-<span class="fc" id="L61">                + &quot;&quot; + &quot;, copasDelRey = &quot; + palmares.getCopasDelRey() + &quot;&quot; + &quot;, superEspana = &quot;</span>
-<span class="fc" id="L62">                + palmares.getSuperEspana() + &quot;, superEuropa = &quot; + palmares.getSuperEuropa() + &quot;, champions = &quot;</span>
-<span class="fc" id="L63">                + palmares.getChampions() + &quot;, mundialClubs = &quot; + palmares.getMundialClubs() + &quot; WHERE &quot; + CLAVE + &quot; = &quot;</span>
-<span class="fc" id="L64">                + palmares.getId();</span>
-<span class="fc" id="L65">        persistencia.actualizar(sql);</span>
-<span class="fc" id="L66">    }</span>
+<span class="fc" id="L60">        String sql = &quot;&quot;;</span>
+<span class="fc" id="L61">        sql = &quot;UPDATE &quot; + TABLA + &quot; SET equipo = '&quot; + palmares.getEquipo() + &quot;'&quot; + &quot;, ligas = &quot; + palmares.getLigas()</span>
+<span class="fc" id="L62">                + &quot;&quot; + &quot;, copasDelRey = &quot; + palmares.getCopasDelRey() + &quot;&quot; + &quot;, superEspana = &quot;</span>
+<span class="fc" id="L63">                + palmares.getSuperEspana() + &quot;, superEuropa = &quot; + palmares.getSuperEuropa() + &quot;, champions = &quot;</span>
+<span class="fc" id="L64">                + palmares.getChampions() + &quot;, mundialClubs = &quot; + palmares.getMundialClubs() + &quot; WHERE &quot; + CLAVE + &quot; = &quot;</span>
+<span class="fc" id="L65">                + palmares.getId();</span>
+<span class="fc" id="L66">        persistencia.actualizar(sql);</span>
+<span class="fc" id="L67">    }</span>
 
     /**
      * Funcion que obtiene el palmares del equipo buscado
      * 
-     * @param equipo  nombre del equipo
+     * @param equipo nombre del equipo
      * @return palmares completo del equipo
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; palmaresEquipo(String equipo) throws PersistenciaException {
-<span class="fc" id="L76">        ArrayList&lt;Palmares&gt; listaPalmares = null;</span>
-<span class="fc" id="L77">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE equipo LIKE '%&quot; + equipo + &quot;%'&quot;;</span>
-<span class="fc" id="L78">        listaPalmares = obtenerPalmares(sql);</span>
-<span class="fc" id="L79">        return listaPalmares;</span>
+<span class="fc" id="L77">        ArrayList&lt;Palmares&gt; listaPalmares = null;</span>
+<span class="fc" id="L78">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; WHERE equipo LIKE '%&quot; + equipo + &quot;%'&quot;;</span>
+<span class="fc" id="L79">        listaPalmares = obtenerPalmares(sql);</span>
+<span class="fc" id="L80">        return listaPalmares;</span>
     }
 
     /**
@@ -86,10 +87,10 @@ public class PalmaresModelo {
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; palmaresLigas() throws PersistenciaException {
-<span class="fc" id="L89">        ArrayList&lt;Palmares&gt; listaLigas = null;</span>
-<span class="fc" id="L90">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY ligas DESC LIMIT 3&quot;;</span>
-<span class="fc" id="L91">        listaLigas = obtenerPalmares(sql);</span>
-<span class="fc" id="L92">        return listaLigas;</span>
+<span class="fc" id="L90">        ArrayList&lt;Palmares&gt; listaLigas = null;</span>
+<span class="fc" id="L91">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY ligas DESC LIMIT 3&quot;;</span>
+<span class="fc" id="L92">        listaLigas = obtenerPalmares(sql);</span>
+<span class="fc" id="L93">        return listaLigas;</span>
     }
 
     /**
@@ -99,10 +100,10 @@ public class PalmaresModelo {
      * @throws PersistenciaException error controlado
      */
     public ArrayList&lt;Palmares&gt; palmaresCopas() throws PersistenciaException {
-<span class="fc" id="L102">        ArrayList&lt;Palmares&gt; listaCopas = null;</span>
-<span class="fc" id="L103">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY copasDelRey DESC LIMIT 3&quot;;</span>
-<span class="fc" id="L104">        listaCopas = obtenerPalmares(sql);</span>
-<span class="fc" id="L105">        return listaCopas;</span>
+<span class="fc" id="L103">        ArrayList&lt;Palmares&gt; listaCopas = null;</span>
+<span class="fc" id="L104">        String sql = &quot;SELECT * FROM &quot; + TABLA + &quot; ORDER BY copasDelRey DESC LIMIT 3&quot;;</span>
+<span class="fc" id="L105">        listaCopas = obtenerPalmares(sql);</span>
+<span class="fc" id="L106">        return listaCopas;</span>
     }
 
     /**
@@ -113,30 +114,30 @@ public class PalmaresModelo {
      * @throws PersistenciaException controlado
      */
     public ArrayList&lt;Palmares&gt; obtenerPalmares(String sql) throws PersistenciaException {
-<span class="fc" id="L116">        ArrayList&lt;Palmares&gt; listaPalmares = new ArrayList&lt;&gt;();</span>
-<span class="fc" id="L117">        ResultSet resultSet = null;</span>
+<span class="fc" id="L117">        ArrayList&lt;Palmares&gt; listaPalmares = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L118">        ResultSet resultSet = null;</span>
 
         try {
-<span class="fc" id="L120">            resultSet = persistencia.buscarElementos(sql);</span>
-<span class="fc bfc" id="L121" title="All 2 branches covered.">            while (resultSet.next()) {</span>
-<span class="fc" id="L122">                int identificador = resultSet.getInt(&quot;idPalmares&quot;);</span>
-<span class="fc" id="L123">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
-<span class="fc" id="L124">                int ligas = resultSet.getInt(&quot;ligas&quot;);</span>
-<span class="fc" id="L125">                int copasDelRey = resultSet.getInt(&quot;copasDelRey&quot;);</span>
-<span class="fc" id="L126">                int superEspana = resultSet.getInt(&quot;SuperEspana&quot;);</span>
-<span class="fc" id="L127">                int superEuropa = resultSet.getInt(&quot;SuperEuropa&quot;);</span>
-<span class="fc" id="L128">                int champions = resultSet.getInt(&quot;champions&quot;);</span>
-<span class="fc" id="L129">                int mundialClubs = resultSet.getInt(&quot;mundialClubs&quot;);</span>
-<span class="fc" id="L130">                palmares = new Palmares(identificador, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,</span>
+<span class="fc" id="L121">            resultSet = persistencia.buscarElementos(sql);</span>
+<span class="fc bfc" id="L122" title="All 2 branches covered.">            while (resultSet.next()) {</span>
+<span class="fc" id="L123">                int identificador = resultSet.getInt(&quot;idPalmares&quot;);</span>
+<span class="fc" id="L124">                String equipo = resultSet.getString(&quot;equipo&quot;);</span>
+<span class="fc" id="L125">                int ligas = resultSet.getInt(&quot;ligas&quot;);</span>
+<span class="fc" id="L126">                int copasDelRey = resultSet.getInt(&quot;copasDelRey&quot;);</span>
+<span class="fc" id="L127">                int superEspana = resultSet.getInt(&quot;SuperEspana&quot;);</span>
+<span class="fc" id="L128">                int superEuropa = resultSet.getInt(&quot;SuperEuropa&quot;);</span>
+<span class="fc" id="L129">                int champions = resultSet.getInt(&quot;champions&quot;);</span>
+<span class="fc" id="L130">                int mundialClubs = resultSet.getInt(&quot;mundialClubs&quot;);</span>
+<span class="fc" id="L131">                palmares = new Palmares(identificador, equipo, ligas, copasDelRey, superEspana, superEuropa, champions,</span>
                         mundialClubs);
-<span class="fc" id="L132">                listaPalmares.add(palmares);</span>
-<span class="fc" id="L133">            }</span>
-<span class="fc" id="L134">        } catch (Exception exception) {</span>
-<span class="fc" id="L135">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
+<span class="fc" id="L133">                listaPalmares.add(palmares);</span>
+<span class="fc" id="L134">            }</span>
+<span class="fc" id="L135">        } catch (Exception exception) {</span>
+<span class="fc" id="L136">            throw new PersistenciaException(ERROR_CONSULTA, exception);</span>
         } finally {
-<span class="fc" id="L137">            persistencia.closeConnection(null, null, resultSet);</span>
+<span class="fc" id="L138">            persistencia.closeConnection(null, null, resultSet);</span>
         }
-<span class="fc" id="L139">        return listaPalmares;</span>
+<span class="fc" id="L140">        return listaPalmares;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
