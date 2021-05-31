@@ -52,12 +52,12 @@ public class Bbdd {
             while (resultSet.next()) {
                 listaTablas.add(resultSet.getString(TABLE_NAME));
             }
-                if (!listaTablas.contains(nombretabla)) {
-                    String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-crear.sql");
-                    actualizar(sqlCrearTabla);
-                    String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-insertar.sql");
-                    actualizar(sqlInsertarDatos);
-                }
+            if (!listaTablas.contains(nombretabla)) {
+                String sqlCrearTabla = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-crear.sql");
+                actualizar(sqlCrearTabla);
+                String sqlInsertarDatos = new Fichero().leer("src/resources/sql/" + nombretabla.toLowerCase() + "-insertar.sql");
+                actualizar(sqlInsertarDatos);
+            }
         } catch (Exception e) {
             throw new PersistenciaException("Se ha producido un error en la inicializacion de la BBDD", e);
         } finally {
@@ -119,13 +119,13 @@ public class Bbdd {
      * @throws PersistenciaException error controlado
      */
     public void actualizar(String sql) throws PersistenciaException {
-        PreparedStatement statement;
+        Statement statement;
         Connection connection;
 
         try {
             connection = getConnection();
-            statement = connection.prepareStatement(sql);
-            statement.executeUpdate();
+            statement = connection.createStatement();
+            statement.executeUpdate(sql);
         } catch (Exception exception) {
             throw new PersistenciaException("Se ha producido un error en la consulta ", exception);
         }
@@ -148,7 +148,7 @@ public class Bbdd {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
         } catch (Exception exception) {
-            throw new PersistenciaException("Se ha producido un error en la busqueda");
+            throw new PersistenciaException("Se ha producido un error en la busqueda", exception);
         }
         return resultSet;
     }

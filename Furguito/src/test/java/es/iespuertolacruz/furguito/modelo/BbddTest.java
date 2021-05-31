@@ -3,6 +3,7 @@ package es.iespuertolacruz.furguito.modelo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +21,15 @@ public class BbddTest {
             } catch (PersistenciaException e) {
                 fail("Error al inicializar Bbdd", e);
             }
+        }
+    }
+
+    @AfterEach
+    public void afterEach() {
+        try {
+            bbdd.actualizar("DROP TABLE Equipos");
+        } catch (PersistenciaException e) {
+            fail("Error al eliminar la tabla");
         }
     }
 

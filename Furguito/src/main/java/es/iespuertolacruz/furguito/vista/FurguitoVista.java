@@ -1,5 +1,6 @@
 package es.iespuertolacruz.furguito.vista;
 
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -65,7 +66,7 @@ public class FurguitoVista {
 
         new FurguitoVista();
         menuPrincipal();
-
+         
     }
 
     /**

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PalmaresController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Furguito</a> &gt; <a href="index.source.html" class="el_package">es.iespuertolacruz.furguito.controller</a> &gt; <span class="el_source">PalmaresController.java</span></div><h1>PalmaresController.java</h1><pre class="source lang-java linenums">package es.iespuertolacruz.furguito.controller;
+
+import java.util.ArrayList;
+
+import es.iespuertolacruz.furguito.api.Palmares;
+import es.iespuertolacruz.furguito.exception.PalmaresException;
+import es.iespuertolacruz.furguito.exception.PersistenciaException;
+import es.iespuertolacruz.furguito.modelo.PalmaresModelo;
+
+public class PalmaresController {
+    PalmaresModelo palmaresModelo;
+
+<span class="fc" id="L13">    public PalmaresController() throws PersistenciaException {</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">        if (palmaresModelo == null) {</span>
+<span class="fc" id="L15">            palmaresModelo = new PalmaresModelo();</span>
+        }
+<span class="fc" id="L17">    }</span>
+
+    /**
+     * Metodo encargado de realizar la validacion del obtejo palmares
+     * 
+     * @param palmares a validar
+     * @throws PalmaresException error controlado
+     */
+    public void validar(Palmares palmares) throws PalmaresException {
+<span class="fc" id="L26">        String mensaje = &quot;&quot;;</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (palmares == null) {</span>
+<span class="fc" id="L28">            mensaje = &quot;Se esta intentando validar un objeto nulo&quot;;</span>
+<span class="fc" id="L29">            throw new PalmaresException(mensaje);</span>
+        }
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if (palmares.getId() &lt;= 0) {</span>
+<span class="fc" id="L32">            mensaje += &quot;El id del palmares no puede ser menor o igual a 0 \n&quot;;</span>
+        }
+<span class="pc bpc" id="L34" title="1 of 4 branches missed.">        if (palmares.getEquipo() == null || palmares.getEquipo().isEmpty()) {</span>
+<span class="fc" id="L35">            mensaje += &quot;El nombre del equipo referente al palmares no puede ser nulo o vacio&quot;;</span>
+        }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (!mensaje.isEmpty()) {</span>
+<span class="fc" id="L38">            throw new PalmaresException(mensaje);</span>
+        }
+<span class="fc" id="L40">    }</span>
+
+    /**
+     * Metodo encargado de insertar un palmares en la BBDD
+     * 
+     * @param palmares a insertar
+     * @throws PersistenciaException error controlado
+     * @throws PalmaresException     error controlado
+     */
+    public void insertarPalmares(Palmares palmares) throws PersistenciaException, PalmaresException {
+<span class="fc" id="L50">        validar(palmares);</span>
+<span class="fc" id="L51">        palmaresModelo.insertar(palmares);</span>
+<span class="fc" id="L52">    }</span>
+
+    /**
+     * Metodo encargado de eliminar un palmares de la BBDD segun su id
+     * 
+     * @param id del palmares
+     * @throws PersistenciaException error controlado
+     */
+    public void eliminarPalmares(int id) throws PersistenciaException {
+<span class="fc" id="L61">        palmaresModelo.eliminar(id);</span>
+<span class="fc" id="L62">    }</span>
+
+    /**
+     * Metodo encargado de modificar un palmares de la BBDD
+     * 
+     * @param palmares a modificar
+     * @throws PersistenciaException error controlado
+     * @throws PalmaresException     error controlado
+     */
+    public void modificarPalmares(Palmares palmares) throws PersistenciaException, PalmaresException {
+<span class="fc" id="L72">        validar(palmares);</span>
+<span class="fc" id="L73">        palmaresModelo.modificar(palmares);</span>
+<span class="fc" id="L74">    }</span>
+
+    /**
+     * Metodo encargado de mostrar el palmares de un equipo
+     * 
+     * @param equipo para consultar su palmares
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; consultarPalmares(String equipo) throws PersistenciaException {
+<span class="fc" id="L83">        return palmaresModelo.palmaresEquipo(equipo);</span>
+    }
+
+    /**
+     * Metodo encargado de mostrar los equipos con mas ligas
+     * 
+     * @return
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; consultarLigas() throws PersistenciaException {
+<span class="fc" id="L94">        return palmaresModelo.palmaresCopas();</span>
+    }
+
+    /**
+     * Metodo encargado de mostrar los equipos con mas copas
+     * 
+     * @throws PersistenciaException error controlado
+     */
+    public ArrayList&lt;Palmares&gt; consultarCopas() throws PersistenciaException {
+<span class="fc" id="L103">        return palmaresModelo.palmaresLigas();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
