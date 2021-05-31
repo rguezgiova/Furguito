@@ -108,5 +108,15 @@ public class Jugador {
     public void setRojas(int rojas) {
 <span class="fc" id="L109">        this.rojas = rojas;</span>
 <span class="fc" id="L110">    }</span>
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L117">        return &quot; IDJugador='&quot; + getId() + &quot;'&quot; + &quot;, Equipo='&quot; + getEquipo() + &quot;'&quot; + &quot;, Nombre='&quot; + getNombre() + &quot;'&quot;</span>
+<span class="fc" id="L118">                + &quot;, Dorsal='&quot; + getDorsal() + &quot;'&quot; + &quot;, Goles='&quot; + getGoles() + &quot;'&quot; + &quot;, Asistencias='&quot;</span>
+<span class="fc" id="L119">                + getAsistencias() + &quot;'&quot; + &quot;, Amarillas='&quot; + getAmarillas() + &quot;'&quot; + &quot;, Rojas='&quot; + getRojas() + &quot;\n&quot;;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

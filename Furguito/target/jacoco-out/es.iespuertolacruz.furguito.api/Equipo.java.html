@@ -108,5 +108,16 @@ public class Equipo {
     public void setColores(String colores) {
 <span class="fc" id="L109">        this.colores = colores;</span>
 <span class="fc" id="L110">    }</span>
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L117">        return &quot; IDEquipo='&quot; + getId() + &quot;'&quot; + &quot;, Nombre='&quot; + getNombre() + &quot;'&quot; + &quot;, Ciudad='&quot; + getCiudad() + &quot;'&quot;</span>
+<span class="fc" id="L118">                + &quot;, Estadio='&quot; + getEstadio() + &quot;'&quot; + &quot;, Fundacion='&quot; + getFundacion() + &quot;'&quot; + &quot;, Numero de socios='&quot;</span>
+<span class="fc" id="L119">                + getNumeroSocios() + &quot;'&quot; + &quot;, Presupuesto='&quot; + getPresupuesto() + &quot;'&quot; + &quot;, Colores='&quot; + getColores()</span>
+                + &quot;\n&quot;;
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

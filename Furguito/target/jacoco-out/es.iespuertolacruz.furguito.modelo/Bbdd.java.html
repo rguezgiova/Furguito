@@ -52,12 +52,12 @@ public class Bbdd {
 <span class="fc bfc" id="L52" title="All 2 branches covered.">            while (resultSet.next()) {</span>
 <span class="fc" id="L53">                listaTablas.add(resultSet.getString(TABLE_NAME));</span>
             }
-<span class="fc bfc" id="L55" title="All 2 branches covered.">                if (!listaTablas.contains(nombretabla)) {</span>
-<span class="fc" id="L56">                    String sqlCrearTabla = new Fichero().leer(&quot;src/resources/sql/&quot; + nombretabla.toLowerCase() + &quot;-crear.sql&quot;);</span>
-<span class="fc" id="L57">                    actualizar(sqlCrearTabla);</span>
-<span class="fc" id="L58">                    String sqlInsertarDatos = new Fichero().leer(&quot;src/resources/sql/&quot; + nombretabla.toLowerCase() + &quot;-insertar.sql&quot;);</span>
-<span class="fc" id="L59">                    actualizar(sqlInsertarDatos);</span>
-                }
+<span class="fc bfc" id="L55" title="All 2 branches covered.">            if (!listaTablas.contains(nombretabla)) {</span>
+<span class="fc" id="L56">                String sqlCrearTabla = new Fichero().leer(&quot;src/resources/sql/&quot; + nombretabla.toLowerCase() + &quot;-crear.sql&quot;);</span>
+<span class="fc" id="L57">                actualizar(sqlCrearTabla);</span>
+<span class="fc" id="L58">                String sqlInsertarDatos = new Fichero().leer(&quot;src/resources/sql/&quot; + nombretabla.toLowerCase() + &quot;-insertar.sql&quot;);</span>
+<span class="fc" id="L59">                actualizar(sqlInsertarDatos);</span>
+            }
 <span class="fc" id="L61">        } catch (Exception e) {</span>
 <span class="fc" id="L62">            throw new PersistenciaException(&quot;Se ha producido un error en la inicializacion de la BBDD&quot;, e);</span>
         } finally {

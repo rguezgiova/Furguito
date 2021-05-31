@@ -108,5 +108,16 @@ public class Palmares {
     public void setMundialClubs(int mundialClubs) {
 <span class="fc" id="L109">        this.mundialClubs = mundialClubs;</span>
 <span class="fc" id="L110">    }</span>
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L117">        return &quot; IDPalmares='&quot; + getId() + &quot;'&quot; + &quot;, Equipo='&quot; + getEquipo() + &quot;'&quot; + &quot;, Ligas='&quot; + getLigas() + &quot;'&quot;</span>
+<span class="fc" id="L118">                + &quot;, Copas del Rey='&quot; + getCopasDelRey() + &quot;'&quot; + &quot;, supercopas de Espana='&quot; + getSuperEspana() + &quot;'&quot;</span>
+<span class="fc" id="L119">                + &quot;, supercopas de Europa='&quot; + getSuperEuropa() + &quot;'&quot; + &quot;, Champions League='&quot; + getChampions() + &quot;'&quot;</span>
+<span class="fc" id="L120">                + &quot;, Mundiales de clubs='&quot; + getMundialClubs() + &quot;\n&quot;;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

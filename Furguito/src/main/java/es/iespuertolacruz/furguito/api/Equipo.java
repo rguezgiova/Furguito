@@ -119,5 +119,4 @@ public class Equipo {
                 + getNumeroSocios() + "'" + ", Presupuesto='" + getPresupuesto() + "'" + ", Colores='" + getColores()
                 + "\n";
     }
-
 }

@@ -74,5 +74,14 @@ public class Estadio {
     public void setConstruccion(int construccion) {
 <span class="fc" id="L75">        this.construccion = construccion;</span>
 <span class="fc" id="L76">    }</span>
+
+    /**
+     * Metodo toString
+     */
+    @Override
+    public String toString() {
+<span class="fc" id="L83">        return &quot; IDEstadio='&quot; + getId() + &quot;'&quot; + &quot;, Nombre='&quot; + getNombre() + &quot;'&quot; + &quot;, Equipo='&quot; + getEquipo() + &quot;'&quot;</span>
+<span class="fc" id="L84">                + &quot;, Capacidad='&quot; + getCapacidad() + &quot;'&quot; + &quot;, Construccion='&quot; + getConstruccion() + &quot;\n&quot;;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

@@ -83,5 +83,4 @@ public class Estadio {
         return " IDEstadio='" + getId() + "'" + ", Nombre='" + getNombre() + "'" + ", Equipo='" + getEquipo() + "'"
                 + ", Capacidad='" + getCapacidad() + "'" + ", Construccion='" + getConstruccion() + "\n";
     }
-
 }

@@ -29,7 +29,7 @@ public class FurguitoVista {
     static EstadioController estadioController;
 
     /**
-     * Metodo principal de la clase vista
+     * Constructor de la clase vista
      * 
      * @throws PersistenciaException error controlado
      * @throws EquipoException       error controlado
@@ -37,7 +37,6 @@ public class FurguitoVista {
      * @throws JugadorException      error controlado
      * @throws PalmaresException     error controlado
      */
-
     public FurguitoVista() throws PersistenciaException {
         if (equipoController == null) {
             equipoController = new EquipoController();
@@ -53,6 +52,14 @@ public class FurguitoVista {
         }
     }
 
+    /**
+     * Metodo principal de la clase Vista
+     * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
+     * @throws EstadioException      error controlado
+     * @throws JugadorException      error controlado
+     * @throws PalmaresException     error controlado
+     */
     public static void main(String[] args)
             throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
 
@@ -64,11 +71,11 @@ public class FurguitoVista {
     /**
      * Menu principal de la vista
      * 
-     * @throws PersistenciaException
-     * @throws EquipoException
-     * @throws EstadioException
-     * @throws JugadorException
-     * @throws PalmaresException
+     * @throws PersistenciaException error controlado
+     * @throws EquipoException       error controlado
+     * @throws EstadioException      error controlado
+     * @throws JugadorException      error controlado
+     * @throws PalmaresException     error controlado
      */
     public static void menuPrincipal()
             throws PersistenciaException, EquipoException, EstadioException, JugadorException, PalmaresException {
@@ -353,7 +360,6 @@ public class FurguitoVista {
             } catch (InputMismatchException e) {
                 System.out.println(INTRODUCIR_NUMERO);
                 sn.next();
-
             }
         }
     }

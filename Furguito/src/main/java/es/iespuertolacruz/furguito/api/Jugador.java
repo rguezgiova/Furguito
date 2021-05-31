@@ -1,7 +1,5 @@
 package es.iespuertolacruz.furguito.api;
 
-import java.util.Objects;
-
 public class Jugador {
 
     int id;
@@ -120,5 +118,4 @@ public class Jugador {
                 + ", Dorsal='" + getDorsal() + "'" + ", Goles='" + getGoles() + "'" + ", Asistencias='"
                 + getAsistencias() + "'" + ", Amarillas='" + getAmarillas() + "'" + ", Rojas='" + getRojas() + "\n";
     }
-
 }

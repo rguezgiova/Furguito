@@ -119,5 +119,4 @@ public class Palmares {
                 + ", supercopas de Europa='" + getSuperEuropa() + "'" + ", Champions League='" + getChampions() + "'"
                 + ", Mundiales de clubs='" + getMundialClubs() + "\n";
     }
-
 }
