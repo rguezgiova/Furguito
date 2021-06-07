@@ -1,0 +1,15 @@
+es/iespuertolacruz/furguito/FurguitoAppTest.class
+es/iespuertolacruz/furguito/api/EquipoTest.class
+es/iespuertolacruz/furguito/modelo/BbddTest.class
+es/iespuertolacruz/furguito/modelo/JugadorModeloTest.class
+es/iespuertolacruz/furguito/modelo/EstadioModeloTest.class
+es/iespuertolacruz/furguito/controller/EstadioControllerTest.class
+es/iespuertolacruz/furguito/api/EstadioTest.class
+es/iespuertolacruz/furguito/api/PalmaresTest.class
+es/iespuertolacruz/furguito/ExceptionsTest.class
+es/iespuertolacruz/furguito/modelo/PalmaresModeloTest.class
+es/iespuertolacruz/furguito/controller/JugadorControllerTest.class
+es/iespuertolacruz/furguito/modelo/EquipoModeloTest.class
+es/iespuertolacruz/furguito/controller/PalmaresControllerTest.class
+es/iespuertolacruz/furguito/api/JugadorTest.class
+es/iespuertolacruz/furguito/controller/EquipoControllerTest.class
