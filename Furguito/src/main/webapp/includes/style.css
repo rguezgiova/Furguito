@@ -33,27 +33,16 @@ ul li {
     padding: 0 0 4px 5px;
 }
 
-.login {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 999;
-    border-radius: 5px;
-    background-color: rgb(104, 101, 100, 50%);
+.body {
+    margin-top: 10%;
+    text-align: center;
+    font-size: 24px;
 }
 
-.login form {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    grid-gap: 10px;
-}
-
-label {
-    grid-column: 1 / 2;
-}
- 
-input, button {
-    grid-column: 2 / 3;
+.body marquee img {
+    height: 120px;
+    width: 120px;
+    behavior: scroll;
 }
 
 .menuAdmin {

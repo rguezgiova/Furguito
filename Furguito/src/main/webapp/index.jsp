@@ -7,11 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
     <%@include file="includes/header.jsp" %>
-    <title>BIENVENIDO A FURGUITO</title>
+        <title>BIENVENIDO A FURGUITO</title>
 </head>
 
 <body>
-    
+    <div class="body">
+        <p>Furguito es una aplicacion que te permite ver estadisticas de la Liga Santander</p>
+
+        <marquee><img src="includes/images/balon.png" /></marquee>
+
+    </div>
+
 </body>
 <%@include file="includes/footer.jsp" %>
+
 </html>
