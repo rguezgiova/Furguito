@@ -1,0 +1,75 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    font: normal .80em 'trebuchet ms', arial, sans-serif;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-image: url('images/fondo2.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    outline: none;
+    text-decoration: underline;
+    color: #FFFFFF;
+}
+
+ul {
+    margin: 2px 0 22px 17px;
+}
+
+ul li {
+    margin: 0 0 6px 0;
+    padding: 0 0 4px 5px;
+}
+
+.login {
+    position: absolute;
+    left: 30%;
+    top: 40%;
+    z-index: 999;
+    border-radius: 5px;
+    background-color: rgb(104, 101, 100, 50%);
+}
+
+.login form {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    grid-gap: 10px;
+}
+
+label {
+    grid-column: 1 / 2;
+}
+ 
+input, button {
+    grid-column: 2 / 3;
+}
+
+.menuAdmin {
+    position: absolute;
+    left: 40%;
+    top: 10%;
+    z-index: 999;
+    border-radius: 5px;
+    background-color: rgb(104, 101, 100, 50%);
+}
+
+.menuUser {
+    position: absolute;
+    left: 40%;
+    top: 10%;
+    z-index: 999;
+    border-radius: 5px;
+    background-color: rgb(104, 101, 100, 50%);
+}

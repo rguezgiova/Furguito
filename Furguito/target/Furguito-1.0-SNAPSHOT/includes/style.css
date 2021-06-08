@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-image: url('includes/images/fondo2.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login {
+    margin-top: 27%;
+    background-color: rgb(104, 101, 100, 50%);
+}
+
+form {
+    text-align: center;
+}
