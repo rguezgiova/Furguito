@@ -34,9 +34,9 @@ ul li {
 }
 
 .login {
-    position: absolute;
-    left: 30%;
-    top: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 999;
     border-radius: 5px;
     background-color: rgb(104, 101, 100, 50%);
@@ -58,7 +58,7 @@ input, button {
 
 .menuAdmin {
     position: absolute;
-    left: 40%;
+    left: 50%;
     top: 10%;
     z-index: 999;
     border-radius: 5px;
@@ -67,16 +67,19 @@ input, button {
 
 .menuUser {
     position: absolute;
-    left: 40%;
+    left: 50%;
     top: 10%;
     z-index: 999;
     border-radius: 5px;
     background-color: rgb(104, 101, 100, 50%);
 }
 
-footer {
+.footer {
+    position: fixed;
     text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     padding: 40px;
-    background-color: rgb(15, 15, 14);
     color: white;
-  }
+}
