@@ -39,10 +39,16 @@ ul li {
     font-size: 24px;
 }
 
+.body marquee {
+    margin-top: 75px;
+    direction: "right";
+    
+}
+
 .body marquee img {
-    height: 120px;
-    width: 120px;
-    behavior: scroll;
+   
+    height: 150px;
+    width: 150px;
 }
 
 .menuAdmin {
@@ -69,6 +75,17 @@ ul li {
     left: 0;
     bottom: 0;
     width: 100%;
+    padding: 40px;
+    color: white;
+}
+
+.login {
+    position:top;
+    box-sizing: border-box;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 150%;
     padding: 40px;
     color: white;
 }

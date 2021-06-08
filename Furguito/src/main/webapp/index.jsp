@@ -14,7 +14,9 @@
     <div class="body">
         <p>Furguito es una aplicacion que te permite ver estadisticas de la Liga Santander</p>
 
-        <marquee><img src="includes/images/balon.png" /></marquee>
+        <marquee scrollamount="25" behavior="alternate">
+            <img src="includes/images/balon.png" />
+        </marquee>
 
     </div>
 
