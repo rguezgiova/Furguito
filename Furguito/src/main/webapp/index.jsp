@@ -10,23 +10,7 @@
 </head>
 
 <body>
-    <div class="login">
-        <h1>Introduzca sus credenciales</h1>
-        <br>
-        <form method="get" action="includes/page/validarUsuario.jsp">
-            <label for="user" class="user">User</label>
-            <input type="text" name="user">
-            <label for="password" class="password">Password</label>
-            <input type="password" name="password">
-            <input type="submit" value="Enviar">
-        </form>
-        <br>
-        <a href="includes/page/userPage.jsp">
-            <p>Entrar como invitado</p>
-        </a>
-    </div>
+    
 </body>
 <%@include file="includes/footer.jsp" %>
-
-
 </html>
