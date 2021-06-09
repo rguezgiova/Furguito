@@ -8,27 +8,34 @@
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
     <link rel="stylesheet" type="text/css" href="includes/style.scss" title="style" />
     <%@include file="includes/header.jsp" %>
-    <title>BIENVENIDO A FURGUITO</title>
+
+        <title>Bienvenido a Furguito</title>
 </head>
 
 <body>
     <div class="body">
         <form>
+            <p>Acceso a administrador</p>
             <div class="inset">
-            <p>
-              <label for="user">User</label>
-              <input type="text" name="email" id="email">
-            </p>
-            <p>
-              <label for="password">Password</label>
-              <input type="password" name="password" id="password">
-            </p>
-            <p class="p-container">
-                <input type="submit" name="go" id="go" value="Log in">
-            </p>
+                <p>
+                    <label for="user">User</label>
+                    <input type="text" name="email" id="email">
+                </p>
+                <p>
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password">
+                </p>
+                <p class="p-container">
+                    <input type="submit" name="go" id="go" value="Log in">
+                </p>
+
             </div>
-          </form>
-        <marquee scrollamount="25" behavior="alternate">
+        </form>
+        <div class="invitado">
+            <p>Acceso como invitado</p>
+        </div>
+
+        <marquee scrollamount="12" behavior="alternate" direction="up">
             <img src="includes/images/balon.png" />
         </marquee>
     </div>
@@ -36,4 +43,5 @@
 <footer>
     <%@include file="includes/footer.jsp" %>
 </footer>
+
 </html>

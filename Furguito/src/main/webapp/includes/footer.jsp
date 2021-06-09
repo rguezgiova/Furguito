@@ -11,6 +11,10 @@
 <body>
     <div class="footer">
         &copy;Copyrights FurguitoApp. All Rights Reserved.
+        <p>
+            <%= new java.util.Date() %>
+        </p>
     </div>
 </body>
+
 </html>
