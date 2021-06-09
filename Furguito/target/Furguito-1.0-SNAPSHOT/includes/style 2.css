@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    text-align: center;
+    font: normal .80em 'trebuchet ms', arial, sans-serif;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    background-image: url('images/fondo2.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a {
+    outline: none;
+    text-decoration: underline;
+    color: #FFFFFF;
+}
+
+ul {
+    margin: 2px 0 22px 17px;
+}
+
+ul li {
+    margin: 0 0 6px 0;
+    padding: 0 0 4px 5px;
+}
+
+.body {
+    margin-top: 10%;
+    text-align: center;
+    font-size: 24px;
+}
+
+.body marquee {
+    margin-top: 75px;
+    direction: "right";
+    
+}
+
+.body marquee img {
+   
+    height: 150px;
+    width: 150px;
+}
+
+.menuAdmin {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    z-index: 999;
+    border-radius: 5px;
+    background-color: rgb(104, 101, 100, 50%);
+}
+
+.menuUser {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    z-index: 999;
+    border-radius: 5px;
+    background-color: rgb(104, 101, 100, 50%);
+}
+
+.footer {
+    position: fixed;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    color: white;
+}
+
+.login {
+    position:top;
+    box-sizing: border-box;
+    text-align: center;
+    left: 0;
+    bottom: 0;
+    width: 150%;
+    padding: 40px;
+    color: white;
+}
