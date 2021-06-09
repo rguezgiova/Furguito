@@ -6,27 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
+    <link rel="stylesheet" type="text/css" href="includes/style.scss" title="style" />
     <%@include file="includes/header.jsp" %>
     <title>BIENVENIDO A FURGUITO</title>
 </head>
 
 <body>
     <div class="body">
-        <div class="login">
-            <h1>Introduzca sus credenciales</h1>
-            <br>
-            <form method="get" action="includes/page/validarUsuario.jsp">
-                <label for="user" class="user">User</label>
-                <input type="text" name="user">
-                <label for="password" class="password">Password</label>
-                <input type="password" name="password">
-                <input type="submit" value="Enviar">
-            </form>
-            <br>
-            <a href="includes/page/userPage.jsp">
-                <p>Entrar como invitado</p>
-            </a>
-        </div>
+        <form>
+            <div class="inset">
+            <p>
+              <label for="user">User</label>
+              <input type="text" name="email" id="email">
+            </p>
+            <p>
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password">
+            </p>
+            <p class="p-container">
+                <input type="submit" name="go" id="go" value="Log in">
+            </p>
+            </div>
+          </form>
         <marquee scrollamount="25" behavior="alternate">
             <img src="includes/images/balon.png" />
         </marquee>
