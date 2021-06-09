@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
     <%@include file="includes/header.jsp" %>
-        <title>BIENVENIDO A FURGUITO</title>
+    <title>BIENVENIDO A FURGUITO</title>
 </head>
 
 <body>
@@ -21,6 +21,7 @@
     </div>
 
 </body>
-<%@include file="includes/footer.jsp" %>
-
+<footer>
+    <%@include file="includes/footer.jsp" %>
+</footer>
 </html>

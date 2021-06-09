@@ -6,6 +6,7 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" type="text/css" href="../style.css" title="style"/>
+   <%@include file="includes/header.jsp" %>
    <title>Pagina de usuario de Furguito</title>
 </head>
 <body>
@@ -74,4 +75,7 @@
       <input type="submit" value="Enviar">
    </div>
 </body>
+<footer>
+   <%@include file="includes/footer.jsp" %>
+</footer>
 </html>

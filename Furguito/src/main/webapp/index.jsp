@@ -7,20 +7,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
     <%@include file="includes/header.jsp" %>
-        <title>BIENVENIDO A FURGUITO</title>
+    <title>BIENVENIDO A FURGUITO</title>
 </head>
 
 <body>
     <div class="body">
-        <p>Furguito es una aplicacion que te permite ver estadisticas de la Liga Santander</p>
-
+        <div class="login">
+            <h1>Introduzca sus credenciales</h1>
+            <br>
+            <form method="get" action="includes/page/validarUsuario.jsp">
+                <label for="user" class="user">User</label>
+                <input type="text" name="user">
+                <label for="password" class="password">Password</label>
+                <input type="password" name="password">
+                <input type="submit" value="Enviar">
+            </form>
+            <br>
+            <a href="includes/page/userPage.jsp">
+                <p>Entrar como invitado</p>
+            </a>
+        </div>
         <marquee scrollamount="25" behavior="alternate">
             <img src="includes/images/balon.png" />
         </marquee>
-
     </div>
-
 </body>
-<%@include file="includes/footer.jsp" %>
-
+<footer>
+    <%@include file="includes/footer.jsp" %>
+</footer>
 </html>

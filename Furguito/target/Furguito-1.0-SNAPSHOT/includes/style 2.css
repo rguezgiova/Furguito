@@ -1,6 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Parisienne|Quicksand&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,700);
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 html {
@@ -42,11 +46,9 @@ ul li {
 .body marquee {
     margin-top: 75px;
     direction: "right";
-    
 }
 
 .body marquee img {
-   
     height: 150px;
     width: 150px;
 }
@@ -70,22 +72,93 @@ ul li {
 }
 
 .footer {
-    position: fixed;
-    text-align: center;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    padding: 40px;
-    color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #fffa;
+  color: #000;
+  text-align: center;
 }
 
 .login {
-    position:top;
-    box-sizing: border-box;
-    text-align: center;
-    left: 0;
-    bottom: 0;
-    width: 150%;
-    padding: 40px;
-    color: white;
+  position:top;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 10px;
+  left: 0;
+  bottom: 0;
+  width: 150%;
+  padding: 40px;
+  background-color: rgb(104, 101, 100, 50%);
+  color: white;
+}
+
+.container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #fff;
+}
+
+.lead { 
+    font-family: 'Quicksand'; 
+    text-align: left;
+    font-size: 14px;
+    margin-top: 14px;
+    margin-left: 14px;
+}
+
+.header-bar {
+	position: relative;
+	width: 50%;
+	min-width: 300px;
+	height: 50px;
+	border: 10px solid transparent;
+	border-top: 10px solid #fffa;
+	border-left: 10px solid #fffa;
+	box-shadow: 4px 4px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.header-bar::after {
+	content: '';
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	width: 30%;
+	height: 49px;
+	border: 10px solid transparent;
+	border-bottom: 10px solid #fffa;
+	border-right: 10px solid #fffa;
+	transition: 0.3s linear all;
+}
+
+.slider-menu {
+	position: absolute;
+	top: 0;
+	right: 0;
+	display: flex;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+}
+
+.slider-menu > li {
+	display: inline-flex;
+	padding: 14px;
+	margin-left: 2px;
+	font-family: 'Quicksand', sans-serif;
+	color: #fff;
+	cursor: pointer;
+	transition: 0.3s linear all;
+	user-select: none;
+}
+
+.slider-menu > li:hover {
+	color: #faa;
+	box-shadow: 0 50px 5px rgba(0, 0, 0, 0.15) inset;
 }

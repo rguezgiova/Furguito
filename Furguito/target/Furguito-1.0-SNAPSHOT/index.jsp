@@ -7,12 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="includes/style.css" title="style" />
     <%@include file="includes/header.jsp" %>
-        <title>BIENVENIDO A FURGUITO</title>
+    <title>BIENVENIDO A FURGUITO</title>
 </head>
 
 <body>
-    <div class="body">
-        <p>Furguito es una aplicacion que te permite ver estadisticas de la Liga Santander</p>
+    <div class="log-form">
+        <h2>Login to your account</h2>
+        <form>
+          <input type="text" title="username" placeholder="username" />
+          <input type="password" title="username" placeholder="password" />
+          <button type="submit" class="btn">Login</button>
+          <a class="forgot" href="#">Forgot Username?</a>
+        </form>
+      </div>
 
         <marquee scrollamount="25" behavior="alternate">
             <img src="includes/images/balon.png" />
@@ -21,6 +28,7 @@
     </div>
 
 </body>
-<%@include file="includes/footer.jsp" %>
-
+<footer>
+    <%@include file="includes/footer.jsp" %>
+</footer>
 </html>
