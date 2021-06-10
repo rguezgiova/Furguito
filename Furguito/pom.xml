@@ -44,37 +44,29 @@
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- unit test -->
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-library</artifactId>
       <version>${hamcrest-version}</version>
       <scope>test</scope>
     </dependency>
-
-    <!-- for web servlet -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <version>${servlet-api-version}</version>
       <scope>provided</scope>
     </dependency>
-
-    <!-- Some containers like Tomcat don't have jstl library -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
       <version>${jstl-version}</version>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
       <groupId>org.xerial</groupId>
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.34.0</version>
     </dependency>
-
   </dependencies>
   <build>
     <plugins>
