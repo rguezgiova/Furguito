@@ -24,56 +24,8 @@
          <li>Insertar palmares</li>
          <li>Modificar palmares</li>
          <li>Borrar palmares</li>
-         <li>Salir</li>
+         <li><a href="../../index.jsp">Salir</a></li>
        </ol>
- 
-     <%
-         switch(opcion) {
-             case 1:
-                out.println("It\'s Monday.");
-                break;
-             case 2:
-                out.println("It\'s Tuesday.");
-                break;
-             case 3:
-                out.println("It\'s Wednesday.");
-                break;
-             case 4:
-                out.println("It\'s Thursday.");
-                break;
-             case 5:
-                out.println("It\'s Friday.");
-                break;
-             case 6:
-                out.println("It\'s Friday.");
-                break;
-             case 7:
-                out.println("It\'s Friday.");
-                break;
-             case 8:
-                out.println("It\'s Friday.");
-                break;
-             case 9:
-                out.println("It\'s Friday.");
-                break;
-             case 10:
-                out.println("It\'s Friday.");
-                break;
-             case 11:
-                out.println("It\'s Friday.");
-                break;
-             case 12:
-                out.println("It\'s Friday.");
-                break;
-             case 13:
-                return;
-         }
-     %>
-     <form method="get" action="includes/page/validarUsuario.jsp">
-      <label for="user" class="opcion">Escoja opcion</label>
-      <input type="text" name="opcion">
-      <input type="submit" value="Enviar">
-  </form>
    </div>
 </body>
 <footer>
