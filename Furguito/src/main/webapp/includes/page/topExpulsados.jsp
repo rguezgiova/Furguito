@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<%@page import="java.io.*" %>
-    <%@page import="java.util.ArrayList" %>
-        <%@page import="es.iespuertolacruz.furguito.api.Jugador" %>"
-            <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException" %>
-                <%@ page import="es.iespuertolacruz.furguito.controller.JugadorController" %>
+<%@page import="java.io.*;" %>
+    <%@page import="java.util.*;" %>
+        <%@page import="es.iespuertolacruz.furguito.api.Jugador;" %>
+            <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException;" %>
+                <%@ page import="es.iespuertolacruz.furguito.controller.JugadorController;" %>
                     <% try { %>
                         <% es.iespuertolacruz.furguito.controller.JugadorController jugadorController=new
                             JugadorController(); %>
@@ -16,23 +16,26 @@
                                     <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                     <link rel="stylesheet" type="text/css" href="../style.css" title="style" />
                                     <%@include file="../header.jsp" %>
-                                        <title>Maximos Goleadores</title>
+                                        <title>Top 10 Expulsiones</title>
                                 </head>
 
                                 <body>
                                     <div class="body">
                                         <p>
-                                            Muestra los maximos goleadores
+                                            Muestra los jugadores mas expulsados
                                         </p>
+                                        <div class="result">
+                                            <p>
+                                                <% ArrayList<Jugador> lista = new ArrayList();
+                                                    lista = jugadorController.consultarMasExpulsados;
+                                                    out.print(lista.toString());
+                                                    %>
+                                            </p>
+                                        </div>
+
                                     </div>
-                                    <div class="result">
-                                        <p>
-                                            <% ArrayList<Jugador> lista = new ArrayList();
-                                                lista = jugadorController.consultarMaximosGoleadores;
-                                                out.println(lista.toString()) ;
-                                                %>
-                                        </p>
-                                    </div>
+
+
                                 </body>
                                 <footer>
                                     <%@include file="../footer.jsp" %>
