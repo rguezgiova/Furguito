@@ -9,6 +9,8 @@
                             <% es.iespuertolacruz.furguito.controller.JugadorController jugadorController=new
                                 JugadorController(); %>
                                 <% } catch (PersistenciaException e) { out.println(e); } %>
+                                    <jsp:useBean id="jugadorController"
+                                        class="es.iespuertolacruz.furguito.controller.JugadorController" />
                                     <html lang="es">
 
                                     <head>
