@@ -1,4 +1,3 @@
-<%! int opcion = 0; %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
