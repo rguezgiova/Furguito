@@ -27,60 +27,53 @@
                                             <p>
                                                 Muestra los 3 equipos con mas ligas
                                             </p>
-                                            <% ArrayList<Palmares> lista =
-                                                palmaresController.consultarCopas(); %>
-                                                <% for(Palmares palmares : lista){ %>
-                                                    <table>
-                                                        <tr>
-                                                            <td>Id</td>
-                                                            <td>
-                                                                <%= palmares.getId() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Equipo</td>
-                                                            <td>
-                                                                <%= palmares.getEquipo() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Ligas</td>
-                                                            <td>
-                                                                <%= palmares.getLigas() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Copas del Rey</td>
-                                                            <td>
-                                                                <%= palmares.getCopasDelRey() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Supercopa de España</td>
-                                                            <td>
-                                                                <%= palmares.getSuperEspana() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Supercopa de Europa</td>
-                                                            <td>
-                                                                <%= palmares.getSuperEuropa() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Champions</td>
-                                                            <td>
-                                                                <%= palmares.getChampions() %>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Mundial de Clubs</td>
-                                                            <td>
-                                                                <%= palmares.getMundialClubs() %>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    <% } %>
+                                            <div class="consulta">
+                                                <% ArrayList<Palmares> lista =
+                                                    palmaresController.consultarCopas(); %>
+                                                    <% for(Palmares palmares : lista){ %>
+                                                        <table>
+                                                            <tr>
+                                                                <td>Id</td>
+                                                                <td>Equipo</td>
+                                                                <td>Ligas</td>
+                                                                <td>Copas del Rey</td>
+                                                                <td>Supercopa de Espana</td>
+                                                                <td>Supercopa de Europa</td>
+                                                                <td>Champions</td>
+                                                                <td>Mundial de Clubs</td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <%= palmares.getId() %>
+                                                                </td>
+
+                                                                <td>
+                                                                    <%= palmares.getEquipo() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getLigas() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getCopasDelRey() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getSuperEspana() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getSuperEuropa() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getChampions() %>
+                                                                </td>
+                                                                <td>
+                                                                    <%= palmares.getMundialClubs() %>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                        <% } %>
+                                            </div>
+
                                         </div>
 
                                     </body>
