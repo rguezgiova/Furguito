@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<%@page import="java.io.*;" %>
-    <%@page import="java.util.*;" %>
+<%@page import="java.io.*" %>
+    <%@page import="java.util.*" %>
         <%@ page errorPage="../error/showError.jsp" %>
-            <%@page import="es.iespuertolacruz.furguito.api.Jugador;" %>
-                <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException;" %>
+            <%@page import="es.iespuertolacruz.furguito.api.Jugador" %>
+                <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException" %>
                     <%@ page import="es.iespuertolacruz.furguito.controller.JugadorController" %>
                         <% try { %>
                             <% es.iespuertolacruz.furguito.controller.JugadorController jugadorController=new
