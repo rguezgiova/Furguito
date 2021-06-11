@@ -37,11 +37,6 @@
                                                             <td>Id</td>
                                                             <td>Equipo</td>
                                                             <td>Ligas</td>
-                                                            <td>Copas del Rey</td>
-                                                            <td>Supercopa de Espana</td>
-                                                            <td>Supercopa de Europa</td>
-                                                            <td>Champions</td>
-                                                            <td>Mundial de Clubs</td>
                                                         </tr>
                                                         <tr>
                                                             <td>
@@ -53,21 +48,6 @@
                                                             </td>
                                                             <td>
                                                                 <%= palmares.getLigas() %>
-                                                            </td>
-                                                            <td>
-                                                                <%= palmares.getCopasDelRey() %>
-                                                            </td>
-                                                            <td>
-                                                                <%= palmares.getSuperEspana() %>
-                                                            </td>
-                                                            <td>
-                                                                <%= palmares.getSuperEuropa() %>
-                                                            </td>
-                                                            <td>
-                                                                <%= palmares.getChampions() %>
-                                                            </td>
-                                                            <td>
-                                                                <%= palmares.getMundialClubs() %>
                                                             </td>
                                                         </tr>
                                                     </table>
