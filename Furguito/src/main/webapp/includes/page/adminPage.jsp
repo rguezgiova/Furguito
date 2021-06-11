@@ -12,18 +12,18 @@
 <body>
    <div class="menuAdmin">
       <ol>
-         <li>Insertar club</li>
-         <li>Modificar club</li>
-         <li>Borrar club</li>
-         <li>Insertar estadio</li>
-         <li>Modificar estadio</li>
-         <li>Borrar estadio</li>
-         <li>Insertar jugador</li>
-         <li>Modificar jugador</li>
-         <li>Borrar jugador</li>
-         <li>Insertar palmares</li>
-         <li>Modificar palmares</li>
-         <li>Borrar palmares</li>
+         <li><a href="../clubPage/insertarClub.jsp">Insertar club</a></li>
+         <li><a href="../clubPage/insertarClub.jsp">Modificar club</a></li>
+         <li><a href="../clubPage/eliminarClub.jsp">Borrar club</a></li>
+         <li><a href="../estadioPage/insertarEstadio.jsp">Insertar estadio</a></li>
+         <li><a href="../estadioPage/insertarEstadio.jsp">Modificar estadio</a></li>
+         <li><a href="../estadioPage/eliminarEstadio.jsp">Borrar estadio</a></li>
+         <li><a href="../jugadorPage/insertarJugador.jsp">Insertar jugador</a></li>
+         <li><a href="../jugadorPage/insertarJugador.jsp">Modificar jugador</a></li>
+         <li><a href="../jugadorPage/eliminarJugador.jsp">Borrar jugador</a></li>
+         <li><a href="../palmaresPage/insertarPalmares.jsp">Insertar palmares</a></li>
+         <li><a href="../palmaresPage/insertarPalmares.jsp">Modificar palmares</a></li>
+         <li><a href="../palmaresPage/eliminarPalmares.jsp">Borrar palmares</a></li>
          <li><a href="../../index.jsp">Salir</a></li>
        </ol>
    </div>

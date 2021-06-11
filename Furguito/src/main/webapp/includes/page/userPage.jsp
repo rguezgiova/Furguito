@@ -12,67 +12,20 @@
 <body>
    <div class="menuUser">
       <ol>
-         <li>Consultar informacion del club</li>
-         <li>Consultar presupuesto del club</li>
-         <li>Consultar ciudad del club</li>
-         <li>Consultar informacion del estadio</li>
-         <li>Consultar capacidad del estadio</li>
-         <li>Consultar fecha de construccion del estadio</li>
-         <li>Consultar informacion del jugador</li>
-         <li>Top 5 maximos goleadores</li>
-         <li>Top 10 jugadores mas expulsados</li>
-         <li>Consultar palmares</li>
+         <li><a href="../clubPage/buscarClub.jsp">Consultar informacion del club</a></li>
+         <li><a href="../clubPage/buscarClub.jsp">Consultar presupuesto del club</a></li>
+         <li><a href="../clubPage/buscarClub.jsp">Consultar ciudad del club</a></li>
+         <li><a href="../estadioPage/buscarEstadio.jsp">Consultar informacion del estadio</a></li>
+         <li><a href="../estadioPage/buscarEstadio.jsp">Consultar capacidad del estadio</a></li>
+         <li><a href="../estadioPage/buscarEstadio.jsp">Consultar fecha de construccion del estadio</a></li>
+         <li><a href="../jugadorPage/buscarJugador.jsp">Consultar informacion del jugador</a></li>
+         <li><a href="../jugadorPage/maxGoles.jsp">Top 5 maximos goleadores</a></li>
+         <li><a href="../jugadorPage/topExpulsados.jsp">Top 10 jugadores mas expulsados</a></li>
+         <li><a href="../palmaresPage/buscarPalmares.jsp">Consultar palmares</a></li>
          <li>Equipos con mas ligas</li>
          <li>Equipos con mas copas</li>
-         <li>Salir</li>
+         <li><a href="../../index.jsp">Salir</a></li>
        </ol>
- 
-     <%
-         switch(opcion) {
-             case 1:
-                out.println("It\'s Monday.");
-                break;
-             case 2:
-                out.println("It\'s Tuesday.");
-                break;
-             case 3:
-                out.println("It\'s Wednesday.");
-                break;
-             case 4:
-                out.println("It\'s Thursday.");
-                break;
-             case 5:
-                out.println("It\'s Friday.");
-                break;
-             case 6:
-                out.println("It\'s Friday.");
-                break;
-             case 7:
-                out.println("It\'s Friday.");
-                break;
-             case 8:
-                out.println("It\'s Friday.");
-                break;
-             case 9:
-                out.println("It\'s Friday.");
-                break;
-             case 10:
-                out.println("It\'s Friday.");
-                break;
-             case 11:
-                out.println("It\'s Friday.");
-                break;
-             case 12:
-                out.println("It\'s Friday.");
-                break;
-             case 13:
-                return;
-         }
-     %>
-     <form method="get" action="includes/page/validarUsuario.jsp">
-      <label for="user" class="opcion">Escoja opcion</label>
-      <input type="text" name="opcion">
-      <input type="submit" value="Enviar">
    </div>
 </body>
 <footer>
