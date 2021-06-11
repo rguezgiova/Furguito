@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style.css" title="style" />
     <%@include file="../header.jsp" %>
-        <title>Buscar Equipo</title>
+        <title>Buscar Presupuesto</title>
 </head>
 
 <body>
     <div class="body">
-        <form method="POST" action="infoClub.jsp">
+        <form method="POST" action="presupuestoClub.jsp">
             Introduce el nombre del equipo: <input type="text" name="nombreEquipo"><br>
             <input type="submit" value="Enviar">
         </form>

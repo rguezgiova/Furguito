@@ -32,7 +32,7 @@
             </div>
         </form>
         <div class="invitado">
-            <p>Acceso como invitado</p>
+            <p><a href="includes/page/userPage.jsp">Acceder como invitado</a></p>
         </div>
 
         <marquee scrollamount="12" behavior="alternate" direction="up">

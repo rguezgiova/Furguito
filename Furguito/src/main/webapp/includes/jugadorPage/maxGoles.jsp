@@ -39,7 +39,6 @@
                                                             <td>Goles</td>
                                                         <tr>
                                                             <td>
-
                                                                 <%= jugador.getEquipo() %>
                                                             </td>
                                                             <td>

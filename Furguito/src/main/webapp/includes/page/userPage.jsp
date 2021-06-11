@@ -14,8 +14,8 @@
    <div class="menuUser">
       <ol>
          <li><a href="../clubPage/buscarClub.jsp">Consultar informacion del club</a></li>
-         <li><a href="../clubPage/buscarClub.jsp">Consultar presupuesto del club</a></li>
-         <li><a href="../clubPage/buscarClub.jsp">Consultar ciudad del club</a></li>
+         <li><a href="../clubPage/buscarPresupuesto.jsp">Consultar presupuesto del club</a></li>
+         <li><a href="../clubPage/buscarCiudad.jsp">Consultar ciudad del club</a></li>
          <li><a href="../estadioPage/buscarEstadio.jsp">Consultar informacion del estadio</a></li>
          <li><a href="../estadioPage/buscarEstadio.jsp">Consultar capacidad del estadio</a></li>
          <li><a href="../estadioPage/buscarEstadio.jsp">Consultar fecha de construccion del estadio</a></li>
