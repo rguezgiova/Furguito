@@ -19,18 +19,19 @@
                                         <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                         <link rel="stylesheet" type="text/css" href="../style.css" title="style" />
                                         <%@include file="../header.jsp" %>
-                                            <title>Equipos con mas ligas</title>
+                                            <title>Equipos con mas copas</title>
                                     </head>
 
                                     <body>
                                         <div class="body">
                                             <p>
-                                                Muestra los 3 equipos con mas ligas
+                                                Muestra los 3 equipos con mas copas
                                             </p>
                                             <div class="consulta">
                                                 <% ArrayList<Palmares> lista =
                                                     palmaresController.consultarCopas(); %>
                                                     <% for(Palmares palmares : lista){ %>
+
                                                         <table>
                                                             <tr>
                                                                 <td>Id</td>
