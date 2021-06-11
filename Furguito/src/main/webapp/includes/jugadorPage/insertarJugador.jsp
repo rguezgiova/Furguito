@@ -1,5 +1,5 @@
-<form method="POST" action="registro-action.jsp">
-    ID del jugador: <input type="number" name="idJugador"><br>
+<form method="POST" action="insertar.jsp">
+    ID del jugador: <input type="text" name="idJugador"><br>
     Equipo: <input type="text" name="nombreEquipo"><br>
     Nombre: <input type="text" name="nombreJugador"><br>
     Dorsal: <input type="number" name="dorsalJugador" placeholder="11"><br>

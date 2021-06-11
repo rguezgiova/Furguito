@@ -1,4 +1,4 @@
-<form method="POST" action="registro-action.jsp">
+<form method="POST" action="insertar.jsp">
     ID del palmares: <input type="number" name="idPalmares"><br>
     Equipo: <input type="text" name="nombreEquipo"><br>
     Ligas: <input type="number" name="ligasEquipo" placeholder="11"><br>
