@@ -18,7 +18,6 @@
     </marquee>
 </body>
 <footer>
-    <%@include file="../pelota.jsp" %>
-        <%@include file="../footer.jsp" %>
+    <%@include file="../footer.jsp" %>
 </footer>
 </html>
