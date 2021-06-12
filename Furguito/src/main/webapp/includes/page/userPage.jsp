@@ -12,7 +12,7 @@
 
 <body>
    <div class="menuUser">
-      <ol>
+      <ul>
          <li><a href="../clubPage/buscarClub.jsp">Consultar informacion del club</a></li>
          <li><a href="../clubPage/buscarPresupuesto.jsp">Consultar presupuesto del club</a></li>
          <li><a href="../clubPage/buscarCiudad.jsp">Consultar ciudad del club</a></li>
@@ -26,7 +26,7 @@
          <li><a href="../palmaresPage/topLigas.jsp">Equipos con mas ligas</a></li>
          <li><a href="../palmaresPage/topCopas.jsp">Equipos con mas copas</a></li>
          <li><a href="../../index.jsp">Volver</a></li>
-      </ol>
+      </ul>
    </div>
 </body>
 <footer>
