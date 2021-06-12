@@ -47,6 +47,9 @@
                         </tr>
                     </table>
         </div>
+        <marquee scrollamount="12" behavior="alternate" direction="up">
+            <img src="../images/balon.png" />
+        </marquee>
     </body>
     <footer>
         <%@include file="../footer.jsp" %>

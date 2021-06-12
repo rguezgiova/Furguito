@@ -21,5 +21,4 @@ try {
 }
 %>
 
-<%@include file="../pelota.jsp" %>
 <%@include file="../footer.jsp" %>

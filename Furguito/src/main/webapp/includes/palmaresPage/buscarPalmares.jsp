@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,19 +8,18 @@
     <%@include file="../header.jsp" %>
         <title>Buscar Equipo</title>
 </head>
-
 <body>
     <div class="body">
         <form method="POST" action="infoPalmares.jsp">
             Introduce el nombre del equipo: <br><input type="text" name="nombreEquipo"><br>
             <input type="submit" value="Enviar">
         </form>
-        </form>
-        </form>
+        <marquee scrollamount="12" behavior="alternate" direction="up">
+            <img src="../images/balon.png" />
+        </marquee>
     </div>
 </body>
 <footer>
     <%@include file="../footer.jsp" %>
 </footer>
-
 </html>

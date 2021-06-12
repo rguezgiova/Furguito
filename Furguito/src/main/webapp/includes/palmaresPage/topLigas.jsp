@@ -8,8 +8,7 @@
 <% try { %>
     <% es.iespuertolacruz.furguito.controller.PalmaresController palmaresController = new PalmaresController(); %>
 <% } catch (PersistenciaException e) { out.println(e); } %>
-<jsp:useBean id="palmaresController"
-    class="es.iespuertolacruz.furguito.controller.PalmaresController" />
+<jsp:useBean id="palmaresController" class="es.iespuertolacruz.furguito.controller.PalmaresController" />
 <html lang="es">
 <head>
     <meta charset="UTF-8">

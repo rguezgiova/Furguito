@@ -13,9 +13,11 @@
         Introduce la ID del equipo: <br><input type="number" name="idEquipo"><br>
         <input type="submit" value="Enviar">
     </form>
+    <marquee scrollamount="12" behavior="alternate" direction="up">
+        <img src="../images/balon.png" />
+    </marquee>
 </body>
 <footer>
-    <%@include file="../pelota.jsp" %>
     <%@include file="../footer.jsp" %>
 </footer>
 </html>

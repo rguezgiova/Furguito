@@ -9,8 +9,7 @@
 <% try { %>
     <% es.iespuertolacruz.furguito.controller.PalmaresController palmaresController = new PalmaresController(); %>
 <% } catch (PersistenciaException e) { out.println(e); } %>
-<jsp:useBean id="palmaresController"
-    class="es.iespuertolacruz.furguito.controller.PalmaresController" />
+<jsp:useBean id="palmaresController" class="es.iespuertolacruz.furguito.controller.PalmaresController" />
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -67,6 +66,9 @@
                         </table>
                         <% } %>
         </div>
+        <marquee scrollamount="12" behavior="alternate" direction="up">
+            <img src="../images/balon.png" />
+        </marquee>
     </body>
     <footer>
         <%@include file="../footer.jsp" %>

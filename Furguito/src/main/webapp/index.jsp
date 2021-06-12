@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +9,6 @@
     <%@include file="includes/header.jsp" %>
         <title>Bienvenido a Furguito</title>
 </head>
-
 <body>
     <div class="body">
         <form>
@@ -32,11 +30,12 @@
         <div class="invitado">
             <p><a href="includes/page/userPage.jsp">Acceder como invitado</a></p>
         </div>
+        <marquee scrollamount="12" behavior="alternate" direction="up">
+            <img src="includes/images/balon.png" />
+        </marquee>
     </div>
 </body>
 <footer>
-    <%@include file="includes/pelota.jsp" %>
-        <%@include file="includes/footer.jsp" %>
+    <%@include file="includes/footer.jsp" %>
 </footer>
-
 </html>
