@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="body">
-        <form method="POST" action="page/validarUsuario.jsp">
+        <form method="POST" action="includes/page/validarUsuario.jsp">
             <p>Acceso a administrador</p>
             <div class="inset">
                 <p>
