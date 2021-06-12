@@ -49,6 +49,7 @@
         </div>
     </body>
     <footer>
+        <%@include file="../pelota.jsp" %>
         <%@include file="../footer.jsp" %>
     </footer>
 </html>

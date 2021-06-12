@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +8,6 @@
     <%@include file="../header.jsp" %>
         <title>Buscar Presupuesto</title>
 </head>
-
 <body>
     <div class="body">
         <form method="POST" action="presupuestoClub.jsp">
@@ -19,7 +17,7 @@
     </div>
 </body>
 <footer>
+    <%@include file="../pelota.jsp" %>
     <%@include file="../footer.jsp" %>
 </footer>
-
 </html>
