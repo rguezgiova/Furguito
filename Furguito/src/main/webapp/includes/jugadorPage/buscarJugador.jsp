@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,11 @@
     <%@include file="../header.jsp" %>
         <title>Buscar Equipo</title>
 </head>
+
 <body>
     <div class="body">
         <form method="POST" action="infoJugador.jsp">
-            Introduce el nombre del jugador: <input type="text" name="nombreJugador"><br>
+            Introduce el nombre del jugador: <br> <input type="text" name="nombreJugador"><br>
             <input type="submit" value="Enviar">
         </form>
         </form>
@@ -20,4 +22,5 @@
 <footer>
     <%@include file="../footer.jsp" %>
 </footer>
+
 </html>
