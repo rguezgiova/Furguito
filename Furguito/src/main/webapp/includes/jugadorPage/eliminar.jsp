@@ -15,7 +15,7 @@
 int idJugador = Integer.parseInt(request.getParameter("idJugador"));
 
 try {
-    estadioController.eliminarEquipo(idJugador);
+    jugadorController.eliminarJugador(idJugador);
 } catch(Exception e) {
     out.println("El jugador que desea eliminar no esta en la lista");
 }
