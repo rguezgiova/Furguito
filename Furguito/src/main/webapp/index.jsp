@@ -15,15 +15,15 @@
             <p>Acceso a administrador</p>
             <div class="inset">
                 <p>
-                    <label for="user">User</label>
-                    <input type="text" name="user" id="user">
+                    <label for="usuario">User</label>
+                    <input type="text" name="usuario" id="usuario">
                 </p>
                 <p>
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password">
                 </p>
                 <p class="p-container">
-                    <input type="submit" name="go" id="go" value="Log in">
+                    <input type="submit" value="Log in">
                 </p>
             </div>
         </form>
