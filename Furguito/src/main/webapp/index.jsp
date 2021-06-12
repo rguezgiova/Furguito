@@ -16,7 +16,7 @@
             <div class="inset">
                 <p>
                     <label for="user">User</label>
-                    <input type="text" name="email" id="email">
+                    <input type="text" name="user" id="user">
                 </p>
                 <p>
                     <label for="password">Password</label>

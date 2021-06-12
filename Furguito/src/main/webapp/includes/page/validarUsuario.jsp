@@ -9,7 +9,7 @@
 <body>
     <jsp:useBean id="validarUsuario" class="es.iespuertolacruz.furguito.validaciones.ValidarUsuario"/>
         
-        <jsp:setProperty name="validarUsuario" property="usuario"/>
+        <jsp:setProperty name="validarUsuario" property="user"/>
         <jsp:setProperty name="validarUsuario" property="password"/>
           
         <%if(validarUsuario.validar()){%>
