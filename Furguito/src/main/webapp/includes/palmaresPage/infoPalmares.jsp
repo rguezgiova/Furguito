@@ -20,55 +20,54 @@
         <title>Palmares del equipo</title>
 </head>
 <body>
-    <body>
-        <div class="body">
-            <p>
-                Muestra el palmares completo del equipo
-            </p>
-        </div>
-        <div class="consulta">
-            <% String nombre=request.getParameter("nombreEquipo"); %>
-                <% ArrayList<Palmares> lista = palmaresController.consultarPalmares(nombre); %>
-                    <% for(Palmares palmares : lista){ %>
-                        <table>
-                            <tr>
-                                <td>Equipo</td>
-                                <td>Ligas</td>
-                                <td>Copas del Rey</td>
-                                <td>Supercopa de Espana</td>
-                                <td>Supercopa de Europa</td>
-                                <td>Champions</td>
-                                <td>Mundial de Clubs</td>
-                            <tr>
-                                <td>
-                                    <%= palmares.getEquipo() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getLigas() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getCopasDelRey() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getSuperEspana() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getSuperEuropa() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getChampions() %>
-                                </td>
-                                <td>
-                                    <%= palmares.getMundialClubs() %>
-                                </td>
-                            </tr>
-                            </tr>
-                        </table>
-                        <% } %>
-        </div>
-        <marquee scrollamount="12" behavior="alternate" direction="up">
-            <img src="../images/balon.png" />
-        </marquee>
+    <div class="body">
+        <p>
+            Muestra el palmares completo del equipo
+        </p>
+    </div>
+    <div class="consulta">
+        <% String nombre=request.getParameter("nombreEquipo"); %>
+            <% ArrayList<Palmares> lista = palmaresController.consultarPalmares(nombre); %>
+                <% for(Palmares palmares : lista){ %>
+                    <table>
+                        <tr>
+                            <td>Equipo</td>
+                            <td>Ligas</td>
+                            <td>Copas del Rey</td>
+                            <td>Supercopa de Espana</td>
+                            <td>Supercopa de Europa</td>
+                            <td>Champions</td>
+                            <td>Mundial de Clubs</td>
+                        <tr>
+                            <td>
+                                <%= palmares.getEquipo() %>
+                            </td>
+                            <td>
+                                <%= palmares.getLigas() %>
+                            </td>
+                            <td>
+                                <%= palmares.getCopasDelRey() %>
+                            </td>
+                            <td>
+                                <%= palmares.getSuperEspana() %>
+                            </td>
+                            <td>
+                                <%= palmares.getSuperEuropa() %>
+                            </td>
+                            <td>
+                                <%= palmares.getChampions() %>
+                            </td>
+                            <td>
+                                <%= palmares.getMundialClubs() %>
+                            </td>
+                        </tr>
+                        </tr>
+                    </table>
+                    <% } %>
+    </div>
+    <marquee scrollamount="12" behavior="alternate" direction="up">
+        <img src="../images/balon.png" />
+    </marquee>
     </body>
     <footer>
         <%@include file="../footer.jsp" %>

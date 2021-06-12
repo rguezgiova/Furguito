@@ -2,7 +2,7 @@
 <%@ page import='es.iespuertolacruz.furguito.api.Estadio' %>
 <%@ page import="es.iespuertolacruz.furguito.controller.EstadioController" %>
 <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException" %>
-%@ page errorPage="../error/showError.jsp" %>
+<%@ page errorPage="../error/showError.jsp" %>
 <% try { %>
     <% es.iespuertolacruz.furguito.controller.EstadioController estadioController = new EstadioController(); %>
 <% } catch (PersistenciaException e) { out.println(e); } %>

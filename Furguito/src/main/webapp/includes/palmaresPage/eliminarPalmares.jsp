@@ -9,7 +9,7 @@
     <title>Eliminar palmares</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" action="eliminar.jsp">
         Introduce la ID del palmares: <br><input type="number" name="idPalmares"><br>
         <input type="submit" value="Enviar">
     </form>

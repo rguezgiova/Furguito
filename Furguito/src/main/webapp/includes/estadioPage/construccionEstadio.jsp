@@ -19,37 +19,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../style.css" title="style" />
     <%@include file="../header.jsp" %>
-        <title>Construccion del estadio</title>
+    <title>Construccion del estadio</title>
 </head>
 <body>
-    <body>
-        <div class="body">
-            <p>
-                Muestra la fecha de construccion del estadio
-            </p>
-        </div>
-        <div class="consulta">
-            <% String nombre=request.getParameter("nombreEstadio"); %>
-                <% try { estadio=estadioController.consultarInformacion(nombre);
-                    }catch(PersistenciaException e){ out.println(e); } %>
-                    <table>
-                        <tr>
-                            <td>Nombre</td>
-                            <td>Construccion</td>
-                        <tr>
-                            <td>
-                                <%= estadio.getNombre() %>
-                            </td>
-                            <td>
-                                <%= estadio.getConstruccion() %>
-                            </td>
-                        </tr>
-                        </tr>
-                    </table>
-        </div>
-        <marquee scrollamount="12" behavior="alternate" direction="up">
-            <img src="../images/balon.png" />
-        </marquee>
+    <div class="body">
+        <p>
+            Muestra la fecha de construccion del estadio
+        </p>
+    </div>
+    <div class="consulta">
+        <% String nombre=request.getParameter("nombreEstadio"); %>
+            <% try { estadio=estadioController.consultarInformacion(nombre);
+                }catch(PersistenciaException e){ out.println(e); } %>
+                <table>
+                    <tr>
+                        <td>Nombre</td>
+                        <td>Construccion</td>
+                    <tr>
+                        <td>
+                            <%= estadio.getNombre() %>
+                        </td>
+                        <td>
+                            <%= estadio.getConstruccion() %>
+                        </td>
+                    </tr>
+                    </tr>
+                </table>
+    </div>
+    <marquee scrollamount="12" behavior="alternate" direction="up">
+        <img src="../images/balon.png" />
+    </marquee>
     </body>
     <footer>
         <%@include file="../footer.jsp" %>
