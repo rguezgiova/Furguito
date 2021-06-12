@@ -14,11 +14,11 @@
 <%
 int idEstadio = Integer.parseInt(request.getParameter("idEstadio"));
 String nombreEstadio = request.getParameter("nombreEstadio");
-String nombreEquipo = request.getParameter("nombreEquipo");
+String equipoEstadio = request.getParameter("equipoEstadio");
 int capacidadEstadio = Integer.parseInt(request.getParameter("capacidadEstadio));
 int construccionEstadio = Integer.parseInt(request.getParameter("construccionEstadio"));
 
-es.iespuertolacruz.furguito.api.Estadio estadio = new Estadio(idEstadio, nombreEstadio, nombreEquipo, capacidadEstadio, construccionEstadio);
+es.iespuertolacruz.furguito.api.Estadio estadio = new Estadio(idEstadio, nombreEstadio, equipoEstadio, capacidadEstadio, construccionEstadio);
 
 try {
     estadioController.modificarEstadio(estadio);
