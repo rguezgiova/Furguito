@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +9,11 @@
     <%@include file="../header.jsp" %>
         <title>Buscar fecha de construccion del estadio</title>
 </head>
+
 <body>
     <div class="body">
         <form method="POST" action="construccionEstadio.jsp">
-            Introduce el nombre del estadio: <input type="text" name="nombreEstadio"><br>
+            Introduce el nombre del estadio: <br><input type="text" name="nombreEstadio"><br>
             <input type="submit" value="Enviar">
         </form>
     </div>
@@ -19,4 +21,5 @@
 <footer>
     <%@include file="../footer.jsp" %>
 </footer>
+
 </html>
