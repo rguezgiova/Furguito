@@ -54,20 +54,17 @@ th, td {
   border: 1px solid rgb(99, 98, 98);
 }
 
-.body marquee {
+marquee {
     margin-top: 75px;
     direction:rtl;
     height: 300;
     text-align: center;
 }
 
-.body marquee img {
+marquee img {
     height: 150px;
     width: 150px;
-}
-
-.consulta {
-  
+    src: url("images/balon.png");
 }
 
 
