@@ -37,7 +37,8 @@ a:hover {
 
 table {
   margin: 2%;
-  width: 100%;
+  margin-left: 25%;
+  width: 50%;
   font-size: 18px;
   text-align: center;
   border-collapse: collapse;
@@ -47,7 +48,7 @@ table {
 
 th, td {
   width: 12%;
-  text-align: left;
+  text-align: center;
   border: 1px solid rgb(99, 98, 98);
 }
 
