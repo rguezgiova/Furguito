@@ -15,7 +15,7 @@
             <h1 class="lead">Furguito, una APP sobre LaLiga Santander.</h1>
             <ul class="slider-menu">
                 <li><a href="../index.jsp"></a>Inicio</li>
-                <li>Contacto</li>
+                <li><a href="../includes/page/contacto.jsp"> Contacto</a></li>
             </ul>
         </div>
     </div>
