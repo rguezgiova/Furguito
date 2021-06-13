@@ -26,6 +26,7 @@ asistenciasJugador, amarillasJugador, rojasJugador);
 
 try {
     jugadorController.insertarJugador(jugador);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El jugador que desea insertar ya esta en la lista");
 }

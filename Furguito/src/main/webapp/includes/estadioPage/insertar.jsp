@@ -23,6 +23,7 @@ es.iespuertolacruz.furguito.api.Estadio estadio = new Estadio(idEstadio, nombreE
 
 try {
     estadioController.insertarEstadio(estadio);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El estadio que desea insertar ya esta en la lista"); } %>
 

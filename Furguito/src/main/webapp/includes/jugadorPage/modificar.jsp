@@ -26,6 +26,7 @@ asistenciasJugador, amarillasJugador, rojasJugador);
 
 try {
     jugadorController.modificarJugador(jugador);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El jugador que desea modificar no esta en la lista");
 }

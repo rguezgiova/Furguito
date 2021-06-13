@@ -26,6 +26,7 @@ superEspanaEquipo, superEuropaEquipo, championsEquipo, mundialClubsEquipo);
 
 try {
     palmaresController.modificarPalmares(palmares);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El palmares que desea modificar no esta en la lista");
 }

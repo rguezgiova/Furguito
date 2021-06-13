@@ -26,6 +26,7 @@ sociosEquipo, presupuestoEquipo, coloresEquipo);
 
 try {
     equipoController.insertarEquipo(equipo);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El equipo que desea insertar ya esta en la lista");
 }

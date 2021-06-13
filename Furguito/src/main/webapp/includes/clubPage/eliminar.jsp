@@ -16,6 +16,7 @@ int idEquipo = Integer.parseInt(request.getParameter("idEquipo"));
 
 try {
     equipoController.eliminarEquipo(idEquipo);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(Exception e) {
     out.println("El equipo que desea eliminar no esta en la lista");
 }

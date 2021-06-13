@@ -22,6 +22,7 @@ es.iespuertolacruz.furguito.api.Estadio estadio = new Estadio(idEstadio, nombreE
 
 try {
     estadioController.modificarEstadio(estadio);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(PersistenciaException e) {
     out.println("El estadio que desea modificar no esta en la lista");
 }

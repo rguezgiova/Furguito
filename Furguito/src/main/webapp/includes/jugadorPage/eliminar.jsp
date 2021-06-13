@@ -16,6 +16,7 @@ int idJugador = Integer.parseInt(request.getParameter("idJugador"));
 
 try {
     jugadorController.eliminarJugador(idJugador);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(Exception e) {
     out.println("El jugador que desea eliminar no esta en la lista");
 }

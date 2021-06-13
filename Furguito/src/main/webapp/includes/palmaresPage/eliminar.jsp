@@ -16,6 +16,7 @@ int idPalmares = Integer.parseInt(request.getParameter("idPalmares"));
 
 try {
     palmaresController.eliminarPalmares(idPalmares);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(Exception e) {
     out.println("El palmares que desea eliminar no esta en la lista");
 }

@@ -16,6 +16,7 @@ int idEstadio = Integer.parseInt(request.getParameter("idEstadio"));
 
 try {
     estadioController.eliminarEstadio(idEstadio);
+    response.sendRedirect("../page/adminPage.jsp");
 } catch(Exception e) {
     out.println("El estadio que desea eliminar no esta en la lista");
 }
