@@ -25,7 +25,7 @@
          <li><a href="../palmaresPage/insertarPalmares.jsp">Insertar palmares</a></li>
          <li><a href="../palmaresPage/modificarPalmares.jsp">Modificar palmares</a></li>
          <li><a href="../palmaresPage/eliminarPalmares.jsp">Borrar palmares</a></li>
-         <li><a href="../../index.jsp">Salir</a></li>
+         <li><a href="../../index.jsp">Volver</a></li>
       </ul>
    </div>
 </body>

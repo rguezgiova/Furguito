@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +10,7 @@
     <%@include file="includes/header.jsp" %>
         <title>Bienvenido a Furguito</title>
 </head>
+
 <body>
     <div class="body">
         <form method="POST" action="includes/page/validarUsuario.jsp">
@@ -38,4 +40,5 @@
 <footer>
     <%@include file="includes/footer.jsp" %>
 </footer>
+
 </html>

@@ -20,18 +20,11 @@ body {
 
 a {
     outline: none;
-    text-decoration: underline;
+    text-decoration:none;
     color: #FFFFFF;
 }
 
-ul {
-    margin: 2px 0 22px 17px;
-}
 
-ul li {
-    margin: 0 0 6px 0;
-    padding: 0 0 4px 5px;
-}
 
 .body {
     margin-top: 10%;
@@ -46,6 +39,7 @@ table {
   text-align: center;
   border-collapse: collapse;
   border: 1px solid rgb(99, 98, 98);
+  background-color: rgb(107, 104, 104, 25%);
 }
 
 th, td {
@@ -67,30 +61,69 @@ marquee img {
 }
 
 
-.invitado {
+.invitado{
   margin-top: -20px;
   font-size: 20px;
-  color:rgb(255, 255, 255);
   text-align: center;
 }
 
-
-.menuAdmin {
-    position: absolute;
-    left: 50%;
-    top: 10%;
-    z-index: 999;
-    border-radius: 5px;
-    background-color: rgb(104, 101, 100, 50%);
+.invitado.invitado:hover{
+  color: #000000;
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
 }
 
+
+
+.menuAdmin {
+  position: relative;
+  padding: 30px;
+  margin: 10%;
+  margin-left: 40%;
+  width: 300px;
+  border-radius: 5px;
+  background-color: rgb(104, 101, 100, 50%);
+} 
+
+.menuAdmin ul {
+  margin-top: 20px;
+  margin: 0 auto;
+  list-style-type: none;
+  text-align: center;
+}
+
+.menuAdmin li:hover{
+  background-color: #4e4b4b;
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+
+
 .menuUser {
-    position: absolute;
-    left: 50%;
-    top: 10%;
-    z-index: 999;
-    border-radius: 5px;
-    background-color: rgb(104, 101, 100, 50%);
+  position: relative;
+  padding: 30px;
+  margin: 10%;
+  margin-left: 40%;
+  width: 300px;
+  border-radius: 5px;
+  background-color: rgb(104, 101, 100, 50%);
+}
+
+.menuUser ul {
+  margin-top: 20px;
+  margin: 0 auto;
+  list-style-type: none;
+  text-align: center;
+}
+
+.menuUser li:hover{
+  background-color: #4e4b4b;
+  -webkit-transform: scale(1.3);
+  -ms-transform: scale(1.3);
+  transform: scale(1.3);
 }
 
 .footer {
@@ -101,6 +134,17 @@ marquee img {
     width: 100%;
     padding: 40px;
     color: white;
+}
+
+ul {
+  text-align: center;
+  margin: 2px 0 22px 17px;
+}
+
+ul li {
+  text-align: center;
+  margin: 0 0 6px 0;
+  padding: 0 0 4px 5px;
 }
 
 .login {
