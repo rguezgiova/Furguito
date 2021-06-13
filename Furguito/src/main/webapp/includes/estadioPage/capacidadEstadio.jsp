@@ -7,7 +7,7 @@
 <%@ page import="es.iespuertolacruz.furguito.exception.PersistenciaException" %>
 <%@ page errorPage="../page/showError.jsp" %>
 <% try { %>
-    <% es.iespuertolacruz.furguito.controller.EstadioController estadioController = newEstadioController(); %>
+    <% es.iespuertolacruz.furguito.controller.EstadioController estadioController = new EstadioController(); %>
 <% } catch (PersistenciaException e) { out.println(e); } %>
 <jsp:useBean id="estadioController" class="es.iespuertolacruz.furguito.controller.EstadioController" />
 <jsp:useBean id="estadio" class="es.iespuertolacruz.furguito.api.Estadio" />
